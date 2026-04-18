@@ -1,0 +1,122 @@
+\chapter{Дополнительные формулы и таблицы для главы 3 и части главы 4}
+
+% =========================================================
+% Основа приложения:
+% - Приложение B/C из предоставленного пользователем файла
+% - рабочий план диссертации
+%
+% По рабочему плану сюда при необходимости можно дополнительно включить:
+% - громоздкие формулы для линейных преобразований;
+% - дополнительные таблицы коэффициентов для главы 3;
+% - вспомогательные вычислительные материалы по прикладному алгоритму
+%   из главы 4, если их включение в основной текст ухудшает связность.
+% =========================================================
+
+\textit{Примечание.}
+В текущей версии приложения собраны табличные коэффициенты
+$R_{i\Omega}$-преобразования и формулы для восстановления коэффициентов
+аппроксимации по эталонным значениям сопряжённых переменных при двух
+соотношениях радиусов. При дальнейшей доработке сюда могут быть
+добавлены другие громоздкие формулы, таблицы коэффициентов и
+вспомогательные вычислительные материалы для линейных преобразований и
+прикладного алгоритма главы 4.
+
+\begin{table}[htbp]
+\centering
+\caption{Коэффициенты аппроксимации $R_{i\Omega}$-преобразования}
+\label{tab:appendixC_RiOmega}
+\begin{tabular}{|c|c|c|}
+\hline
+$N$ & $C^{i}_{0}$ & $C^{i}_{1}$ \\
+\hline
+0 & $-4.459247\mathrm{E}{-2}$ & $1.208435\mathrm{E}{-3}$ \\
+1 & $-2.516674\mathrm{E}{-1}$ & $-1.425563$ \\
+2 & $3.938937\mathrm{E}{-2}$ & --- \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent
+Коэффициенты $C_i^{\kappa}(\lambda,\kappa_1,\kappa_2)$ рассчитываются на
+основе эталонных значений сопряжённых переменных для двух соотношений
+радиусов.
+
+\begin{equation}
+C_0^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\frac{\kappa_1^{3/4}\kappa_2^{3/4}}{\kappa_2^{3/4}-\kappa_1^{3/4}}
+\left(
+\kappa_1^{1/4}\frac{p_{rx}(\lambda,\kappa_1)}{\log\kappa_1}-
+\kappa_2^{1/4}\frac{p_{rx}(\lambda,\kappa_2)}{\log\kappa_2}
+\right)
+\tag{123}
+\end{equation}
+
+\begin{equation}
+C_1^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\frac{1}{\kappa_1^{3/4}-\kappa_2^{3/4}}
+\left(
+\kappa_1\frac{p_{rx}(\lambda,\kappa_1)}{\log\kappa_1}-
+\kappa_2\frac{p_{rx}(\lambda,\kappa_2)}{\log\kappa_2}
+\right)
+\tag{124}
+\end{equation}
+
+\begin{equation}
+C_2^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\frac{\kappa_1^{1/4}\kappa_2^{1/4}}{\kappa_2^{1/4}-\kappa_1^{1/4}}
+\left(
+\kappa_1^{3/4}\frac{p_{ry}(\lambda,\kappa_1)}{\log\kappa_1}-
+\kappa_2^{3/4}\frac{p_{ry}(\lambda,\kappa_2)}{\log\kappa_2}
+\right)
+\tag{125}
+\end{equation}
+
+\begin{equation}
+C_3^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\frac{1}{\kappa_1^{1/4}-\kappa_2^{1/4}}
+\left(
+\kappa_1\frac{p_{ry}(\lambda,\kappa_1)}{\log\kappa_1}-
+\kappa_2\frac{p_{ry}(\lambda,\kappa_2)}{\log\kappa_2}
+\right)
+\tag{126}
+\end{equation}
+
+\begin{equation}
+C_4^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\frac{\kappa_1^{1/4}\kappa_2^{1/4}}{\kappa_2^{1/4}-\kappa_1^{1/4}}
+\left(
+\kappa_1^{3/4}\frac{p_{vx}(\lambda,\kappa_1)}{\log\kappa_1}-
+\kappa_2^{3/4}\frac{p_{vx}(\lambda,\kappa_2)}{\log\kappa_2}
+\right)
+\tag{127}
+\end{equation}
+
+\begin{equation}
+C_5^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\frac{1}{\kappa_1^{1/4}-\kappa_2^{1/4}}
+\left(
+\kappa_1\frac{p_{vx}(\lambda,\kappa_1)}{\log\kappa_1}-
+\kappa_2\frac{p_{vx}(\lambda,\kappa_2)}{\log\kappa_2}
+\right)
+\tag{128}
+\end{equation}
+
+\begin{equation}
+C_6^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\frac{\kappa_1^{3/4}\kappa_2^{3/4}}{\kappa_2^{3/4}-\kappa_1^{3/4}}
+\left(
+\kappa_1^{1/4}\frac{p_{vy}(\lambda,\kappa_1)}{\log\kappa_1}-
+\kappa_2^{1/4}\frac{p_{vy}(\lambda,\kappa_2)}{\log\kappa_2}
+\right)
+\tag{129}
+\end{equation}
+
+\begin{equation}
+C_7^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\frac{1}{\kappa_1^{3/4}-\kappa_2^{3/4}}
+\left(
+\kappa_1\frac{p_{vy}(\lambda,\kappa_1)}{\log\kappa_1}-
+\kappa_2\frac{p_{vy}(\lambda,\kappa_2)}{\log\kappa_2}
+\right)
+\tag{130}
+\end{equation}
