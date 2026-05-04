@@ -120,3 +120,200 @@ C_7^{\kappa}(\lambda,\kappa_1,\kappa_2)=
 \right)
 \tag{130}
 \end{equation}
+
+
+% =========================================================
+\section{Формулы коррекции витковой дальности при \(R\)-преобразовании II типа}
+% =========================================================
+
+В разделе, посвящённом коррекции витковой дальности, используется
+линейная модель деформации полного угла. Скорректированная витковая
+дальность задаётся формулой
+\begin{equation}
+	\lambda_{\mathrm{corr}}
+	=
+	\lambda
+	-
+	\frac{1}{2\pi}
+	S_{\lambda}(\omega,\lambda,\kappa)\zeta .
+	\label{eq:appendixC_lambda_correction}
+\end{equation}
+
+Функция чувствительности \(S_{\lambda}\) записывается в виде конечного
+гармонического разложения по аргументу перицентра:
+\begin{equation}
+	\begin{aligned}
+		S_{\lambda}(\omega,\lambda,\kappa)
+		={}&
+		c_0(\lambda,\kappa)
+		+a_1(\lambda,\kappa)\cos\omega
+		+b_1(\lambda,\kappa)\sin\omega
+		\\
+		&+
+		a_3(\lambda,\kappa)\cos 3\omega
+		+b_3(\lambda,\kappa)\sin 3\omega .
+	\end{aligned}
+	\label{eq:appendixC_S_lambda}
+\end{equation}
+
+Ниже приведены формулы для коэффициентов \(c_0,a_1,b_1,a_3,b_3\).
+Для сокращения записи введём обозначение
+\begin{equation}
+	p=2\pi\lambda .
+	\label{eq:appendixC_p_def}
+\end{equation}
+
+\begin{equation}
+	c_0(\lambda,\kappa)
+	=
+	\left(
+	\lambda\arctan(\kappa\lambda^2)+A_1
+	\right)
+	\left(
+	A_2\cos(A_3\lambda)-A_4-\frac{A_5}{\kappa}
+	\right)
+	\ln\kappa .
+	\label{eq:appendixC_c0_lam}
+\end{equation}
+
+\begin{equation}
+	\begin{aligned}
+		a_1(\lambda,\kappa)
+		={}&
+		\left[
+		p+
+		\left(
+		-A_6\cos p\,\arctan\kappa
+		-A_7
+		\right)
+		\right.
+		\\
+		&\left.
+		\cdot
+		\left(
+		\kappa(-\sqrt p+\sin p+A_8)+p-A_9
+		\right)
+		\right]
+		\ln\kappa .
+	\end{aligned}
+	\label{eq:appendixC_a1_lam}
+\end{equation}
+
+\begin{equation}
+	\begin{aligned}
+		b_1(\lambda,\kappa)
+		={}&
+		B_1(B_2-\kappa)
+		\left[
+		(B_3p+B_4)\sin p
+		-\cos p
+		+B_5
+		\right.
+		\\
+		&\left.
+		+
+		\frac{
+			\sin\left(
+			p+\sqrt{p\arctan(\arctan\kappa)}+B_6
+			\right)-B_7
+		}{\kappa}
+		\right] .
+	\end{aligned}
+	\label{eq:appendixC_b1_lam}
+\end{equation}
+
+\begin{equation}
+	a_3(\lambda,\kappa)
+	=
+	p
+	\left[
+	-D_1
+	\left(
+	\kappa+\sin(D_2\kappa)
+	\right)
+	\cos\left(
+	p-\frac{D_3}{p}
+	\right)
+	-D_4
+	\right]
+	\ln\kappa
+	-
+	\left(
+	\frac{\kappa^2}{p}
+	\right)^{D_5}.
+	\label{eq:appendixC_a3_lam}
+\end{equation}
+
+\begin{equation}
+	\begin{aligned}
+		b_3(\lambda,\kappa)
+		={}&
+		\frac{
+			(\kappa-E_1)(\lambda+E_2)
+		}{E_3}
+		\left[
+		\sin\left(
+		\frac{\lambda}{E_4}+E_5
+		\right)
+		\right.
+		\\
+		&\left.
+		+
+		\frac{
+			E_6
+		}{
+			(\lambda+E_7)^{\kappa}
+			+
+			\sin\left(
+			\frac{\lambda}{E_8}
+			\right)
+		}
+		\right] .
+	\end{aligned}
+	\label{eq:appendixC_b3_lam}
+\end{equation}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Коэффициенты формул коррекции витковой дальности при \(R\)-преобразовании II типа}
+	\label{tab:appendixC_S_lambda_coefficients}
+	\small
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Формула & Коэффициент & Значение \\
+		\hline
+		\(c_0\) & \(A_1\) & \(0.82187337\) \\
+		\(c_0\) & \(A_2\) & \(0.0058871657\) \\
+		\(c_0\) & \(A_3\) & \(56.677177\) \\
+		\(c_0\) & \(A_4\) & \(0.40101022\) \\
+		\(c_0\) & \(A_5\) & \(0.0153615268740028\) \\
+		\(a_1\) & \(A_6\) & \(1.78555919714402\) \\
+		\(a_1\) & \(A_7\) & \(2.4934194\) \\
+		\(a_1\) & \(A_8\) & \(4.571423\) \\
+		\(a_1\) & \(A_9\) & \(3.6274443\) \\
+		\hline
+		\(b_1\) & \(B_1\) & \(2.2276373\) \\
+		\(b_1\) & \(B_2\) & \(0.98109335\) \\
+		\(b_1\) & \(B_3\) & \(0.2957547\) \\
+		\(b_1\) & \(B_4\) & \(1.29198500544168\) \\
+		\(b_1\) & \(B_5\) & \(0.85754347\) \\
+		\(b_1\) & \(B_6\) & \(1.611204\) \\
+		\(b_1\) & \(B_7\) & \(2.5816476\) \\
+		\hline
+		\(a_3\) & \(D_1\) & \(0.112247035\) \\
+		\(a_3\) & \(D_2\) & \(1.18486290247571\) \\
+		\(a_3\) & \(D_3\) & \(2.7900786\) \\
+		\(a_3\) & \(D_4\) & \(0.18705241\) \\
+		\(a_3\) & \(D_5\) & \(1.6229355\) \\
+		\hline
+		\(b_3\) & \(E_1\) & \(0.99315286\) \\
+		\(b_3\) & \(E_2\) & \(0.8012159\) \\
+		\(b_3\) & \(E_3\) & \(1.5039495\) \\
+		\(b_3\) & \(E_4\) & \(-0.15757908\) \\
+		\(b_3\) & \(E_5\) & \(0.36855963\) \\
+		\(b_3\) & \(E_6\) & \(0.91364694\) \\
+		\(b_3\) & \(E_7\) & \(0.967995\) \\
+		\(b_3\) & \(E_8\) & \(-0.15322572\) \\
+		\hline
+	\end{tabular}
+\end{table}
