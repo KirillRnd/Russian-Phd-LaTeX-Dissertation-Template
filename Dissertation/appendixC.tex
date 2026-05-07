@@ -2,295 +2,337 @@
 
 В настоящем приложении приведены дополнительные формулы и таблицы коэффициентов, используемые в главах~3 и~4. Эти материалы вынесены за пределы основного текста, поскольку имеют вспомогательный характер и необходимы главным образом для воспроизводимости конечных формул.
 
+\section*{Коэффициент-функция чувствительности для \(R\)-преобразования III типа}
+
+Коэффициент-функция чувствительности, связывающая управляющий параметр \(j\) с наклонением конечной орбиты, имеет вид
+\begin{equation}
+\mathcal A^{(i)}(\kappa,\Omega)
+=
+\mathcal A_0^{(i)}(\kappa)+\mathcal A_1^{(i)}(\kappa)\cos 2\Omega,
+\label{eq:appendixC_Ai}
+\end{equation}
+где
+\begin{equation}
+\mathcal A_0^{(i)}(\kappa)
+=
+\kappa
+\left(C_0^{(i)}+C_1^{(i)}\kappa\right)
+\left(\kappa+C_2^{(i)}\right)
++C_3^{(i)},
+\label{eq:appendixC_Ai_0}
+\end{equation}
+\begin{equation}
+\mathcal A_1^{(i)}(\kappa)
+=
+C_4^{(i)}
+\left(\kappa-C_5^{(i)}\right)
+\left(\kappa^3-C_6^{(i)}\right).
+\label{eq:appendixC_Ai_1}
+\end{equation}
+
 \begin{table}[htbp]
 \centering
-\caption{Коэффициенты аппроксимации \(R_{i\Omega}\)-преобразования}
+\caption{Коэффициенты компонент коэффициент-функции \(\mathcal A^{(i)}(\kappa,\Omega)\).}
 \label{tab:appendixC_RiOmega}
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|c|c|}
 \hline
-$N$ & $C^{i}_{0}$ & $C^{i}_{1}$ \\
+Коэффициент & Значение \\
 \hline
-0 & $-4.459247\mathrm{E}{-2}$ & $1.208435\mathrm{E}{-3}$ \\
-1 & $-2.516674\mathrm{E}{-1}$ & $-1.425563$ \\
-2 & $3.938937\mathrm{E}{-2}$ & --- \\
+\(C_0^{(i)}\) & \(1.2653741\mathrm{E}{-1}\) \\
+\(C_1^{(i)}\) & \(-2.2551617\mathrm{E}{-2}\) \\
+\(C_2^{(i)}\) & \(8.1236150\mathrm{E}{-1}\) \\
+\(C_3^{(i)}\) & \(-1.8755639\mathrm{E}{-1}\) \\
+\(C_4^{(i)}\) & \(1.2084354\mathrm{E}{-3}\) \\
+\(C_5^{(i)}\) & \(1.4255633\mathrm{E}{0}\) \\
+\(C_6^{(i)}\) & \(9.9985284\mathrm{E}{-1}\) \\
 \hline
 \end{tabular}
 \end{table}
 
+\section*{Вспомогательные функции для коэффициентов параметров оптимального управления}
+
 \noindent
-Коэффициенты $C_i^{\kappa}(\lambda,\kappa_1,\kappa_2)$ рассчитываются на
-основе эталонных значений сопряжённых переменных для двух соотношений
-радиусов.
+Вспомогательные функции \(\mathcal P_i^{(\kappa)}(\lambda,\kappa_1,\kappa_2)\) рассчитываются на основе эталонных значений сопряжённых переменных для двух соотношений радиусов. Они не являются числовыми коэффициентами вида \(C_i^{(X)}\), поэтому записываются каллиграфической буквой.
 
 \begin{equation}
-C_0^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\mathcal P_0^{(\kappa)}(\lambda,\kappa_1,\kappa_2)=
 \frac{\kappa_1^{3/4}\kappa_2^{3/4}}{\kappa_2^{3/4}-\kappa_1^{3/4}}
 \left(
-\kappa_1^{1/4}\frac{p_{rx}(\lambda,\kappa_1)}{\log\kappa_1}-
-\kappa_2^{1/4}\frac{p_{rx}(\lambda,\kappa_2)}{\log\kappa_2}
-\right)
-\label{eq:appendixC_C0_kappa}
+\kappa_1^{1/4}\frac{p_{rx}(\lambda,\kappa_1)}{\ln\kappa_1}-
+\kappa_2^{1/4}\frac{p_{rx}(\lambda,\kappa_2)}{\ln\kappa_2}
+\right).
+\label{eq:appendixC_P0_kappa}
 \end{equation}
 
 \begin{equation}
-C_1^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\mathcal P_1^{(\kappa)}(\lambda,\kappa_1,\kappa_2)=
 \frac{1}{\kappa_1^{3/4}-\kappa_2^{3/4}}
 \left(
-\kappa_1\frac{p_{rx}(\lambda,\kappa_1)}{\log\kappa_1}-
-\kappa_2\frac{p_{rx}(\lambda,\kappa_2)}{\log\kappa_2}
-\right)
-\label{eq:appendixC_C1_kappa}
+\kappa_1\frac{p_{rx}(\lambda,\kappa_1)}{\ln\kappa_1}-
+\kappa_2\frac{p_{rx}(\lambda,\kappa_2)}{\ln\kappa_2}
+\right).
+\label{eq:appendixC_P1_kappa}
 \end{equation}
 
 \begin{equation}
-C_2^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\mathcal P_2^{(\kappa)}(\lambda,\kappa_1,\kappa_2)=
 \frac{\kappa_1^{1/4}\kappa_2^{1/4}}{\kappa_2^{1/4}-\kappa_1^{1/4}}
 \left(
-\kappa_1^{3/4}\frac{p_{ry}(\lambda,\kappa_1)}{\log\kappa_1}-
-\kappa_2^{3/4}\frac{p_{ry}(\lambda,\kappa_2)}{\log\kappa_2}
-\right)
-\label{eq:appendixC_C2_kappa}
+\kappa_1^{3/4}\frac{p_{ry}(\lambda,\kappa_1)}{\ln\kappa_1}-
+\kappa_2^{3/4}\frac{p_{ry}(\lambda,\kappa_2)}{\ln\kappa_2}
+\right).
+\label{eq:appendixC_P2_kappa}
 \end{equation}
 
 \begin{equation}
-C_3^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\mathcal P_3^{(\kappa)}(\lambda,\kappa_1,\kappa_2)=
 \frac{1}{\kappa_1^{1/4}-\kappa_2^{1/4}}
 \left(
-\kappa_1\frac{p_{ry}(\lambda,\kappa_1)}{\log\kappa_1}-
-\kappa_2\frac{p_{ry}(\lambda,\kappa_2)}{\log\kappa_2}
-\right)
-\label{eq:appendixC_C3_kappa}
+\kappa_1\frac{p_{ry}(\lambda,\kappa_1)}{\ln\kappa_1}-
+\kappa_2\frac{p_{ry}(\lambda,\kappa_2)}{\ln\kappa_2}
+\right).
+\label{eq:appendixC_P3_kappa}
 \end{equation}
 
 \begin{equation}
-C_4^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\mathcal P_4^{(\kappa)}(\lambda,\kappa_1,\kappa_2)=
 \frac{\kappa_1^{1/4}\kappa_2^{1/4}}{\kappa_2^{1/4}-\kappa_1^{1/4}}
 \left(
-\kappa_1^{3/4}\frac{p_{vx}(\lambda,\kappa_1)}{\log\kappa_1}-
-\kappa_2^{3/4}\frac{p_{vx}(\lambda,\kappa_2)}{\log\kappa_2}
-\right)
-\label{eq:appendixC_C4_kappa}
+\kappa_1^{3/4}\frac{p_{vx}(\lambda,\kappa_1)}{\ln\kappa_1}-
+\kappa_2^{3/4}\frac{p_{vx}(\lambda,\kappa_2)}{\ln\kappa_2}
+\right).
+\label{eq:appendixC_P4_kappa}
 \end{equation}
 
 \begin{equation}
-C_5^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\mathcal P_5^{(\kappa)}(\lambda,\kappa_1,\kappa_2)=
 \frac{1}{\kappa_1^{1/4}-\kappa_2^{1/4}}
 \left(
-\kappa_1\frac{p_{vx}(\lambda,\kappa_1)}{\log\kappa_1}-
-\kappa_2\frac{p_{vx}(\lambda,\kappa_2)}{\log\kappa_2}
-\right)
-\label{eq:appendixC_C5_kappa}
+\kappa_1\frac{p_{vx}(\lambda,\kappa_1)}{\ln\kappa_1}-
+\kappa_2\frac{p_{vx}(\lambda,\kappa_2)}{\ln\kappa_2}
+\right).
+\label{eq:appendixC_P5_kappa}
 \end{equation}
 
 \begin{equation}
-C_6^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\mathcal P_6^{(\kappa)}(\lambda,\kappa_1,\kappa_2)=
 \frac{\kappa_1^{3/4}\kappa_2^{3/4}}{\kappa_2^{3/4}-\kappa_1^{3/4}}
 \left(
-\kappa_1^{1/4}\frac{p_{vy}(\lambda,\kappa_1)}{\log\kappa_1}-
-\kappa_2^{1/4}\frac{p_{vy}(\lambda,\kappa_2)}{\log\kappa_2}
-\right)
-\label{eq:appendixC_C6_kappa}
+\kappa_1^{1/4}\frac{p_{vy}(\lambda,\kappa_1)}{\ln\kappa_1}-
+\kappa_2^{1/4}\frac{p_{vy}(\lambda,\kappa_2)}{\ln\kappa_2}
+\right).
+\label{eq:appendixC_P6_kappa}
 \end{equation}
 
 \begin{equation}
-C_7^{\kappa}(\lambda,\kappa_1,\kappa_2)=
+\mathcal P_7^{(\kappa)}(\lambda,\kappa_1,\kappa_2)=
 \frac{1}{\kappa_1^{3/4}-\kappa_2^{3/4}}
 \left(
-\kappa_1\frac{p_{vy}(\lambda,\kappa_1)}{\log\kappa_1}-
-\kappa_2\frac{p_{vy}(\lambda,\kappa_2)}{\log\kappa_2}
-\right)
-\label{eq:appendixC_C7_kappa}
+\kappa_1\frac{p_{vy}(\lambda,\kappa_1)}{\ln\kappa_1}-
+\kappa_2\frac{p_{vy}(\lambda,\kappa_2)}{\ln\kappa_2}
+\right).
+\label{eq:appendixC_P7_kappa}
 \end{equation}
 
 \section*{Формулы коррекции витковой дальности при \(R\)-преобразовании II типа}
 
-В разделе, посвящённом коррекции витковой дальности, используется
-линейная модель деформации полного угла. Скорректированная витковая
-дальность задаётся формулой
+В разделе, посвящённом коррекции витковой дальности, используется линейная модель деформации полного угла. Скорректированная витковая дальность задаётся формулой
 \begin{equation}
-	\lambda_{\mathrm{corr}}
-	=
-	\lambda
-	-
-	\frac{1}{2\pi}
-	S_{\lambda}(\omega,\lambda,\kappa)\zeta .
-	\label{eq:appendixC_lambda_correction}
+\lambda_{\mathrm{corr}}
+=
+\lambda
+-
+\frac{1}{2\pi}
+\mathcal B_\lambda(\omega,\lambda,\kappa)\zeta.
+\label{eq:appendixC_lambda_correction}
 \end{equation}
 
-Функция чувствительности \(S_{\lambda}\) записывается в виде конечного
-гармонического разложения по аргументу перицентра:
+Функция чувствительности \(\mathcal B_\lambda\) записывается в виде конечного гармонического разложения по долготе перицентра:
 \begin{equation}
-	\begin{aligned}
-		S_{\lambda}(\omega,\lambda,\kappa)
-		={}&
-		c_0(\lambda,\kappa)
-		+a_1(\lambda,\kappa)\cos\omega
-		+b_1(\lambda,\kappa)\sin\omega
-		\\
-		&+
-		a_3(\lambda,\kappa)\cos 3\omega
-		+b_3(\lambda,\kappa)\sin 3\omega .
-	\end{aligned}
-	\label{eq:appendixC_S_lambda}
+\begin{aligned}
+\mathcal B_\lambda(\omega,\lambda,\kappa)
+={}&
+\mathcal B_0^{(\lambda)}(\lambda,\kappa)
++
+\mathcal B_1^{(\lambda)}(\lambda,\kappa)\cos\omega
++
+\mathcal B_2^{(\lambda)}(\lambda,\kappa)\sin\omega
+\\
+&+
+\mathcal B_3^{(\lambda)}(\lambda,\kappa)\cos 3\omega
++
+\mathcal B_4^{(\lambda)}(\lambda,\kappa)\sin 3\omega.
+\end{aligned}
+\label{eq:appendixC_B_lambda}
 \end{equation}
 
-Формулы для коэффициентов \(c_0,a_1,b_1,a_3,b_3\) записываются с использованием обозначения
+Формулы для компонент \(\mathcal B_0^{(\lambda)},\ldots,\mathcal B_4^{(\lambda)}\) записываются с использованием обозначения
 \begin{equation}
-	p=2\pi\lambda .
-	\label{eq:appendixC_p_def}
-\end{equation}
-
-\begin{equation}
-	c_0(\lambda,\kappa)
-	=
-	\left(
-	\lambda\arctan(\kappa\lambda^2)+A_1
-	\right)
-	\left(
-	A_2\cos(A_3\lambda)-A_4-\frac{A_5}{\kappa}
-	\right)
-	\ln\kappa .
-	\label{eq:appendixC_c0_lam}
+\varphi=2\pi\lambda.
+\label{eq:appendixC_varphi_def}
 \end{equation}
 
 \begin{equation}
-	\begin{aligned}
-		a_1(\lambda,\kappa)
-		={}&
-		\left[
-		p+
-		\left(
-		-A_6\cos p\,\arctan\kappa
-		-A_7
-		\right)
-		\right.
-		\\
-		&\left.
-		\cdot
-		\left(
-		\kappa(-\sqrt p+\sin p+A_8)+p-A_9
-		\right)
-		\right]
-		\ln\kappa .
-	\end{aligned}
-	\label{eq:appendixC_a1_lam}
+\mathcal B_0^{(\lambda)}(\lambda,\kappa)
+=
+\left(
+\lambda\arctan(\kappa\lambda^2)+C_0^{(B_{\lambda,0})}
+\right)
+\left(
+C_1^{(B_{\lambda,0})}\cos\left(C_2^{(B_{\lambda,0})}\lambda\right)
+-C_3^{(B_{\lambda,0})}
+-\frac{C_4^{(B_{\lambda,0})}}{\kappa}
+\right)
+\ln\kappa.
+\label{eq:appendixC_B0_lam}
 \end{equation}
 
 \begin{equation}
-	\begin{aligned}
-		b_1(\lambda,\kappa)
-		={}&
-		B_1(B_2-\kappa)
-		\left[
-		(B_3p+B_4)\sin p
-		-\cos p
-		+B_5
-		\right.
-		\\
-		&\left.
-		+
-		\frac{
-			\sin\left(
-			p+\sqrt{p\arctan(\arctan\kappa)}+B_6
-			\right)-B_7
-		}{\kappa}
-		\right] .
-	\end{aligned}
-	\label{eq:appendixC_b1_lam}
+\begin{aligned}
+\mathcal B_1^{(\lambda)}(\lambda,\kappa)
+={}&
+\left[
+\varphi+
+\left(
+-C_0^{(B_{\lambda,1})}\cos\varphi\,\arctan\kappa
+-C_1^{(B_{\lambda,1})}
+\right)
+\right.
+\\
+&\left.
+\cdot
+\left(
+\kappa\left(-\sqrt\varphi+\sin\varphi+C_2^{(B_{\lambda,1})}\right)
++\varphi-C_3^{(B_{\lambda,1})}
+\right)
+\right]
+\ln\kappa.
+\end{aligned}
+\label{eq:appendixC_B1_lam}
 \end{equation}
 
 \begin{equation}
-	a_3(\lambda,\kappa)
-	=
-	p
-	\left[
-	-D_1
-	\left(
-	\kappa+\sin(D_2\kappa)
-	\right)
-	\cos\left(
-	p-\frac{D_3}{p}
-	\right)
-	-D_4
-	\right]
-	\ln\kappa
-	-
-	\left(
-	\frac{\kappa^2}{p}
-	\right)^{D_5}.
-	\label{eq:appendixC_a3_lam}
+\begin{aligned}
+\mathcal B_2^{(\lambda)}(\lambda,\kappa)
+={}&
+C_0^{(B_{\lambda,2})}
+\left(C_1^{(B_{\lambda,2})}-\kappa\right)
+\left[
+\left(C_2^{(B_{\lambda,2})}\varphi+C_3^{(B_{\lambda,2})}\right)\sin\varphi
+-\cos\varphi
++C_4^{(B_{\lambda,2})}
+\right.
+\\
+&\left.
++
+\frac{
+\sin\left(
+\varphi+\sqrt{\varphi\arctan(\arctan\kappa)}+C_5^{(B_{\lambda,2})}
+\right)
+-C_6^{(B_{\lambda,2})}
+}{\kappa}
+\right].
+\end{aligned}
+\label{eq:appendixC_B2_lam}
 \end{equation}
 
 \begin{equation}
-	\begin{aligned}
-		b_3(\lambda,\kappa)
-		={}&
-		\frac{
-			(\kappa-E_1)(\lambda+E_2)
-		}{E_3}
-		\left[
-		\sin\left(
-		\frac{\lambda}{E_4}+E_5
-		\right)
-		\right.
-		\\
-		&\left.
-		+
-		\frac{
-			E_6
-		}{
-			(\lambda+E_7)^{\kappa}
-			+
-			\sin\left(
-			\frac{\lambda}{E_8}
-			\right)
-		}
-		\right] .
-	\end{aligned}
-	\label{eq:appendixC_b3_lam}
+\mathcal B_3^{(\lambda)}(\lambda,\kappa)
+=
+\varphi
+\left[
+-C_0^{(B_{\lambda,3})}
+\left(
+\kappa+
+\sin\left(C_1^{(B_{\lambda,3})}\kappa\right)
+\right)
+\cos\left(
+\varphi-
+\frac{C_2^{(B_{\lambda,3})}}{\varphi}
+\right)
+-C_3^{(B_{\lambda,3})}
+\right]
+\ln\kappa
+-
+\left(
+\frac{\kappa^2}{\varphi}
+\right)^{C_4^{(B_{\lambda,3})}}.
+\label{eq:appendixC_B3_lam}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\mathcal B_4^{(\lambda)}(\lambda,\kappa)
+={}&
+\frac{
+\left(\kappa-C_0^{(B_{\lambda,4})}\right)
+\left(\lambda+C_1^{(B_{\lambda,4})}\right)
+}{C_2^{(B_{\lambda,4})}}
+\left[
+\sin\left(
+\frac{\lambda}{C_3^{(B_{\lambda,4})}}
++C_4^{(B_{\lambda,4})}
+\right)
+\right.
+\\
+&\left.
++
+\frac{
+C_5^{(B_{\lambda,4})}
+}{
+\left(\lambda+C_6^{(B_{\lambda,4})}\right)^\kappa
++
+\sin\left(
+\frac{\lambda}{C_7^{(B_{\lambda,4})}}
+\right)
+}
+\right].
+\end{aligned}
+\label{eq:appendixC_B4_lam}
 \end{equation}
 
 \begin{table}[htbp]
-	\centering
-	\caption{Коэффициенты формул коррекции витковой дальности при \(R\)-преобразовании II типа}
-	\label{tab:appendixC_S_lambda_coefficients}
-	\small
-	\begin{tabular}{|c|c|c|}
-		\hline
-		Формула & Коэффициент & Значение \\
-		\hline
-		\(c_0\) & \(A_1\) & \(0.82187337\) \\
-		\(c_0\) & \(A_2\) & \(0.0058871657\) \\
-		\(c_0\) & \(A_3\) & \(56.677177\) \\
-		\(c_0\) & \(A_4\) & \(0.40101022\) \\
-		\(c_0\) & \(A_5\) & \(0.0153615268740028\) \\
-		\(a_1\) & \(A_6\) & \(1.78555919714402\) \\
-		\(a_1\) & \(A_7\) & \(2.4934194\) \\
-		\(a_1\) & \(A_8\) & \(4.571423\) \\
-		\(a_1\) & \(A_9\) & \(3.6274443\) \\
-		\hline
-		\(b_1\) & \(B_1\) & \(2.2276373\) \\
-		\(b_1\) & \(B_2\) & \(0.98109335\) \\
-		\(b_1\) & \(B_3\) & \(0.2957547\) \\
-		\(b_1\) & \(B_4\) & \(1.29198500544168\) \\
-		\(b_1\) & \(B_5\) & \(0.85754347\) \\
-		\(b_1\) & \(B_6\) & \(1.611204\) \\
-		\(b_1\) & \(B_7\) & \(2.5816476\) \\
-		\hline
-		\(a_3\) & \(D_1\) & \(0.112247035\) \\
-		\(a_3\) & \(D_2\) & \(1.18486290247571\) \\
-		\(a_3\) & \(D_3\) & \(2.7900786\) \\
-		\(a_3\) & \(D_4\) & \(0.18705241\) \\
-		\(a_3\) & \(D_5\) & \(1.6229355\) \\
-		\hline
-		\(b_3\) & \(E_1\) & \(0.99315286\) \\
-		\(b_3\) & \(E_2\) & \(0.8012159\) \\
-		\(b_3\) & \(E_3\) & \(1.5039495\) \\
-		\(b_3\) & \(E_4\) & \(-0.15757908\) \\
-		\(b_3\) & \(E_5\) & \(0.36855963\) \\
-		\(b_3\) & \(E_6\) & \(0.91364694\) \\
-		\(b_3\) & \(E_7\) & \(0.967995\) \\
-		\(b_3\) & \(E_8\) & \(-0.15322572\) \\
-		\hline
-	\end{tabular}
+\centering
+\caption{Числовые коэффициенты компонент функции \(\mathcal B_\lambda\).}
+\label{tab:appendixC_B_lambda_coefficients}
+\small
+\begin{tabular}{|c|c|c|}
+\hline
+Компонента & Коэффициент & Значение \\
+\hline
+\(\mathcal B_0^{(\lambda)}\) & \(C_0^{(B_{\lambda,0})}\) & \(8.2187337\mathrm{E}{-1}\) \\
+\(\mathcal B_0^{(\lambda)}\) & \(C_1^{(B_{\lambda,0})}\) & \(5.8871657\mathrm{E}{-3}\) \\
+\(\mathcal B_0^{(\lambda)}\) & \(C_2^{(B_{\lambda,0})}\) & \(5.6677177\mathrm{E}{1}\) \\
+\(\mathcal B_0^{(\lambda)}\) & \(C_3^{(B_{\lambda,0})}\) & \(4.0101022\mathrm{E}{-1}\) \\
+\(\mathcal B_0^{(\lambda)}\) & \(C_4^{(B_{\lambda,0})}\) & \(1.53615268740028\mathrm{E}{-2}\) \\
+\hline
+\(\mathcal B_1^{(\lambda)}\) & \(C_0^{(B_{\lambda,1})}\) & \(1.78555919714402\mathrm{E}{0}\) \\
+\(\mathcal B_1^{(\lambda)}\) & \(C_1^{(B_{\lambda,1})}\) & \(2.4934194\mathrm{E}{0}\) \\
+\(\mathcal B_1^{(\lambda)}\) & \(C_2^{(B_{\lambda,1})}\) & \(4.5714230\mathrm{E}{0}\) \\
+\(\mathcal B_1^{(\lambda)}\) & \(C_3^{(B_{\lambda,1})}\) & \(3.6274443\mathrm{E}{0}\) \\
+\hline
+\(\mathcal B_2^{(\lambda)}\) & \(C_0^{(B_{\lambda,2})}\) & \(2.2276373\mathrm{E}{0}\) \\
+\(\mathcal B_2^{(\lambda)}\) & \(C_1^{(B_{\lambda,2})}\) & \(9.8109335\mathrm{E}{-1}\) \\
+\(\mathcal B_2^{(\lambda)}\) & \(C_2^{(B_{\lambda,2})}\) & \(2.9575470\mathrm{E}{-1}\) \\
+\(\mathcal B_2^{(\lambda)}\) & \(C_3^{(B_{\lambda,2})}\) & \(1.29198500544168\mathrm{E}{0}\) \\
+\(\mathcal B_2^{(\lambda)}\) & \(C_4^{(B_{\lambda,2})}\) & \(8.5754347\mathrm{E}{-1}\) \\
+\(\mathcal B_2^{(\lambda)}\) & \(C_5^{(B_{\lambda,2})}\) & \(1.6112040\mathrm{E}{0}\) \\
+\(\mathcal B_2^{(\lambda)}\) & \(C_6^{(B_{\lambda,2})}\) & \(2.5816476\mathrm{E}{0}\) \\
+\hline
+\(\mathcal B_3^{(\lambda)}\) & \(C_0^{(B_{\lambda,3})}\) & \(1.12247035\mathrm{E}{-1}\) \\
+\(\mathcal B_3^{(\lambda)}\) & \(C_1^{(B_{\lambda,3})}\) & \(1.18486290247571\mathrm{E}{0}\) \\
+\(\mathcal B_3^{(\lambda)}\) & \(C_2^{(B_{\lambda,3})}\) & \(2.7900786\mathrm{E}{0}\) \\
+\(\mathcal B_3^{(\lambda)}\) & \(C_3^{(B_{\lambda,3})}\) & \(1.8705241\mathrm{E}{-1}\) \\
+\(\mathcal B_3^{(\lambda)}\) & \(C_4^{(B_{\lambda,3})}\) & \(1.6229355\mathrm{E}{0}\) \\
+\hline
+\(\mathcal B_4^{(\lambda)}\) & \(C_0^{(B_{\lambda,4})}\) & \(9.9315286\mathrm{E}{-1}\) \\
+\(\mathcal B_4^{(\lambda)}\) & \(C_1^{(B_{\lambda,4})}\) & \(8.0121590\mathrm{E}{-1}\) \\
+\(\mathcal B_4^{(\lambda)}\) & \(C_2^{(B_{\lambda,4})}\) & \(1.5039495\mathrm{E}{0}\) \\
+\(\mathcal B_4^{(\lambda)}\) & \(C_3^{(B_{\lambda,4})}\) & \(-1.5757908\mathrm{E}{-1}\) \\
+\(\mathcal B_4^{(\lambda)}\) & \(C_4^{(B_{\lambda,4})}\) & \(3.6855963\mathrm{E}{-1}\) \\
+\(\mathcal B_4^{(\lambda)}\) & \(C_5^{(B_{\lambda,4})}\) & \(9.1364694\mathrm{E}{-1}\) \\
+\(\mathcal B_4^{(\lambda)}\) & \(C_6^{(B_{\lambda,4})}\) & \(9.6799500\mathrm{E}{-1}\) \\
+\(\mathcal B_4^{(\lambda)}\) & \(C_7^{(B_{\lambda,4})}\) & \(-1.5322572\mathrm{E}{-1}\) \\
+\hline
+\end{tabular}
 \end{table}
