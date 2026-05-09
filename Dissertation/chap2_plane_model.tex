@@ -438,154 +438,160 @@
 \end{equation}
 Для компонент $p_{ry}(t_0)$ и $p_{vx}(t_0)$ поправочные функции входят в фазу косинуса:
 \begin{equation}
-	\mathcal D_0^{(p_{ry})}\left(\lambda^\star\right)=
-	\left(
-	C_0^{(D_0,p_{ry})}\left(\lambda^\star\right)^2
-	+
-	C_1^{(D_0,p_{ry})}\lambda^\star
-	+
-	C_2^{(D_0,p_{ry})}
-	\right)
-	\exp\left(
-	C_3^{(D_0,p_{ry})}\lambda^\star
-	+
-	C_4^{(D_0,p_{ry})}\left(\lambda^\star\right)^2
-	\right),
+	\begin{split}
+		\mathcal D_0^{(p_{ry})}\left(\lambda^\star\right)
+		&=
+		\left(
+		C_0^{(D_0,p_{ry})}\left(\lambda^\star\right)^2
+		+
+		C_1^{(D_0,p_{ry})}\lambda^\star
+		+
+		C_2^{(D_0,p_{ry})}
+		\right)\\
+		&\quad{}\times
+		\exp\left(
+		C_3^{(D_0,p_{ry})}\lambda^\star
+		+
+		C_4^{(D_0,p_{ry})}\left(\lambda^\star\right)^2
+		\right),
+	\end{split}
 \end{equation}
 \begin{equation}
-	\mathcal D_0^{(p_{vx})}\left(\lambda^\star\right)=
-	\left(
-	C_0^{(D_0,p_{vx})}\left(\lambda^\star\right)^2
-	+
-	C_1^{(D_0,p_{vx})}\lambda^\star
-	+
-	C_2^{(D_0,p_{vx})}
-	\right)
-	\exp\left(
-	C_3^{(D_0,p_{vx})}\lambda^\star
-	+
-	C_4^{(D_0,p_{vx})}\left(\lambda^\star\right)^2
-	\right).
+	\begin{split}
+		\mathcal D_0^{(p_{vx})}\left(\lambda^\star\right)
+		&=
+		\left(
+		C_0^{(D_0,p_{vx})}\left(\lambda^\star\right)^2
+		+
+		C_1^{(D_0,p_{vx})}\lambda^\star
+		+
+		C_2^{(D_0,p_{vx})}
+		\right)\\
+		&\quad{}\times
+		\exp\left(
+		C_3^{(D_0,p_{vx})}\lambda^\star
+		+
+		C_4^{(D_0,p_{vx})}\left(\lambda^\star\right)^2
+		\right).
+	\end{split}
 \end{equation}
 
 Функции $\mathcal D$ быстро убывают при росте витковой дальности и становятся пренебрежимо малыми в многовитковой области. Поэтому они описывают прежде всего переходную область малой витковой дальности. Их введение позволяет сшить мало- и многовитковые решения одной конечной формулой, а также повысить точность определения $C_i^{(X)}$-коэффициентов за счёт раздельного описания основной зависимости и локальной поправки.
 
 При построении этих выражений дополнительно проверялось отсутствие нулей в знаменателях на рассматриваемой области определения. Это важно, поскольку конечные формулы должны использоваться не только для описания уже построенных точек, но и для последующего вычисления начальных приближений.
 
-Итоговый вид блока конечных формул получен согласованием аппроксимаций, построенных для двух характерных значений отношения радиусов, $\kappa_1=0.72$ и $\kappa_2=1.52$. Такой подход позволил сохранить компактность записи и одновременно получить устойчивую структуру, пригодную для обобщения по параметру $\kappa$.
-
-Для каждого фиксированного значения \(\lambda^\star\) сначала вычисляются
-значения компонент плоского начального вектора сопряжённых переменных
-на двух эталонных сечениях:
-\[
-p_X^{(1)}(\lambda^\star)
-=
-\widehat p_X(\lambda^\star,\kappa_1),
-\qquad
-p_X^{(2)}(\lambda^\star)
-=
-\widehat p_X(\lambda^\star,\kappa_2),
-\]
-где
-\[
-X\in\{p_{rx},p_{ry},p_{vx},p_{vy}\}.
-\]
-Затем по этим двум значениям строятся вспомогательные функции
-\(\mathcal P_i^{(\kappa)}\), задающие зависимость от \(\kappa\).
-
-Для компонент \(p_{rx}\) и \(p_{vy}\) используется вид
+Итоговая двумерная аппроксимация начальных значений сопряжённых переменных в основной области строится согласованием одномерных конечных формул, полученных для двух характерных значений отношения радиусов \(\kappa_1=0.72\) и \(\kappa_2=1.52\).
+Такой способ позволяет сохранить компактную структуру записи: зависимость от витковой дальности \(\lambda^\star\) задаётся одномерными формулами на двух эталонных сечениях, а зависимость от \(\kappa\) восстанавливается с помощью простых степенных выражений.
+Для каждой компоненты начального вектора сопряжённых переменных сначала
+задаются значения на двух эталонных сечениях:
 \begin{equation}
-	\widehat p_X(\lambda^\star,\kappa)
+	p_{rx}^{(1)}(\lambda^\star)
+	=
+	\widehat p_{rx}(\lambda^\star,\kappa_1),
+	\qquad
+	p_{rx}^{(2)}(\lambda^\star)
+	=
+	\widehat p_{rx}(\lambda^\star,\kappa_2),
+	\label{eq:chap2_prx_reference_sections}
+\end{equation}
+\begin{equation}
+	p_{ry}^{(1)}(\lambda^\star)
+	=
+	\widehat p_{ry}(\lambda^\star,\kappa_1),
+	\qquad
+	p_{ry}^{(2)}(\lambda^\star)
+	=
+	\widehat p_{ry}(\lambda^\star,\kappa_2),
+	\label{eq:chap2_pry_reference_sections}
+\end{equation}
+\begin{equation}
+	p_{vx}^{(1)}(\lambda^\star)
+	=
+	\widehat p_{vx}(\lambda^\star,\kappa_1),
+	\qquad
+	p_{vx}^{(2)}(\lambda^\star)
+	=
+	\widehat p_{vx}(\lambda^\star,\kappa_2),
+	\label{eq:chap2_pvx_reference_sections}
+\end{equation}
+\begin{equation}
+	p_{vy}^{(1)}(\lambda^\star)
+	=
+	\widehat p_{vy}(\lambda^\star,\kappa_1),
+	\qquad
+	p_{vy}^{(2)}(\lambda^\star)
+	=
+	\widehat p_{vy}(\lambda^\star,\kappa_2).
+	\label{eq:chap2_pvy_reference_sections}
+\end{equation}
+Одномерные конечные формулы на эталонных сечениях, а также вспомогательные функции \(\mathcal P_0^{(\kappa)},\ldots,\mathcal P_7^{(\kappa)}\), используемые для восстановления зависимости от \(\kappa\), приведены в приложении~\ref{app:additional_formulas}.
+
+Для компоненты \(p_{rx}\) восстановление по \(\kappa\) задаётся формулой
+\begin{equation}
+	\widehat p_{rx}(\lambda^\star,\kappa)
 	=
 	\ln\kappa
 	\left(
-	\frac{\mathcal P_{0}^{(X,\kappa)}(\lambda^\star)}{\kappa}
+	\frac{\mathcal P_{0}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa}
 	+
-	\frac{\mathcal P_{1}^{(X,\kappa)}(\lambda^\star)}{\kappa^{1/4}}
-	\right),
-	\qquad
-	X\in\{p_{rx},p_{vy}\}.
-	\label{eq:chap2_kappa_reconstruction_prx_pvy}
+	\frac{\mathcal P_{1}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa^{1/4}}
+	\right).
+	\label{eq:chap2_kappa_reconstruction_prx}
 \end{equation}
-Здесь функции
-\(\mathcal P_{0}^{(X,\kappa)}\) и
-\(\mathcal P_{1}^{(X,\kappa)}\)
-определяются из условия точного совпадения с эталонными значениями при
-\(\kappa=\kappa_1\) и \(\kappa=\kappa_2\):
+Для компоненты \(p_{vy}\) используется та же степенная структура:
 \begin{equation}
-	\mathcal P_{1}^{(X,\kappa)}
-	=
-	\frac{
-		\kappa_2 p_X^{(2)}/\ln\kappa_2
-		-
-		\kappa_1 p_X^{(1)}/\ln\kappa_1
-	}{
-		\kappa_2^{3/4}-\kappa_1^{3/4}
-	},
-	\label{eq:chap2_kappa_reconstruction_P1_prx_pvy}
-\end{equation}
-\begin{equation}
-	\mathcal P_{0}^{(X,\kappa)}
-	=
-	\frac{\kappa_1 p_X^{(1)}}{\ln\kappa_1}
-	-
-	\mathcal P_{1}^{(X,\kappa)}\kappa_1^{3/4}.
-	\label{eq:chap2_kappa_reconstruction_P0_prx_pvy}
-\end{equation}
-
-Для компонент \(p_{ry}\) и \(p_{vx}\) используется другая степенная форма:
-\begin{equation}
-	\widehat p_X(\lambda^\star,\kappa)
+	\widehat p_{vy}(\lambda^\star,\kappa)
 	=
 	\ln\kappa
 	\left(
-	\frac{\mathcal P_{0}^{(X,\kappa)}(\lambda^\star)}{\kappa}
+	\frac{\mathcal P_{6}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa}
 	+
-	\frac{\mathcal P_{1}^{(X,\kappa)}(\lambda^\star)}{\kappa^{3/2}}
-	\right),
-	\qquad
-	X\in\{p_{ry},p_{vx}\}.
-	\label{eq:chap2_kappa_reconstruction_pry_pvx}
-\end{equation}
-В этом случае вспомогательные функции задаются выражениями
-\begin{equation}
-	\mathcal P_{1}^{(X,\kappa)}
-	=
-	\frac{
-		\kappa_2 p_X^{(2)}/\ln\kappa_2
-		-
-		\kappa_1 p_X^{(1)}/\ln\kappa_1
-	}{
-		\kappa_2^{-1/2}-\kappa_1^{-1/2}
-	},
-	\label{eq:chap2_kappa_reconstruction_P1_pry_pvx}
-\end{equation}
-\begin{equation}
-	\mathcal P_{0}^{(X,\kappa)}
-	=
-	\frac{\kappa_1 p_X^{(1)}}{\ln\kappa_1}
-	-
-	\mathcal P_{1}^{(X,\kappa)}\kappa_1^{-1/2}.
-	\label{eq:chap2_kappa_reconstruction_P0_pry_pvx}
+	\frac{\mathcal P_{7}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa^{1/4}}
+	\right).
+	\label{eq:chap2_kappa_reconstruction_pvy}
 \end{equation}
 
+Для компоненты \(p_{ry}\) используется другая степенная зависимость:
+\begin{equation}
+	\widehat p_{ry}(\lambda^\star,\kappa)
+	=
+	\ln\kappa
+	\left(
+	\frac{\mathcal P_{2}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa}
+	+
+	\frac{\mathcal P_{3}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa^{3/2}}
+	\right).
+	\label{eq:chap2_kappa_reconstruction_pry}
+\end{equation}
+Для компоненты \(p_{vx}\) используется та же форма восстановления:
+\begin{equation}
+	\widehat p_{vx}(\lambda^\star,\kappa)
+	=
+	\ln\kappa
+	\left(
+	\frac{\mathcal P_{4}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa}
+	+
+	\frac{\mathcal P_{5}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa^{3/2}}
+	\right).
+	\label{eq:chap2_kappa_reconstruction_pvx}
+\end{equation}
 
-Функции \(\mathcal P_i^{(\kappa)}\), вынесены в приложение. Они описывают только способ восстановления зависимости
-плоского начального вектора сопряжённых переменных от отношения радиусов:
+Таким образом, двумерная конечная формула для плоских начальных значений
+сопряжённых переменных имеет вид
 \begin{equation}
 	\widehat{\mathbf z}^{\mathrm{pl}}_0(\lambda^\star,\kappa)
 	=
 	\left(
-	\widehat p_{rx},
-	\widehat p_{ry},
-	\widehat p_{vx},
-	\widehat p_{vy}
-	\right).
+	\widehat p_{rx}(\lambda^\star,\kappa),
+	\widehat p_{ry}(\lambda^\star,\kappa),
+	0,
+	\widehat p_{vx}(\lambda^\star,\kappa),
+	\widehat p_{vy}(\lambda^\star,\kappa),
+	0
+	\right)^T.
+	\label{eq:chap2_planar_adjoint_vector_main}
 \end{equation}
-После этого вектор
-\(\widehat{\mathbf z}^{\mathrm{pl}}_0\)
-используется как плоское начальное приближение для последующих
-\(R\)-преобразований.
+Нулевые третьи компоненты соответствуют плоской круговой постановке. Полученный вектор \(\widehat{\mathbf z}^{\mathrm{pl}}_0\) далее используется как плоское начальное приближение при построении пространственных и эллиптических решений с помощью \(R\)-преобразований.
 
 \begin{figure}[htbp]
 	\centering
