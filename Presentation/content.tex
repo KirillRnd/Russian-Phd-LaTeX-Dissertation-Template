@@ -17,30 +17,100 @@
     \end{enumerate}
 \end{frame}
 
+\section{Введение}
+
 \begin{frame}
     \frametitle{Актуальность}
+    \small
+    \begin{itemize}
+        \item Межпланетные перелёты с ЭРДУ формируются в результате длительного управляемого движения.
+        \item На ранних этапах баллистического проектирования требуется многократно оценивать даты старта, продолжительность перелёта, расход рабочего тела и параметры управления.
+        \item Непрямой метод требует начального вектора сопряжённых переменных, чувствительного к выбранной ветви решения.
+    \end{itemize}
+
+    \vspace{0.2cm}
+    \[
+    \begin{array}{c}
+    t_0,\ \text{целевая орбита}
+    \Rightarrow
+    \text{выбор ветви}
+    \Rightarrow
+    T,\ J,\ \mathbf z_0\\
+    \Rightarrow
+    \text{начальный вектор}
+    \Rightarrow
+    \text{уточнение КЗ}.
+    \end{array}
+    \]
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{Проблема проектирования класса перелётов}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.56\textwidth}
+            \centering
+            \includegraphics[height=0.50\textheight]{Startdate}
+        \end{column}
+        \begin{column}{0.40\textwidth}
+            \scriptsize
+            \textbf{Одна краевая задача}
             \begin{itemize}
-                \item ЭРДУ позволяют проектировать длительные межпланетные перелёты малых космических аппаратов.
-                \item Непрерывная малая тяга приводит к чувствительным краевым задачам и нескольким ветвям решений.
-                \item На ранних этапах нужен начальный вектор для последующего уточнения КЗ.
+                \item фиксированы дата старта и целевая орбита;
+                \item начальный вектор сопряжённых переменных подбирается индивидуально;
+                \item решение уточняется численно.
+            \end{itemize}
+
+            \textbf{Класс проектных задач}
+            \begin{itemize}
+                \item дата старта меняет начальную синодическую фазу;
+                \item возникают разные ветви решений;
+                \item требуется согласованный способ выбора ветви и начального вектора.
             \end{itemize}
         \end{column}
-        \begin{column}{0.46\textwidth}
-            \scriptsize
+    \end{columns}
+    \vspace{-0.04cm}
+    \tiny
+    \[
+    t_0 \longrightarrow \Phi_0(t_0),
+    \qquad
+    \Phi_0=\mathrm{const}
+    \quad \text{задаёт условие выбора ветви.}
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Степень разработанности и место работы}
+    \small
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \textbf{Конечные формулы, аналитические и усреднённые подходы}
+
+            \medskip
+            Лебедев, Белецкий, Гродзовский;\\
+            da Silva Fernandes, Sessin, Carvalho, de Moraes;\\
+            Баранов.
+
+            \medskip
+            \textbf{Интерпретируемые формулы по численным данным}
+
+            \medskip
+            Cranmer; символьная регрессия как инструмент получения конечных формул.
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \textbf{Непрямые методы, продолжение, численные краевые задачи}
+
+            \medskip
+            Охоцимский, Энеев, Константинов, Петухов, Epenoy.
+
+            \medskip
+            \textbf{Место работы}
             \[
             \begin{array}{c}
-            \text{дата старта и целевая орбита}\\
-            \Downarrow\\
-            \text{выбор ветви решения}\\
-            \Downarrow\\
-            \text{оценка } T,\ J,\ \mathbf z_0\\
-            \Downarrow\\
-            \text{начальный вектор}\\
-            \text{расширенной системы}\\
-            \Downarrow\\
-            \text{численное уточнение КЗ}
+            \text{модельное многообразие}
+            \longrightarrow
+            \text{конечные формулы}\\
+            \longrightarrow
+            \text{начальный вектор для уточнения КЗ}.
             \end{array}
             \]
         \end{column}
@@ -48,89 +118,38 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Проблема проектирования класса перелётов}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.57\textwidth}
-            \centering
-            \includegraphics[width=0.95\linewidth]{Startdate}
-        \end{column}
-        \begin{column}{0.39\textwidth}
-            \small
-            \textbf{Одна краевая задача}
-            \begin{itemize}
-                \item фиксированы дата старта и целевая орбита;
-                \item начальный вектор подбирается индивидуально.
-            \end{itemize}
-            \textbf{Класс проектных задач}
-            \begin{itemize}
-                \item дата старта меняет синодическую фазу;
-                \item возникают разные ветви решений;
-                \item нужен согласованный способ выбора ветви и начального вектора.
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Степень разработанности и место работы}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.34\textwidth}
-            \textbf{Аналитические методы}
-            \begin{itemize}
-                \item быстрые оценки;
-                \item специальные постановки;
-                \item ограниченные области применимости.
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.31\textwidth}
-            \textbf{Численные методы}
-            \begin{itemize}
-                \item точное уточнение КЗ;
-                \item зависимость от начального вектора;
-                \item ветвление решений.
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.31\textwidth}
-            \textbf{Диссертация}
-            \begin{itemize}
-                \item модельное многообразие;
-                \item конечные формулы;
-                \item переход к прикладной орбите.
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
     \frametitle{Цель и задачи}
+    \small
     \textbf{Цель:} разработать и апробировать численно-аналитический метод построения начальных приближений для энергетически оптимальных межпланетных перелётов с непрерывной тягой на основе аппроксимации модельного многообразия решений задачи встречи.
 
     \medskip
+    Для достижения цели решаются задачи:
     \begin{enumerate}
         \item построить регулярное модельное многообразие решений задачи встречи;
-        \item получить конечные формулы для характеристик экстремалей;
-        \item разработать \(R\)-преобразования для перехода к эллиптической и пространственной конечной орбите;
+        \item получить конечные формулы для характеристик экстремалей и начального вектора сопряжённых переменных;
+        \item разработать линейные \(R\)-преобразования для перехода к эллиптической и пространственной конечной орбите;
         \item построить алгоритм выбора начального вектора и проверить его на прикладных классах перелётов.
     \end{enumerate}
 \end{frame}
 
 \begin{frame}
     \frametitle{Научная новизна}
+    \small
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.48\textwidth}
             \begin{block}{Модельное многообразие}
-                Предложена методика построения и аппроксимации регулярных ветвей решений задачи встречи.
+                Предложена методика построения и исследования регулярных ветвей решений задачи встречи методом дискретного продолжения.
             \end{block}
             \begin{block}{Конечные формулы}
-                Получены аппроксимации \(T\), \(\Psi\), \(J\) и \(\mathbf z_0\) как функций параметров модельной задачи.
+                Получены конечные формулы для \(T\), \(\Psi\), \(J\) и \(\mathbf z_0\) как функций параметров модельной задачи.
             \end{block}
         \end{column}
         \begin{column}{0.48\textwidth}
-            \begin{block}{\(R\)-преобразования}
-                Разработан переход от модельной экстремали к экстремали новой краевой задачи.
+            \begin{block}{Линейные \(R\)-преобразования}
+                Предложены преобразования начальных значений сопряжённых переменных для переноса модельной экстремали к другой краевой задаче.
             \end{block}
             \begin{block}{Алгоритм}
-                Построена и программно реализована цепочка выбора начального вектора для численного уточнения.
+                Разработан и программно реализован алгоритм выбора начального приближения для прикладных классов перелётов.
             \end{block}
         \end{column}
     \end{columns}
@@ -141,207 +160,550 @@
 \begin{frame}
     \frametitle{ИРТ как модельная краевая задача и параметры}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.47\textwidth}
-            \small
+        \begin{column}{0.48\textwidth}
+            \scriptsize
             \[
-                J=\int_{t_0}^{t_f}\|\mathbf a(t)\|^2\,dt
+            \left\{
+            \begin{aligned}
+            \dot{\mathbf r} &= \mathbf v,\\
+            \dot{\mathbf v} &= -\frac{\mathbf r}{r^3}+\mathbf a,
+            \end{aligned}
+            \right.
+            \qquad
+            J=\frac{1}{2}\int\limits_{t_0}^{t_f}\|\mathbf a(t)\|^2\,dt \to \min.
             \]
             \[
-                \mathbf y_0=
-                \begin{pmatrix}
-                \mathbf r_0,\mathbf v_0\\
-                \mathbf p_{r0},\mathbf p_{v0}
-                \end{pmatrix}
+            \mathbf z_0=\left(\mathbf p_{r0},\mathbf p_{v0}\right),
+            \qquad
+            \mathbf a=\mathbf p_v.
             \]
             \[
-                (\lambda,\kappa)
-                \longrightarrow
-                T,\ \Psi,\ J,\ \mathbf z_0
+            (\lambda,\kappa)
+            \longrightarrow
+            T,\ \Psi,\ J,\ \mathbf z_0 .
             \]
             \begin{itemize}
-                \item \(\kappa\) задаёт отношение радиусов круговых орбит;
-                \item \(\lambda\) задаёт витковую дальность;
-                \item синодическая фаза связывает ветвь с датой старта.
+                \item \(\kappa\) задаёт отношение радиусов модельных круговых орбит.
+                \item \(\lambda\) задаёт витковую дальность.
+                \item \(\Phi\) связывает выбранную ветвь с датой старта.
+                \item ИРТ используется как регулярная модельная КЗ для построения начального приближения.
             \end{itemize}
         \end{column}
-        \begin{column}{0.49\textwidth}
+        \begin{column}{0.48\textwidth}
             \centering
             \includegraphics[height=0.68\textheight]{virtual_planet}
         \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Модельное многообразие и дискретное продолжение}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.61\textwidth}
+        \begin{column}{0.58\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{continuation_paths}
+            \includegraphics[height=0.48\textheight]{continuation_paths}
         \end{column}
-        \begin{column}{0.35\textwidth}
-            \small
+        \begin{column}{0.38\textwidth}
+            \tiny
+            \[
+            \mathbf z(\boldsymbol\xi)\in\mathbb R^6,
+            \qquad
+            \mathbf c(\boldsymbol\xi)\in\mathbb R^n.
+            \]
+            \[
+            M:D_{\mathrm{reg}}\to\mathbb R^{6+n},
+            \qquad
+            M(\boldsymbol\xi)=
+            \bigl(\mathbf z(\boldsymbol\xi),\mathbf c(\boldsymbol\xi)\bigr).
+            \]
             \begin{itemize}
-                \item базовое решение продолжается малыми шагами по пространству параметров;
-                \item соседние решения дают устойчивый начальный вектор для следующей КЗ;
-                \item границы регулярной области отделяются вычислительными барьерами.
+                \item Модельное многообразие понимается как образ отображения, построенного на одной регулярной ветви решений.
+                \item Базовое решение используется как исходная точка для продолжения по сетке параметров.
+                \item Соседние решения дают начальный вектор для следующей КЗ.
+                \item Вычислительные барьеры отделяют границы устойчивого локального продолжения.
             \end{itemize}
         \end{column}
     \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Разработана методика построения регулярного модельного многообразия методом дискретного продолжения.
+    \end{block}
 \end{frame}
 
 \begin{frame}
     \frametitle{От многообразия к конечным формулам}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.48\textwidth}
-            \scriptsize
-            \[
-            \begin{array}{c}
-            \text{регулярные ветви решений}\\
-            \Downarrow\\
-            \text{выбор структуры}\\
-            \text{аппроксимаций}\\
-            \Downarrow\\
-            \text{оценка коэффициентов}\\
-            \Downarrow\\
-            \widehat T,\ \widehat\Psi,\ \widehat J,\ \widehat{\mathbf z}_0
-            \end{array}
-            \]
-        \end{column}
-        \begin{column}{0.48\textwidth}
-            \begin{itemize}
-                \item формулы строятся для регулярных областей модельного многообразия;
-                \item проверяются точность и отсутствие сингулярностей;
-                \item результат используется не вместо численного решения, а как вход в уточнение краевой задачи.
-            \end{itemize}
-        \end{column}
-    \end{columns}
+    \small
+    \[
+    M(\boldsymbol\xi)
+    =
+    \bigl(\mathbf z(\boldsymbol\xi),\mathbf c(\boldsymbol\xi)\bigr),
+    \qquad
+    \mathbf c=(\Phi,\lambda,T,J).
+    \]
+    \[
+    M(\boldsymbol\xi)
+    \longrightarrow
+    \widehat T,\ \widehat\Psi,\ \widehat J,\ \widehat{\mathbf z}_0.
+    \]
+    \begin{itemize}
+        \item Численные решения анализируются в выбранных параметрических представлениях.
+        \item Для регулярных зависимостей строятся непосредственные аппроксимации.
+        \item Для более сложных зависимостей используется иерархический подход с коэффициент-функциями.
+        \item Символьная регрессия используется как инструмент получения конечных формул.
+        \item Качество формул проверяется метриками ошибок и краевыми невязками после интегрирования расширенной системы.
+    \end{itemize}
+    \begin{block}{Новый результат}
+        \scriptsize Задана методика получения интерпретируемых конечных формул для характеристик экстремалей и начальных значений сопряжённых переменных.
+    \end{block}
 \end{frame}
 
-\section{Конечные формулы}
-
-\begin{frame}
+\begin{frame}[t]
     \frametitle{КЛО и точки оптимальной дальности}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.61\textwidth}
+        \begin{column}{0.58\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{Isolines}
+            \includegraphics[height=0.48\textheight]{Isolines}
         \end{column}
-        \begin{column}{0.35\textwidth}
-            \small
+        \begin{column}{0.38\textwidth}
+            \scriptsize
             \[
             \Phi=\mathrm{const}
             \quad\cap\quad
             \mathrm{КЛО}
-            \Rightarrow
-            \lambda^\star
+            \quad\Rightarrow\quad
+            \lambda^\star.
             \]
-            \begin{itemize}
-                \item дата старта задаёт начальную синодическую фазу;
-                \item изолиния фазы пересекает КЛО;
-                \item точка пересечения выбирает ветвь и дальность.
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Конечная формула для \(T\)}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.56\textwidth}
-            \centering
-            \includegraphics[width=\linewidth]{main_T_isolines}
-        \end{column}
-        \begin{column}{0.40\textwidth}
-            \small
             \[
-                \widehat T = F_T(\lambda^\star,\kappa)
+            \varphi=\Phi+\frac{T}{\kappa^{3/2}}.
             \]
             \begin{itemize}
-                \item \(\lambda^\star\) выбирается по КЛО;
-                \item \(\kappa\) задаётся целевой орбитой;
-                \item формула даёт оценку длительности для начального приближения.
+                \item Дата старта задаёт начальную синодическую фазу.
+                \item КЛО строится как отдельная ветвь решений.
+                \item Пересечения КЛО с изолиниями фазы образуют точки оптимальной дальности.
+                \item Точка оптимальной дальности задаёт \(\lambda^\star\).
             \end{itemize}
         \end{column}
     \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Выделены КЛО и точки оптимальной дальности как механизм выбора ветви по фиксированной начальной синодической фазе.
+    \end{block}
+\end{frame}
+
+\section{Конечные формулы}
+
+\begin{frame}[t]
+    \frametitle{Конечная формула для продолжительности перелёта}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.43\textwidth}
+            \centering
+            \includegraphics[height=0.28\textheight]{main_T_isolines}
+
+            \vspace{0.05cm}
+            \includegraphics[height=0.28\textheight]{main_T_error_heatmap}
+        \end{column}
+        \begin{column}{0.53\textwidth}
+            \tiny
+            \[
+            \widehat{T}\left(\lambda^\star,\kappa\right)=
+            \frac{2}{27}\kappa\ln\kappa
+            +
+            \lambda^\star
+            \left(
+            \kappa-\frac{\sqrt6}{9}\kappa\ln\kappa
+            \right).
+            \]
+            \[
+            \widehat{T}\left(\lambda^\star,1\right)=\lambda^\star .
+            \]
+            \begin{itemize}
+                \item \(\lambda^\star\) -- витковая дальность в точке оптимальной дальности.
+                \item \(\kappa\) -- отношение радиусов модельных круговых орбит.
+                \item Формула задаёт продолжительность перелёта на основной области модельного многообразия.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Получена конечная формула для продолжительности перелёта на основной области.
+    \end{block}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Формулы для \(\Psi\) и \(J\)}
+    \frametitle{Конечные формулы для непрерывной фазы}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.40\textwidth}
             \centering
             \includegraphics[width=\linewidth]{main_phase_isolines}
 
             \vspace{0.15cm}
-            \includegraphics[width=\linewidth]{main_J_isolines}
+            \includegraphics[width=\linewidth]{main_phase_error_heatmap}
         \end{column}
-        \begin{column}{0.48\textwidth}
-            \small
+        \begin{column}{0.56\textwidth}
+            \tiny
             \[
-                \widehat\Psi = F_\Psi(\lambda^\star,\kappa),
-                \qquad
-                \widehat J = F_J(\lambda^\star,\kappa)
+            \Psi =
+            \lambda^\star-\frac{T}{\kappa^{3/2}},
+            \qquad
+            \widehat{\Psi}_{T}
+            =
+            \lambda^\star-\frac{\widehat{T}}{\kappa^{3/2}}.
+            \]
+            \[
+            \widehat{\Psi}_{T}\left(\lambda^\star,\kappa\right)=
+            \left(
+            1-\frac{1}{\sqrt{\kappa}}
+            +\frac{\sqrt6}{9}\frac{\ln\kappa}{\sqrt{\kappa}}
+            \right)\lambda^\star
+            -
+            \frac{2}{27}\frac{\ln\kappa}{\sqrt{\kappa}}.
+            \]
+            \[
+            \widehat{\Psi}\left(\lambda^\star,\kappa\right)
+            =
+            \mathcal A_0^{(\Psi)}(\kappa)
+            +
+            \mathcal A_1^{(\Psi)}(\kappa)\lambda^\star .
+            \]
+            \[
+            \mathcal A_0^{(\Psi)}(\kappa)
+            =
+            -C_0^{(\Psi)} e^{-\kappa}\ln^2\kappa,
+            \qquad
+            \mathcal A_1^{(\Psi)}(\kappa)
+            =
+            C_0^{(\Psi)}
+            \left(e^\kappa+1\right)e^{-\kappa}\ln\kappa,
+            \]
+            \[
+            C_0^{(\Psi)}=5.433280\times10^{-1}.
             \]
             \begin{itemize}
-                \item \(\widehat\Psi\) связывает дату старта с фазой модельного перелёта;
-                \item \(\widehat J\) оценивает энергетический функционал;
-                \item полные выражения приведены в диссертации, на слайде важна структура зависимости.
+                \item \(\widehat{\Psi}_T\) наследует ошибку формулы для \(\widehat T\).
+                \item \(\widehat{\Psi}\) строится как самостоятельная конечная формула.
             \end{itemize}
         \end{column}
     \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Получены конечные формулы для нормированной непрерывной фазы.
+    \end{block}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Формулы для \(\mathbf z_0\)}
+    \frametitle{Конечная формула для квадратичного функционала}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.62\textwidth}
+        \begin{column}{0.38\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{main_J_isolines}
+
+            \vspace{0.15cm}
+            \includegraphics[width=\linewidth]{main_J_error_heatmap}
+        \end{column}
+        \begin{column}{0.58\textwidth}
+            \tiny
+            \[
+            \widehat{J}\left(\lambda^\star,\kappa\right)=
+            \frac{
+            \left(
+            C_0^{(J)}+\dfrac{C_1^{(J)}}{\kappa}+\dfrac{C_2^{(J)}}{\kappa^2}
+            \right)\ln\kappa
+            }{
+            \lambda^\star
+            +
+            C_3^{(J)}
+            \left(
+            \sin\left(2\pi\lambda^\star+C_4^{(J)}-\frac{1}{\lambda^\star}\right)-\lambda^\star
+            \right)e^{-\lambda^\star}
+            }.
+            \]
+            \[
+            \begin{array}{c|ccccc}
+            i & 0 & 1 & 2 & 3 & 4\\
+            \hline
+            C_i^{(J)}
+            &
+            4.747336\times10^{-3}
+            &
+            1.044802\times10^{-2}
+            &
+            -1.517055\times10^{-2}
+            &
+            2.020210\times10^{-1}
+            &
+            2.236760\times10^{0}
+            \end{array}
+            \]
+            \begin{itemize}
+                \item \(\widehat J\) задаёт значение квадратичного функционала на аппроксимированном многообразии.
+                \item Формула используется для оценки энергетической стоимости модельного перелёта.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Получена конечная формула для квадратичного функционала.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Конечные формулы для начального вектора: компонентные формулы}
+    \tiny
+    \[
+    \widehat{\mathbf z}^{\mathrm{pl}}_0=
+    \left(
+    \widehat{p}_{rx},
+    \widehat{p}_{ry},
+    \widehat{p}_{vx},
+    \widehat{p}_{vy}
+    \right).
+    \]
+    \[
+    \widehat{p}_{rx}\left(\lambda^\star\right)=
+    \frac{
+    C_0^{(p_{rx})}
+    }{
+    C_1^{(p_{rx})}\lambda^\star
+    +
+    C_2^{(p_{rx})}
+    +
+    \sin\left(
+    2\pi\lambda^\star
+    +
+    C_3^{(p_{rx})}
+    +
+    \mathcal D_1^{(p_{rx})}\left(\lambda^\star\right)
+    \right)
+    +
+    \mathcal D_0^{(p_{rx})}\left(\lambda^\star\right)
+    }.
+    \]
+    \[
+    \widehat{p}_{vy}\left(\lambda^\star\right)=
+    \frac{
+    C_0^{(p_{vy})}
+    }{
+    C_1^{(p_{vy})}\lambda^\star
+    +
+    C_2^{(p_{vy})}
+    +
+    \sin\left(
+    2\pi\lambda^\star
+    +
+    C_3^{(p_{vy})}
+    +
+    \mathcal D_1^{(p_{vy})}\left(\lambda^\star\right)
+    \right)
+    +
+    \mathcal D_0^{(p_{vy})}\left(\lambda^\star\right)
+    }.
+    \]
+    \[
+    \widehat{p}_{ry}\left(\lambda^\star\right)=
+    \frac{
+    C_0^{(p_{ry})}
+    +
+    C_1^{(p_{ry})}
+    \cos\left(
+    2\pi\lambda^\star
+    +
+    \mathcal D_0^{(p_{ry})}\left(\lambda^\star\right)
+    \right)
+    }{
+    \left(\lambda^\star\right)^2
+    +
+    C_2^{(p_{ry})}\lambda^\star
+    +
+    C_3^{(p_{ry})}
+    },
+    \quad
+    \widehat{p}_{vx}\left(\lambda^\star\right)=
+    \frac{
+    C_0^{(p_{vx})}
+    +
+    C_1^{(p_{vx})}
+    \cos\left(
+    2\pi\lambda^\star
+    +
+    \mathcal D_0^{(p_{vx})}\left(\lambda^\star\right)
+    \right)
+    }{
+    \left(\lambda^\star\right)^2
+    +
+    C_2^{(p_{vx})}\lambda^\star
+    +
+    C_3^{(p_{vx})}
+    }.
+    \]
+    \begin{itemize}
+        \item \(\mathcal D_m^{(X)}\) -- поправочные функции в формулах управления.
+        \item Числовые коэффициенты и развёрнутые \(\mathcal D\)-функции приведены в приложениях диссертации.
+    \end{itemize}
+    \begin{block}{Новый результат}
+        \scriptsize Получены конечные формулы для компонент начального вектора сопряжённых переменных.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Конечные формулы для начального вектора: зависимость от \(\kappa\)}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.38\textwidth}
             \centering
             \includegraphics[width=\linewidth]{main_p_isolines}
+
+            \vspace{0.15cm}
+            \includegraphics[width=\linewidth]{main_p_error_heatmap}
         \end{column}
-        \begin{column}{0.34\textwidth}
-            \small
+        \begin{column}{0.58\textwidth}
+            \tiny
             \[
-                \widehat{\mathbf z}_0 =
-                F_z(\lambda^\star,\kappa)
+            \widehat p_{rx}(\lambda^\star,\kappa)
+            =
+            \ln\kappa
+            \left(
+            \frac{\mathcal P_{0}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa}
+            +
+            \frac{\mathcal P_{1}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa^{1/4}}
+            \right).
+            \]
+            \[
+            \widehat p_{vy}(\lambda^\star,\kappa)
+            =
+            \ln\kappa
+            \left(
+            \frac{\mathcal P_{6}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa}
+            +
+            \frac{\mathcal P_{7}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa^{1/4}}
+            \right).
+            \]
+            \[
+            \widehat p_{ry}(\lambda^\star,\kappa)
+            =
+            \ln\kappa
+            \left(
+            \frac{\mathcal P_{2}^{(\kappa)}}{\kappa}
+            +
+            \frac{\mathcal P_{3}^{(\kappa)}}{\kappa^{3/2}}
+            \right),
+            \quad
+            \widehat p_{vx}(\lambda^\star,\kappa)
+            =
+            \ln\kappa
+            \left(
+            \frac{\mathcal P_{4}^{(\kappa)}}{\kappa}
+            +
+            \frac{\mathcal P_{5}^{(\kappa)}}{\kappa^{3/2}}
+            \right).
+            \]
+            \[
+            \widehat{\mathbf z}^{\mathrm{pl}}_0(\lambda^\star,\kappa)
+            =
+            \left(
+            \widehat p_{rx},
+            \widehat p_{ry},
+            0,
+            \widehat p_{vx},
+            \widehat p_{vy},
+            0
+            \right)^T.
             \]
             \begin{itemize}
-                \item формулы дают начальный вектор сопряжённых переменных;
-                \item этот вектор является входом в непрямой метод;
-                \item далее он преобразуется под прикладную конечную орбиту.
+                \item Используются два характерных значения \(\kappa_1=0.72\), \(\kappa_2=1.52\).
+                \item Функции \(\mathcal P_i^{(\kappa)}\) задают согласование компонент по \(\kappa\).
             \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Качество конечных формул}
+    \frametitle{Верификация конечных формул в основной области}
+    \scriptsize
     \centering
-    \includegraphics[height=0.68\textheight]{main_T_error_heatmap}
-
-    \vspace{0.12cm}
-    \small
-    Качество оценивается относительно задачи начального приближения:
-    формулы должны попадать в область сходимости последующего уточнения КЗ.
+    \textbf{Качество конечных формул в основной области}
+    \[
+    \begin{array}{c|c|c|c|c}
+    \text{Величина} & S & \mathrm{RMSE}\,(\sigma) & \mathrm{MAE} & \max|\Delta|\\
+    \hline
+    \widehat T
+    & 4.96\times10^{0}
+    & 2.32\times10^{-2}
+    & 1.46\times10^{-2}
+    & 1.44\times10^{-1}\\
+    \widehat\Psi_T
+    & 1.41\times10^{0}
+    & 4.02\times10^{-2}
+    & 1.63\times10^{-2}
+    & 3.55\times10^{-1}\\
+    \widehat\Psi
+    & 1.41\times10^{0}
+    & 1.88\times10^{-2}
+    & 1.27\times10^{-2}
+    & 1.04\times10^{-1}\\
+    \widehat J
+    & 5.28\times10^{-3}
+    & 1.24\times10^{-4}
+    & 3.39\times10^{-5}
+    & 2.69\times10^{-3}\\
+    \widehat p_{rx}
+    & 2.22\times10^{-2}
+    & 7.90\times10^{-4}
+    & 1.24\times10^{-4}
+    & 3.15\times10^{-2}\\
+    \widehat p_{ry}
+    & 4.89\times10^{-3}
+    & 1.43\times10^{-4}
+    & 3.67\times10^{-5}
+    & 5.31\times10^{-3}\\
+    \widehat p_{vx}
+    & 4.05\times10^{-3}
+    & 1.65\times10^{-4}
+    & 3.80\times10^{-5}
+    & 6.26\times10^{-3}\\
+    \widehat p_{vy}
+    & 2.24\times10^{-2}
+    & 2.97\times10^{-4}
+    & 7.51\times10^{-5}
+    & 8.40\times10^{-3}\\
+    \widehat{\mathbf z}^{\mathrm{pl}}_0
+    & 3.22\times10^{-2}
+    & 8.71\times10^{-4}
+    & 1.75\times10^{-4}
+    & 3.36\times10^{-2}
+    \end{array}
+    \]
+    \begin{itemize}
+        \item \(S\) -- характерный масштаб величины.
+        \item Для \(\widehat{\mathbf z}^{\mathrm{pl}}_0\) контролируется агрегированная ошибка начального вектора сопряжённых переменных.
+    \end{itemize}
+    \begin{block}{Новый результат}
+        \scriptsize Выполнена верификация конечных формул основной области для скалярных характеристик и начального вектора сопряжённых переменных.
+    \end{block}
 \end{frame}
 
-\section{R-преобразования}
+\section{Линейные R-преобразования}
 
 \begin{frame}
-    \frametitle{Смысл \(R\)-преобразования}
+    \frametitle{Смысл линейного \(R\)-преобразования}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.42\textwidth}
             \small
             \[
+            \mathbf p'=(R^T)^{-1}\mathbf p .
+            \]
+            \[
             \begin{array}{c}
-            \mathrm{КЗ}_1\rightarrow\mathrm{экстремаль}_1\\
+            \mathrm{КЗ}_1
+            \longrightarrow
+            \mathrm{экстремаль}_1\\
             \xrightarrow{R}\\
-            \mathrm{экстремаль}_2\rightarrow\mathrm{КЗ}_2
+            \mathrm{экстремаль}_2
+            \longrightarrow
+            \mathrm{КЗ}_2 .
             \end{array}
             \]
+            \[
+            \mathbf x_0=(\mathbf r_0,\mathbf v_0),
+            \qquad
+            \mathbf p_0=(\mathbf p_{r0},\mathbf p_{v0}).
+            \]
             \begin{itemize}
-                \item преобразуется начальный вектор расширенной системы;
-                \item меняются параметры краевой задачи;
-                \item результат используется как начальный вектор для новой постановки.
+                \item \(R\)-преобразование действует на начальные значения сопряжённых переменных.
+                \item Полученная траектория является экстремалью другой краевой задачи.
             \end{itemize}
         \end{column}
         \begin{column}{0.54\textwidth}
@@ -351,70 +713,282 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{\(R\)-преобразование I типа}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.41\textwidth}
-            \small
+        \begin{column}{0.43\textwidth}
+            \scriptsize
+            \[
+            R_\varphi=R(\mathbf r_0,\mathbf v_0(\varphi)).
+            \]
+            \[
+            \mathbf p'_{r0}=(R_\varphi^T)^{-1}\mathbf p_{r0},
+            \qquad
+            \mathbf p'_{v0}=(R_\varphi^T)^{-1}\mathbf p_{v0}.
+            \]
             \begin{itemize}
-                \item задаёт переход к новому начальному фазовому вектору;
-                \item согласованно преобразует начальные сопряжённые переменные;
-                \item отличается от простого поворота вектора сопряжённых переменных.
+                \item \(R\)-I меняет начальный фазовый вектор.
+                \item Начальный вектор сопряжённых переменных преобразуется согласованно с новым начальным фазовым вектором.
+                \item Этот шаг используется далее как \(R_0\) в композиции.
             \end{itemize}
         \end{column}
-        \begin{column}{0.55\textwidth}
+        \begin{column}{0.53\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{R_type_I_demo}
+            \includegraphics[height=0.45\textheight]{R_type_I_demo}
+        \end{column}
+    \end{columns}
+    \begin{block}{Новый результат}
+        \tiny Построено \(R\)-преобразование I типа для согласованного изменения начального фазового вектора и начального вектора сопряжённых переменных.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\(R\)-преобразование II типа: задание \(e\) и \(\omega\)}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.36\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{R_type_II_Ce_isolines_raw}
+        \end{column}
+        \begin{column}{0.60\textwidth}
+            \tiny
+            \[
+            \beta=0.642,\quad
+            w_1=-\sin\beta+\zeta,\quad
+            w_2=\cos\beta,
+            \]
+            \[
+            \varepsilon=w_1\cos\beta+w_2\sin\beta,
+            \qquad
+            \alpha=-w_1\sin\beta+w_2\cos\beta.
+            \]
+            \[
+            R_e(\alpha,\varepsilon)
+            =
+            \begin{pmatrix}
+            \alpha(1-\varepsilon) & 0 & 0\\
+            0 & \dfrac{1+\varepsilon}{\sqrt{\alpha(1-\varepsilon^2)}} & 0\\
+            0 & 0 &
+            \dfrac{\alpha(1-\varepsilon)(1+\varepsilon)}{\sqrt{\alpha(1-\varepsilon^2)}}
+            \end{pmatrix}.
+            \]
+            \[
+            Q_\chi=
+            \begin{pmatrix}
+            \cos\chi & -\sin\chi & 0\\
+            \sin\chi & \cos\chi  & 0\\
+            0        & 0         & 1
+            \end{pmatrix},
+            \qquad
+            R_{e\omega}=Q_\chi R_e Q_\chi^T.
+            \]
+            \[
+            \chi(\omega)
+            =
+            \frac{\omega}{2}
+            +
+            \frac{1}{6}\sin 2\omega
+            +
+            \frac{1}{32}\sin 4\omega.
+            \]
+            \[
+            e \approx -\mathcal A^{(e)}(\kappa,\omega)\zeta,
+            \qquad
+            \zeta=-\frac{e}{\mathcal A^{(e)}(\kappa,\omega)}.
+            \]
+            \[
+            \mathcal A^{(e)}(\kappa,\omega)
+            =
+            \mathcal A_0^{(e)}(\kappa)
+            +
+            \sin\omega
+            \left(
+            \mathcal A_1^{(e)}(\kappa)\sin\omega
+            +
+            \mathcal A_2^{(e)}(\kappa)\sin3\omega
+            \right),
+            \]
+            \[
+            \mathcal A_m^{(e)}(\kappa)=C_m^{(e)}(\kappa-1),
+            \qquad
+            m=0,1,2.
+            \]
+        \end{column}
+    \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Получены конечные формулы \(R\)-II для задания эксцентриситета и аргумента перицентра конечной орбиты.
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{\(R\)-преобразование II типа: проверка и побочная деформация}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.54\textwidth}
+            \centering
+            \includegraphics[height=0.54\textheight]{R_type_II_eomega_example}
+        \end{column}
+        \begin{column}{0.42\textwidth}
+            \scriptsize
+            \[
+            \Delta e=e_{\mathrm{num}}-e,
+            \qquad
+            \Delta\omega=
+            \operatorname{wrap}(\omega_{\mathrm{num}}-\omega).
+            \]
+            \[
+            \Delta\lambda=\lambda_{\mathrm{num}}-\lambda,
+            \qquad
+            \Delta a=a_{\mathrm{num}}-a.
+            \]
+            \begin{itemize}
+                \item Ошибка задания \(\omega\) оценивается как угловая ошибка на окружности.
+                \item Окрестность малых эксцентриситетов исключается, поскольку при \(e=0\) аргумент перицентра вырожден.
+                \item Преобразование вызывает побочную деформацию \(\lambda\) и \(a\).
+                \item Для витковой дальности строится отдельная линейная коррекция.
+            \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{\(R\)-преобразование II типа}
+    \frametitle{Коррекция витковой дальности при \(R\)-II}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.38\textwidth}
-            \small
-            \[
-            (e,\omega)
-            \longrightarrow
-            (\zeta,\chi)
-            \longrightarrow
-            R_{e\omega}
-            \]
-            \begin{itemize}
-                \item задаются эксцентриситет и аргумент перицентра;
-                \item учитывается деформация витковой дальности;
-                \item переход используется для эллиптической конечной орбиты.
-            \end{itemize}
+            \centering
+            \includegraphics[width=\linewidth]{R_type_II_lambda_local_linearity}
+
+            \vspace{0.15cm}
+            \includegraphics[width=\linewidth]{R_type_II_lambda_correction_error_heatmap}
         \end{column}
         \begin{column}{0.58\textwidth}
-            \centering
-            \includegraphics[width=\linewidth]{R_type_II_eomega_example}
+            \scriptsize
+            \[
+            \Delta\lambda
+            \approx
+            \frac{1}{2\pi}
+            \mathcal B_\lambda(\omega,\lambda,\kappa)\zeta.
+            \]
+            \[
+            \begin{aligned}
+            \mathcal B_\lambda(\omega,\lambda,\kappa)
+            &=
+            \mathcal B_0^{(\lambda)}(\lambda,\kappa)
+            +
+            \mathcal B_1^{(\lambda)}(\lambda,\kappa)\cos\omega\\
+            &\quad+
+            \mathcal B_2^{(\lambda)}(\lambda,\kappa)\sin\omega
+            +
+            \mathcal B_3^{(\lambda)}(\lambda,\kappa)\cos 3\omega
+            +
+            \mathcal B_4^{(\lambda)}(\lambda,\kappa)\sin 3\omega .
+            \end{aligned}
+            \]
+            \[
+            \lambda_{\mathrm{corr}}
+            =
+            \lambda-\Delta\lambda
+            =
+            \lambda
+            -
+            \frac{1}{2\pi}
+            \mathcal B_\lambda(\omega,\lambda,\kappa)\zeta.
+            \]
+            \begin{itemize}
+                \item Локальная зависимость \(\Delta\lambda(\zeta)\) используется для выделения функции чувствительности.
+                \item Коррекция применяется предварительно, до построения полной композиции преобразований.
+            \end{itemize}
         \end{column}
     \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Построена линейная коррекция витковой дальности при \(R\)-преобразовании II типа.
+    \end{block}
 \end{frame}
 
 \begin{frame}
-    \frametitle{\(R\)-преобразование III типа}
+    \frametitle{\(R\)-преобразование III типа: задание \(i\) и \(\Omega\)}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.38\textwidth}
-            \small
+        \begin{column}{0.35\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{R_type_III_Ci_isolines}
+        \end{column}
+        \begin{column}{0.61\textwidth}
+            \tiny
             \[
-            (i,\Omega)
-            \longrightarrow
-            (j,\gamma)
-            \longrightarrow
-            R_{i\Omega}
+            R_i(j)=
+            \begin{pmatrix}
+            1 & 0 & 0\\
+            0 & \dfrac{1}{1+j^2} & -\dfrac{j}{1+j^2}\\
+            0 & \dfrac{j}{1+j^2} & \dfrac{1}{1+j^2}
+            \end{pmatrix}.
+            \]
+            \[
+            Q_\Omega=
+            \begin{pmatrix}
+            \cos\Omega & -\sin\Omega & 0\\
+            \sin\Omega & \cos\Omega & 0\\
+            0&0&1
+            \end{pmatrix},
+            \qquad
+            R_{i\Omega}(j,\Omega)=Q_\Omega R_i(j)Q_\Omega^T.
+            \]
+            \[
+            i\approx -\mathcal A^{(i)}(\kappa,\Omega)j,
+            \qquad
+            j=-\frac{i}{\mathcal A^{(i)}(\kappa,\Omega)}.
+            \]
+            \[
+            \mathcal A^{(i)}(\kappa,\Omega)
+            =
+            \mathcal A_0^{(i)}(\kappa)
+            +
+            \mathcal A_1^{(i)}(\kappa)\cos 2\Omega.
+            \]
+            \[
+            \mathcal A_0^{(i)}(\kappa)
+            =
+            \kappa
+            \left(C_0^{(i)}+C_1^{(i)}\kappa\right)
+            \left(\kappa+C_2^{(i)}\right)
+            +
+            C_3^{(i)},
+            \]
+            \[
+            \mathcal A_1^{(i)}(\kappa)
+            =
+            C_4^{(i)}
+            \left(\kappa-C_5^{(i)}\right)
+            \left(\kappa^3-C_6^{(i)}\right).
             \]
             \begin{itemize}
-                \item задаются наклонение и долгота восходящего узла;
-                \item плоская модель переводится в пространственную постановку;
-                \item сохраняется вычислительная роль начального вектора.
+                \item \(R\)-III выводит конечную орбиту из плоскости исходного движения.
+                \item Управляющий параметр \(j\) задаёт наклонение, а поворот матрицы задаёт долготу восходящего узла.
             \end{itemize}
         \end{column}
-        \begin{column}{0.58\textwidth}
+    \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Получены конечные формулы \(R\)-III для задания наклонения и долготы восходящего узла конечной орбиты.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\(R\)-преобразование III типа: проверка и побочные деформации}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.54\textwidth}
             \centering
             \includegraphics[width=\linewidth]{R_type_III_iOmega_example}
+        \end{column}
+        \begin{column}{0.42\textwidth}
+            \small
+            \[
+            \Delta i=i_{\mathrm{num}}-i,
+            \qquad
+            \Delta\Omega=
+            \operatorname{wrap}(\Omega_{\mathrm{num}}-\Omega).
+            \]
+            \begin{itemize}
+                \item Ошибка задания \(\Omega\) оценивается как угловая ошибка на окружности.
+                \item Окрестность малых наклонений исключается, поскольку при \(i=0\) долгота восходящего узла вырождена.
+                \item Дополнительно контролируются побочные деформации витковой дальности и большой полуоси.
+            \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
@@ -422,150 +996,493 @@
 \begin{frame}
     \frametitle{Композиция \(R\)-преобразований}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.36\textwidth}
-            \small
+        \begin{column}{0.46\textwidth}
+            \tiny
             \[
-                R_{\Sigma}=R_{i\Omega}R_{e\omega}R_0
+            \mathbf x_0=(\mathbf r_0,\mathbf v_0),
+            \qquad
+            R_0=R(\mathbf r_0,\mathbf v_0).
+            \]
+            \[
+            \bar{\omega}=\Omega+\omega,
+            \qquad
+            \bar{\omega}_{\mathrm{rel}}
+            =
+            \bar{\omega}-L_0,
+            \qquad
+            \Omega_{\mathrm{rel}}
+            =
+            \Omega-L_0.
+            \]
+            \[
+            \gamma=\Omega_{\mathrm{rel}}.
+            \]
+            \[
+            \zeta
+            =
+            -\frac{e}{\mathcal A^{(e)}(\kappa,\bar{\omega}_{\mathrm{rel}})},
+            \qquad
+            j
+            =
+            -\frac{i}{\mathcal A^{(i)}(\kappa,\gamma)}.
+            \]
+            \[
+            R_\Sigma
+            =
+            R_{i\Omega}(j,\gamma)
+            R_{e\omega}(\zeta,\bar{\omega}_{\mathrm{rel}})
+            R_0.
             \]
             \begin{itemize}
-                \item сначала задаётся начальный фазовый вектор;
-                \item затем форма конечной орбиты;
-                \item затем пространственная ориентация.
+                \item \(R_0\) задаёт переход к начальному фазовому вектору.
+                \item \(R_{e\omega}\) задаёт форму конечной орбиты.
+                \item \(R_{i\Omega}\) задаёт пространственную ориентацию конечной орбиты.
             \end{itemize}
         \end{column}
-        \begin{column}{0.60\textwidth}
+        \begin{column}{0.50\textwidth}
             \centering
-            \includegraphics[height=0.68\textheight]{R_composition_sequential_example}
+            \includegraphics[height=0.62\textheight]{R_composition_sequential_example}
         \end{column}
     \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Построена композиция \(R\)-преобразований для перехода к эллиптической и пространственной конечной орбите.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Начальный вектор после композиции}
+    \small
+    \[
+    \mathbf p_{r0}^{\mathrm{init}}
+    =
+    (R_{\Sigma}^{T})^{-1}
+    \widehat{\mathbf p}_{r0}^{\mathrm{pl}},
+    \qquad
+    \mathbf p_{v0}^{\mathrm{init}}
+    =
+    (R_{\Sigma}^{T})^{-1}
+    \widehat{\mathbf p}_{v0}^{\mathrm{pl}}.
+    \]
+    \[
+    \mathbf y_0^{\mathrm{init}}
+    =
+    \left(
+    \mathbf r_0,
+    \mathbf v_0,
+    \mathbf p_{r0}^{\mathrm{init}},
+    \mathbf p_{v0}^{\mathrm{init}}
+    \right).
+    \]
+    \begin{itemize}
+        \item На входе используется аппроксимированный плоский начальный вектор сопряжённых переменных.
+        \item Композиция \(R_\Sigma\) переносит его к заданному начальному фазовому вектору и конечной орбите.
+        \item Полученный \(\mathbf y_0^{\mathrm{init}}\) используется как начальный вектор расширенной системы для последующего уточнения КЗ.
+    \end{itemize}
 \end{frame}
 
 \section{Алгоритм и проверка}
 
 \begin{frame}
-    \frametitle{Управляющие параметры и алгоритм}
-    \small
+    \frametitle{Управляющие параметры начального приближения}
+    \scriptsize
     \[
-    t_0,\ \text{целевая орбита}
-    \rightarrow
-    \Phi,\ (a,e,\omega,i,\Omega)
-    \rightarrow
-    \boldsymbol q
-    \rightarrow
-    \widehat{\mathbf z}_0
-    \rightarrow
-    R_\Sigma
-    \rightarrow
-    \mathbf y_0^{init}
-    \rightarrow
-    \text{КЗ}
+    \boldsymbol q =
+    \left(
+    \lambda,\kappa,\zeta,\chi,j,\gamma
+    \right).
+    \]
+    \[
+    (\lambda,\kappa)
+    \longrightarrow
+    \widehat T,\quad
+    \widehat J,\quad
+    \widehat{\mathbf z}^{\mathrm{pl}}_0,
+    \qquad
+    (e,\omega)
+    \longrightarrow
+    (\zeta,\chi)
+    \longrightarrow
+    R_{e\omega},
+    \]
+    \[
+    (i,\Omega)
+    \longrightarrow
+    (j,\gamma)
+    \longrightarrow
+    R_{i\Omega},
+    \qquad
+    R_{\Sigma}
+    =
+    R_{i\Omega}
+    R_{e\omega}
+    R_0 .
     \]
     \begin{center}
-        \footnotesize
-        \begin{tabular}{@{}p{0.27\linewidth}p{0.62\linewidth}@{}}
+        \begin{tabular}{@{}p{0.26\linewidth}p{0.38\linewidth}p{0.24\linewidth}@{}}
             \toprule
-            Параметры & Роль \\
+            Параметры & Роль & Источник \\
             \midrule
-            \(\lambda,\kappa\) & точка на модельном многообразии \\
-            \(\zeta,\chi\) & форма конечной орбиты, \(R\)-II \\
-            \(j,\gamma\) & пространственная ориентация, \(R\)-III \\
+            \(\lambda,\kappa\) & точка на модельном многообразии & конечные формулы главы 2 \\
+            \(\zeta,\chi\) & форма конечной орбиты: \(e,\omega\) & \(R\)-II \\
+            \(j,\gamma\) & пространственная ориентация: \(i,\Omega\) & \(R\)-III \\
             \bottomrule
         \end{tabular}
     \end{center}
-    Вектор \(\boldsymbol q\) собирает модельные формулы и параметры прикладной орбиты в единый вычислительный интерфейс.
+    \begin{itemize}
+        \item \(\Omega\) -- орбитальный элемент конечной орбиты.
+        \item \(\gamma\) -- управляющий угловой параметр матрицы преобразования.
+    \end{itemize}
+    \begin{block}{Новый результат}
+        \scriptsize Введён вектор управляющих параметров \(\boldsymbol q\) как вычислительный интерфейс для построения начального приближения.
+    \end{block}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Пример: перелёт Земля--Марс}
+    \frametitle{Алгоритм построения начального приближения}
+    \scriptsize
+    \[
+    t_0,\ \text{целевая орбита}
+    \longrightarrow
+    \Phi,\ (a,e,\omega,i,\Omega)
+    \longrightarrow
+    \boldsymbol q.
+    \]
+    \[
+    \lambda_{\mathrm{corr}}=\lambda^\star-\Delta\lambda,
+    \qquad
+    (\lambda_{\mathrm{corr}},\kappa)
+    \longrightarrow
+    \widehat T,\quad
+    \widehat J,\quad
+    \widehat{\mathbf z}^{\mathrm{pl}}_0 .
+    \]
+    \[
+    \widehat{\mathbf z}^{\mathrm{pl}}_0=
+    \left(
+    \widehat{\mathbf p}_{r0}^{\mathrm{pl}},
+    \widehat{\mathbf p}_{v0}^{\mathrm{pl}}
+    \right).
+    \]
+    \[
+    \mathbf p_{r0}^{\mathrm{init}}
+    =
+    (R_{\Sigma}^{T})^{-1}
+    \widehat{\mathbf p}_{r0}^{\mathrm{pl}},
+    \qquad
+    \mathbf p_{v0}^{\mathrm{init}}
+    =
+    (R_{\Sigma}^{T})^{-1}
+    \widehat{\mathbf p}_{v0}^{\mathrm{pl}}.
+    \]
+    \[
+    \mathbf y_0^{\mathrm{init}}
+    =
+    \left(
+    \mathbf r_0,
+    \mathbf v_0,
+    \mathbf p_{r0}^{\mathrm{init}},
+    \mathbf p_{v0}^{\mathrm{init}}
+    \right).
+    \]
+    \begin{enumerate}
+        \item По дате старта определяется начальная синодическая фаза.
+        \item По КЛО и изолинии фазы выбирается \(\lambda^\star\).
+        \item По формулам главы 2 вычисляются \(\widehat T\), \(\widehat J\), \(\widehat{\mathbf z}^{\mathrm{pl}}_0\).
+        \item По формулам главы 3 строится \(R_\Sigma\).
+        \item Получается начальный вектор расширенной системы \(\mathbf y_0^{\mathrm{init}}\).
+    \end{enumerate}
+    \begin{block}{Новый результат}
+        \scriptsize Разработан алгоритм построения начального вектора расширенной системы на основе конечных формул и композиции \(R\)-преобразований.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Пример построения начального приближения: Земля--Марс}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.64\textwidth}
+        \begin{column}{0.54\textwidth}
             \centering
             \includegraphics[width=\linewidth]{chap4_mars_cleanver_rebuilt_Oxy}
         \end{column}
-        \begin{column}{0.32\textwidth}
-            \small
+        \begin{column}{0.42\textwidth}
+            \tiny
+            \[
+            \begin{aligned}
+            t_0&=2461193.0,&
+            \Psi_0&=3.481030\times10^{-1},\\
+            \lambda^\star&=1.324331\times10^{0},&
+            \lambda_{\mathrm{corr}}&=1.268512\times10^{0},\\
+            \kappa&=1.523783\times10^{0}.&
+            \end{aligned}
+            \]
+            \[
+            \begin{aligned}
+            \bar{\omega}_{\mathrm{rel}}&=1.456670\times10^{0},&
+            \Omega_{\mathrm{rel}}&=-3.544969\times10^{0},\\
+            \gamma&=\Omega_{\mathrm{rel}}.&
+            \end{aligned}
+            \]
+            \[
+            \begin{aligned}
+            \zeta &= -9.950813\times10^{-2}, &
+            \chi &= \phantom{-}7.522721\times10^{-1},\\
+            j &= -2.291710\times10^{-1}, &
+            \gamma &= -3.544969\times10^{0}.
+            \end{aligned}
+            \]
+            \[
+            \mathbf q_{\mathrm{init}}=
+            \begin{pmatrix}
+            \phantom{-}1.268512\times10^{0}\\
+            \phantom{-}1.523783\times10^{0}\\
+            -9.950813\times10^{-2}\\
+            \phantom{-}7.522721\times10^{-1}\\
+            -2.291710\times10^{-1}\\
+            -3.544969\times10^{0}
+            \end{pmatrix}.
+            \]
             \begin{itemize}
-                \item дата старта и целевая орбита задают вход;
-                \item формулы дают \(T\) и \(\mathbf z_0\);
-                \item \(R_\Sigma\) переводит решение к нужной геометрии;
-                \item затем выполняется уточнение краевой задачи.
+                \item После применения \(R_\Sigma\) строится \(\mathbf y_0^{\mathrm{init}}\).
+                \item Затем выполняется численное уточнение краевой задачи.
             \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Качество начального приближения}
-    \small
-    \begin{center}
-        \begin{tabular}{@{}lcc@{}}
-            \toprule
-            Параметр & Земля--Марс & Земля--Венера \\
-            \midrule
-            \(e\) & \(0.003\) & \(0.02\) \\
-            \(i\) & \(0.004^\circ\) & \(0.2^\circ\) \\
-            \(\Omega\) & \(4^\circ\) & \(2^\circ\) \\
-            \(\omega\) & \(11^\circ\) & \(26^\circ\) \\
-            \(\varphi\) & \(3^\circ\) & \(0.7^\circ\) \\
-            \(a\) & \(0.06\) а.е. & \(0.004\) а.е. \\
-            \(T\) & \(8.5\) сут. & \(0.7\) сут. \\
-            \bottomrule
-        \end{tabular}
-    \end{center}
-    Проверка выполнена не на одном примере, а на множествах перелётов Земля--Марс и Земля--Венера.
+    \frametitle{Невязки начального приближения на множествах перелётов}
+    \scriptsize
+    \centering
+    \textbf{Невязки начального приближения}
+    \begin{tabular}{@{}p{0.38\linewidth}cc@{}}
+        \toprule
+        Целевой параметр конечной орбиты & Земля--Марс & Земля--Венера \\
+        \midrule
+        Эксцентриситет, \(e\) & \(0.003\) & \(0.02\) \\
+        Наклонение, \(i\) & \(0.004^\circ\) & \(0.2^\circ\) \\
+        ДВУ, \(\Omega\) & \(4^\circ\) & \(2^\circ\) \\
+        Аргумент перицентра, \(\omega\) & \(11^\circ\) & \(26^\circ\) \\
+        Угловая дальность, \(\varphi\) & \(3^\circ\) & \(0.7^\circ\) \\
+        Большая полуось, \(a\) & \(0.06\) а.е. & \(0.004\) а.е. \\
+        Функционал, \(J\) & \(0.08\ \mathrm{м^2/с^3}\) & \(0.003\ \mathrm{м^2/с^3}\) \\
+        Продолжительность перелёта, \(T\) & \(8.5\) сут. & \(0.7\) сут. \\
+        \bottomrule
+    \end{tabular}
+    \begin{itemize}
+        \item Для Марса рассматривался период великих противостояний порядка 17 лет.
+        \item Для Венеры рассматривался характерный восьмилетний цикл.
+        \item Таблица характеризует невязки начального приближения до окончательного численного уточнения.
+    \end{itemize}
+    \begin{block}{Новый результат}
+        \scriptsize Выполнена оценка качества начальных приближений для множеств перелётов Земля--Марс и Земля--Венера.
+    \end{block}
 \end{frame}
 
 \begin{frame}
-    \frametitle{ILTT Toolbox}
+    \frametitle{Уточнение в управляющих параметрах}
+    \scriptsize
+    \[
+    \mathbf q=(\lambda,\kappa,\zeta,\chi,j,\gamma),
+    \qquad
+    \mathbf F(\mathbf q)=0.
+    \]
+    \[
+    \mathbf y_0^{\mathrm{init}}
+    =
+    \left(
+    \mathbf r_0,
+    \mathbf v_0,
+    \mathbf p_{r0}^{\mathrm{init}},
+    \mathbf p_{v0}^{\mathrm{init}}
+    \right).
+    \]
+    \centering
+    \textbf{Невязки после уточнения в параметрах \(\boldsymbol q\)}
+    \begin{tabular}{@{}p{0.38\linewidth}cc@{}}
+        \toprule
+        Целевой параметр конечной орбиты & Земля--Марс & Земля--Венера \\
+        \midrule
+        Эксцентриситет, \(e\) & \(3.9\times10^{-15}\) & \(1.9\times10^{-12}\) \\
+        Наклонение, \(i\) & \(2.1\times10^{-14}\) град. & \(2.9\times10^{-13}\) град. \\
+        ДВУ, \(\Omega\) & \(5.7\times10^{-14}\) град. & \(4.7\times10^{-13}\) град. \\
+        Аргумент перицентра, \(\omega\) & \(3.0\times10^{-13}\) град. & \(1.2\times10^{-13}\) град. \\
+        Угловая дальность, \(\varphi\) & \(1.7\times10^{-13}\) град. & \(3.3\times10^{-16}\) град. \\
+        Большая полуось, \(a\) & \(1.0\times10^{-14}\) а.е. & \(6.3\times10^{-13}\) а.е. \\
+        \bottomrule
+    \end{tabular}
+    \begin{itemize}
+        \item Уточнение выполняется в пространстве управляющих параметров \(\boldsymbol q\).
+        \item Начальное приближение из предыдущего слайда служит стартовой точкой.
+    \end{itemize}
+    \begin{block}{Новый результат}
+        \scriptsize Показана возможность уточнения решения в управляющих параметрах \(\boldsymbol q\).
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Сравнение с продолжением по гравитационному параметру}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.46\textwidth}
+            \tiny
+            \[
+            \mathbf F(\mathbf z_0)=0.
+            \]
+            \[
+            \mathbf F(\mathbf z_0(0))=\mathbf b,
+            \qquad
+            \mathbf F(\mathbf z_0(\tau))=(1-\tau)\mathbf b,
+            \qquad
+            \mathbf F(\mathbf z_0(1))=0.
+            \]
+            \[
+            \frac{d\mathbf z_0}{d\tau}
+            =
+            -
+            \left(
+            \frac{\partial \mathbf F}{\partial \mathbf z_0}
+            \right)^{-1}
+            \mathbf b,
+            \qquad
+            \mathbf z_0(0)=\mathbf z_0^{\mathrm{init}}.
+            \]
+            \[
+            \bar\mu(\tau)=\mu_0+(\mu-\mu_0)\tau,
+            \qquad
+            \tau\in[0,1].
+            \]
             \begin{itemize}
-                \item Программная реализация разработанной методики.
-                \item Вход: дата старта и параметры целевой орбиты.
-                \item Метод: конечные формулы и композиция \(R_\Sigma\).
-                \item Выход: \(\mathbf y_0^{init}\), \(\widehat T\) и численное уточнение КЗ.
+                \item Продолжение по параметру строит путь в пространстве начального вектора сопряжённых переменных.
+                \item Предлагаемый алгоритм сначала задаёт путь в пространстве управляющих параметров \(\boldsymbol q\).
             \end{itemize}
         \end{column}
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.50\textwidth}
             \centering
-            \footnotesize
-            \begin{tabular}{@{}p{0.25\linewidth}p{0.65\linewidth}@{}}
-                \toprule
-                Поле & Значение \\
-                \midrule
-                Вход & дата старта, целевая орбита \\
-                Метод & конечные формулы + \(R_\Sigma\) \\
-                Выход & \(\mathbf y_0^{init}\), \(\widehat T\) \\
-                Проверка & численное уточнение КЗ \\
-                \bottomrule
-            \end{tabular}
+            \includegraphics[width=\linewidth]{comparison_solution_paths_q_p_p}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Переход к прикладной расчётной цепочке}
+    \frametitle{Постановки с ненулевой отлётной скоростью}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.60\textwidth}
+        \begin{column}{0.52\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Vinf_lambda_functional_isolines}
+        \end{column}
+        \begin{column}{0.44\textwidth}
+            \scriptsize
+            \[
+            \mathbf v(t_0)
+            =
+            \mathbf v_E(t_0)
+            +
+            \mathbf v_\infty .
+            \]
+            \[
+            J_{\text{ПСИ}}
+            =
+            \int_{t_0}^{t_0+T} \dot m_p(t)\,dt
+            \rightarrow
+            \min .
+            \]
+            \[
+            \mathbf e
+            =
+            \frac{\mathbf p_v}{\|\mathbf p_v\|},
+            \qquad
+            \mathcal K
+            =
+            \frac{\nu\|\mathbf p_v\|}{m(t)}
+            +
+            p_m
+            -
+            1.
+            \]
+            \begin{itemize}
+                \item ИРТ-приближение используется как гладкий вход для дальнейшей постановки.
+                \item Для ПСИ-модели направление тяги задаётся по primer-вектору.
+                \item Функция переключения \(\mathcal K\) задаёт структуру bang-bang управления.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Применение к миссии Земля--Венера и расчёт по датам старта}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.56\textwidth}
             \centering
             \includegraphics[width=\linewidth]{Venus_deltaV_by_start_date}
         \end{column}
-        \begin{column}{0.36\textwidth}
-            \small
+        \begin{column}{0.40\textwidth}
+            \scriptsize
             \[
             \begin{array}{c}
-            t_0\rightarrow\boldsymbol q\\
-            \Downarrow\\
-            \mathbf z_0^{init}\rightarrow\text{КЗ}\\
-            \Downarrow\\
-            v_\infty\rightarrow\text{окна старта}
+            \text{ИРТ-приближение}
+            \longrightarrow
+            \mathbf v_\infty
+            \longrightarrow
+            \text{ПСИ-модель}\\
+            \longrightarrow
+            \text{опорное решение}
+            \longrightarrow
+            \text{массовый расчёт по } t_0 .
             \end{array}
             \]
+            \[
+            \mathbf v(t_0)=\mathbf v_E(t_0)+\mathbf v_\infty .
+            \]
             \begin{itemize}
-                \item ИРТ-приближение используется как вход;
-                \item затем учитываются \(v_\infty\) и постоянная скорость истечения;
-                \item результат применяется при анализе окон старта.
+                \item Опорное решение переносится на новые даты старта.
+                \item Рассматривается интервал от 01.01.2028 до 01.01.2037 с шагом один день.
+                \item Для каждой даты строится начальное приближение и выполняется уточнение.
+                \item Получается зависимость затрат характеристической скорости, гиперболического избытка и продолжительности перелёта от даты старта.
             \end{itemize}
         \end{column}
     \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Алгоритм применён к расчёту семейства перелётов Земля--Венера по датам старта.
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{Сценарии использования и программная реализация}
+    \tiny
+    \[
+    \begin{array}{c}
+    \text{дата старта, целевая орбита}
+    \rightarrow
+    \boldsymbol q
+    \rightarrow
+    \text{ИРТ-приближение}\\
+    \rightarrow
+    \mathbf v_\infty
+    \rightarrow
+    \text{ПСИ-модель}
+    \rightarrow
+    \text{миссионный анализ}.
+    \end{array}
+    \]
+    \vspace{-0.12cm}
+    \begin{center}
+        \begin{tabular}{@{}p{0.27\linewidth}p{0.36\linewidth}p{0.27\linewidth}@{}}
+            \toprule
+            Блок & Роль & Выход \\
+            \midrule
+            Начальное приближение & использует конечные формулы и \(R_\Sigma\) & \(\mathbf y_0^{\mathrm{init}},\ \widehat T,\ \widehat J\) \\
+            Уточнение траектории & использует \(\boldsymbol q\) как переменные оптимизации & решение с малыми невязками правого конца \\
+            Перенос между датами старта & применяет \(R\)-I к опорному решению & начальное приближение для новой даты \\
+            Ненулевая отлётная скорость & продолжение от \(\mathbf v_\infty=0\) & решение с гиперболическим избытком \\
+            Переход к ПСИ-модели & использует ИРТ-решение как гладкое приближение & опорная bang-bang траектория \\
+            Массовый расчёт & повторяет перенос и уточнение на сетке дат & окна старта, длительность, \(\Delta V\), расход топлива \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    \vspace{-0.12cm}
+    \begin{itemize}
+        \item Научный результат: конечные формулы, \(R\)-преобразования, управляющие параметры и алгоритм.
+        \item Программная реализация: автоматизированная сборка этих элементов в воспроизводимую вычислительную цепочку.
+    \end{itemize}
+    \begin{block}{Новый результат}
+        \scriptsize Методика реализована как воспроизводимая вычислительная цепочка в ILTT Toolbox.
+    \end{block}
 \end{frame}
