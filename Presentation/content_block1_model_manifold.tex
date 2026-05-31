@@ -1,0 +1,270 @@
+\section{Введение}
+
+\begin{frame}
+    \frametitle{Актуальность}
+    \small
+    \begin{itemize}
+        \item Межпланетные перелёты с ЭРДУ формируются в результате длительного управляемого движения.
+        \item На ранних этапах баллистического проектирования требуется многократно оценивать даты старта, продолжительность перелёта, расход рабочего тела и параметры управления.
+        \item Непрямой метод требует начального вектора сопряжённых переменных, чувствительного к выбранной ветви решения.
+    \end{itemize}
+
+    \vspace{0.2cm}
+    \[
+    \begin{array}{c}
+    t_0,\ \text{целевая орбита}
+    \Rightarrow
+    \text{выбор ветви}
+    \Rightarrow
+    T,\ J,\ \mathbf z_0\\
+    \Rightarrow
+    \text{начальный вектор}
+    \Rightarrow
+    \text{уточнение КЗ}.
+    \end{array}
+    \]
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{Проблема проектирования класса перелётов}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.56\textwidth}
+            \centering
+            \includegraphics[height=0.50\textheight]{Startdate}
+        \end{column}
+        \begin{column}{0.40\textwidth}
+            \scriptsize
+            \textbf{Одна краевая задача}
+            \begin{itemize}
+                \item фиксированы дата старта и целевая орбита;
+                \item начальный вектор сопряжённых переменных подбирается индивидуально;
+                \item решение уточняется численно.
+            \end{itemize}
+
+            \textbf{Класс проектных задач}
+            \begin{itemize}
+                \item дата старта меняет начальную синодическую фазу;
+                \item возникают разные ветви решений;
+                \item требуется согласованный способ выбора ветви и начального вектора.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \vspace{-0.04cm}
+    \tiny
+    \[
+    t_0 \longrightarrow \Phi_0(t_0),
+    \qquad
+    \Phi_0=\mathrm{const}
+    \quad \text{задаёт условие выбора ветви.}
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Степень разработанности и место работы}
+    \small
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \textbf{Конечные формулы, аналитические и усреднённые подходы}
+
+            \medskip
+            Лебедев, Белецкий, Гродзовский;\\
+            da Silva Fernandes, Sessin, Carvalho, de Moraes;\\
+            Баранов.
+
+            \medskip
+            \textbf{Интерпретируемые формулы по численным данным}
+
+            \medskip
+            Cranmer; символьная регрессия как инструмент получения конечных формул.
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \textbf{Непрямые методы, продолжение, численные краевые задачи}
+
+            \medskip
+            Охоцимский, Энеев, Константинов, Петухов, Epenoy.
+
+            \medskip
+            \textbf{Место работы}
+            \[
+            \begin{array}{c}
+            \text{модельное многообразие}
+            \longrightarrow
+            \text{конечные формулы}\\
+            \longrightarrow
+            \text{начальный вектор для уточнения КЗ}.
+            \end{array}
+            \]
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Цель и задачи}
+    \small
+    \textbf{Цель:} разработать и апробировать численно-аналитический метод построения начальных приближений для энергетически оптимальных межпланетных перелётов с непрерывной тягой на основе аппроксимации модельного многообразия решений задачи встречи.
+
+    \medskip
+    Для достижения цели решаются задачи:
+    \begin{enumerate}
+        \item построить регулярное модельное многообразие решений задачи встречи;
+        \item получить конечные формулы для характеристик экстремалей и начального вектора сопряжённых переменных;
+        \item разработать линейные \(R\)-преобразования для перехода к эллиптической и пространственной конечной орбите;
+        \item построить алгоритм выбора начального вектора и проверить его на прикладных классах перелётов.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Научная новизна}
+    \small
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Модельное многообразие}
+                Предложена методика построения и исследования регулярных ветвей решений задачи встречи методом дискретного продолжения.
+            \end{block}
+            \begin{block}{Конечные формулы}
+                Получены конечные формулы для \(T\), \(\Psi\), \(J\) и \(\mathbf z_0\) как функций параметров модельной задачи.
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Линейные \(R\)-преобразования}
+                Предложены преобразования начальных значений сопряжённых переменных для переноса модельной экстремали к другой краевой задаче.
+            \end{block}
+            \begin{block}{Алгоритм}
+                Разработан и программно реализован алгоритм выбора начального приближения для прикладных классов перелётов.
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Модельное многообразие}
+
+\begin{frame}
+    \frametitle{ИРТ как модельная краевая задача и параметры}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \scriptsize
+            \[
+            \left\{
+            \begin{aligned}
+            \dot{\mathbf r} &= \mathbf v,\\
+            \dot{\mathbf v} &= -\frac{\mathbf r}{r^3}+\mathbf a,
+            \end{aligned}
+            \right.
+            \qquad
+            J=\frac{1}{2}\int\limits_{t_0}^{t_f}\|\mathbf a(t)\|^2\,dt \to \min.
+            \]
+            \[
+            \mathbf z_0=\left(\mathbf p_{r0},\mathbf p_{v0}\right),
+            \qquad
+            \mathbf a=\mathbf p_v.
+            \]
+            \[
+            (\lambda,\kappa)
+            \longrightarrow
+            T,\ \Psi,\ J,\ \mathbf z_0 .
+            \]
+            \begin{itemize}
+                \item \(\kappa\) задаёт отношение радиусов модельных круговых орбит.
+                \item \(\lambda\) задаёт витковую дальность.
+                \item \(\Phi\) связывает выбранную ветвь с датой старта.
+                \item ИРТ используется как регулярная модельная КЗ для построения начального приближения.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \centering
+            \includegraphics[height=0.68\textheight]{virtual_planet}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{Модельное многообразие и дискретное продолжение}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.58\textwidth}
+            \centering
+            \includegraphics[height=0.48\textheight]{continuation_paths}
+        \end{column}
+        \begin{column}{0.38\textwidth}
+            \tiny
+            \[
+            \mathbf z(\boldsymbol\xi)\in\mathbb R^6,
+            \qquad
+            \mathbf c(\boldsymbol\xi)\in\mathbb R^n.
+            \]
+            \[
+            M:D_{\mathrm{reg}}\to\mathbb R^{6+n},
+            \qquad
+            M(\boldsymbol\xi)=
+            \bigl(\mathbf z(\boldsymbol\xi),\mathbf c(\boldsymbol\xi)\bigr).
+            \]
+            \begin{itemize}
+                \item Модельное многообразие понимается как образ отображения, построенного на одной регулярной ветви решений.
+                \item Базовое решение используется как исходная точка для продолжения по сетке параметров.
+                \item Соседние решения дают начальный вектор для следующей КЗ.
+                \item Вычислительные барьеры отделяют границы устойчивого локального продолжения.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Разработана методика построения регулярного модельного многообразия методом дискретного продолжения.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{От многообразия к конечным формулам}
+    \small
+    \[
+    M(\boldsymbol\xi)
+    =
+    \bigl(\mathbf z(\boldsymbol\xi),\mathbf c(\boldsymbol\xi)\bigr),
+    \qquad
+    \mathbf c=(\Phi,\lambda,T,J).
+    \]
+    \[
+    M(\boldsymbol\xi)
+    \longrightarrow
+    \widehat T,\ \widehat\Psi,\ \widehat J,\ \widehat{\mathbf z}_0.
+    \]
+    \begin{itemize}
+        \item Численные решения анализируются в выбранных параметрических представлениях.
+        \item Для регулярных зависимостей строятся непосредственные аппроксимации.
+        \item Для более сложных зависимостей используется иерархический подход с коэффициент-функциями.
+        \item Символьная регрессия используется как инструмент получения конечных формул.
+        \item Качество формул проверяется метриками ошибок и краевыми невязками после интегрирования расширенной системы.
+    \end{itemize}
+    \begin{block}{Новый результат}
+        \scriptsize Задана методика получения интерпретируемых конечных формул для характеристик экстремалей и начальных значений сопряжённых переменных.
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{КЛО и точки оптимальной дальности}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.58\textwidth}
+            \centering
+            \includegraphics[height=0.48\textheight]{Isolines}
+        \end{column}
+        \begin{column}{0.38\textwidth}
+            \scriptsize
+            \[
+            \Phi=\mathrm{const}
+            \quad\cap\quad
+            \mathrm{КЛО}
+            \quad\Rightarrow\quad
+            \lambda^\star.
+            \]
+            \[
+            \varphi=\Phi+\frac{T}{\kappa^{3/2}}.
+            \]
+            \begin{itemize}
+                \item Дата старта задаёт начальную синодическую фазу.
+                \item КЛО строится как отдельная ветвь решений.
+                \item Пересечения КЛО с изолиниями фазы образуют точки оптимальной дальности.
+                \item Точка оптимальной дальности задаёт \(\lambda^\star\).
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \begin{block}{Новый результат}
+        \scriptsize Выделены КЛО и точки оптимальной дальности как механизм выбора ветви по фиксированной начальной синодической фазе.
+    \end{block}
+\end{frame}
