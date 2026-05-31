@@ -1,101 +1,101 @@
-\section{Вход в задачу}
+\section{Введение}
 
 \begin{frame}
     \frametitle{Содержание}
     \begin{enumerate}
-        \item Зачем нужен слой начальных приближений
-        \item Модельное многообразие и выбор ветви
-        \item Конечные формулы для характеристик и сопряжённых переменных
-        \item \(R\)-преобразования для перехода к другой геометрии
-        \item Алгоритм, прикладная проверка и программная реализация
+        \item Введение
+        \item Глава 1. Методика построения и аппроксимации многообразия решений
+        \item Глава 2. Плоская круговая модель и конечные формулы
+        \item Глава 3. Линейные \(R\)-преобразования
+        \item Глава 4. Применение в баллистическом проектировании
+        \item Заключение
     \end{enumerate}
 \end{frame}
 
 \begin{frame}
     \frametitle{Актуальность}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.52\textwidth}
-            \begin{itemize}
-                \item Электрореактивные двигательные установки позволяют рассматривать малые межпланетные аппараты.
-                \item Цена высокого удельного импульса --- длительный управляемый перелёт.
-                \item Для раннего проектного анализа нужно быстро получать работоспособные начальные приближения.
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.43\textwidth}
-            \centering
-            \includegraphics[width=\linewidth]{chap4_mars_cleanver_rebuilt_Oxy}
-
-            \medskip
-            \footnotesize Пример начального приближения и уточнённой траектории
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Постановка проблемы}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.47\textwidth}
-            \textbf{Одна траектория}
-            \begin{itemize}
-                \item задана дата старта;
-                \item задана конечная орбита;
-                \item можно решать конкретную КЗ.
-            \end{itemize}
-            \centering
-            \includegraphics[width=0.88\linewidth]{Startdate}
-        \end{column}
-        \begin{column}{0.49\textwidth}
-            \textbf{Класс задач}
-            \begin{itemize}
-                \item меняются даты старта и целевые орбиты;
-                \item появляются разные ветви решений;
-                \item нужно выбрать \(\mathbf z_0\) для непрямого метода.
-            \end{itemize}
-            \centering
-            \includegraphics[width=0.82\linewidth]{5families}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Место работы в расчётной цепочке}
-    \begin{columns}[T,onlytextwidth]
         \begin{column}{0.46\textwidth}
-            \textbf{Научный фон}
             \begin{itemize}
-                \item классическая баллистика и малая тяга;
-                \item непрямые методы и краевые задачи;
-                \item конечные формулы для специальных постановок;
-                \item символьная регрессия как инструмент отбора структуры.
+                \item Электрореактивные двигательные установки расширяют возможности малых межпланетных аппаратов.
+                \item Высокий удельный импульс приводит к длительным управляемым перелётам и усложняет баллистическое проектирование.
+                \item На ранних этапах анализа требуется быстро строить начальные приближения для последующего решения краевых задач.
             \end{itemize}
         \end{column}
         \begin{column}{0.5\textwidth}
-            \textbf{Слой, который строится в работе}
-            \[
-            \begin{array}{c}
-                t_0,\ \mathrm{target\ orbit} \\
-                \Downarrow \\
-                \boldsymbol q=(\lambda,\kappa,\zeta,\chi,j,\gamma) \\
-                \Downarrow \\
-                \widehat{\mathbf z}_0^{\,init},\ \widehat T \\
-                \Downarrow \\
-                \mathrm{BVP\ refinement}
-            \end{array}
-            \]
+            \centering
+            \includegraphics[width=\linewidth]{chap4_mars_cleanver_rebuilt_Oxy}
+
+            \vspace{0.15cm}
+            \footnotesize Начальное приближение и уточнённая траектория для межпланетного перелёта
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Проблема проектирования класса перелётов}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.54\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{Startdate}
+        \end{column}
+        \begin{column}{0.42\textwidth}
+            \small
+            \textbf{Численное решение одной КЗ}
+            \begin{itemize}
+                \item фиксированы дата старта и целевая орбита;
+                \item начальное приближение подбирается индивидуально.
+            \end{itemize}
+            \textbf{Класс проектных задач}
+            \begin{itemize}
+                \item меняются даты старта и параметры конечной орбиты;
+                \item возникают разные ветви решений;
+                \item требуется согласованный выбор начальных сопряжённых переменных.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Степень разработанности и место работы}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.31\textwidth}
+            \textbf{Аналитические методы}
+            \begin{itemize}
+                \item конечные формулы;
+                \item специальные постановки;
+                \item ограниченные диапазоны применимости.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.31\textwidth}
+            \textbf{Численные методы}
+            \begin{itemize}
+                \item решение конкретных краевых задач;
+                \item высокая чувствительность к начальному приближению;
+                \item ветвление решений.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.31\textwidth}
+            \textbf{Задача диссертации}
+            \begin{itemize}
+                \item построить модельное многообразие;
+                \item получить конечные формулы;
+                \item связать их с начальным приближением для прикладной КЗ.
+            \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{Цель и задачи}
-    \textbf{Цель:} разработать и апробировать численно-аналитический метод построения начальных приближений для энергетически оптимальных межпланетных перелётов с непрерывной тягой.
+    \textbf{Цель:} разработать и апробировать численно-аналитический метод построения начальных приближений для энергетически оптимальных межпланетных перелётов с непрерывной тягой на основе аппроксимации модельного многообразия решений задачи встречи.
 
     \medskip
     \begin{enumerate}
-        \item построить и исследовать модельное многообразие решений;
-        \item получить конечные формулы для характеристик траекторий и \(\mathbf z_0\);
-        \item разработать линейные \(R\)-преобразования сопряжённых переменных;
-        \item построить алгоритм начального приближения и проверить его на прикладных перелётах.
+        \item разработать методику построения и аппроксимации модельного многообразия решений;
+        \item исследовать плоскую круговую модель и получить конечные формулы;
+        \item разработать линейные преобразования для эллиптичной и пространственной конечной орбиты;
+        \item построить и апробировать алгоритм выбора начального приближения.
     \end{enumerate}
 \end{frame}
 
@@ -103,114 +103,205 @@
     \frametitle{Научная новизна}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.48\textwidth}
-            \begin{block}{Многообразие}
-                Методика построения регулярных ветвей решений задачи встречи.
+            \begin{block}{Модельное многообразие}
+                Предложена методика построения и аппроксимации регулярных ветвей решений задачи встречи.
             \end{block}
             \begin{block}{Конечные формулы}
-                Аппроксимации \(T\), \(\Psi\), \(J\) и начальных сопряжённых переменных.
+                Получены аппроксимации продолжительности, фазы, функционала и начальных сопряжённых переменных.
             \end{block}
         \end{column}
         \begin{column}{0.48\textwidth}
-            \begin{block}{Преобразования}
-                Линейный переход от плоской модели к эллиптичной и пространственной конечной орбите.
+            \begin{block}{\(R\)-преобразования}
+                Разработаны линейные преобразования начальных значений сопряжённых переменных.
             \end{block}
             \begin{block}{Алгоритм}
-                Выбор начального приближения для прикладных межпланетных перелётов.
+                Построен алгоритм выбора начального приближения и выполнена его программная реализация.
             \end{block}
         \end{column}
     \end{columns}
 \end{frame}
 
-\section{Модельное многообразие}
+\section{Глава 1. Методика}
 
 \begin{frame}
-    \frametitle{ИРТ как модельная краевая задача}
+    \frametitle{Глава 1. Методика построения и аппроксимации}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.53\textwidth}
-            \begin{itemize}
-                \item Идеально регулируемая тяга используется как регулярная модельная постановка.
-                \item Сохраняются принцип максимума, сопряжённые переменные и чувствительность к начальному приближению.
-                \item Цель не заменить физическую модель двигателя, а получить устойчивый вход в непрямой метод.
-            \end{itemize}
+        \begin{column}{0.46\textwidth}
+            \begin{enumerate}
+                \item Энергетически оптимальная модельная задача встречи.
+                \item Построение многообразия дискретным продолжением.
+                \item Аппроксимация характеристик с помощью символьной регрессии.
+            \end{enumerate}
         \end{column}
-        \begin{column}{0.43\textwidth}
+        \begin{column}{0.5\textwidth}
             \centering
-            \includegraphics[height=0.58\textheight]{virtual_planet}
-
-            \footnotesize Модельная задача встречи для виртуальных тел
+            \includegraphics[width=0.95\linewidth]{methodology_cycle}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Модельное многообразие и дискретное продолжение}
+    \frametitle{Идеально регулируемая тяга как модельная КЗ}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.47\textwidth}
+        \begin{column}{0.48\textwidth}
+            \small
             \[
-            (\lambda,\kappa)
-            \longrightarrow
-            T,\ J,\ \Psi,\ \mathbf z_0
+                J=\int_{t_0}^{t_f}\|\mathbf a(t)\|^2\,dt
+            \]
+            \[
+                \mathbf y_0=
+                \left(
+                \mathbf r_0,\mathbf v_0,
+                \mathbf p_{r0},\mathbf p_{v0}
+                \right)
             \]
             \begin{itemize}
-                \item узлы сетки являются не отдельными миссиями, а точками восстановления зависимости;
-                \item дискретное продолжение строит связную регулярную область решений.
+                \item постановка сохраняет двухточечную краевую задачу;
+                \item управление определяется начальными значениями сопряжённых переменных;
+                \item качество приближения оценивается через последующее уточнение КЗ.
             \end{itemize}
         \end{column}
-        \begin{column}{0.49\textwidth}
+        \begin{column}{0.48\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{continuation_paths}
+            \includegraphics[height=0.68\textheight]{virtual_planet}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{КЛО и точки оптимальной дальности}
+    \frametitle{Параметры модельной задачи}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.5\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{ParetoToF}
+            \includegraphics[width=\linewidth]{virtual_planet}
         \end{column}
         \begin{column}{0.46\textwidth}
             \begin{itemize}
-                \item Кривая локальных оптимумов выделяет регулярную структуру внутри многообразия.
-                \item Для заданной даты старта выбирается не произвольная траектория, а точка оптимальной дальности.
-                \item Это связывает фазу, ветвь решения и начальное приближение.
+                \item начальная конфигурация задаётся синодической фазой;
+                \item конечная точка встречи задаётся угловой дальностью;
+                \item отношение радиусов круговых орбит задаёт параметр \(\kappa\);
+                \item витковая дальность используется как параметр \(\lambda\).
+            \end{itemize}
+            \[
+                (\lambda,\kappa)
+                \longrightarrow
+                T,\ \Psi,\ J,\ \mathbf z_0
+            \]
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Построение многообразия дискретным продолжением}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.58\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{continuation_paths}
+        \end{column}
+        \begin{column}{0.38\textwidth}
+            \begin{itemize}
+                \item базовое решение продолжается малыми шагами по пространству параметров;
+                \item соседние решения используются как начальные приближения;
+                \item вычислительные барьеры выделяют границы регулярной области.
             \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Коэффициент-функции и чувствительности}
+    \frametitle{Аппроксимация символьной регрессией}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.48\textwidth}
             \[
             \begin{array}{c}
-                C_i^{(x)} \\
-                \Downarrow \\
-                \mathcal A^{(x)},\ \mathcal B^{(x)},\ \mathcal D^{(x)} \\
-                \Downarrow \\
-                \widehat x(\lambda,\kappa)
+            \text{многообразие решений}\\
+            \Downarrow\\
+            \text{выбор структуры формул}\\
+            \Downarrow\\
+            \text{оценка коэффициентов}\\
+            \Downarrow\\
+            \text{конечные формулы}
             \end{array}
             \]
         \end{column}
         \begin{column}{0.48\textwidth}
             \begin{itemize}
-                \item На слайды выносится структура конечной формулы.
-                \item Числовые коэффициенты остаются в приложениях диссертации.
-                \item Такой язык связывает аппроксимации главы 2 и чувствительности \(R\)-преобразований.
+                \item структура формул выбирается автоматически;
+                \item проверяются отсутствие сингулярностей и точность на отложенной выборке;
+                \item учитываются предельные случаи, допускающие аналитическую интерпретацию.
             \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
-\section{Конечные формулы}
+\begin{frame}
+    \frametitle{Результаты главы 1}
+    \begin{enumerate}
+        \item Сформулирована регулярная модельная краевая задача встречи с идеально регулируемой тягой.
+        \item Разработан способ построения многообразия решений методом дискретного продолжения.
+        \item Задана методика получения конечных формул для характеристик экстремалей и начальных сопряжённых переменных.
+    \end{enumerate}
+\end{frame}
+
+\section{Глава 2. Плоская круговая модель}
 
 \begin{frame}
-    \frametitle{Формула для продолжительности перелёта}
+    \frametitle{Глава 2. Плоская круговая модель}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.5\textwidth}
-            \small
+        \begin{column}{0.42\textwidth}
+            \begin{enumerate}
+                \item Семейства решений и ветвление.
+                \item Кривая локальных оптимумов.
+                \item Конечные формулы для \(T\), \(\Psi\), \(J\), \(\mathbf z_0\).
+                \item Верификация качества аппроксимаций.
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.54\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{5families}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Семейства решений и выбор ветви}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.62\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{5families}
+        \end{column}
+        \begin{column}{0.34\textwidth}
+            \begin{itemize}
+                \item многообразие состоит из нескольких регулярных семейств;
+                \item разные семейства могут соответствовать близким датам и дальностям;
+                \item выбор ветви определяет начальное приближение для непрямого метода.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Кривая локальных оптимумов и точки оптимальной дальности}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.6\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{ParetoToF}
+        \end{column}
+        \begin{column}{0.36\textwidth}
+            \begin{itemize}
+                \item КЛО выделяет регулярную структуру внутри многообразия;
+                \item для фиксированной начальной фазы выбирается точка оптимальной дальности;
+                \item эта точка задаёт ветвь, время перелёта и начальные сопряжённые переменные.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Конечная формула для продолжительности перелёта}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \scriptsize
             \[
             \widehat{T}(\lambda^\star,\kappa)=
             \frac{2}{27}\kappa\ln\kappa+
@@ -222,10 +313,10 @@
             \]
             \begin{itemize}
                 \item формула согласована с предельным случаем совпадающих круговых орбит;
-                \item \(T\) задаёт первый слой аппроксимированного многообразия.
+                \item время перелёта становится явной функцией параметров многообразия.
             \end{itemize}
         \end{column}
-        \begin{column}{0.46\textwidth}
+        \begin{column}{0.48\textwidth}
             \centering
             \includegraphics[width=\linewidth]{main_T_isolines}
         \end{column}
@@ -233,36 +324,40 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Формулы для \(\Psi\) и \(J\)}
+    \frametitle{Формулы для фазы и функционала}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.47\textwidth}
-            \small
+            \footnotesize
             \[
             \widehat{\Psi}(\lambda^\star,\kappa)=
             \mathcal A_0^{(\Psi)}(\kappa)+
             \mathcal A_1^{(\Psi)}(\kappa)\lambda^\star
             \]
             \[
-            \widehat J=
-            \frac{(C_0+C_1/\kappa+C_2/\kappa^2)\ln\kappa}
-            {\lambda^\star+C_3(\sin(2\pi\lambda^\star+C_4-1/\lambda^\star)-\lambda^\star)e^{-\lambda^\star}}
+            \begin{aligned}
+            \widehat J &=
+            \frac{(C_0+C_1/\kappa+C_2/\kappa^2)\ln\kappa}{D},\\
+            D&=\lambda^\star+
+            C_3(\sin(2\pi\lambda^\star+C_4-1/\lambda^\star)
+            -\lambda^\star)e^{-\lambda^\star}
+            \end{aligned}
             \]
         \end{column}
         \begin{column}{0.49\textwidth}
             \centering
-            \includegraphics[width=0.48\linewidth]{main_phase_isolines}
-            \includegraphics[width=0.48\linewidth]{main_J_isolines}
+            \includegraphics[width=0.49\linewidth]{main_phase_isolines}
+            \includegraphics[width=0.49\linewidth]{main_J_isolines}
 
-            \medskip
-            \footnotesize Непрерывная фаза и квадратичный функционал на основной области
+            \vspace{0.1cm}
+            \footnotesize Аппроксимации задают скалярные слои модельного многообразия.
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Формулы для начального вектора \(\mathbf z_0\)}
+    \frametitle{Формулы для начальных сопряжённых переменных}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.42\textwidth}
+        \begin{column}{0.36\textwidth}
             \[
             \widehat{\mathbf z}^{\mathrm{pl}}_0=
             \left(
@@ -273,11 +368,11 @@
             \right)
             \]
             \begin{itemize}
-                \item это не только описание траектории;
-                \item это вход в последующее решение двухточечной краевой задачи.
+                \item полученный вектор используется как вход в расширенную систему;
+                \item коэффициенты формул приведены в приложениях диссертации.
             \end{itemize}
         \end{column}
-        \begin{column}{0.54\textwidth}
+        \begin{column}{0.6\textwidth}
             \centering
             \includegraphics[width=\linewidth]{main_p_isolines}
         \end{column}
@@ -287,44 +382,70 @@
 \begin{frame}
     \frametitle{Качество конечных формул}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.49\textwidth}
+        \begin{column}{0.6\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{main_T_error_heatmap}
+            \includegraphics[height=0.68\textheight]{main_T_error_heatmap}
 
             \vspace{0.1cm}
-            \includegraphics[width=\linewidth]{main_J_error_heatmap}
+            \footnotesize Ошибка аппроксимации времени перелёта
         \end{column}
-        \begin{column}{0.47\textwidth}
+        \begin{column}{0.36\textwidth}
             \begin{itemize}
-                \item Качество оценивается относительно задачи начального приближения.
-                \item Формулы не заменяют финальное численное уточнение.
-                \item Важный критерий --- возможность войти в область сходимости непрямого метода.
+                \item качество оценивается относительно задачи начального приближения;
+                \item формулы должны обеспечить вход в область сходимости непрямого метода;
+                \item окончательное решение получается последующим численным уточнением.
             \end{itemize}
-            \centering
-            \includegraphics[width=0.85\linewidth]{main_v_terminal_residual_heatmap}
         \end{column}
     \end{columns}
 \end{frame}
 
-\section{R-преобразования}
+\begin{frame}
+    \frametitle{Результаты главы 2}
+    \begin{enumerate}
+        \item Показано существование точек оптимальной дальности на регулярных ветвях многообразия.
+        \item Получены конечные формулы для продолжительности перелёта, синодической фазы, функционала и начальных сопряжённых переменных.
+        \item Построено аппроксимированное многообразие решений плоской круговой задачи встречи.
+    \end{enumerate}
+\end{frame}
+
+\section{Глава 3. R-преобразования}
 
 \begin{frame}
-    \frametitle{Переход к другой геометрии и смысл \(R\)}
+    \frametitle{Глава 3. Линейные \(R\)-преобразования}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.42\textwidth}
+            \begin{enumerate}
+                \item Общий смысл перехода между краевыми задачами.
+                \item Преобразование начального фазового вектора.
+                \item Переход к эллиптичной конечной орбите.
+                \item Переход к пространственной конечной орбите.
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.54\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{R_small_change_demo}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Смысл линейного \(R\)-преобразования}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.42\textwidth}
             \[
-            \mathrm{КЗ}_1 \rightarrow
-            \mathrm{экстремаль}_1 \xrightarrow{R}
-            \mathrm{экстремаль}_2 \rightarrow
-            \mathrm{КЗ}_2
+            \begin{array}{c}
+            \mathrm{КЗ}_1\rightarrow\mathrm{экстремаль}_1\\
+            \xrightarrow{R}\\
+            \mathrm{экстремаль}_2\rightarrow\mathrm{КЗ}_2
+            \end{array}
             \]
             \begin{itemize}
-                \item Меняется сама краевая задача.
-                \item Преобразуется начальный вектор расширенной системы.
-                \item Оптимальность не переносится в старую задачу, а задаётся новая экстремаль.
+                \item преобразуется начальный вектор расширенной системы;
+                \item меняются параметры краевой задачи;
+                \item полученная экстремаль используется как начальное приближение для новой постановки.
             \end{itemize}
         \end{column}
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.54\textwidth}
             \centering
             \includegraphics[width=\linewidth]{R_small_change_demo}
         \end{column}
@@ -334,14 +455,14 @@
 \begin{frame}
     \frametitle{\(R\)-преобразование I типа}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.43\textwidth}
             \begin{itemize}
-                \item Согласованно меняет начальный фазовый вектор и начальный вектор сопряжённых переменных.
-                \item Используется для перехода к заданному начальному состоянию из эфемерид.
-                \item Отличается от простого поворота вектора сопряжённых переменных.
+                \item задаёт переход к новому начальному фазовому вектору;
+                \item согласованно преобразует начальные сопряжённые переменные;
+                \item отличается от простого поворота вектора сопряжённых переменных.
             \end{itemize}
         \end{column}
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.53\textwidth}
             \centering
             \includegraphics[width=\linewidth]{R_type_I_demo}
         \end{column}
@@ -351,18 +472,21 @@
 \begin{frame}
     \frametitle{\(R\)-преобразование II типа}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.44\textwidth}
+        \begin{column}{0.38\textwidth}
             \[
-            (e,\omega)\longrightarrow(\zeta,\chi)
-            \longrightarrow R_{e\omega}
+            (e,\omega)
+            \longrightarrow
+            (\zeta,\chi)
+            \longrightarrow
+            R_{e\omega}
             \]
             \begin{itemize}
-                \item \(e\) задаётся управляющим параметром \(\zeta\);
-                \item \(\omega\) задаётся углом \(\chi\);
-                \item побочная деформация витковой дальности учитывается далее в алгоритме.
+                \item задаются эксцентриситет и аргумент перицентра;
+                \item учитывается деформация витковой дальности;
+                \item переход используется при построении прикладной конечной орбиты.
             \end{itemize}
         \end{column}
-        \begin{column}{0.52\textwidth}
+        \begin{column}{0.58\textwidth}
             \centering
             \includegraphics[width=\linewidth]{R_type_II_eomega_example}
         \end{column}
@@ -372,18 +496,21 @@
 \begin{frame}
     \frametitle{\(R\)-преобразование III типа}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.44\textwidth}
+        \begin{column}{0.38\textwidth}
             \[
-            (i,\Omega)\longrightarrow(j,\gamma)
-            \longrightarrow R_{i\Omega}
+            (i,\Omega)
+            \longrightarrow
+            (j,\gamma)
+            \longrightarrow
+            R_{i\Omega}
             \]
             \begin{itemize}
-                \item \(i\) задаётся управляющим параметром \(j\);
-                \item \(\Omega\) контролируется угловым параметром \(\gamma\);
-                \item это переход от плоской модели к пространственной конечной орбите.
+                \item задаются наклонение и долгота восходящего узла;
+                \item плоская модель переводится в пространственную постановку;
+                \item преобразование сохраняет вычислительную роль начального приближения.
             \end{itemize}
         \end{column}
-        \begin{column}{0.52\textwidth}
+        \begin{column}{0.58\textwidth}
             \centering
             \includegraphics[width=\linewidth]{R_type_III_iOmega_example}
         \end{column}
@@ -393,7 +520,7 @@
 \begin{frame}
     \frametitle{Композиция \(R\)-преобразований}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.43\textwidth}
+        \begin{column}{0.38\textwidth}
             \[
             R_{\Sigma}=R_{i\Omega}R_{e\omega}R_0
             \]
@@ -403,40 +530,44 @@
                 \item затем пространственная ориентация.
             \end{itemize}
         \end{column}
-        \begin{column}{0.53\textwidth}
+        \begin{column}{0.58\textwidth}
             \centering
-            \includegraphics[height=0.63\textheight]{R_composition_sequential_example}
+            \includegraphics[height=0.7\textheight]{R_composition_sequential_example}
         \end{column}
     \end{columns}
 \end{frame}
 
-\section{Алгоритм и апробация}
+\begin{frame}
+    \frametitle{Результаты главы 3}
+    \begin{enumerate}
+        \item Предложено линейное преобразование специального вида для начальных значений сопряжённых переменных.
+        \item Получены конечные формулы, связывающие управляющие параметры преобразований с элементами конечной орбиты.
+        \item Построена композиция преобразований для перехода к эллиптичной и пространственной конечной орбите.
+    \end{enumerate}
+\end{frame}
+
+\section{Глава 4. Применение}
 
 \begin{frame}
-    \frametitle{Управляющие параметры \(\boldsymbol q\)}
-    \[
-    \boldsymbol q=(\lambda,\kappa,\zeta,\chi,j,\gamma)
-    \]
-    \begin{center}
-        \small
-        \begin{tabular}{cll}
-            \toprule
-            Параметр & Роль & Источник \\
-            \midrule
-            \(\lambda,\kappa\) & точка на модельном многообразии & глава 2 \\
-            \(\zeta,\chi\) & эксцентриситет и аргумент перицентра & \(R\)-II \\
-            \(j,\gamma\) & наклонение и долгота узла & \(R\)-III \\
-            \bottomrule
-        \end{tabular}
-    \end{center}
-    \begin{itemize}
-        \item Это вычислительный интерфейс, а не новый набор орбитальных элементов.
-        \item Через \(\boldsymbol q\) конечные формулы и \(R\)-преобразования соединяются в одну процедуру.
-    \end{itemize}
+    \frametitle{Глава 4. Применение в баллистическом проектировании}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.42\textwidth}
+            \begin{enumerate}
+                \item Управляющие параметры начального приближения.
+                \item Алгоритм построения \(\mathbf y_0^{init}\).
+                \item Проверка на перелётах Земля--Марс и Земля--Венера.
+                \item Программная реализация в ILTT Toolbox.
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.54\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Venus_initial_guess_after_transfer}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Алгоритм построения начального приближения}
+    \frametitle{Управляющие параметры и алгоритм}
     \small
     \[
     t_0,\ \mathrm{target\ orbit}
@@ -451,81 +582,110 @@
     \rightarrow
     \mathrm{BVP}
     \]
-    \begin{enumerate}
-        \item Из эфемерид берутся начальный фазовый вектор и целевая орбита.
-        \item По фазе выбирается допустимая точка оптимальной дальности.
-        \item Конечные формулы дают \(\widehat T\), \(\widehat J\), \(\widehat{\mathbf z}_0^{\mathrm{pl}}\).
-        \item Композиция \(R\)-преобразований переносит приближение в прикладную постановку.
-    \end{enumerate}
+    \begin{center}
+        \footnotesize
+        \begin{tabular}{@{}lll@{}}
+            \toprule
+            Параметры & Роль & Источник \\
+            \midrule
+            \(\lambda,\kappa\) & точка на модельном многообразии & глава 2 \\
+            \(\zeta,\chi\) & форма конечной орбиты & \(R\)-II \\
+            \(j,\gamma\) & пространственная ориентация & \(R\)-III \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    Вектор \(\boldsymbol q\) является вычислительным интерфейсом между конечными формулами, \(R\)-преобразованиями и численным уточнением краевой задачи.
 \end{frame}
 
 \begin{frame}
-    \frametitle{Проверка Земля--Марс и Земля--Венера}
+    \frametitle{Пример: перелёт Земля--Марс}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.64\textwidth}
             \centering
             \includegraphics[width=\linewidth]{chap4_mars_cleanver_rebuilt_Oxy}
-
-            \footnotesize Земля--Марс: начальное приближение и уточнение
         \end{column}
-        \begin{column}{0.46\textwidth}
-            \centering
-            \includegraphics[width=0.86\linewidth]{Venus_initial_guess_after_transfer}
-
-            \footnotesize Земля--Венера: перенос начального приближения
-
-            \medskip
+        \begin{column}{0.32\textwidth}
             \begin{itemize}
-                \item проверяется сходимость уточнения;
-                \item глобальная оптимальность всей миссии не утверждается.
+                \item дата старта и целевая орбита задают входные параметры;
+                \item конечные формулы дают оценку \(T\) и начальные сопряжённые переменные;
+                \item после \(R\)-преобразований выполняется уточнение краевой задачи.
             \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Реальная прикладная цепочка}
+    \frametitle{Качество начального приближения}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.49\textwidth}
-            \centering
-            \includegraphics[width=0.9\linewidth]{Venus_deltaV_by_start_date}
-
-            \vspace{0.05cm}
-            \includegraphics[width=0.68\linewidth]{Venus_vinf_by_start_date}
-        \end{column}
-        \begin{column}{0.47\textwidth}
+        \begin{column}{0.48\textwidth}
             \begin{itemize}
-                \item ИРТ-приближение используется как вход в более физическую расчётную цепочку.
-                \item Далее появляются ненулевой \(v_\infty\), окна старта и постановки с постоянной скоростью истечения.
-                \item На этом уровне метод работает как часть проектно-баллистического анализа.
-            \end{itemize}
-            \centering
-            \includegraphics[width=0.7\linewidth]{Vinf_lambda_functional_isolines}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Демонстрация ILTT Toolbox}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.52\textwidth}
-            \begin{itemize}
-                \item Результаты реализованы в программном инструменте \texttt{ILTT Toolbox}.
-                \item Пользователь задаёт параметры миссии и получает начальное приближение для уточнения КЗ.
-                \item Демонстрация должна идти по заранее проверенному короткому сценарию.
+                \item Проверка выполнена для множеств перелётов Земля--Марс и Земля--Венера.
+                \item Для Марса рассматривался период великих противостояний порядка 17 лет.
+                \item Для Венеры рассматривался характерный восьмилетний цикл.
+                \item Цель проверки --- оценить невязку начального приближения и сходимость уточнения.
             \end{itemize}
         \end{column}
-        \begin{column}{0.44\textwidth}
+        \begin{column}{0.48\textwidth}
             \centering
             \footnotesize
-            \begin{tabular}{@{}p{0.25\linewidth}p{0.63\linewidth}@{}}
+            \begin{tabular}{@{}lcc@{}}
+                \toprule
+                Параметр & Земля--Марс & Земля--Венера \\
+                \midrule
+                \(e\) & \(0.003\) & \(0.02\) \\
+                \(i\) & \(0.004^\circ\) & \(0.2^\circ\) \\
+                \(\Omega\) & \(4^\circ\) & \(2^\circ\) \\
+                \(\omega\) & \(11^\circ\) & \(26^\circ\) \\
+                \(\varphi\) & \(3^\circ\) & \(0.7^\circ\) \\
+                \(a\) & \(0.06\) а.е. & \(0.004\) а.е. \\
+                \(T\) & \(8.5\) сут. & \(0.7\) сут. \\
+                \bottomrule
+            \end{tabular}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ILTT Toolbox}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \begin{itemize}
+                \item Результаты реализованы в программном инструменте \texttt{ILTT Toolbox}.
+                \item Пользователь задаёт дату старта и параметры целевой орбиты.
+                \item На выходе формируется начальное приближение для последующего решения краевой задачи.
+                \item Получено свидетельство о государственной регистрации программы для ЭВМ.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \centering
+            \footnotesize
+            \begin{tabular}{@{}p{0.25\linewidth}p{0.65\linewidth}@{}}
                 \toprule
                 Вход & дата старта, целевая орбита \\
-                Метод & конечные формулы + \(R\) \\
+                Метод & конечные формулы и \(R_\Sigma\) \\
                 Выход & \(\mathbf y_0^{init}\), \(\widehat T\) \\
                 Проверка & численное уточнение КЗ \\
                 \bottomrule
             \end{tabular}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Переход к прикладной расчётной цепочке}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.58\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Venus_deltaV_by_start_date}
+        \end{column}
+        \begin{column}{0.38\textwidth}
+            \small
+            \textbf{Продолжение расчёта}
+            \begin{itemize}
+                \item ИРТ-приближение используется как вход;
+                \item затем учитываются \(v_\infty\) и постоянная скорость истечения;
+                \item результат применяется при анализе окон старта.
+            \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
