@@ -1,305 +1,531 @@
-\section{Списки}
-\begin{frame}[plain, noframenumbering]
-    \begin{center}
-        \Huge
-        Списки
-    \end{center}
-\end{frame}
-
-\subsection{Нумерованные}
+\section{Вход в задачу}
 
 \begin{frame}
-    \frametitle{Нумерованные списки}
+    \frametitle{Содержание}
     \begin{enumerate}
-        \item один
-        \item два
-        \item три
+        \item Зачем нужен слой начальных приближений
+        \item Модельное многообразие и выбор ветви
+        \item Конечные формулы для характеристик и сопряжённых переменных
+        \item \(R\)-преобразования для перехода к другой геометрии
+        \item Алгоритм, прикладная проверка и программная реализация
     \end{enumerate}
 \end{frame}
-\note{
-    Этот текст будет виден только если его отображение включено
-    в~файле \textbf{Presentation/setup}.
-    Для раздельного вывода презентации и заметок на~разные экраны (как
-    в~impress или powerpoint) можно использовать программу
-    \textit{pdf-presenter-console}.
-}
-
-\subsection{Не нумерованные}
-
 
 \begin{frame}
-    \frametitle{Перечисления}
-    \begin{itemize}
-        \item Проблема 1
-        \item Проблема 2
-        \item Проблема 3
-    \end{itemize}
+    \frametitle{Актуальность}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.52\textwidth}
+            \begin{itemize}
+                \item Электрореактивные двигательные установки позволяют рассматривать малые межпланетные аппараты.
+                \item Цена высокого удельного импульса --- длительный управляемый перелёт.
+                \item Для раннего проектного анализа нужно быстро получать работоспособные начальные приближения.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.43\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{chap4_mars_cleanver_rebuilt_Oxy}
+
+            \medskip
+            \footnotesize Пример начального приближения и уточнённой траектории
+        \end{column}
+    \end{columns}
 \end{frame}
-\note[itemize]{
-    \item Тезис 1
-    \item Тезис 2
-    \item Тезис 3
-}
-
-\subsection{Комбинированные}
 
 \begin{frame}
-    \frametitle{Комбинация списков}
+    \frametitle{Постановка проблемы}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.47\textwidth}
+            \textbf{Одна траектория}
+            \begin{itemize}
+                \item задана дата старта;
+                \item задана конечная орбита;
+                \item можно решать конкретную КЗ.
+            \end{itemize}
+            \centering
+            \includegraphics[width=0.88\linewidth]{Startdate}
+        \end{column}
+        \begin{column}{0.49\textwidth}
+            \textbf{Класс задач}
+            \begin{itemize}
+                \item меняются даты старта и целевые орбиты;
+                \item появляются разные ветви решений;
+                \item нужно выбрать \(\mathbf z_0\) для непрямого метода.
+            \end{itemize}
+            \centering
+            \includegraphics[width=0.82\linewidth]{5families}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Место работы в расчётной цепочке}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.46\textwidth}
+            \textbf{Научный фон}
+            \begin{itemize}
+                \item классическая баллистика и малая тяга;
+                \item непрямые методы и краевые задачи;
+                \item конечные формулы для специальных постановок;
+                \item символьная регрессия как инструмент отбора структуры.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Слой, который строится в работе}
+            \[
+            \begin{array}{c}
+                t_0,\ \mathrm{target\ orbit} \\
+                \Downarrow \\
+                \boldsymbol q=(\lambda,\kappa,\zeta,\chi,j,\gamma) \\
+                \Downarrow \\
+                \widehat{\mathbf z}_0^{\,init},\ \widehat T \\
+                \Downarrow \\
+                \mathrm{BVP\ refinement}
+            \end{array}
+            \]
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Цель и задачи}
+    \textbf{Цель:} разработать и апробировать численно-аналитический метод построения начальных приближений для энергетически оптимальных межпланетных перелётов с непрерывной тягой.
+
+    \medskip
     \begin{enumerate}
-        \item \textbf{Задача 1}
-              \begin{itemize}
-                  \item Подзадача 1-1
-                  \item Подзадача 1-2
-              \end{itemize}
-        \item \textbf{Задача 2}
-              \begin{itemize}
-                  \item Подзадача 2-1
-                  \item Подзадача 2-2
-                  \item Подзадача 2-3
-              \end{itemize}
-        \item \textbf{Задача 3}
-              \begin{itemize}
-                  \item Подзадача 3-1
-                  \item Подзадача 3-2
-                  \item Подзадача 3-3
-              \end{itemize}
+        \item построить и исследовать модельное многообразие решений;
+        \item получить конечные формулы для характеристик траекторий и \(\mathbf z_0\);
+        \item разработать линейные \(R\)-преобразования сопряжённых переменных;
+        \item построить алгоритм начального приближения и проверить его на прикладных перелётах.
     \end{enumerate}
 \end{frame}
-\note[itemize]{
-    \item Задача 1
-    \item Задача 2
-    \item Задача 3
-}
-
-\begin{frame}[allowframebreaks]
-    \frametitle{Разделение слайда}
-    Поясняющий текст
-    \begin{itemize}
-        \item Один
-        \item Два
-        \item Три
-    \end{itemize}
-    \framebreak
-    Продолжение предыдущего слайда
-\end{frame}
-
-\section{Графика}
-\begin{frame}[plain, noframenumbering]
-    \begin{center}
-        \Huge
-        Графика
-    \end{center}
-\end{frame}
-
 
 \begin{frame}
-    \frametitle{Одиночное изображение}
-    \centering
-    \includegraphics[width=0.8\linewidth]{latex} % окружение figure не требуется
+    \frametitle{Научная новизна}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Многообразие}
+                Методика построения регулярных ветвей решений задачи встречи.
+            \end{block}
+            \begin{block}{Конечные формулы}
+                Аппроксимации \(T\), \(\Psi\), \(J\) и начальных сопряжённых переменных.
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Преобразования}
+                Линейный переход от плоской модели к эллиптичной и пространственной конечной орбите.
+            \end{block}
+            \begin{block}{Алгоритм}
+                Выбор начального приближения для прикладных межпланетных перелётов.
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Модельное многообразие}
+
+\begin{frame}
+    \frametitle{ИРТ как модельная краевая задача}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.53\textwidth}
+            \begin{itemize}
+                \item Идеально регулируемая тяга используется как регулярная модельная постановка.
+                \item Сохраняются принцип максимума, сопряжённые переменные и чувствительность к начальному приближению.
+                \item Цель не заменить физическую модель двигателя, а получить устойчивый вход в непрямой метод.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.43\textwidth}
+            \centering
+            \includegraphics[height=0.58\textheight]{virtual_planet}
+
+            \footnotesize Модельная задача встречи для виртуальных тел
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Векторная графика}
-    \begin{figure}
-        \centering
-        \ifdefmacro{\tikzsetnextfilename}{\tikzsetnextfilename{tikz_presentation}}{}% присваиваемое предкомпилированному pdf имя файла (не обязательно)
-        \input{Presentation/images/tikz_plot.tikz}
-    \end{figure}
+    \frametitle{Модельное многообразие и дискретное продолжение}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.47\textwidth}
+            \[
+            (\lambda,\kappa)
+            \longrightarrow
+            T,\ J,\ \Psi,\ \mathbf z_0
+            \]
+            \begin{itemize}
+                \item узлы сетки являются не отдельными миссиями, а точками восстановления зависимости;
+                \item дискретное продолжение строит связную регулярную область решений.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.49\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{continuation_paths}
+        \end{column}
+    \end{columns}
 \end{frame}
-
-\subsection{Расположение}
 
 \begin{frame}
-    \frametitle{Изображения по-вертикали}
-    \centering
-    \vfill
-    \includegraphics[width=0.8\linewidth,height=0.1\textheight]{latex} \\
-    \TeX
-    \vfill
-    \includegraphics[width=0.8\linewidth,height=0.2\textheight]{latex} \\
-    \LaTeX
-    \vfill
-    \includegraphics[scale=0.2]{latex} \\
-    \vfill
+    \frametitle{КЛО и точки оптимальной дальности}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{ParetoToF}
+        \end{column}
+        \begin{column}{0.46\textwidth}
+            \begin{itemize}
+                \item Кривая локальных оптимумов выделяет регулярную структуру внутри многообразия.
+                \item Для заданной даты старта выбирается не произвольная траектория, а точка оптимальной дальности.
+                \item Это связывает фазу, ветвь решения и начальное приближение.
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
-
 
 \begin{frame}
-    \frametitle{Изображения по-горизонтали}
-    \begin{minipage}[t]{0.47\linewidth}
-        \textbf{Составная \\ подпись 1}
-        \center{\includegraphics[width=1\linewidth]{knuth1}}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.47\linewidth}
-        \textbf{Составная \\ подпись 2}
-        \center{\includegraphics[width=1\linewidth]{knuth2}}
-    \end{minipage}
+    \frametitle{Коэффициент-функции и чувствительности}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \[
+            \begin{array}{c}
+                C_i^{(x)} \\
+                \Downarrow \\
+                \mathcal A^{(x)},\ \mathcal B^{(x)},\ \mathcal D^{(x)} \\
+                \Downarrow \\
+                \widehat x(\lambda,\kappa)
+            \end{array}
+            \]
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{itemize}
+                \item На слайды выносится структура конечной формулы.
+                \item Числовые коэффициенты остаются в приложениях диссертации.
+                \item Такой язык связывает аппроксимации главы 2 и чувствительности \(R\)-преобразований.
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 
-\subsection{Линии}
+\section{Конечные формулы}
 
 \begin{frame}
-    \frametitle{Разделяющие линии}
-    \begin{minipage}[c]{0.47\linewidth}
-        \center{\includegraphics[width=1\linewidth]{latex}}
-        \bigskip
-        \hrule{}
-        \bigskip
-        \textbf{Составная \\ подпись 1}
-    \end{minipage}
-    \hfill
-    \vrule{}
-    \hfill
-    \begin{minipage}[c]{0.47\linewidth}
-        \flushright
-        \textbf{Составная \\ подпись 2}
-        \center{\includegraphics[width=1\linewidth]{knuth2}}
-    \end{minipage}
+    \frametitle{Формула для продолжительности перелёта}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.5\textwidth}
+            \small
+            \[
+            \widehat{T}(\lambda^\star,\kappa)=
+            \frac{2}{27}\kappa\ln\kappa+
+            \lambda^\star
+            \left(\kappa-\frac{\sqrt6}{9}\kappa\ln\kappa\right)
+            \]
+            \[
+            \widehat{T}(\lambda^\star,1)=\lambda^\star
+            \]
+            \begin{itemize}
+                \item формула согласована с предельным случаем совпадающих круговых орбит;
+                \item \(T\) задаёт первый слой аппроксимированного многообразия.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.46\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{main_T_isolines}
+        \end{column}
+    \end{columns}
 \end{frame}
-
-\section{Остальное}
-\begin{frame}[plain, noframenumbering]
-    \begin{center}
-        \Huge
-        Остальное
-    \end{center}
-\end{frame}
-
-\subsection{Формулы}
 
 \begin{frame}
-    \frametitle{Формулы}
+    \frametitle{Формулы для \(\Psi\) и \(J\)}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.47\textwidth}
+            \small
+            \[
+            \widehat{\Psi}(\lambda^\star,\kappa)=
+            \mathcal A_0^{(\Psi)}(\kappa)+
+            \mathcal A_1^{(\Psi)}(\kappa)\lambda^\star
+            \]
+            \[
+            \widehat J=
+            \frac{(C_0+C_1/\kappa+C_2/\kappa^2)\ln\kappa}
+            {\lambda^\star+C_3(\sin(2\pi\lambda^\star+C_4-1/\lambda^\star)-\lambda^\star)e^{-\lambda^\star}}
+            \]
+        \end{column}
+        \begin{column}{0.49\textwidth}
+            \centering
+            \includegraphics[width=0.48\linewidth]{main_phase_isolines}
+            \includegraphics[width=0.48\linewidth]{main_J_isolines}
+
+            \medskip
+            \footnotesize Непрерывная фаза и квадратичный функционал на основной области
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Формулы для начального вектора \(\mathbf z_0\)}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.42\textwidth}
+            \[
+            \widehat{\mathbf z}^{\mathrm{pl}}_0=
+            \left(
+            \widehat p_{rx},
+            \widehat p_{ry},
+            \widehat p_{vx},
+            \widehat p_{vy}
+            \right)
+            \]
+            \begin{itemize}
+                \item это не только описание траектории;
+                \item это вход в последующее решение двухточечной краевой задачи.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.54\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{main_p_isolines}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Качество конечных формул}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.49\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{main_T_error_heatmap}
+
+            \vspace{0.1cm}
+            \includegraphics[width=\linewidth]{main_J_error_heatmap}
+        \end{column}
+        \begin{column}{0.47\textwidth}
+            \begin{itemize}
+                \item Качество оценивается относительно задачи начального приближения.
+                \item Формулы не заменяют финальное численное уточнение.
+                \item Важный критерий --- возможность войти в область сходимости непрямого метода.
+            \end{itemize}
+            \centering
+            \includegraphics[width=0.85\linewidth]{main_v_terminal_residual_heatmap}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{R-преобразования}
+
+\begin{frame}
+    \frametitle{Переход к другой геометрии и смысл \(R\)}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \[
+            \mathrm{КЗ}_1 \rightarrow
+            \mathrm{экстремаль}_1 \xrightarrow{R}
+            \mathrm{экстремаль}_2 \rightarrow
+            \mathrm{КЗ}_2
+            \]
+            \begin{itemize}
+                \item Меняется сама краевая задача.
+                \item Преобразуется начальный вектор расширенной системы.
+                \item Оптимальность не переносится в старую задачу, а задаётся новая экстремаль.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{R_small_change_demo}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\(R\)-преобразование I типа}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \begin{itemize}
+                \item Согласованно меняет начальный фазовый вектор и начальный вектор сопряжённых переменных.
+                \item Используется для перехода к заданному начальному состоянию из эфемерид.
+                \item Отличается от простого поворота вектора сопряжённых переменных.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{R_type_I_demo}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\(R\)-преобразование II типа}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.44\textwidth}
+            \[
+            (e,\omega)\longrightarrow(\zeta,\chi)
+            \longrightarrow R_{e\omega}
+            \]
+            \begin{itemize}
+                \item \(e\) задаётся управляющим параметром \(\zeta\);
+                \item \(\omega\) задаётся углом \(\chi\);
+                \item побочная деформация витковой дальности учитывается далее в алгоритме.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.52\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{R_type_II_eomega_example}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\(R\)-преобразование III типа}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.44\textwidth}
+            \[
+            (i,\Omega)\longrightarrow(j,\gamma)
+            \longrightarrow R_{i\Omega}
+            \]
+            \begin{itemize}
+                \item \(i\) задаётся управляющим параметром \(j\);
+                \item \(\Omega\) контролируется угловым параметром \(\gamma\);
+                \item это переход от плоской модели к пространственной конечной орбите.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.52\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{R_type_III_iOmega_example}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Композиция \(R\)-преобразований}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.43\textwidth}
+            \[
+            R_{\Sigma}=R_{i\Omega}R_{e\omega}R_0
+            \]
+            \begin{itemize}
+                \item сначала задаётся начальный фазовый вектор;
+                \item затем форма конечной орбиты;
+                \item затем пространственная ориентация.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.53\textwidth}
+            \centering
+            \includegraphics[height=0.63\textheight]{R_composition_sequential_example}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Алгоритм и апробация}
+
+\begin{frame}
+    \frametitle{Управляющие параметры \(\boldsymbol q\)}
     \[
-    \left\{
-    \begin{array}{rl}
-        \dot x = & \sigma (y-x)  \\
-        \dot y = & x (r - z) - y \\
-        \dot z = & xy - bz
-    \end{array}
-    \right.
+    \boldsymbol q=(\lambda,\kappa,\zeta,\chi,j,\gamma)
     \]
-\end{frame}
-
-\begin{frame}
-    \frametitle{amsmath}
-    \centering
-    \begin{minipage}[t]{0.5\linewidth}
-        \begin{multline*}
-            y = 1 x^1 + 2 x^2 + 3 x^3 + \\ + 4 x^4 + 5 x^5 + \dots
-        \end{multline*}
-    \end{minipage}
-\end{frame}
-
-\begin{frame}[allowframebreaks]
-    \frametitle{Уравнения Максвелла}
-    \centering{
+    \begin{center}
         \small
-        \def\arraystretch{1.8}%
-        \begin{tabular}{ll}
+        \begin{tabular}{cll}
             \toprule
-            Интегральная форма                                                                                                                                            & Дифференциальная форма                                                          \\ \midrule
-            \(Q_e(t) = \displaystyle\oiint_S \vec D(t) \cdot d\vec{s} = \displaystyle\iiint_V \rho_v(t) dv\)                                                              & \(\nabla \cdot \vec D(t) = \rho_v(t)\)                                          \\
-            \(\displaystyle\oiint_S \vec B(t) \cdot d\vec{s} = 0\)                                                                                                        & \(\nabla \cdot \vec B(t) = 0\)                                                  \\
-            \(V_{emf}(t) = \displaystyle\oint_L \vec E(t) \cdot d\vec{l}\) = \(- \displaystyle\iint_S \left[\frac{\partial\vec{B}(t)}{\partial t}\right] \cdot d\vec{s}\) & \(\nabla \times \vec E(t) = - \frac{\partial\vec{B}(t)}{\partial t}\)           \\
-            \(I(t) = \displaystyle\oint_L \vec H(t) \cdot d\vec{l} = \displaystyle\iint_S \left[\vec J(t) + \frac{\partial\vec{D}(t)}{\partial t}\right] \cdot d\vec{s}\) & \(\nabla \times \vec H(t) = \vec J(t) + \frac{\partial\vec{D}(t)}{\partial t}\) \\ \midrule
-            \(\displaystyle\oiint_S \vec J \cdot d\vec{s} = -\frac{\partial Q_e}{\partial t}\)                                                                            & \(\nabla \cdot \vec J = - \frac{\partial \rho_v}{\partial t}\)                  \\
+            Параметр & Роль & Источник \\
+            \midrule
+            \(\lambda,\kappa\) & точка на модельном многообразии & глава 2 \\
+            \(\zeta,\chi\) & эксцентриситет и аргумент перицентра & \(R\)-II \\
+            \(j,\gamma\) & наклонение и долгота узла & \(R\)-III \\
             \bottomrule
-            \multicolumn{2}{c}{\(\vec D(t) = \left[\varepsilon(t)\right] * \vec E(t)\)}                                                                                                                                                                     \\
-            \multicolumn{2}{c}{\(\vec B(t) = \left[\mu(t)\right] * \vec H(t)\)}                                                                                                                                                                             \\
         \end{tabular}
-    }
-    \framebreak
-
-    \hspace{0.05\linewidth}
-    \centering{
-        \small
-        \def\arraystretch{1.8}%
-        \begin{tabular}{ll}
-            \toprule
-            Интегральная форма                                                                                                                & Дифференциальная форма                               \\ \midrule
-            \(Q_e = \displaystyle\oiint_S \vec D \cdot d\vec{s} = \displaystyle\iiint_V \rho_v dv\)                                           & \(\nabla \cdot \vec D = \rho_v\)                     \\
-            \(\displaystyle\oiint_S \vec B \cdot d\vec{s} = 0\)                                                                               & \(\nabla \cdot \vec B = 0\)                          \\
-            \(V_{emf} = \displaystyle\oint_L \vec E \cdot d\vec{l}\) = \(- \displaystyle\iint_S \left[j \omega \vec B\right] \cdot d\vec{s}\) & \(\nabla \times \vec E = - j \omega \vec B\)         \\
-            \(I = \displaystyle\oint_L \vec H \cdot d\vec{l} = \displaystyle\iint_S \left[\vec J + j \omega \vec D\right] \cdot d\vec{s}\)    & \(\nabla \times \vec H = \vec J + j \omega \vec{D}\) \\ \midrule
-            \(\displaystyle\oiint_S \vec J \cdot d\vec{s} = - j \omega Q_e\)                                                                  & \(\nabla \cdot \vec J = - j \omega \rho_v\)          \\
-            \bottomrule
-            \multicolumn{2}{c}{\(\vec D(t) = \left[\varepsilon\right] \vec E(t)\)}                                                                                                                   \\
-            \multicolumn{2}{c}{\(\vec B(t) = \left[\mu\right] \vec H(t)\)}                                                                                                                           \\
-        \end{tabular}
-    }
-\end{frame}
-
-\subsection{Таблицы}
-
-\begin{frame}
-    \frametitle{Таблица}
-    \centering
-    \begin{tabular}{|l|l|}
-        \hline
-        \textbf{Заголовок 1} & \textbf{Заголовок 2} \\
-        \hline
-        Сумма                & \(b+a\)              \\
-        \hline
-        Разность             & \(a-b\)              \\
-        \hline
-        Произведение         & \(a*b\)              \\
-        \hline
-    \end{tabular}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Другая таблица}
-    \centering
-    \begin{tabular}{lc}
-        \toprule
-        \multicolumn{1}{c}{\textbf{Заголовок 1}} & \textbf{Заголовок 2} \\ \midrule
-        Сумма                                    & \(b+a\)              \\
-        Разность                                 & \(a-b\)              \\
-        Произведение                             & \(a*b\)              \\
-        \bottomrule
-    \end{tabular}
-\end{frame}
-
-
-\subsection{Разное}
-
-\begin{frame}
-    \frametitle{Большой многоуровневый список}
+    \end{center}
     \begin{itemize}
-        \item \textbf{Пункт 1}
-              \begin{itemize}
-                  \itemi Подпункт 1-1
-                  \itemi Подпункт 1-2
-              \end{itemize}
-        \item \textbf{Пункт 2}
-              \begin{itemize}
-                  \itemi Подпункт 2-1
-              \end{itemize}
-        \item \textbf{Пункт 3}
-              \begin{itemize}
-                  \itemi Подпункт 3-1
-                  \itemi Подпункт 3-2
-              \end{itemize}
-        \item \textbf{Пункт 4}
-              \begin{itemize}
-                  \itemi Подпункт 4-1
-              \end{itemize}
-        \item \textbf{Пункт 5}
-              \begin{itemize}
-                  \itemi Подпункт 5-1
-                  \itemi Подпункт 5-2
-                  \itemi Подпункт 5-3
-              \end{itemize}
+        \item Это вычислительный интерфейс, а не новый набор орбитальных элементов.
+        \item Через \(\boldsymbol q\) конечные формулы и \(R\)-преобразования соединяются в одну процедуру.
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Четыре изображения}
-    \centering
-    \includegraphics[width=0.35\linewidth,angle=35]{latex}
-    \includegraphics[width=0.35\linewidth,angle=135]{latex}\\
-    \includegraphics[width=0.35\linewidth,angle=15]{latex}
-    \includegraphics[width=0.35\linewidth,angle=-15]{latex}
+    \frametitle{Алгоритм построения начального приближения}
+    \small
+    \[
+    t_0,\ \mathrm{target\ orbit}
+    \rightarrow
+    \Phi,\ (a,e,\omega,i,\Omega)
+    \rightarrow
+    \boldsymbol q
+    \rightarrow
+    \widehat{\mathbf z}_0^{\mathrm{pl}}
+    \xrightarrow{R_{\Sigma}}
+    \mathbf y_0^{\mathrm{init}}
+    \rightarrow
+    \mathrm{BVP}
+    \]
+    \begin{enumerate}
+        \item Из эфемерид берутся начальный фазовый вектор и целевая орбита.
+        \item По фазе выбирается допустимая точка оптимальной дальности.
+        \item Конечные формулы дают \(\widehat T\), \(\widehat J\), \(\widehat{\mathbf z}_0^{\mathrm{pl}}\).
+        \item Композиция \(R\)-преобразований переносит приближение в прикладную постановку.
+    \end{enumerate}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Проверка Земля--Марс и Земля--Венера}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{chap4_mars_cleanver_rebuilt_Oxy}
+
+            \footnotesize Земля--Марс: начальное приближение и уточнение
+        \end{column}
+        \begin{column}{0.46\textwidth}
+            \centering
+            \includegraphics[width=0.86\linewidth]{Venus_initial_guess_after_transfer}
+
+            \footnotesize Земля--Венера: перенос начального приближения
+
+            \medskip
+            \begin{itemize}
+                \item проверяется сходимость уточнения;
+                \item глобальная оптимальность всей миссии не утверждается.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Реальная прикладная цепочка}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.49\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{Venus_deltaV_by_start_date}
+
+            \vspace{0.05cm}
+            \includegraphics[width=0.68\linewidth]{Venus_vinf_by_start_date}
+        \end{column}
+        \begin{column}{0.47\textwidth}
+            \begin{itemize}
+                \item ИРТ-приближение используется как вход в более физическую расчётную цепочку.
+                \item Далее появляются ненулевой \(v_\infty\), окна старта и постановки с постоянной скоростью истечения.
+                \item На этом уровне метод работает как часть проектно-баллистического анализа.
+            \end{itemize}
+            \centering
+            \includegraphics[width=0.7\linewidth]{Vinf_lambda_functional_isolines}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Демонстрация ILTT Toolbox}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.52\textwidth}
+            \begin{itemize}
+                \item Результаты реализованы в программном инструменте \texttt{ILTT Toolbox}.
+                \item Пользователь задаёт параметры миссии и получает начальное приближение для уточнения КЗ.
+                \item Демонстрация должна идти по заранее проверенному короткому сценарию.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.44\textwidth}
+            \centering
+            \footnotesize
+            \begin{tabular}{@{}p{0.25\linewidth}p{0.63\linewidth}@{}}
+                \toprule
+                Вход & дата старта, целевая орбита \\
+                Метод & конечные формулы + \(R\) \\
+                Выход & \(\mathbf y_0^{init}\), \(\widehat T\) \\
+                Проверка & численное уточнение КЗ \\
+                \bottomrule
+            \end{tabular}
+        \end{column}
+    \end{columns}
+\end{frame}
