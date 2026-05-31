@@ -36,15 +36,15 @@
     \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Конечные формулы для непрерывной фазы}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.40\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{main_phase_isolines}
+            \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{main_phase_isolines}
 
-            \vspace{0.15cm}
-            \includegraphics[width=\linewidth]{main_phase_error_heatmap}
+            \vspace{0.06cm}
+            \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{main_phase_error_heatmap}
         \end{column}
         \begin{column}{0.56\textwidth}
             \tiny
@@ -73,14 +73,15 @@
             \mathcal A_1^{(\Psi)}(\kappa)\lambda^\star .
             \]
             \[
+            \begin{aligned}
             \mathcal A_0^{(\Psi)}(\kappa)
-            =
-            -C_0^{(\Psi)} e^{-\kappa}\ln^2\kappa,
-            \qquad
+            &=
+            -C_0^{(\Psi)} e^{-\kappa}\ln^2\kappa,\\
             \mathcal A_1^{(\Psi)}(\kappa)
-            =
+            &=
             C_0^{(\Psi)}
             \left(e^\kappa+1\right)e^{-\kappa}\ln\kappa,
+            \end{aligned}
             \]
             \[
             C_0^{(\Psi)}=5.433280\times10^{-1}.
@@ -96,15 +97,15 @@
     \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Конечная формула для квадратичного функционала}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.38\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{main_J_isolines}
+            \includegraphics[width=\linewidth,height=0.28\textheight,keepaspectratio]{main_J_isolines}
 
-            \vspace{0.15cm}
-            \includegraphics[width=\linewidth]{main_J_error_heatmap}
+            \vspace{0.06cm}
+            \includegraphics[width=\linewidth,height=0.28\textheight,keepaspectratio]{main_J_error_heatmap}
         \end{column}
         \begin{column}{0.58\textwidth}
             \tiny
@@ -115,30 +116,35 @@
             C_0^{(J)}+\dfrac{C_1^{(J)}}{\kappa}+\dfrac{C_2^{(J)}}{\kappa^2}
             \right)\ln\kappa
             }{
-            \lambda^\star
+            \begin{aligned}
+            &\lambda^\star
             +
             C_3^{(J)}
-            \left(
-            \sin\left(2\pi\lambda^\star+C_4^{(J)}-\frac{1}{\lambda^\star}\right)-\lambda^\star
-            \right)e^{-\lambda^\star}
+            \bigl(
+            \sin(2\pi\lambda^\star+C_4^{(J)}-\lambda^{\star -1})\\
+            &\hspace{2.6cm}-\lambda^\star
+            \bigr)e^{-\lambda^\star}
+            \end{aligned}
             }.
             \]
             \[
-            \begin{array}{c|ccccc}
-            i & 0 & 1 & 2 & 3 & 4\\
+            \resizebox{0.96\linewidth}{!}{$
+            \begin{array}{c|ccc}
+            i & 0 & 1 & 2\\
             \hline
             C_i^{(J)}
-            &
-            4.747336\times10^{-3}
-            &
-            1.044802\times10^{-2}
-            &
-            -1.517055\times10^{-2}
-            &
-            2.020210\times10^{-1}
-            &
-            2.236760\times10^{0}
+            & 4.747336\times10^{-3}
+            & 1.044802\times10^{-2}
+            & -1.517055\times10^{-2}\\[0.05cm]
+            \hline
+            i & 3 & 4 & {}\\
+            \hline
+            C_i^{(J)}
+            & 2.020210\times10^{-1}
+            & 2.236760\times10^{0}
+            & {}
             \end{array}
+            $}
             \]
             \begin{itemize}
                 \item \(\widehat J\) задаёт значение квадратичного функционала на аппроксимированном многообразии.
@@ -151,9 +157,10 @@
     \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Конечные формулы для начального вектора: компонентные формулы}
     \tiny
+    \vspace{-0.08cm}
     \[
     \widehat{\mathbf z}^{\mathrm{pl}}_0=
     \left(
@@ -163,6 +170,7 @@
     \widehat{p}_{vy}
     \right).
     \]
+    \vspace{-0.08cm}
     \[
     \widehat{p}_{rx}\left(\lambda^\star\right)=
     \frac{
@@ -183,6 +191,7 @@
     \mathcal D_0^{(p_{rx})}\left(\lambda^\star\right)
     }.
     \]
+    \vspace{-0.08cm}
     \[
     \widehat{p}_{vy}\left(\lambda^\star\right)=
     \frac{
@@ -220,8 +229,10 @@
     C_2^{(p_{ry})}\lambda^\star
     +
     C_3^{(p_{ry})}
-    },
-    \quad
+    }.
+    \]
+    \vspace{-0.08cm}
+    \[
     \widehat{p}_{vx}\left(\lambda^\star\right)=
     \frac{
     C_0^{(p_{vx})}
@@ -249,26 +260,31 @@
     \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Конечные формулы для начального вектора: зависимость от \(\kappa\)}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.38\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{main_p_isolines}
+            \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{main_p_isolines}
 
-            \vspace{0.15cm}
-            \includegraphics[width=\linewidth]{main_p_error_heatmap}
+            \vspace{0.06cm}
+            \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{main_p_error_heatmap}
         \end{column}
         \begin{column}{0.58\textwidth}
             \tiny
+            \[
+            \mathcal P_i^{(\kappa)}
+            =
+            \mathcal P_i^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2).
+            \]
             \[
             \widehat p_{rx}(\lambda^\star,\kappa)
             =
             \ln\kappa
             \left(
-            \frac{\mathcal P_{0}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa}
+            \frac{\mathcal P_{0}^{(\kappa)}}{\kappa}
             +
-            \frac{\mathcal P_{1}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa^{1/4}}
+            \frac{\mathcal P_{1}^{(\kappa)}}{\kappa^{1/4}}
             \right).
             \]
             \[
@@ -276,9 +292,9 @@
             =
             \ln\kappa
             \left(
-            \frac{\mathcal P_{6}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa}
+            \frac{\mathcal P_{6}^{(\kappa)}}{\kappa}
             +
-            \frac{\mathcal P_{7}^{(\kappa)}(\lambda^\star,\kappa_1,\kappa_2)}{\kappa^{1/4}}
+            \frac{\mathcal P_{7}^{(\kappa)}}{\kappa^{1/4}}
             \right).
             \]
             \[
@@ -289,8 +305,9 @@
             \frac{\mathcal P_{2}^{(\kappa)}}{\kappa}
             +
             \frac{\mathcal P_{3}^{(\kappa)}}{\kappa^{3/2}}
-            \right),
-            \quad
+            \right).
+            \]
+            \[
             \widehat p_{vx}(\lambda^\star,\kappa)
             =
             \ln\kappa

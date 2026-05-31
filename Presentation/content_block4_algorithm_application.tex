@@ -1,6 +1,6 @@
 \section{Алгоритм и проверка}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Управляющие параметры начального приближения}
     \scriptsize
     \[
@@ -36,11 +36,11 @@
     R_0 .
     \]
     \begin{center}
-        \begin{tabular}{@{}p{0.26\linewidth}p{0.38\linewidth}p{0.24\linewidth}@{}}
+        \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.23\linewidth}>{\raggedright\arraybackslash}p{0.36\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}@{}}
             \toprule
             Параметры & Роль & Источник \\
             \midrule
-            \(\lambda,\kappa\) & точка на модельном многообразии & конечные формулы главы 2 \\
+            \(\lambda,\kappa\) & точка на модельном многообразии & формулы главы 2 \\
             \(\zeta,\chi\) & форма конечной орбиты: \(e,\omega\) & \(R\)-II \\
             \(j,\gamma\) & пространственная ориентация: \(i,\Omega\) & \(R\)-III \\
             \bottomrule
@@ -55,7 +55,7 @@
     \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Алгоритм построения начального приближения}
     \scriptsize
     \[
@@ -119,31 +119,35 @@
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.54\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{chap4_mars_cleanver_rebuilt_Oxy}
+            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{chap4_mars_cleanver_rebuilt_Oxy}
         \end{column}
         \begin{column}{0.42\textwidth}
             \tiny
+            \setlength{\abovedisplayskip}{1pt}
+            \setlength{\belowdisplayskip}{1pt}
+            \setlength{\abovedisplayshortskip}{1pt}
+            \setlength{\belowdisplayshortskip}{1pt}
             \[
             \begin{aligned}
-            t_0&=2461193.0,&
+            t_0&=2461193.0,\\
             \Psi_0&=3.481030\times10^{-1},\\
-            \lambda^\star&=1.324331\times10^{0},&
+            \lambda^\star&=1.324331\times10^{0},\\
             \lambda_{\mathrm{corr}}&=1.268512\times10^{0},\\
-            \kappa&=1.523783\times10^{0}.&
+            \kappa&=1.523783\times10^{0}.
             \end{aligned}
             \]
             \[
             \begin{aligned}
-            \bar{\omega}_{\mathrm{rel}}&=1.456670\times10^{0},&
+            \bar{\omega}_{\mathrm{rel}}&=1.456670\times10^{0},\\
             \Omega_{\mathrm{rel}}&=-3.544969\times10^{0},\\
-            \gamma&=\Omega_{\mathrm{rel}}.&
+            \gamma&=\Omega_{\mathrm{rel}}.
             \end{aligned}
             \]
             \[
             \begin{aligned}
-            \zeta &= -9.950813\times10^{-2}, &
+            \zeta &= -9.950813\times10^{-2},\\
             \chi &= \phantom{-}7.522721\times10^{-1},\\
-            j &= -2.291710\times10^{-1}, &
+            j &= -2.291710\times10^{-1},\\
             \gamma &= -3.544969\times10^{0}.
             \end{aligned}
             \]
@@ -158,6 +162,7 @@
             -3.544969\times10^{0}
             \end{pmatrix}.
             \]
+            \vspace{-0.10cm}
             \begin{itemize}
                 \item После применения \(R_\Sigma\) строится \(\mathbf y_0^{\mathrm{init}}\).
                 \item Затем выполняется численное уточнение краевой задачи.
@@ -166,7 +171,7 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Невязки начального приближения на множествах перелётов}
     \scriptsize
     \centering
@@ -245,11 +250,11 @@
             \mathbf F(\mathbf z_0)=0.
             \]
             \[
-            \mathbf F(\mathbf z_0(0))=\mathbf b,
-            \qquad
-            \mathbf F(\mathbf z_0(\tau))=(1-\tau)\mathbf b,
-            \qquad
-            \mathbf F(\mathbf z_0(1))=0.
+            \begin{aligned}
+            \mathbf F(\mathbf z_0(0))&=\mathbf b,\\
+            \mathbf F(\mathbf z_0(\tau))&=(1-\tau)\mathbf b,\\
+            \mathbf F(\mathbf z_0(1))&=0.
+            \end{aligned}
             \]
             \[
             \frac{d\mathbf z_0}{d\tau}
@@ -258,8 +263,9 @@
             \left(
             \frac{\partial \mathbf F}{\partial \mathbf z_0}
             \right)^{-1}
-            \mathbf b,
-            \qquad
+            \mathbf b.
+            \]
+            \[
             \mathbf z_0(0)=\mathbf z_0^{\mathrm{init}}.
             \]
             \[
@@ -274,17 +280,17 @@
         \end{column}
         \begin{column}{0.50\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{comparison_solution_paths_q_p_p}
+            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{comparison_solution_paths_q_p_p}
         \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Постановки с ненулевой отлётной скоростью}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.52\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{Vinf_lambda_functional_isolines}
+            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{Vinf_lambda_functional_isolines}
         \end{column}
         \begin{column}{0.44\textwidth}
             \scriptsize
@@ -324,16 +330,17 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Применение к миссии Земля--Венера и расчёт по датам старта}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.56\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{Venus_deltaV_by_start_date}
+            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{Venus_deltaV_by_start_date}
         \end{column}
         \begin{column}{0.40\textwidth}
             \scriptsize
             \[
+            \resizebox{\linewidth}{!}{$
             \begin{array}{c}
             \text{ИРТ-приближение}
             \longrightarrow
@@ -345,6 +352,7 @@
             \longrightarrow
             \text{массовый расчёт по } t_0 .
             \end{array}
+            $}
             \]
             \[
             \mathbf v(t_0)=\mathbf v_E(t_0)+\mathbf v_\infty .
@@ -382,7 +390,7 @@
     \]
     \vspace{-0.12cm}
     \begin{center}
-        \begin{tabular}{@{}p{0.27\linewidth}p{0.36\linewidth}p{0.27\linewidth}@{}}
+        \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}>{\raggedright\arraybackslash}p{0.29\linewidth}@{}}
             \toprule
             Блок & Роль & Выход \\
             \midrule
@@ -391,7 +399,7 @@
             Перенос между датами старта & применяет \(R\)-I к опорному решению & начальное приближение для новой даты \\
             Ненулевая отлётная скорость & продолжение от \(\mathbf v_\infty=0\) & решение с гиперболическим избытком \\
             Переход к ПСИ-модели & использует ИРТ-решение как гладкое приближение & опорная bang-bang траектория \\
-            Массовый расчёт & повторяет перенос и уточнение на сетке дат & окна старта, длительность, \(\Delta V\), расход топлива \\
+            Массовый расчёт & повторяет перенос и уточнение на сетке дат & окна старта, \(T\), \(\Delta V\), расход топлива \\
             \bottomrule
         \end{tabular}
     \end{center}

@@ -30,7 +30,7 @@
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.56\textwidth}
             \centering
-            \includegraphics[height=0.50\textheight]{Startdate}
+            \includegraphics[width=\linewidth,height=0.54\textheight,keepaspectratio]{Startdate}
         \end{column}
         \begin{column}{0.40\textwidth}
             \scriptsize
@@ -49,13 +49,13 @@
             \end{itemize}
         \end{column}
     \end{columns}
-    \vspace{-0.04cm}
+    \vspace{-0.08cm}
     \tiny
     \[
-    t_0 \longrightarrow \Phi_0(t_0),
-    \qquad
-    \Phi_0=\mathrm{const}
-    \quad \text{задаёт условие выбора ветви.}
+    \begin{array}{c}
+    t_0 \longrightarrow \Phi_0(t_0),\qquad \Phi_0=\mathrm{const}\\
+    \text{задаёт условие выбора ветви.}
+    \end{array}
     \]
 \end{frame}
 
@@ -83,15 +83,16 @@
             \medskip
             Охоцимский, Энеев, Константинов, Петухов, Epenoy.
 
-            \medskip
+            \smallskip
             \textbf{Место работы}
             \[
             \begin{array}{c}
             \text{модельное многообразие}
-            \longrightarrow
-            \text{конечные формулы}\\
-            \longrightarrow
-            \text{начальный вектор для уточнения КЗ}.
+            \Downarrow\\
+            \text{конечные формулы}
+            \Downarrow\\
+            \text{начальный вектор}\\
+            \text{для уточнения КЗ}.
             \end{array}
             \]
         \end{column}
@@ -138,11 +139,11 @@
 
 \section{Модельное многообразие}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{ИРТ как модельная краевая задача и параметры}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.48\textwidth}
-            \scriptsize
+            \tiny
             \[
             \left\{
             \begin{aligned}
@@ -150,7 +151,8 @@
             \dot{\mathbf v} &= -\frac{\mathbf r}{r^3}+\mathbf a,
             \end{aligned}
             \right.
-            \qquad
+            \]
+            \[
             J=\frac{1}{2}\int\limits_{t_0}^{t_f}\|\mathbf a(t)\|^2\,dt \to \min.
             \]
             \[
@@ -172,7 +174,7 @@
         \end{column}
         \begin{column}{0.48\textwidth}
             \centering
-            \includegraphics[height=0.68\textheight]{virtual_planet}
+            \includegraphics[width=\linewidth,height=0.66\textheight,keepaspectratio]{virtual_planet}
         \end{column}
     \end{columns}
 \end{frame}

@@ -57,7 +57,7 @@
         \end{column}
         \begin{column}{0.53\textwidth}
             \centering
-            \includegraphics[height=0.45\textheight]{R_type_I_demo}
+            \includegraphics[width=\linewidth,height=0.45\textheight,keepaspectratio]{R_type_I_demo}
         \end{column}
     \end{columns}
     \begin{block}{Новый результат}
@@ -65,7 +65,7 @@
     \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{\(R\)-преобразование II типа: задание \(e\) и \(\omega\)}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.36\textwidth}
@@ -147,19 +147,21 @@
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.54\textwidth}
             \centering
-            \includegraphics[height=0.54\textheight]{R_type_II_eomega_example}
+            \includegraphics[width=\linewidth,height=0.54\textheight,keepaspectratio]{R_type_II_eomega_example}
         \end{column}
         \begin{column}{0.42\textwidth}
             \scriptsize
             \[
             \Delta e=e_{\mathrm{num}}-e,
-            \qquad
+            \]
+            \[
             \Delta\omega=
             \operatorname{wrap}(\omega_{\mathrm{num}}-\omega).
             \]
             \[
             \Delta\lambda=\lambda_{\mathrm{num}}-\lambda,
-            \qquad
+            \]
+            \[
             \Delta a=a_{\mathrm{num}}-a.
             \]
             \begin{itemize}
@@ -172,18 +174,18 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Коррекция витковой дальности при \(R\)-II}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.38\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{R_type_II_lambda_local_linearity}
+            \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{R_type_II_lambda_local_linearity}
 
-            \vspace{0.15cm}
-            \includegraphics[width=\linewidth]{R_type_II_lambda_correction_error_heatmap}
+            \vspace{0.06cm}
+            \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{R_type_II_lambda_correction_error_heatmap}
         \end{column}
         \begin{column}{0.58\textwidth}
-            \scriptsize
+            \tiny
             \[
             \Delta\lambda
             \approx
@@ -197,11 +199,13 @@
             \mathcal B_0^{(\lambda)}(\lambda,\kappa)
             +
             \mathcal B_1^{(\lambda)}(\lambda,\kappa)\cos\omega\\
-            &\quad+
+            &+
             \mathcal B_2^{(\lambda)}(\lambda,\kappa)\sin\omega
-            +
+            \\
+            &+
             \mathcal B_3^{(\lambda)}(\lambda,\kappa)\cos 3\omega
-            +
+            \\
+            &+
             \mathcal B_4^{(\lambda)}(\lambda,\kappa)\sin 3\omega .
             \end{aligned}
             \]
@@ -226,7 +230,7 @@
     \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{\(R\)-преобразование III типа: задание \(i\) и \(\Omega\)}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.35\textwidth}
@@ -300,10 +304,11 @@
             \includegraphics[width=\linewidth]{R_type_III_iOmega_example}
         \end{column}
         \begin{column}{0.42\textwidth}
-            \small
+            \scriptsize
             \[
             \Delta i=i_{\mathrm{num}}-i,
-            \qquad
+            \]
+            \[
             \Delta\Omega=
             \operatorname{wrap}(\Omega_{\mathrm{num}}-\Omega).
             \]
@@ -316,7 +321,7 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Композиция \(R\)-преобразований}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.46\textwidth}
@@ -364,7 +369,7 @@
         \end{column}
         \begin{column}{0.50\textwidth}
             \centering
-            \includegraphics[height=0.62\textheight]{R_composition_sequential_example}
+            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{R_composition_sequential_example}
         \end{column}
     \end{columns}
     \begin{block}{Новый результат}
