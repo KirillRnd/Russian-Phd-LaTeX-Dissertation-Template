@@ -44,19 +44,17 @@
 % визуально одинаковыми на всех слайдах.
 \setbeamercolor{newresult title}{fg=white,bg=blue!65!black}
 \setbeamercolor{newresult body}{fg=black,bg=blue!4}
-\setbeamerfont{newresult title}{size=\scriptsize,series=\bfseries}
-\setbeamerfont{newresult body}{size=\scriptsize}
+\newcommand{\newresultfontsize}{\fontsize{7pt}{8.4pt}\selectfont}
+\setbeamerfont{newresult title}{size=\newresultfontsize,series=\bfseries}
+\setbeamerfont{newresult body}{size=\newresultfontsize}
 \newenvironment{newresult}{%
-    \par\vspace{0.18cm}%
-    \begin{beamercolorbox}[wd=\linewidth,sep=0.35em,leftskip=0.4em,rightskip=0.4em]{newresult title}%
-        \usebeamerfont{newresult title}Новый результат%
-    \end{beamercolorbox}%
-    \vspace{-0.02cm}%
-    \begin{beamercolorbox}[wd=\linewidth,sep=0.45em,leftskip=0.4em,rightskip=0.4em]{newresult body}%
-        \usebeamerfont{newresult body}%
+    \par\vspace{0.06cm}%
+    \begin{beamercolorbox}[wd=\linewidth,sep=0.28em,leftskip=0.45em,rightskip=0.45em]{newresult body}%
+        \usebeamerfont{newresult body}\raggedright%
+        {\color{blue!65!black}\bfseries Новый результат.}\enspace%
 }{%
     \end{beamercolorbox}%
-    \par\vspace{0.02cm}%
+    \par\vspace{0.01cm}%
 }
 
 % Нумеровать список статей
