@@ -39,6 +39,26 @@
 % Названия классов элементов можно найти здесь
 % http://www.cpt.univ-mrs.fr/~masson/latex/Beamer-appearance-cheat-sheet.pdf
 
+% Единый компактный стиль для фиксации собственных результатов работы.
+% Используется вместо обычного beamer-блока, чтобы эти акценты были
+% визуально одинаковыми на всех слайдах.
+\setbeamercolor{newresult title}{fg=white,bg=blue!65!black}
+\setbeamercolor{newresult body}{fg=black,bg=blue!4}
+\setbeamerfont{newresult title}{size=\scriptsize,series=\bfseries}
+\setbeamerfont{newresult body}{size=\scriptsize}
+\newenvironment{newresult}{%
+    \par\vspace{0.18cm}%
+    \begin{beamercolorbox}[wd=\linewidth,sep=0.35em,leftskip=0.4em,rightskip=0.4em]{newresult title}%
+        \usebeamerfont{newresult title}Новый результат%
+    \end{beamercolorbox}%
+    \vspace{-0.02cm}%
+    \begin{beamercolorbox}[wd=\linewidth,sep=0.45em,leftskip=0.4em,rightskip=0.4em]{newresult body}%
+        \usebeamerfont{newresult body}%
+}{%
+    \end{beamercolorbox}%
+    \par\vspace{0.02cm}%
+}
+
 % Нумеровать список статей
 % https://tex.stackexchange.com/a/419506/104425
 \setbeamertemplate{bibliography item}{\insertbiblabel}
