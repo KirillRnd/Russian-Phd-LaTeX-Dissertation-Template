@@ -1,7 +1,7 @@
 \section{Алгоритм и проверка}
 
 \begin{frame}[t]
-    \frametitle{Управляющие параметры начального приближения}
+    \frametitle{Управляющие параметры как вычислительный интерфейс}
     \scriptsize
     \[
     \boldsymbol q =
@@ -51,7 +51,7 @@
         \item \(\gamma\) -- управляющий угловой параметр матрицы преобразования.
     \end{itemize}
     \begin{block}{Новый результат}
-        \scriptsize Введён вектор управляющих параметров \(\boldsymbol q\) как вычислительный интерфейс для построения начального приближения.
+        \scriptsize После построения \(R\)-II, \(R\)-III и композиции параметры \(\boldsymbol q\) собираются в единый вычислительный интерфейс.
     \end{block}
 \end{frame}
 
@@ -61,12 +61,15 @@
     \[
     t_0,\ \text{целевая орбита}
     \longrightarrow
-    \Phi,\ (a,e,\omega,i,\Omega)
+    \Phi,\ (a_{\mathrm{orb}},e,\omega,i,\Omega)
     \longrightarrow
     \boldsymbol q.
     \]
     \[
-    \lambda_{\mathrm{corr}}=\lambda^\star-\Delta\lambda,
+    \begin{gathered}
+    \lambda_{\mathrm{corr}}=\lambda^\star-\Delta\lambda,\\
+    \text{коррекция витковой дальности при }R\text{-II}
+    \end{gathered}
     \qquad
     (\lambda_{\mathrm{corr}},\kappa)
     \longrightarrow
@@ -185,7 +188,7 @@
         ДВУ, \(\Omega\) & \(4^\circ\) & \(2^\circ\) \\
         Аргумент перицентра, \(\omega\) & \(11^\circ\) & \(26^\circ\) \\
         Угловая дальность, \(\varphi\) & \(3^\circ\) & \(0.7^\circ\) \\
-        Большая полуось, \(a\) & \(0.06\) а.е. & \(0.004\) а.е. \\
+        Большая полуось, \(a_{\mathrm{orb}}\) & \(0.06\) а.е. & \(0.004\) а.е. \\
         Функционал, \(J\) & \(0.08\ \mathrm{м^2/с^3}\) & \(0.003\ \mathrm{м^2/с^3}\) \\
         Продолжительность перелёта, \(T\) & \(8.5\) сут. & \(0.7\) сут. \\
         \bottomrule
@@ -209,14 +212,17 @@
     \mathbf F(\mathbf q)=0.
     \]
     \[
-    \mathbf y_0^{\mathrm{init}}
+    \mathbf F(\boldsymbol q)
     =
-    \left(
-    \mathbf r_0,
-    \mathbf v_0,
-    \mathbf p_{r0}^{\mathrm{init}},
-    \mathbf p_{v0}^{\mathrm{init}}
-    \right).
+    \begin{pmatrix}
+    \Delta e\\
+    \Delta i\\
+    \Delta\Omega\\
+    \Delta\omega\\
+    \Delta\varphi\\
+    \Delta a_{\mathrm{orb}}
+    \end{pmatrix}
+    =0.
     \]
     \centering
     \textbf{Невязки после уточнения в параметрах \(\boldsymbol q\)}
@@ -229,11 +235,12 @@
         ДВУ, \(\Omega\) & \(5.7\times10^{-14}\) град. & \(4.7\times10^{-13}\) град. \\
         Аргумент перицентра, \(\omega\) & \(3.0\times10^{-13}\) град. & \(1.2\times10^{-13}\) град. \\
         Угловая дальность, \(\varphi\) & \(1.7\times10^{-13}\) град. & \(3.3\times10^{-16}\) град. \\
-        Большая полуось, \(a\) & \(1.0\times10^{-14}\) а.е. & \(6.3\times10^{-13}\) а.е. \\
+        Большая полуось, \(a_{\mathrm{orb}}\) & \(1.0\times10^{-14}\) а.е. & \(6.3\times10^{-13}\) а.е. \\
         \bottomrule
     \end{tabular}
     \begin{itemize}
         \item Уточнение выполняется в пространстве управляющих параметров \(\boldsymbol q\).
+        \item \(\mathbf F\) -- вектор невязок целевых параметров конечной орбиты после интегрирования расширенной системы.
         \item Начальное приближение из предыдущего слайда служит стартовой точкой.
     \end{itemize}
     \begin{block}{Новый результат}
@@ -242,58 +249,58 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Сравнение с продолжением по гравитационному параметру}
+    \frametitle{Сопоставление с продолжением по гравитационному параметру}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.46\textwidth}
+        \begin{column}{0.36\textwidth}
             \tiny
             \[
-            \mathbf F(\mathbf z_0)=0.
-            \]
-            \[
             \begin{aligned}
+            \mathbf F(\mathbf z_0)&=0,\\
             \mathbf F(\mathbf z_0(0))&=\mathbf b,\\
             \mathbf F(\mathbf z_0(\tau))&=(1-\tau)\mathbf b,\\
             \mathbf F(\mathbf z_0(1))&=0.
             \end{aligned}
             \]
             \[
-            \frac{d\mathbf z_0}{d\tau}
-            =
-            -
-            \left(
-            \frac{\partial \mathbf F}{\partial \mathbf z_0}
-            \right)^{-1}
-            \mathbf b.
-            \]
-            \[
-            \mathbf z_0(0)=\mathbf z_0^{\mathrm{init}}.
-            \]
-            \[
             \bar\mu(\tau)=\mu_0+(\mu-\mu_0)\tau,
-            \qquad
+            \quad
             \tau\in[0,1].
             \]
             \begin{itemize}
                 \item Продолжение по параметру строит путь в пространстве начального вектора сопряжённых переменных.
-                \item Предлагаемый алгоритм сначала задаёт путь в пространстве управляющих параметров \(\boldsymbol q\).
+                \item Предлагаемый алгоритм задаёт путь в пространстве управляющих параметров \(\boldsymbol q\).
+                \item Сравнение показывает роль \(\boldsymbol q\) как альтернативной параметризации уточнения.
             \end{itemize}
         \end{column}
-        \begin{column}{0.50\textwidth}
+        \begin{column}{0.60\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{comparison_solution_paths_q_p_p}
+            \includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{comparison_solution_paths_q_p_p}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Постановки с ненулевой отлётной скоростью}
+    \frametitle{Переход от ИРТ-приближения к прикладной постановке}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.52\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{Vinf_lambda_functional_isolines}
+            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{GlobalLocalVhyp}
         \end{column}
         \begin{column}{0.44\textwidth}
             \scriptsize
+            \[
+            \resizebox{\linewidth}{!}{$
+            \begin{array}{c}
+            \text{ИРТ-приближение}
+            \rightarrow
+            \mathbf v_\infty
+            \rightarrow
+            \text{ПСИ-модель}\\
+            \rightarrow
+            \text{bang-bang управление}.
+            \end{array}
+            $}
+            \]
             \[
             \mathbf v(t_0)
             =
@@ -311,20 +318,12 @@
             \[
             \mathbf e
             =
-            \frac{\mathbf p_v}{\|\mathbf p_v\|},
-            \qquad
-            \mathcal K
-            =
-            \frac{\nu\|\mathbf p_v\|}{m(t)}
-            +
-            p_m
-            -
-            1.
+            \frac{\mathbf p_v}{\|\mathbf p_v\|}.
             \]
             \begin{itemize}
-                \item ИРТ-приближение используется как гладкий вход для дальнейшей постановки.
+                \item На этом этапе начальное приближение используется как вход для более прикладной постановки.
                 \item Для ПСИ-модели направление тяги задаётся по primer-вектору.
-                \item Функция переключения \(\mathcal K\) задаёт структуру bang-bang управления.
+                \item Функция переключения ПСИ-модели задаёт участки включения тяги.
             \end{itemize}
         \end{column}
     \end{columns}
@@ -335,10 +334,10 @@
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.56\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{Venus_deltaV_by_start_date}
+            \includegraphics[width=\linewidth,height=0.56\textheight,keepaspectratio]{Venus_deltaV_by_start_date}
         \end{column}
         \begin{column}{0.40\textwidth}
-            \scriptsize
+            \tiny
             \[
             \resizebox{\linewidth}{!}{$
             \begin{array}{c}
@@ -354,14 +353,12 @@
             \end{array}
             $}
             \]
-            \[
-            \mathbf v(t_0)=\mathbf v_E(t_0)+\mathbf v_\infty .
-            \]
+            \vspace{-0.10cm}
             \begin{itemize}
-                \item Опорное решение переносится на новые даты старта.
-                \item Рассматривается интервал от 01.01.2028 до 01.01.2037 с шагом один день.
-                \item Для каждой даты строится начальное приближение и выполняется уточнение.
-                \item Получается зависимость затрат характеристической скорости, гиперболического избытка и продолжительности перелёта от даты старта.
+                \item Возвращение к исходному проектному параметру \(t_0\): расчёт выполняется по сетке дат старта.
+                \item Опорное решение переносится на новые даты; для каждой даты строится начальное приближение и выполняется уточнение.
+                \item Интервал: 01.01.2028--01.01.2037, шаг один день.
+                \item На выходе: \(\Delta V\), гиперболический избыток и продолжительность перелёта как функции даты старта.
             \end{itemize}
         \end{column}
     \end{columns}
@@ -371,7 +368,7 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Сценарии использования и программная реализация}
+    \frametitle{Сценарии использования и вычислительная цепочка}
     \tiny
     \[
     \begin{array}{c}
