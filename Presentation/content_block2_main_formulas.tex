@@ -35,7 +35,7 @@
         (\lambda^\star,\kappa)\mapsto
         \bigl(\widehat T,\widehat\Psi,\widehat J,\widehat{\mathbf z}^{\mathrm{pl}}_0\bigr).
         \]
-        Механическая основа формул: ИРТ-КЗ, расширенная система, КЛО и точка оптимальной дальности. Символьная регрессия используется только для компактной записи; коэффициенты и служебные функции вынесены в приложения.
+        Механическая основа формул: ИРТ-КЗ, расширенная система, КЛО и точка оптимальной дальности. \(T\) и \(\Psi\) описывают выбор ветви; \(J\) задаёт значение квадратичного функционала. Символьная регрессия используется только для компактной записи; коэффициенты и служебные функции вынесены в приложения.
     \end{block}
 \end{frame}
 
@@ -148,35 +148,38 @@
         \begin{column}{0.58\textwidth}
             \presentationcompactsize
             \[
+            \resizebox{0.98\linewidth}{!}{$\displaystyle
             \widehat{J}\left(\lambda^\star,\kappa\right)=
             \frac{
             \left(
             C_0^{(J)}+\dfrac{C_1^{(J)}}{\kappa}+\dfrac{C_2^{(J)}}{\kappa^2}
             \right)\ln\kappa
             }{
-            \begin{aligned}
-            &\lambda^\star
+            \lambda^\star
             +
             C_3^{(J)}
             \bigl(
-            \sin(2\pi\lambda^\star+C_4^{(J)}-\lambda^{\star -1})\\
-            &\hspace{2.6cm}-\lambda^\star
+            \sin(2\pi\lambda^\star+C_4^{(J)}-\lambda^{\star -1})
+            -\lambda^\star
             \bigr)e^{-\lambda^\star}
-            \end{aligned}
             }.
+            $}
             \]
             \[
-            m_p=m_0-\frac{m_0}{1+\dfrac{m_0J_d}{\eta N_{\max}}}.
+            \begin{aligned}
+            J_d&=\frac{DU^2}{TU^3}J,\\
+            m_p&=m_0-\dfrac{m_0}{\,1+\dfrac{m_0J_d}{\eta N_{\max}}\,}.
+            \end{aligned}
             \]
             \begin{itemize}
-                \item \(\widehat J\) оценивает энергетическую цену выбранной ветви.
-                \item \(J_d\) -- размерная интерпретация функционала, используемая для нижней оценки расхода топлива.
+                \item \(\widehat J\) аппроксимирует значение квадратичного функционала на выбранной ветви.
+                \item \(J_d\) -- размерная форма того же функционала.
                 \item Числовые коэффициенты формулы \(\widehat J\) приведены в приложениях диссертации.
             \end{itemize}
         \end{column}
     \end{columns}
     \begin{newresult}
-        \(T\) и \(\Psi\) выбирают ветвь; \(J\) оценивает её энергетическую цену.
+        Конечная формула для квадратичного функционала \(J\).
     \end{newresult}
 \end{frame}
 
