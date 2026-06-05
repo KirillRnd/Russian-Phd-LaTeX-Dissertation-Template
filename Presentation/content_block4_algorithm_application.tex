@@ -124,61 +124,68 @@
     \end{newresult}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Пример построения начального приближения: Земля--Марс}
+    \presentationcompactsize
+    \setlength{\tabcolsep}{2.8pt}
+    \renewcommand{\arraystretch}{0.80}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.54\textwidth}
-            \centering
-            \includegraphics[width=\linewidth,height=0.60\textheight,keepaspectratio]{chap4_mars_cleanver_rebuilt_Oxy}
+        \begin{column}{0.45\textwidth}
+            \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+                \toprule
+                \multicolumn{2}{@{}l@{}}{\textbf{Целевые параметры и оценка времени}} \\
+                \midrule
+                \(a\) & \(\phantom{-}1.523783\times10^{0\phantom{-}}\) \\
+                \(e\) & \(\phantom{-}9.336536\times10^{-2}\) \\
+                \(i\), рад & \(\phantom{-}3.226036\times10^{-2}\) \\
+                \(\Omega\), рад & \(\phantom{-}8.640848\times10^{-1}\) \\
+                \(\bar{\omega}\), рад & \(\phantom{-}5.865724\times10^{0\phantom{-}}\) \\
+                \(\widehat T\), сут & \(\phantom{-}6.361619\times10^{2\phantom{-}}\) \\
+                \bottomrule
+            \end{tabular*}
+            \vspace{-0.03cm}
+            {\centering\Large\(\Downarrow\)\par}
         \end{column}
-        \begin{column}{0.42\textwidth}
-            \presentationcompactsize
-            \setlength{\abovedisplayskip}{1pt}
-            \setlength{\belowdisplayskip}{1pt}
-            \setlength{\abovedisplayshortskip}{1pt}
-            \setlength{\belowdisplayshortskip}{1pt}
-            \[
-            \begin{aligned}
-            t_0&=2461193.0,\\
-            \Psi_0&=3.481030\times10^{-1},\\
-            \lambda^\star&=1.324331\times10^{0},\\
-            \lambda_{\mathrm{corr}}&=1.268512\times10^{0},\\
-            \kappa&=1.523783\times10^{0}.
-            \end{aligned}
-            \]
-            \[
-            \begin{aligned}
-            \bar{\omega}_{\mathrm{rel}}&=1.456670\times10^{0},\\
-            \Omega_{\mathrm{rel}}&=-3.544969\times10^{0},\\
-            \gamma&=\Omega_{\mathrm{rel}}.
-            \end{aligned}
-            \]
-            \[
-            \begin{aligned}
-            \zeta &= -9.950813\times10^{-2},\\
-            \chi &= \phantom{-}7.522721\times10^{-1},\\
-            j &= -2.291710\times10^{-1},\\
-            \gamma &= -3.544969\times10^{0}.
-            \end{aligned}
-            \]
-            \[
-            \mathbf q_{\mathrm{init}}=
-            \begin{pmatrix}
-            \phantom{-}1.268512\times10^{0}\\
-            \phantom{-}1.523783\times10^{0}\\
-            -9.950813\times10^{-2}\\
-            \phantom{-}7.522721\times10^{-1}\\
-            -2.291710\times10^{-1}\\
-            -3.544969\times10^{0}
-            \end{pmatrix}.
-            \]
-            \vspace{-0.18cm}
-            \begin{itemize}
-                \setlength{\itemsep}{0pt}
-                \setlength{\parsep}{0pt}
-                \item Пример фиксирует реальные значения \(\boldsymbol q_{\mathrm{init}}\) после формульной сборки.
-                \item Интегрирование даёт траекторию и вход для уточнения КЗ.
-            \end{itemize}
+        \begin{column}{0.52\textwidth}
+            \centering
+            \includegraphics[width=\linewidth,height=0.36\textheight,keepaspectratio]{chap4_mars_cleanver_rebuilt_Oxy}
+        \end{column}
+    \end{columns}
+
+    \vspace{-0.06cm}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.43\textwidth}
+            \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+                \toprule
+                \multicolumn{2}{@{}l@{}}{\textbf{Вектор \(\boldsymbol q_{\mathrm{init}}\)}} \\
+                \midrule
+                \(\lambda_{\mathrm{corr}}\) & \(\phantom{-}1.268512\times10^{0\phantom{-}}\) \\
+                \(\kappa\) & \(\phantom{-}1.523783\times10^{0\phantom{-}}\) \\
+                \(\zeta\) & \(-9.950813\times10^{-2}\) \\
+                \(\chi\), рад & \(\phantom{-}7.522721\times10^{-1}\) \\
+                \(j\) & \(-2.291710\times10^{-1}\) \\
+                \(\gamma\), рад & \(-3.544969\times10^{0\phantom{-}}\) \\
+                \bottomrule
+            \end{tabular*}
+        \end{column}
+        \begin{column}{0.06\textwidth}
+            \vspace{0.62cm}
+            \centering
+            \Large\(\Rightarrow\)
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+                \toprule
+                \multicolumn{2}{@{}l@{}}{\textbf{Вектор \(\boldsymbol p_{\mathrm{init}}\)}} \\
+                \midrule
+                \(p_{r,x}\) & \(-7.012121\times10^{-3}\) \\
+                \(p_{r,y}\) & \(-1.785764\times10^{-2}\) \\
+                \(p_{r,z}\) & \(-1.984265\times10^{-3}\) \\
+                \(p_{v,x}\) & \(\phantom{-}1.747309\times10^{-2}\) \\
+                \(p_{v,y}\) & \(-4.626026\times10^{-3}\) \\
+                \(p_{v,z}\) & \(-3.796719\times10^{-3}\) \\
+                \bottomrule
+            \end{tabular*}
         \end{column}
     \end{columns}
 \end{frame}
