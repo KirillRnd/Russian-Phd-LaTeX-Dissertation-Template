@@ -291,11 +291,39 @@
 \begin{frame}[t]
     \frametitle{\(R\)-преобразование III типа: задание \(i\) и \(\Omega\)}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.35\textwidth}
+        \begin{column}{0.44\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{R_type_III_Ci_isolines}
+            \includegraphics[width=\linewidth,height=0.34\textheight,keepaspectratio]{R_type_III_iOmega_example}
+
+            \vspace{0.14cm}
+            \includegraphics[width=0.82\linewidth,height=0.15\textheight,keepaspectratio]{R_type_III_Ci_isolines}
+
+            \vspace{0.10cm}
+            \resizebox{0.98\linewidth}{!}{%
+                \(
+                \begin{aligned}
+                \mathcal A^{(i)}(\kappa,\Omega)
+                &=
+                \mathcal A_0^{(i)}(\kappa)
+                +
+                \mathcal A_1^{(i)}(\kappa)\cos 2\Omega,\\
+                \mathcal A_0^{(i)}(\kappa)
+                &=
+                \kappa
+                \left(C_0^{(i)}+C_1^{(i)}\kappa\right)
+                \left(\kappa+C_2^{(i)}\right)
+                +
+                C_3^{(i)},\\
+                \mathcal A_1^{(i)}(\kappa)
+                &=
+                C_4^{(i)}
+                \left(\kappa-C_5^{(i)}\right)
+                \left(\kappa^3-C_6^{(i)}\right).
+                \end{aligned}
+                \)
+            }
         \end{column}
-        \begin{column}{0.61\textwidth}
+        \begin{column}{0.52\textwidth}
             \presentationcompactsize
             \[
             R_i(j)=
@@ -311,37 +339,15 @@
             \cos\Omega & -\sin\Omega & 0\\
             \sin\Omega & \cos\Omega & 0\\
             0&0&1
-            \end{pmatrix},
-            \qquad
+            \end{pmatrix}.
+            \]
+            \[
             R_{i\Omega}(j,\Omega)=Q_\Omega R_i(j)Q_\Omega^T.
             \]
             \[
             i\approx -\mathcal A^{(i)}(\kappa,\Omega)j,
             \qquad
             j=-\frac{i}{\mathcal A^{(i)}(\kappa,\Omega)}.
-            \]
-            \[
-            \mathcal A^{(i)}(\kappa,\Omega)
-            =
-            \mathcal A_0^{(i)}(\kappa)
-            +
-            \mathcal A_1^{(i)}(\kappa)\cos 2\Omega.
-            \]
-            \[
-            \mathcal A_0^{(i)}(\kappa)
-            =
-            \kappa
-            \left(C_0^{(i)}+C_1^{(i)}\kappa\right)
-            \left(\kappa+C_2^{(i)}\right)
-            +
-            C_3^{(i)},
-            \]
-            \[
-            \mathcal A_1^{(i)}(\kappa)
-            =
-            C_4^{(i)}
-            \left(\kappa-C_5^{(i)}\right)
-            \left(\kappa^3-C_6^{(i)}\right).
             \]
             \begin{itemize}
                 \item \(R\)-III выводит конечную орбиту из плоскости исходного движения.
@@ -357,14 +363,11 @@
     \end{newresult}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{\(R\)-преобразование III типа: проверка и побочные деформации}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.54\textwidth}
-            \centering
-            \includegraphics[width=\linewidth]{R_type_III_iOmega_example}
-        \end{column}
-        \begin{column}{0.42\textwidth}
+    \vspace{0.35cm}
+    \begin{center}
+        \begin{minipage}{0.68\textwidth}
             \presentationtextsize
             \[
             \Delta i=i_{\mathrm{num}}-i,
@@ -378,8 +381,8 @@
                 \item Окрестность малых наклонений исключается, поскольку при \(i=0\) долгота восходящего узла вырождена.
                 \item Побочные деформации \(\lambda\) и \(a_{\mathrm{orb}}\) контролируются отдельно от ошибок задания \(i,\Omega\).
             \end{itemize}
-        \end{column}
-    \end{columns}
+        \end{minipage}
+    \end{center}
 \end{frame}
 
 \begin{frame}[t]
