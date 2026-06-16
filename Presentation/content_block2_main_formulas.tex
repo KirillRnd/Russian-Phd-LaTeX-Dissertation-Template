@@ -1,53 +1,14 @@
 \section{Конечные формулы}
 
 \begin{frame}[t]
-    \frametitle{Обозначения конечных формул}
-    \presentationtextsize
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.48\textwidth}
-            \begin{block}{Величины и аргументы}
-                \presentationtextsize
-                \begin{itemize}
-                    \item \(\widehat{x}\) -- конечная формула для величины \(x\);
-                    \item \(x^\star\) -- значение, полученное из численного решения краевой задачи;
-                    \item \(\lambda^\star\) -- витковая дальность в точке оптимальной дальности;
-                    \item \(\kappa\) -- отношение радиусов модельных круговых орбит.
-                \end{itemize}
-            \end{block}
-        \end{column}
-        \begin{column}{0.48\textwidth}
-            \begin{block}{Коэффициенты и функции}
-                \presentationtextsize
-                \begin{itemize}
-                    \item \(C_i^{(X)}\) -- числовые коэффициенты формулы для величины \(X\);
-                    \item \(\mathcal A^{(X)}\) -- коэффициент-функции;
-                    \item \(\mathcal D_m^{(X)}\) -- поправочные функции в формулах управления;
-                    \item \(\mathcal P_i^{(\kappa)}\) -- вспомогательные функции согласования по \(\kappa\);
-                    \item \(\mathcal B_\lambda\) -- функция коррекции витковой дальности.
-                \end{itemize}
-            \end{block}
-        \end{column}
-    \end{columns}
-
-    \begin{block}{Интерпретация формул}
-        \presentationcompactsize
-        \[
-        (\lambda^\star,\kappa)\mapsto
-        \bigl(\widehat T,\widehat\Psi,\widehat J,\widehat{\mathbf z}^{\mathrm{pl}}_0\bigr).
-        \]
-        Механическая основа формул: ИРТ-КЗ, расширенная система, КЛО и точка оптимальной дальности. \(T\) и \(\Psi\) описывают выбор ветви; \(J\) задаёт значение квадратичного функционала. Символьная регрессия используется для компактной записи; коэффициенты и вспомогательные функции вынесены в приложения.
-    \end{block}
-\end{frame}
-
-\begin{frame}[t]
     \frametitle{Конечная формула для продолжительности перелёта}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.43\textwidth}
             \centering
-            \includegraphics[height=0.28\textheight]{main_T_isolines}
+            \includegraphics[height=0.4\textheight]{main_T_isolines}
 
             \vspace{0.05cm}
-            \includegraphics[height=0.28\textheight]{main_T_error_heatmap}
+            \includegraphics[height=0.4\textheight]{main_T_error_heatmap}
         \end{column}
         \begin{column}{0.53\textwidth}
             \presentationcompactsize
@@ -73,14 +34,14 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Конечные формулы для непрерывной фазы}
+    \frametitle{Конечные формулы для непрерывной синодической фазы}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.40\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{main_phase_isolines}
+            \includegraphics[height=0.4\textheight]{main_phase_isolines}
 
             \vspace{0.06cm}
-            \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{main_phase_error_heatmap}
+            \includegraphics[height=0.4\textheight]{main_phase_error_heatmap}
         \end{column}
         \begin{column}{0.56\textwidth}
             \presentationcompactsize
@@ -134,15 +95,14 @@
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.38\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.28\textheight,keepaspectratio]{main_J_isolines}
+            \includegraphics[height=0.4\textheight]{main_J_isolines}
 
             \vspace{0.06cm}
-            \includegraphics[width=\linewidth,height=0.28\textheight,keepaspectratio]{main_J_error_heatmap}
+            \includegraphics[height=0.4\textheight]{main_J_error_heatmap}
         \end{column}
         \begin{column}{0.58\textwidth}
             \presentationcompactsize
             \[
-            \resizebox{0.98\linewidth}{!}{$\displaystyle
             \widehat{J}\left(\lambda^\star,\kappa\right)=
             \frac{
             \left(
@@ -157,7 +117,6 @@
             -\lambda^\star
             \bigr)e^{-\lambda^\star}
             }.
-            $}
             \]
             \[
             \begin{aligned}
@@ -175,7 +134,7 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Конечные формулы для начальных значений: компонентные формулы}
+    \frametitle{Конечные формулы для начальных значений сопряжённых переменных}
     \presentationcompactsize
     \vspace{-0.08cm}
     \[
@@ -275,14 +234,14 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Конечные формулы для начальных значений: зависимость от \(\kappa\)}
+    \frametitle{Конечные формулы для начальных значений сопряжённых переменных: зависимость от \(\kappa\)}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.38\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{main_p_isolines}
+            \includegraphics[height=0.4\textheight]{main_p_isolines}
 
             \vspace{0.06cm}
-            \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{main_p_error_heatmap}
+            \includegraphics[height=0.4\textheight]{main_p_error_heatmap}
         \end{column}
         \begin{column}{0.58\textwidth}
             \presentationcompactsize

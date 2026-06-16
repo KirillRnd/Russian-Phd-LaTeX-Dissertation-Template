@@ -31,8 +31,9 @@
 
     \vfill
     \begin{lowerbar}
-        В случае непрерывной тяги зависимость от даты старта и длительности перелёта\\
-        приобретает более сложную структуру, чем классическая «ракушка»
+        В случае непрерывной тяги зависимость от даты старта\\
+        и длительности перелёта приобретает более сложную структуру,\\
+        чем классическая «ракушка»
     \end{lowerbar}
 \end{frame}
 
@@ -124,9 +125,9 @@
 
     \vfill
     \begin{lowerbar}
-        Предметом исследования является расслоение по числу витков в ИРТ-постановке\\
-        с учётом геометрической декомпозиции задачи для построения\\
-        согласованного начального приближения
+        Предметом исследования является расслоение по числу витков\\
+        в ИРТ-постановке с учётом геометрической декомпозиции задачи\\
+        для построения согласованного начального приближения
     \end{lowerbar}
 \end{frame}
 
@@ -148,23 +149,32 @@
 \section{Модельное многообразие}
 
 \begin{frame}[t]
-    \frametitle{Идеально регулируемая тяга (ИРТ) как модельная краевая задача}
+    \frametitle{Модельная краевая задача}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.62\textwidth}
+        \begin{column}{0.5\textwidth}
             \presentationcompactsize
-            \[
-            J=\frac{1}{2}\int\limits_{t_0}^{t_f}\|\mathbf a(t)\|^2\,dt \to \min,
-            \qquad
-            H=\mathbf p_r^{T}\mathbf v+
+            Функционал
+            \begin{flushleft}
+            \(\displaystyle J=\frac{1}{2}\int\limits_{t_0}^{t_f}\|\mathbf a(t)\|^2\,dt \to \min.\)
+            \end{flushleft}
+            \vspace{-0.18cm}
+            Функция Гамильтона--Понтрягина
+            \begin{flushleft}
+            \(\displaystyle H=\mathbf p_r^{T}\mathbf v+
             \mathbf p_v^{T}\left(-\frac{\mathbf r}{r^3}+\mathbf a\right)
-            -\frac{1}{2}\mathbf a^{T}\mathbf a.
-            \]
-            \[
-            \frac{\partial H}{\partial \mathbf a}=0
+            -\frac{1}{2}\mathbf a^{T}\mathbf a.\)
+            \end{flushleft}
+            \vspace{-0.18cm}
+            Оптимальное управление
+            \begin{flushleft}
+            \(\displaystyle \frac{\partial H}{\partial \mathbf a}=0
             \quad\Rightarrow\quad
-            \mathbf a=\mathbf p_v.
-            \]
-            \[
+            \mathbf a=\mathbf p_v.\)
+            \end{flushleft}
+            \vspace{-0.18cm}
+            Расширенная система уравнений движения
+            \begin{flushleft}
+            \(\displaystyle
             \left\{
             \begin{aligned}
             \dot{\mathbf r} &= \mathbf v,\\
@@ -175,57 +185,58 @@
             \dot{\mathbf p}_v &= -\mathbf p_r.
             \end{aligned}
             \right.
-            \]
+            \)
+            \end{flushleft}
+            \vspace{-0.18cm}
+            Витковая дальность
+            \begin{flushleft}
+            \(\displaystyle \lambda=\frac{\varphi}{2\pi}.\)
+            \end{flushleft}
         \end{column}
-        \begin{column}{0.34\textwidth}
-            \centering
-            \includegraphics[width=0.52\linewidth,height=0.28\textheight,keepaspectratio]{virtual_planet}
+        \begin{column}{0.49\textwidth}
+            {\centering
+            \includegraphics[width=0.65\linewidth,keepaspectratio]{virtual_planet}
+            \par}
 
             \vspace{-0.03cm}
             \presentationcompactsize
-            \[
-            \begin{aligned}
-            \lambda&=\frac{\varphi}{2\pi},\\
-            \mathbf r_0&=(1,0,0)^{T},\\
-            \mathbf v_0&=(0,1,0)^{T},\\
-            \mathbf r_f&=\kappa(\cos 2\pi\lambda,\sin 2\pi\lambda,0)^{T},\\
-            \mathbf v_f&=\kappa^{-1/2}(-\sin 2\pi\lambda,\cos 2\pi\lambda,0)^{T}.
-            \end{aligned}
-            \]
-            \[
-            \mathbf z_0=\left(\mathbf p_{r0},\mathbf p_{v0}\right),
-            \]
-            \begin{itemize}
-                \item \(\lambda\) задаёт витковую дальность.
-                \item \(\mathbf r_f,\mathbf v_f\) задаются через \(\lambda,\kappa\).
-                \item \(J\) -- квадратичный функционал; \(\mathbf z_0\) -- начальные значения \(\mathbf p_r,\mathbf p_v\).
-            \end{itemize}
+            Граничные условия
+            \begin{flushleft}
+            \(\displaystyle \mathbf r_0=(1,0,0)^{T},\)\\
+            \(\displaystyle \mathbf v_0=(0,1,0)^{T},\)\\
+            \(\displaystyle \mathbf r_f=\kappa(\cos 2\pi\lambda,\sin 2\pi\lambda,0)^{T},\)\\
+            \(\displaystyle \mathbf v_f=\kappa^{-1/2}(-\sin 2\pi\lambda,\cos 2\pi\lambda,0)^{T}.\)
+            \end{flushleft}
+            \vspace{-0.18cm}
+            Начальные значения сопряжённых переменных
+            \begin{flushleft}
+            \(\displaystyle \mathbf z_0=\left(\mathbf p_{r0},\mathbf p_{v0}\right).\)
+            \end{flushleft}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Модельное многообразие и дискретное продолжение}
+    \frametitle{Модельное многообразие}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.58\textwidth}
             \centering
-            \includegraphics[height=0.48\textheight]{continuation_paths}
+            \includegraphics[height=0.7\textheight]{continuation_paths}
         \end{column}
         \begin{column}{0.38\textwidth}
             \presentationcompactsize
-            \[
-            \boldsymbol\xi=(\lambda,\kappa).
-            \]
-            \[
-            \begin{gathered}
-            M(\lambda,\kappa):(\lambda,\kappa)\mapsto\\
-            \bigl(\mathbf z_0,T,\Psi,J\bigr)(\lambda,\kappa).
-            \end{gathered}
-            \]
+            Параметры многообразия
+            \begin{flushleft}
+            \(\displaystyle \boldsymbol\xi=(\lambda,\kappa).\)
+            \end{flushleft}
+            \vspace{-0.18cm}
+            Отображение параметров в решение КЗ
+            \begin{flushleft}
+            \(\displaystyle M(\boldsymbol\xi):\boldsymbol\xi\mapsto
+            \bigl(\mathbf z_0,T,\Psi,J\bigr)(\boldsymbol\xi).\)
+            \end{flushleft}
             \begin{itemize}
                 \item Модельное многообразие понимается как образ отображения, построенного на одной регулярной ветви решений.
-                \item \(\lambda,\kappa\) являются входными параметрами плоской круговой модели.
-                \item \(T,\Psi,\mathbf z_0\) являются характеристиками решения модельной краевой задачи; \(J\) -- значение квадратичного функционала.
                 \item Базовое решение используется как исходная точка для продолжения по сетке параметров.
                 \item Соседние решения дают начальное приближение для следующей краевой задачи.
                 \item Вычислительные барьеры отделяют границы устойчивого локального продолжения.
@@ -233,12 +244,12 @@
         \end{column}
     \end{columns}
     \begin{newresult}
-        Построено модельное многообразие энергетически оптимальных решений как регулярная ветвь краевых задач, параметризованная \((\lambda,\kappa)\).
+        Предложен метод построения модельного многообразия энергетически оптимальных решений задачи встречи, параметризованного \((\lambda,\kappa)\).
     \end{newresult}
 \end{frame}
 
 \begin{frame}
-    \frametitle{От многообразия к конечным формулам}
+    \frametitle{Метод символьной регрессии}
     \presentationtextsize
     \[
     M(\lambda,\kappa)
@@ -259,9 +270,9 @@
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.58\textwidth}
             \centering
-            \includegraphics[height=0.48\textheight]{Isolines}
+            \includegraphics[height=0.6\textheight]{Isolines}
         \end{column}
-        \begin{column}{0.38\textwidth}
+        \begin{column}{0.41\textwidth}
             \presentationtextsize
             \[
             \Phi=\mathrm{const}
