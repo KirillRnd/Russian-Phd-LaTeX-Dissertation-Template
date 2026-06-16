@@ -11,7 +11,7 @@
             \includegraphics[height=0.4\textheight]{main_T_error_heatmap}
         \end{column}
         \begin{column}{0.53\textwidth}
-            \presentationcompactsize
+            \presentationtextsize
             \[
             \widehat{T}\left(\lambda^\star,\kappa\right)=
             \frac{2}{27}\kappa\ln\kappa
@@ -25,16 +25,15 @@
             \widehat{T}\left(\lambda^\star,1\right)=\lambda^\star .
             \]
             \begin{itemize}
-                \item Формула линейна по \(\lambda^\star\); коэффициенты зависят от \(\kappa\).
-                \item Вместе с фазовой формулой она описывает выбор ветви через точку оптимальной дальности.
-                \item При \(\kappa=1\) нормировка даёт естественное соотношение \(\widehat T=\lambda^\star\).
+                \item Формула линейна по \(\lambda^\star\)
+                \item Коэффициенты перед линейными компонентами зависят от \(\kappa\)
             \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Конечные формулы для непрерывной синодической фазы}
+    \frametitle{Конечные формулы для синодической фазы}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.40\textwidth}
             \centering
@@ -80,11 +79,12 @@
             \left(e^\kappa+1\right)e^{-\kappa}\ln\kappa,
             \end{aligned}
             \]
+            \presentationtextsize
             \begin{itemize}
-                \item \(\Psi\) -- нормированная непрерывная фаза; \(\Phi\) остаётся начальной синодической фазой.
+                \item \(\Psi\) -- нормированная непрерывная синодическая фаза
                 \item \(\widehat{\Psi}_T\) строится через \(\widehat T\) и наследует ошибку этой формулы.
                 \item Для выбора точки оптимальной дальности используется самостоятельная формула \(\widehat{\Psi}\).
-                \item \(\widehat T\) и \(\widehat\Psi\) задают линейную по \(\lambda^\star\) структуру ветви.
+                \item \(\widehat T\) и \(\widehat\Psi\) позволяют выбрать точку оптимальной дальности
             \end{itemize}
         \end{column}
     \end{columns}
@@ -92,58 +92,44 @@
 
 \begin{frame}[t]
     \frametitle{Конечная формула для квадратичного функционала}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.38\textwidth}
-            \centering
-            \includegraphics[height=0.4\textheight]{main_J_isolines}
-
-            \vspace{0.06cm}
-            \includegraphics[height=0.4\textheight]{main_J_error_heatmap}
-        \end{column}
-        \begin{column}{0.58\textwidth}
-            \presentationcompactsize
-            \[
-            \widehat{J}\left(\lambda^\star,\kappa\right)=
-            \frac{
-            \left(
-            C_0^{(J)}+\dfrac{C_1^{(J)}}{\kappa}+\dfrac{C_2^{(J)}}{\kappa^2}
-            \right)\ln\kappa
-            }{
-            \lambda^\star
-            +
-            C_3^{(J)}
-            \bigl(
-            \sin(2\pi\lambda^\star+C_4^{(J)}-\lambda^{\star -1})
-            -\lambda^\star
-            \bigr)e^{-\lambda^\star}
-            }.
-            \]
-            \[
-            \begin{aligned}
-            J_d&=\frac{DU^2}{TU^3}J,\\
-            m_p&=m_0-\dfrac{m_0}{\,1+\dfrac{m_0J_d}{\eta N_{\max}}\,}.
-            \end{aligned}
-            \]
-            \begin{itemize}
-                \item \(\widehat J\) аппроксимирует значение квадратичного функционала на выбранной ветви.
-                \item \(J_d\) -- размерная форма того же функционала.
-                \item Числовые коэффициенты формулы \(\widehat J\) приведены в приложениях диссертации.
-            \end{itemize}
-        \end{column}
-    \end{columns}
+    \presentationtextsize
+    \[
+    \widehat{J}\left(\lambda^\star,\kappa\right)=
+    \frac{
+    \left(
+    C_0^{(J)}+\dfrac{C_1^{(J)}}{\kappa}+\dfrac{C_2^{(J)}}{\kappa^2}
+    \right)\ln\kappa
+    }{
+    \lambda^\star
+    +
+    C_3^{(J)}
+    \bigl(
+    \sin(2\pi\lambda^\star+C_4^{(J)}-\lambda^{\star -1})
+    -\lambda^\star
+    \bigr)e^{-\lambda^\star}
+    }.
+    \]
+    \vfill
+    \begin{center}
+        \includegraphics[height=0.4\textheight]{main_J_isolines}
+        \hspace{0.04\textwidth}
+        \includegraphics[height=0.4\textheight]{main_J_error_heatmap}
+    \end{center}
 \end{frame}
 
 \begin{frame}[t]
     \frametitle{Конечные формулы для начальных значений сопряжённых переменных}
-    \presentationcompactsize
+    \presentationtextsize
     \vspace{-0.08cm}
     \[
-    \widehat{\mathbf z}^{\mathrm{pl}}_0=
+    \widehat{\mathbf z}_0=
     \left(
     \widehat{p}_{rx},
     \widehat{p}_{ry},
+    0,
     \widehat{p}_{vx},
-    \widehat{p}_{vy}
+    \widehat{p}_{vy},
+    0
     \right).
     \]
     \vspace{-0.08cm}
@@ -227,6 +213,8 @@
     C_3^{(p_{vx})}
     }.
     \]
+    
+    \presentationtextsize
     \begin{itemize}
         \item \(\mathcal D_m^{(X)}\) -- поправочные функции в формулах управления.
         \item Компоненты \((p_{rx},p_{vy})\) и \((p_{ry},p_{vx})\) образуют две естественные пары.
@@ -303,8 +291,8 @@
             \right)^T.
             \]
             \begin{itemize}
-                \item Используются два характерных значения \(\kappa_1=0.72\), \(\kappa_2=1.52\).
-                \item Интерполяция по \(\kappa\) строится как две парные структуры для компонент сопряжённых переменных.
+                \item Используются два характерных значения \(\kappa_1=0.72\), \(\kappa_2=1.52\)
+                \item Интерполяция по \(\kappa\) строится как две парные структуры для компонент сопряжённых переменных
             \end{itemize}
         \end{column}
     \end{columns}
@@ -359,7 +347,7 @@
     & 2.97\times10^{-4}
     & 7.51\times10^{-5}
     & 8.40\times10^{-3}\\
-    \widehat{\mathbf z}^{\mathrm{pl}}_0
+    \widehat{\mathbf z}_0
     & 3.22\times10^{-2}
     & 8.71\times10^{-4}
     & 1.75\times10^{-4}
@@ -367,11 +355,10 @@
     \end{array}
     \]
     \begin{itemize}
-        \item \(S\) -- характерный масштаб величины.
-        \item В одном формате проверяются \(\widehat T\), \(\widehat\Psi\), \(\widehat J\) и \(\widehat{\mathbf z}^{\mathrm{pl}}_0\).
-        \item Для \(\widehat{\mathbf z}^{\mathrm{pl}}_0\) контролируется агрегированная ошибка начальных значений сопряжённых переменных.
+        \item \(S\) -- характерный масштаб величины
+        \item В одном формате проверяются \(\widehat T\), \(\widehat\Psi\), \(\widehat J\) и \(\widehat{\mathbf z}_0\)
     \end{itemize}
     \begin{newresult}
-        Получен и проверен набор конечных формул для \(\widehat T\), \(\widehat\Psi\), \(\widehat J\) и \(\widehat{\mathbf z}_0\), задающий аппроксимированное модельное многообразие.
+        Получен и проверен набор конечных формул для \(\widehat T\), \(\widehat\Psi\), \(\widehat J\) и \(\widehat{\mathbf z}_0\), задающий аппроксимированное многообразие
     \end{newresult}
 \end{frame}

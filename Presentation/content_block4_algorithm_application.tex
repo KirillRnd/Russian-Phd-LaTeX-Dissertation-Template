@@ -1,7 +1,7 @@
 \section{Алгоритм и прикладная проверка}
 
 \begin{frame}[t]
-    \frametitle{Управляющие параметры как вычислительный интерфейс}
+    \frametitle{Управляющие параметры как неявная параметризация краевой задачи}
     \presentationtextsize
     \[
     \boldsymbol q =
@@ -9,32 +9,7 @@
     \lambda,\kappa,\zeta,\chi,j,\gamma
     \right).
     \]
-    \[
-    (\lambda,\kappa)
-    \longrightarrow
-    \widehat T,\quad
-    \widehat J,\quad
-    \widehat{\mathbf z}^{\mathrm{pl}}_0,
-    \qquad
-    (e,\omega)
-    \longrightarrow
-    (\zeta,\chi)
-    \longrightarrow
-    R_{e\omega},
-    \]
-    \[
-    (i,\Omega)
-    \longrightarrow
-    (j,\gamma)
-    \longrightarrow
-    R_{i\Omega},
-    \qquad
-    R_{\Sigma}
-    =
-    R_{i\Omega}
-    R_{e\omega}
-    R_0 .
-    \]
+    
     \begin{center}
         \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.23\linewidth}>{\raggedright\arraybackslash}p{0.36\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}@{}}
             \toprule
@@ -46,10 +21,6 @@
             \bottomrule
         \end{tabular}
     \end{center}
-    \begin{itemize}
-        \item \(\boldsymbol q\) параметризует переход от модельной краевой задачи к целевой краевой задаче.
-        \item Уточнение в \(\boldsymbol q\) сохраняет связь с выбранной ветвью, конечными формулами и \(R\)-преобразованиями.
-    \end{itemize}
     \begin{newresult}
         Вектор \(\boldsymbol q\) параметризует переход от модельной краевой задачи к целевой краевой задаче.
     \end{newresult}
@@ -58,66 +29,15 @@
 \begin{frame}[t]
     \frametitle{Алгоритм построения начального приближения}
     \presentationtextsize
-    \[
-    t_0,\ \text{целевая орбита}
-    \longrightarrow
-    \Phi_0
-    \longrightarrow
-    \lambda^\star,\ (a_{\mathrm{orb}},e,\omega,i,\Omega)
-    \longrightarrow
-    \boldsymbol q_{\mathrm{init}}.
-    \]
-    \[
-    \begin{gathered}
-    \lambda_{\mathrm{corr}}=\lambda^\star-\Delta\lambda,\\
-    \text{коррекция витковой дальности при }R\text{-II}
-    \end{gathered}
-    \qquad
-    (\lambda_{\mathrm{corr}},\kappa)
-    \longrightarrow
-    \widehat T,\quad
-    \widehat J,\quad
-    \widehat{\mathbf z}^{\mathrm{pl}}_0 .
-    \]
-    \[
-    \widehat{\mathbf z}^{\mathrm{pl}}_0=
-    \left(
-    \widehat{\mathbf p}_{r0}^{\mathrm{pl}},
-    \widehat{\mathbf p}_{v0}^{\mathrm{pl}}
-    \right).
-    \]
-    \[
-    \mathbf p_{r0}^{\mathrm{init}}
-    =
-    (R_{\Sigma}^{T})^{-1}
-    \widehat{\mathbf p}_{r0}^{\mathrm{pl}},
-    \qquad
-    \mathbf p_{v0}^{\mathrm{init}}
-    =
-    (R_{\Sigma}^{T})^{-1}
-    \widehat{\mathbf p}_{v0}^{\mathrm{pl}}.
-    \]
-    \[
-    \mathbf y_0^{\mathrm{init}}
-    =
-    \left(
-    \mathbf r_0,
-    \mathbf v_0,
-    \mathbf p_{r0}^{\mathrm{init}},
-    \mathbf p_{v0}^{\mathrm{init}}
-    \right).
-    \]
-    \[
-    \left(\mathbf y_0^{\mathrm{init}},\widehat T\right)
-    \longrightarrow
-    \text{уточнение КЗ}.
-    \]
+
     \begin{enumerate}
-        \item По дате старта определяется начальная синодическая фаза.
-        \item По КЛО и изолинии фазы выбирается \(\lambda^\star\).
-        \item По формулам главы 2 вычисляются \(\widehat T\), \(\widehat J\), \(\widehat{\mathbf z}^{\mathrm{pl}}_0\).
-        \item По формулам главы 3 строится \(R_\Sigma\).
-        \item Получается начальное приближение для последующего уточнения.
+        \item По дате старта \(t_0\) определяется начальная синодическая фаза \(\widehat{\Phi}_0\)
+        \item Из большой полуоси орбиты целевого небесного тела определяется \(\kappa\) 
+        \item Из \(\widehat{\Phi}_0\) и \(\kappa\) определяется \(\lambda^\star\)
+        \item По формулам главы 2 из \(\lambda^\star\) и \(\kappa\) вычисляются \(\widehat T\), \(\widehat{\mathbf z}_0\)
+        \item По формулам главы 3 строится \(R_\Sigma\) как функция от \(i,\Omega,e, \omega,\mathbf r_0,\mathbf v_0\)
+        \item Линейное преобразование \(R_\Sigma\) применяется к вектору \(\widehat{\mathbf z}_0\)
+        \item Получается начальное приближение \(\mathbf y_0^{\mathrm{init}}\) для последующего уточнения
     \end{enumerate}
     \begin{newresult}
         Разработан алгоритм построения начального приближения по дате старта и параметрам целевой орбиты.
@@ -133,7 +53,7 @@
         \begin{column}{0.45\textwidth}
             \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
                 \toprule
-                \multicolumn{2}{@{}l@{}}{\textbf{Целевые параметры и оценка времени}} \\
+                \multicolumn{2}{@{}l@{}}{Целевые параметры и оценка времени} \\
                 \midrule
                 \(a\) & \(\phantom{-}1.523783\times10^{0\phantom{-}}\) \\
                 \(e\) & \(\phantom{-}9.336536\times10^{-2}\) \\
@@ -191,10 +111,10 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Невязки начального приближения на множествах перелётов}
+    \frametitle{Невязки начального приближения на примере перелётов Земля-Марс и Земля-Венера}
     \presentationtextsize
     \centering
-    \textbf{Невязки начального приближения}
+    Невязки начального приближения
     \begin{tabular}{@{}p{0.38\linewidth}cc@{}}
         \toprule
         Целевой параметр конечной орбиты & Земля--Марс & Земля--Венера \\
@@ -210,8 +130,9 @@
         \bottomrule
     \end{tabular}
     \begin{itemize}
-        \item Земля--Марс и Земля--Венера задают проверку для внешней и внутренней орбиты относительно Земли.
-        \item До уточнения формульная сборка даёт конечные невязки целевой постановки; \(J\) фиксирует значение квадратичного функционала.
+        \item Земля--Марс и Земля--Венера соответствуют внешней и внутренней орбитам относительно Земли
+        \item Проверен диапазон дат соответствующий периодам великих противостояний
+        \item Получившееся начальное приближение требует последующего уточнения
     \end{itemize}
 \end{frame}
 
@@ -237,7 +158,7 @@
     =0.
     \]
     \centering
-    \textbf{Невязки после уточнения в параметрах \(\boldsymbol q\)}
+    Невязки после уточнения в параметрах \(\boldsymbol q\)
     \begin{tabular}{@{}p{0.38\linewidth}cc@{}}
         \toprule
         Целевой параметр конечной орбиты & Земля--Марс & Земля--Венера \\
@@ -251,17 +172,16 @@
         \bottomrule
     \end{tabular}
     \begin{itemize}
-        \item Уточнение выполняется в пространстве управляющих параметров \(\boldsymbol q\), сохраняя связь с выбранной модельной ветвью.
-        \item \(\mathbf F\) -- вектор невязок целевых параметров конечной орбиты после интегрирования расширенной системы.
-        \item Малые невязки подтверждают работоспособность параметризации в локальном уточнении.
+        \item Уточнение выполняется в пространстве управляющих параметров \(\boldsymbol q\)
+        \item \(\mathbf F\) -- вектор невязок целевых параметров конечной орбиты после интегрирования расширенной системы
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Сопоставление с продолжением по гравитационному параметру}
+    \frametitle{Сравнение с продолжением по гравитационному параметру}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.36\textwidth}
-            \presentationcompactsize
+            \presentationtextsize
             \[
             \begin{aligned}
             \mathbf F(\mathbf z_0)&=0,\\
@@ -276,9 +196,8 @@
             \tau\in[0,1].
             \]
             \begin{itemize}
-                \item Продолжение по параметру строит путь в пространстве начальных значений сопряжённых переменных.
-                \item Предлагаемый алгоритм описывает путь в пространстве управляющих параметров \(\boldsymbol q\).
-                \item Сравнение показывает согласование с устойчивым методом научной школы.
+                \item Продолжение по параметру происходит в пространстве начальных значений сопряжённых переменных
+                \item Предлагаемый алгоритм описывает путь в пространстве управляющих параметров \(\boldsymbol q\)
             \end{itemize}
         \end{column}
         \begin{column}{0.60\textwidth}
@@ -289,7 +208,7 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Переход от ИРТ-приближения к прикладной постановке}
+    \frametitle{Продолжение к оптимальному гиперболическому избытку}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.52\textwidth}
             \centering
@@ -297,73 +216,30 @@
         \end{column}
         \begin{column}{0.44\textwidth}
             \presentationtextsize
-            \[
-            \begin{array}{c}
-            \text{ИРТ-приближение}
-            \rightarrow
-            \mathbf v_\infty
-            \rightarrow
-            \text{ПСИ-модель}\\
-            \rightarrow
-            \text{bang-bang управление}.
-            \end{array}
-            \]
-            \[
-            \mathbf v(t_0)
-            =
-            \mathbf v_E(t_0)
-            +
-            \mathbf v_\infty .
-            \]
-            \[
-            J_{\text{ПСИ}}
-            =
-            \int_{t_0}^{t_0+T} \dot m_p(t)\,dt
-            \rightarrow
-            \min .
-            \]
-            \[
-            \mathbf e
-            =
-            \frac{\mathbf p_v}{\|\mathbf p_v\|}.
-            \]
+
             \begin{itemize}
-                \item ИРТ-алгоритм быстро строит начальное приближение благодаря конечным формулам и \(R\)-преобразованиям.
-                \item ПСИ/bang-bang этап -- последующая численная процедура, использующая это приближение.
-                \item Для ПСИ-модели направление тяги задаётся по primer-вектору.
+                \item ИРТ-решение с нулевым гип. избытком используется в качестве начального приближения
+                \item Продолжение к оптимальному гип. избытку выполняется с учётом ограничений РБ
+                \item Благодаря непрерывному выполнению граничных условий сохраняется число витков
             \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Применение к миссии Земля--Венера и расчёт по датам старта}
+    \frametitle{Продолжение к ПСИ-постановке}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.56\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.56\textheight,keepaspectratio]{Venus_deltaV_by_start_date}
+            \includegraphics[width=\linewidth,height=0.56\textheight,keepaspectratio]{Venus_initial_guess_before_transfer.png}
         \end{column}
         \begin{column}{0.40\textwidth}
-            \presentationcompactsize
-            \[
-            \begin{array}{c}
-            \text{ИРТ-приближение}
-            \longrightarrow
-            \mathbf v_\infty
-            \longrightarrow
-            \text{ПСИ-модель}\\
-            \longrightarrow
-            \text{опорное решение}
-            \longrightarrow
-            \text{массовый расчёт по } t_0 .
-            \end{array}
-            \]
-            \vspace{-0.10cm}
+            \presentationtextsize
+            
             \begin{itemize}
-                \item Для каждой допустимой даты алгоритм строит начальное приближение целевой постановки.
-                \item Это важно для малых КА, запускаемых попутно, когда дата выведения задаётся основной полезной нагрузкой.
-                \item Интервал: 01.01.2028--01.01.2037, шаг один день.
-                \item На выходе: \(\Delta V\), гиперболический избыток и продолжительность перелёта как функции \(t_0\).
+                \item ИРТ-решение с оптимальным гип. избытком используется в качестве начального приближения
+                \item Продолжение к ПСИ-постановке выполняется с помощью смешанного функционала
+                \item Благодаря непрерывному выполнению граничных условий сохраняется число витков
             \end{itemize}
         \end{column}
     \end{columns}

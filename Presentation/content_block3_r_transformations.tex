@@ -1,7 +1,7 @@
 \section{Линейные R-преобразования}
 
 \begin{frame}
-    \frametitle{Смысл линейного \(R\)-преобразования}
+    \frametitle{Механика линейного \(R\)-преобразования}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.42\textwidth}
             \presentationtextsize
@@ -25,9 +25,9 @@
             \mathbf p_0=(\mathbf p_{r0},\mathbf p_{v0}).
             \]
             \begin{itemize}
-                \item \(R\)-преобразование действует на начальные значения сопряжённых переменных для новой геометрии.
-                \item Меняются начальные значения сопряжённых переменных, затем расширенная система интегрируется заново.
-                \item После интегрирования получается экстремаль целевой краевой задачи.
+                \item \(R\)-преобразование действует на начальные значения сопряжённых переменных
+                \item Затем интегрируется расширенная система уравнений движения 
+                \item После интегрирования получается экстремаль новой краевой задачи, не изначальной
             \end{itemize}
         \end{column}
         \begin{column}{0.54\textwidth}
@@ -53,7 +53,7 @@
     \]
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.48\textwidth}
-            \textbf{Плоский класс}
+            Плоские преобразования
             \[
             \mathbf I'_1=\mathbf 0
             \quad\Rightarrow\quad
@@ -64,10 +64,9 @@
             0&0&\eta_z
             \end{pmatrix}.
             \]
-            Основа \(R\)-II для задания \(e,\omega\).
         \end{column}
         \begin{column}{0.48\textwidth}
-            \textbf{Пространственный класс}
+            Пространственные преобразования
             \[
             I'_0=I_0
             \quad\Rightarrow\quad
@@ -78,47 +77,11 @@
             0&\dfrac{j}{1+j^2}&\dfrac{1}{1+j^2}
             \end{pmatrix}.
             \]
-            Основа \(R\)-III для задания \(i,\Omega\).
         \end{column}
     \end{columns}
     \begin{newresult}
-        Выделен класс линейных преобразований начальных значений сопряжённых переменных, согласованный с инвариантами расширенной системы.
+        С помощью инвариантов записаны условия на допустимый вид матрицы \(R\) в плоском и в пространственном случаях
     \end{newresult}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Параметры в блоке \(R\)-преобразований}
-    \presentationtextsize
-    \[
-    \boldsymbol q=(\lambda,\kappa,\zeta,\chi,j,\gamma).
-    \]
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.48\textwidth}
-            \begin{block}{Физические величины}
-                \presentationtextsize
-                \(e,\omega,i,\Omega,a_{\mathrm{orb}}\) -- целевые параметры конечной орбиты.
-            \end{block}
-            \begin{block}{Параметры матриц}
-                \presentationtextsize
-                \(\zeta,\chi,j,\gamma\) -- управляющие параметры \(R\)-преобразований.
-            \end{block}
-        \end{column}
-        \begin{column}{0.48\textwidth}
-            \begin{block}{Служебные параметры}
-                \presentationtextsize
-                \(\varepsilon,\alpha,\beta\) -- внутренние параметры построения \(R_{e\omega}\).
-            \end{block}
-            \begin{block}{Композиция}
-                \presentationtextsize
-                \(R_0,R_{e\omega},R_{i\Omega},R_\Sigma\) -- последовательное преобразование начального вектора сопряжённых переменных.
-            \end{block}
-        \end{column}
-    \end{columns}
-
-    \begin{block}{Интерпретация параметров}
-        \presentationcompactsize
-        Вектор \(\boldsymbol q\) параметризует переход от модельной краевой задачи к целевой краевой задаче.
-    \end{block}
 \end{frame}
 
 \begin{frame}[t]
@@ -127,18 +90,17 @@
         \begin{column}{0.43\textwidth}
             \presentationtextsize
             \[
-            R_\varphi=R(\mathbf r_0,\mathbf v_0(\varphi)).
+            R_0=R(\mathbf r_0,\mathbf v_0).
             \]
             \[
-            \mathbf p'_{r0}=(R_\varphi^T)^{-1}\mathbf p_{r0},
+            \mathbf p'_{r0}=(R_0^T)^{-1}\mathbf p_{r0},
             \qquad
-            \mathbf p'_{v0}=(R_\varphi^T)^{-1}\mathbf p_{v0}.
+            \mathbf p'_{v0}=(R_0^T)^{-1}\mathbf p_{v0}.
             \]
             \begin{itemize}
-                \item \(R\)-I изменяет начальный фазовый вектор с учётом геометрии эллиптической орбиты.
-                \item Его роль -- учесть неортогональность \(\mathbf r_0\) и \(\mathbf v_0\) на эллиптической начальной орбите.
-                \item В сравнении с простым поворотом невязки правого конца уменьшаются примерно на \(2.5\) порядка.
-                \item Этот шаг используется далее как \(R_0\) в композиции.
+                \item \(R\)-I изменяет начальный сопряжённый вектор согласованно с фазовым
+                \item Его роль -- учесть неортогональность \(\mathbf r_0\) и \(\mathbf v_0\) на эллиптической начальной орбите
+                \item В сравнении с простым поворотом невязки правого конца уменьшаются на \(2.5\) порядка
             \end{itemize}
         \end{column}
         \begin{column}{0.53\textwidth}
@@ -149,11 +111,11 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{\(R\)-II: задание \(e\) и \(\omega\)}
+    \frametitle{\(R\)-преобразование II типа}
     \presentationcompactsize
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.51\textwidth}
-            \textbf{Матрица и поворот}
+            
             \[
             \begin{gathered}
             w_1=-\sin\beta+\zeta,\quad w_2=\cos\beta,\\
@@ -189,7 +151,7 @@
         \begin{column}{0.45\textwidth}
             \centering
             \includegraphics[width=0.70\linewidth,height=0.23\textheight,keepaspectratio]{R_type_II_Ce_isolines_raw}
-            \textbf{Связь с целевым эксцентриситетом}
+            
             \[
             e \approx -\mathcal A^{(e)}(\kappa,\omega)\zeta,
             \qquad
@@ -211,16 +173,12 @@
             \qquad m=0,1,2.
             \end{aligned}
             \]
-            \begin{itemize}
-                \item Аналитика задаёт форму \(R_{e\omega}\).
-                \item Конечная формула \(\mathcal A^{(e)}\) выбирает параметр \(\zeta\) внутри заданного класса матриц.
-            \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{\(R\)-II: проверка и коррекция витковой дальности}
+    \frametitle{\(R\)-преобразование II типа: коррекция витковой дальности}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.48\textwidth}
             \centering
@@ -267,16 +225,15 @@
             \end{aligned}
             \]
             \begin{itemize}
-                \item \(R\)-II используется для приближённого задания \(e,\omega\); при интегрировании также возникает изменение \(\lambda\).
-                \item Коррекция применяется к \(\lambda\), поскольку она связана с выбором ветви и продолжительностью перелёта.
-                \item Коррекция выполняется по \(\lambda\); совместная поправка \(\lambda,\kappa\) требует учитывать нелинейное взаимодействие.
+                \item \(R\)-II используется для приближённого задания \(e,\omega\), но влечёт изменение \(\lambda\)
+                \item Коррекция применяется к \(\lambda\), поскольку она связана с выбором ветви и продолжительностью перелёта
             \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{\(R\)-преобразование III типа: задание \(i\) и \(\Omega\)}
+    \frametitle{\(R\)-преобразование III типа}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.44\textwidth}
             \centering
@@ -337,11 +294,9 @@
             j=-\frac{i}{\mathcal A^{(i)}(\kappa,\Omega)}.
             \]
             \begin{itemize}
-                \item \(R\)-III используется для приближённого задания пространственной ориентации конечной орбиты.
-                \item \(j,\gamma\) -- управляющие параметры матрицы.
-                \item \(i,\Omega\) -- целевые орбитальные элементы.
-                \item Форма матрицы задана инвариантом; формула \(\mathcal A^{(i)}\) выбирает параметр \(j\).
-                \item Для пространственной ориентации используется тот же принцип преобразования начальных значений сопряжённых переменных.
+                \item \(R\)-III используется для приближённого задания пространственной ориентации конечной орбиты
+                \item \(j,\gamma\) -- управляющие параметры матрицы
+                \item \(i,\Omega\) -- целевые орбитальные элементы
             \end{itemize}
         \end{column}
     \end{columns}
@@ -351,31 +306,8 @@
     \frametitle{Композиция \(R\)-преобразований}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.46\textwidth}
-            \presentationcompactsize
-            \textbf{Относительные углы}
-            \[
-            \mathbf x_0=(\mathbf r_0,\mathbf v_0),
-            \qquad
-            R_0=R(\mathbf r_0,\mathbf v_0).
-            \]
-            \[
-            \begin{aligned}
-            \bar{\omega}&=\Omega+\omega,\\
-            \bar{\omega}_{\mathrm{rel}}&=\bar{\omega}-L_0,\\
-            \gamma&=\Omega_{\mathrm{rel}}=\Omega-L_0.
-            \end{aligned}
-            \]
-            \textbf{Управляющие параметры и композиция}
-            \[
-            \zeta
-            =
-            -\frac{e}{\mathcal A^{(e)}(\kappa,\bar{\omega}_{\mathrm{rel}})}.
-            \]
-            \[
-            j
-            =
-            -\frac{i}{\mathcal A^{(i)}(\kappa,\gamma)}.
-            \]
+            \presentationtextsize
+            
             \[
             \begin{aligned}
             R_\Sigma
@@ -386,10 +318,9 @@
             \end{aligned}
             \]
             \begin{itemize}
-                \item \(R_0\) задаёт начальную конфигурацию.
-                \item \(R_{e\omega}\) задаёт форму конечной орбиты.
-                \item \(R_{i\Omega}\) задаёт её пространственную ориентацию.
-                \item Типы I--III образуют единую композицию \(R_\Sigma\).
+                \item \(R_0\) задаёт начальную конфигурацию
+                \item \(R_{e\omega}\) задаёт форму конечной орбиты
+                \item \(R_{i\Omega}\) задаёт пространственную ориентацию конечной орбиты
             \end{itemize}
         \end{column}
         \begin{column}{0.50\textwidth}
@@ -398,7 +329,7 @@
         \end{column}
     \end{columns}
     \begin{newresult}
-        Композиция \(R\)-преобразований задаёт переход от модельной ветви к целевой пространственной и эллиптической постановке.
+        Предложена композиция трёх линейных \(R\)-преобразований для перехода от компланарных перелётов между круговыми орбитами к некомпланарным перелётам между эллиптическими орбитами
     \end{newresult}
 \end{frame}
 
@@ -409,12 +340,12 @@
     \mathbf p_{r0}^{\mathrm{init}}
     =
     (R_{\Sigma}^{T})^{-1}
-    \widehat{\mathbf p}_{r0}^{\mathrm{pl}},
+    \widehat{\mathbf p}_{r0},
     \qquad
     \mathbf p_{v0}^{\mathrm{init}}
     =
     (R_{\Sigma}^{T})^{-1}
-    \widehat{\mathbf p}_{v0}^{\mathrm{pl}}.
+    \widehat{\mathbf p}_{v0}.
     \]
     \[
     \mathbf y_0^{\mathrm{init}}
@@ -427,9 +358,7 @@
     \right).
     \]
     \begin{itemize}
-        \item На входе используется \(\widehat{\mathbf z}^{\mathrm{pl}}_0\) из блока конечных формул.
-        \item Композиция \(R_\Sigma\) преобразует начальные значения сопряжённых переменных для заданной постановки.
-        \item Вектор \(\boldsymbol q\) используется при формировании начального приближения для расширенной системы.
-        \item Полученный \(\mathbf y_0^{\mathrm{init}}\) используется для последующего уточнения КЗ.
+        \item Композиция \(R_\Sigma\) преобразует начальные значения сопряжённых переменных \(\widehat{\mathbf z}_0\)
+        \item Полученный \(\mathbf y_0^{\mathrm{init}}\) используется для последующего уточнения КЗ
     \end{itemize}
 \end{frame}
