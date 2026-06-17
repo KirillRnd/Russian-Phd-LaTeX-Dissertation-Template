@@ -4,14 +4,14 @@
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.50\textwidth}
             \presentationtextsize
-            В межпланетном баллистическом проектировании для выбора окна старта используют графики типа \textbf{«ракушка» (porkchop plot)}. На таких графиках сопоставляются:
+            В межпланетном баллистическом проектировании для выбора окна старта используют графики типа \textbf{«ракушка»} (porkchop plot). На таких графиках сопоставляются:
             \begin{itemize}
                 \item дата старта
                 \item продолжительность перелёта
                 \item расход рабочего тела
             \end{itemize}
             \medskip
-            В работе рассматривается, как эта привычная баллистическая картина меняется для перелётов с непрерывной тягой
+            В работе рассматривается как эта привычная баллистическая картина меняется для перелётов с непрерывной тягой
         \end{column}
         \begin{column}{0.43\textwidth}
             \centering
@@ -114,7 +114,7 @@
     \frametitle{Цель и задачи}
     \presentationtextsize
     \textbf{Цель работы} -- разработать и апробировать численно-аналитический метод согласованного выбора продолжительности перелёта и ИРТ-траектории в качестве начального приближения с учётом расслоения на заданную дату старта
-    \medskip
+    \vfill
     Для достижения цели решаются задачи:
     \begin{enumerate}
         \item разработать методику исследования расслоения ИРТ-решений через построение и аппроксимацию модельного многообразия задачи встречи
@@ -128,13 +128,16 @@
     \frametitle{Модельная краевая задача}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.5\textwidth}
-            \presentationcompactsize
+            \presentationtextsize
+            \vspace{-0.18cm}
             Функционал
+            \vspace{-0.18cm}
             \begin{flushleft}
             \(\displaystyle J=\frac{1}{2}\int\limits_{t_0}^{t_f}\|\mathbf a(t)\|^2\,dt \to \min.\)
             \end{flushleft}
             \vspace{-0.18cm}
             Функция Гамильтона--Понтрягина
+            \vspace{-0.18cm}
             \begin{flushleft}
             \(\displaystyle H=\mathbf p_r^{T}\mathbf v+
             \mathbf p_v^{T}\left(-\frac{\mathbf r}{r^3}+\mathbf a\right)
@@ -142,6 +145,7 @@
             \end{flushleft}
             \vspace{-0.18cm}
             Оптимальное управление
+            \vspace{-0.18cm}
             \begin{flushleft}
             \(\displaystyle \frac{\partial H}{\partial \mathbf a}=0
             \quad\Rightarrow\quad
@@ -149,6 +153,7 @@
             \end{flushleft}
             \vspace{-0.18cm}
             Расширенная система уравнений движения
+            \vspace{-0.18cm}
             \begin{flushleft}
             \(\displaystyle
             \left\{
@@ -165,6 +170,7 @@
             \end{flushleft}
             \vspace{-0.18cm}
             Начальные значения сопряжённых переменных
+            \vspace{-0.18cm}
             \begin{flushleft}
             \(\displaystyle \mathbf z_0=\left(\mathbf p_{r0},\mathbf p_{v0}\right).\)
             \end{flushleft}
@@ -174,8 +180,9 @@
             \includegraphics[width=0.65\linewidth,keepaspectratio]{virtual_planet}
             \par}
             \vspace{-0.03cm}
-            \presentationcompactsize
-            Граничные условия
+            \presentationtextsize
+            Граничные условия            
+            \vspace{-0.18cm}
             \begin{flushleft}
             \(\displaystyle \mathbf r_0=(1,0,0)^{T},\)\\
             \(\displaystyle \mathbf v_0=(0,1,0)^{T},\)\\
@@ -183,13 +190,35 @@
             \(\displaystyle \mathbf v_f=\kappa^{-1/2}(-\sin 2\pi\lambda,\cos 2\pi\lambda,0)^{T}.\)
             \end{flushleft}
             \vspace{-0.18cm}
-            Параметры компланарного перелёта между круговыми орбитами
+            Параметры компланарной задачи встречи        
+            \vspace{-0.18cm}
             \begin{flushleft}
             \(\displaystyle \lambda=\frac{\varphi}{2\pi}\) -- витковая дальность\\
-            \(\displaystyle \kappa\) -- соотношение радиусов
+            \(\displaystyle \kappa\) -- соотношение радиусов\\
+            \(\displaystyle \Phi_0\) -- начальная синодическая фаза
             \end{flushleft}
         \end{column}
     \end{columns}
+\end{frame}
+\begin{frame}[t]
+    \frametitle{Исследование расслоения}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.58\textwidth}
+            \centering
+            \includegraphics[height=0.6\textheight]{Isolines}
+        \end{column}
+        \begin{column}{0.41\textwidth}
+            \presentationtextsize
+            \begin{itemize}
+                \item Дата старта задаёт начальную синодическую фазу \(\Phi_0\), параметризуя расслоение
+                \item Локальные минимумы по витковой дальности \(\lambda\) при фиксированной продолжительности перелёта \(T\) задают кривую локальных оптимумов (КЛО)
+                \item Изолинии фиксированной фазы пересекают КЛО в точках оптимальной дальности \(\lambda^\star\)
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \begin{newresult}
+        Продемонстрировано, что КЛО и точки оптимальной дальности связывают начальную синодическую фазу с выбором ветви решения
+    \end{newresult}
 \end{frame}
 \begin{frame}[t]
     \frametitle{Модельное многообразие}
@@ -202,13 +231,13 @@
             \presentationcompactsize
             Параметры многообразия
             \begin{flushleft}
-            \(\displaystyle \boldsymbol\xi=(\lambda,\kappa).\)
+            \(\displaystyle \boldsymbol\xi=(\lambda^\star,\kappa).\)
             \end{flushleft}
             \vspace{-0.18cm}
             Отображение параметров в решение КЗ
             \begin{flushleft}
             \(\displaystyle M(\boldsymbol\xi):\boldsymbol\xi\mapsto
-            \bigl(\mathbf z_0,T,\Psi,J\bigr)(\boldsymbol\xi).\)
+            \bigl(\mathbf z_0,T,\Phi,J\bigr)(\boldsymbol\xi).\)
             \end{flushleft}
             \begin{itemize}
                 \item Модельное многообразие понимается как образ отображения, построенного на одной регулярной ветви решений
@@ -219,7 +248,7 @@
         \end{column}
     \end{columns}
     \begin{newresult}
-        Предложен метод построения модельного многообразия энергетически оптимальных решений задачи встречи, параметризованного \((\lambda,\kappa)\)
+        Предложен метод построения модельного многообразия энергетически оптимальных решений задачи встречи, параметризованного \((\lambda^\star,\kappa)\)
     \end{newresult}
 \end{frame}
 \begin{frame}
@@ -238,23 +267,4 @@
         \item Качество формул проверяется метриками ошибок и краевыми невязками после интегрирования расширенной системы
     \end{itemize}
 \end{frame}
-\begin{frame}[t]
-    \frametitle{Точки оптимальной дальности}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.58\textwidth}
-            \centering
-            \includegraphics[height=0.6\textheight]{Isolines}
-        \end{column}
-        \begin{column}{0.41\textwidth}
-            \presentationtextsize
-            \begin{itemize}
-                \item Дата старта задаёт начальную синодическую фазу, параметризуя расслоение
-                \item Локальные минимумы по витковой дальности при фиксированной продолжительности перелёта задают кривую локальных оптимумов (КЛО)
-                \item Изолинии фиксированной фазы пересекают КЛО в точках оптимальной дальности \(\lambda^\star\)
-            \end{itemize}
-        \end{column}
-    \end{columns}
-    \begin{newresult}
-        Продемонстрировано, что КЛО и точки оптимальной дальности связывают начальную синодическую фазу с выбором ветви решения
-    \end{newresult}
-\end{frame}
+
