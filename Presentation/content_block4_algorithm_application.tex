@@ -1,5 +1,4 @@
 \section{Алгоритм и прикладная проверка}
-
 \begin{frame}[t]
     \frametitle{Управляющие параметры как неявная параметризация краевой задачи}
     \presentationcompactsize
@@ -52,11 +51,9 @@
         \end{column}
     \end{columns}
 \end{frame}
-
 \begin{frame}[t]
     \frametitle{Алгоритм построения начального приближения}
     \presentationtextsize
-
     \begin{enumerate}
         \item По дате старта \(t_0\) определяется начальная синодическая фаза \(\Phi_0\)
         \item Из большой полуоси орбиты целевого небесного тела определяется \(\kappa\) 
@@ -67,12 +64,11 @@
         \item Получается начальное приближение \(\mathbf y_0^{\mathrm{init}}\) для последующего уточнения
     \end{enumerate}
     \begin{newresult}
-        Разработан алгоритм построения начального приближения по дате старта и параметрам целевой орбиты.
+        Разработан алгоритм построения начального приближения по дате старта и параметрам целевой орбиты
     \end{newresult}
 \end{frame}
-
 \begin{frame}[t]
-    \frametitle{Пример построения начального приближения: Земля--Марс}
+    \frametitle{Пример построения начального приближения: перелёт Земля--Марс}
     \presentationcompactsize
     \setlength{\tabcolsep}{0pt}
     \renewcommand{\arraystretch}{0.82}
@@ -91,10 +87,8 @@
                 \(\Phi_0\), рад & \(\phantom{-}2.187196\times10^{0\phantom{-}}\) & \\
                 \bottomrule
             \end{tabular*}
-
             \vspace{0.06cm}
             {\centering\Large\(\Downarrow\)\par}
-
             \vspace{1.40cm}
             \begin{tabular*}{0.30\paperwidth}{@{}l@{\hspace{0.75em}}r@{\extracolsep{\fill}}l@{}}
                 \toprule
@@ -117,7 +111,6 @@
         \begin{column}{0.57\textwidth}
             \centering
             \includegraphics[width=\linewidth,height=0.54\textheight,keepaspectratio]{chap4_mars_cleanver_rebuilt_Oxy}
-
             \vspace{0.04cm}
             \begin{tabular*}{0.30\paperwidth}{@{}l@{\hspace{0.75em}}r@{\extracolsep{\fill}}l@{}}
                 \toprule
@@ -134,7 +127,6 @@
         \end{column}
     \end{columns}
 \end{frame}
-
 \begin{frame}[t]
     \frametitle{Невязки начального приближения на примере перелётов Земля-Марс и Земля-Венера}
     \presentationtextsize
@@ -160,7 +152,6 @@
         \item Получившееся начальное приближение требует последующего уточнения
     \end{itemize}
 \end{frame}
-
 \begin{frame}
     \frametitle{Уточнение в управляющих параметрах}
     \presentationtextsize
@@ -201,7 +192,6 @@
         \item \(\mathbf F\) -- вектор невязок целевых параметров конечной орбиты после интегрирования расширенной системы
     \end{itemize}
 \end{frame}
-
 \begin{frame}
     \frametitle{Сравнение с продолжением по гравитационному параметру}
     \begin{columns}[T,onlytextwidth]
@@ -231,7 +221,6 @@
         \end{column}
     \end{columns}
 \end{frame}
-
 \begin{frame}[t]
     \frametitle{Продолжение к оптимальному гиперболическому избытку}
     \begin{columns}[T,onlytextwidth]
@@ -241,7 +230,6 @@
         \end{column}
         \begin{column}{0.44\textwidth}
             \presentationtextsize
-
             \begin{itemize}
                 \item ИРТ-решение с нулевым гип. избытком используется в качестве начального приближения
                 \item Продолжение к оптимальному гип. избытку выполняется с учётом ограничений РБ
@@ -250,7 +238,6 @@
         \end{column}
     \end{columns}
 \end{frame}
-
 \begin{frame}[t]
     \frametitle{Продолжение к ПСИ-постановке}
     \begin{columns}[T,onlytextwidth]
@@ -260,7 +247,6 @@
         \end{column}
         \begin{column}{0.40\textwidth}
             \presentationtextsize
-            
             \begin{itemize}
                 \item ИРТ-решение с оптимальным гип. избытком используется в качестве начального приближения
                 \item Продолжение к ПСИ-постановке выполняется с помощью смешанного функционала
@@ -269,4 +255,3 @@
         \end{column}
     \end{columns}
 \end{frame}
-
