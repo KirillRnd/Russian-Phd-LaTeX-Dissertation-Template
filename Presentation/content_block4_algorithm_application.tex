@@ -2,25 +2,55 @@
 
 \begin{frame}[t]
     \frametitle{Управляющие параметры как неявная параметризация краевой задачи}
-    \presentationtextsize
-    \[
-    \boldsymbol q =
-    \left(
-    \lambda,\kappa,\zeta,\chi,j,\gamma
-    \right).
-    \]
-    
-    \begin{center}
-        \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.23\linewidth}>{\raggedright\arraybackslash}p{0.36\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}@{}}
-            \toprule
-            Параметры & Роль & Источник \\
-            \midrule
-            \(\lambda,\kappa\) & выбор ветви и точки оптимальной дальности & формулы главы 2 \\
-            \(\zeta,\chi\) & задание формы конечной орбиты: \(e,\omega\) & \(R\)-II \\
-            \(j,\gamma\) & задание пространственной ориентации: \(i,\Omega\) & \(R\)-III \\
-            \bottomrule
-        \end{tabular}
-    \end{center}
+    \presentationcompactsize
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.45\textwidth}
+            Управляющий вектор
+            \[
+            \boldsymbol q =
+            \left(
+            \lambda,\kappa,\zeta,\chi,j,\gamma
+            \right).
+            \]
+            Начальные значения после композиции
+            \[
+            \begin{aligned}
+            \mathbf p_{r0}^{\mathrm{init}}
+            &=
+            \bigl(R_{\Sigma}^{T}(\zeta,\chi,j,\gamma;\mathbf r_0,\mathbf v_0)\bigr)^{-1}
+            \widehat{\mathbf p}_{r0}(\lambda,\kappa),\\
+            \mathbf p_{v0}^{\mathrm{init}}
+            &=
+            \bigl(R_{\Sigma}^{T}(\zeta,\chi,j,\gamma;\mathbf r_0,\mathbf v_0)\bigr)^{-1}
+            \widehat{\mathbf p}_{v0}(\lambda,\kappa).
+            \end{aligned}
+            \]
+            Начальное приближение
+            \[
+            \mathbf y_0^{\mathrm{init}}
+            =
+            \left(
+            \mathbf r_0,
+            \mathbf v_0,
+            \mathbf p_{r0}^{\mathrm{init}},
+            \mathbf p_{v0}^{\mathrm{init}}
+            \right).
+            \]
+        \end{column}
+        \begin{column}{0.51\textwidth}
+            \setlength{\tabcolsep}{2.6pt}
+            \renewcommand{\arraystretch}{1.08}
+            \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.26\linewidth}>{\raggedright\arraybackslash}p{0.43\linewidth}>{\raggedright\arraybackslash}p{0.21\linewidth}@{}}
+                \toprule
+                Параметры & Роль & Источник \\
+                \midrule
+                \(\lambda,\kappa\) & выбор ветви и точки оптимальной дальности & формулы главы 2 \\
+                \(\zeta,\chi\) & задание формы конечной орбиты: \(e,\omega\) & \(R\)-II \\
+                \(j,\gamma\) & задание пространственной ориентации: \(i,\Omega\) & \(R\)-III \\
+                \bottomrule
+            \end{tabular}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}[t]
@@ -28,9 +58,9 @@
     \presentationtextsize
 
     \begin{enumerate}
-        \item По дате старта \(t_0\) определяется начальная синодическая фаза \(\widehat{\Phi}_0\)
+        \item По дате старта \(t_0\) определяется начальная синодическая фаза \(\Phi_0\)
         \item Из большой полуоси орбиты целевого небесного тела определяется \(\kappa\) 
-        \item Из \(\widehat{\Phi}_0\) и \(\kappa\) определяется \(\lambda^\star\)
+        \item Из \(\Phi_0\) и \(\kappa\) определяется \(\lambda^\star\)
         \item По формулам главы 2 из \(\lambda^\star\) и \(\kappa\) вычисляются \(\widehat T\), \(\widehat{\mathbf z}_0\)
         \item По формулам главы 3 строится \(R_\Sigma\) как функция от \(i,\Omega,e, \omega,\mathbf r_0,\mathbf v_0\)
         \item Линейное преобразование \(R_\Sigma\) применяется к вектору \(\widehat{\mathbf z}_0\)
@@ -44,63 +74,61 @@
 \begin{frame}[t]
     \frametitle{Пример построения начального приближения: Земля--Марс}
     \presentationcompactsize
-    \setlength{\tabcolsep}{2.8pt}
-    \renewcommand{\arraystretch}{0.80}
+    \setlength{\tabcolsep}{0pt}
+    \renewcommand{\arraystretch}{0.82}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.45\textwidth}
-            \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
-                \toprule
-                \multicolumn{2}{@{}l@{}}{Целевые параметры и оценка времени} \\
-                \midrule
-                \(a\) & \(\phantom{-}1.523783\times10^{0\phantom{-}}\) \\
-                \(e\) & \(\phantom{-}9.336536\times10^{-2}\) \\
-                \(i\), рад & \(\phantom{-}3.226036\times10^{-2}\) \\
-                \(\Omega\), рад & \(\phantom{-}8.640848\times10^{-1}\) \\
-                \(\bar{\omega}\), рад & \(\phantom{-}5.865724\times10^{0\phantom{-}}\) \\
-                \(\widehat T\), сут & \(\phantom{-}6.361619\times10^{2\phantom{-}}\) \\
-                \bottomrule
-            \end{tabular*}
-            \vspace{-0.03cm}
-            {\centering\Large\(\Downarrow\)\par}
-        \end{column}
-        \begin{column}{0.52\textwidth}
+        \begin{column}{0.34\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.36\textheight,keepaspectratio]{chap4_mars_cleanver_rebuilt_Oxy}
-        \end{column}
-    \end{columns}
-
-    \vspace{-0.06cm}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.43\textwidth}
-            \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+            \begin{tabular*}{0.30\paperwidth}{@{}l@{\hspace{0.75em}}r@{\extracolsep{\fill}}l@{}}
                 \toprule
-                \multicolumn{2}{@{}l@{}}{\textbf{Вектор \(\boldsymbol q_{\mathrm{init}}\)}} \\
+                \multicolumn{3}{@{}l@{}}{Целевые параметры} \\
                 \midrule
-                \(\lambda_{\mathrm{corr}}\) & \(\phantom{-}1.268512\times10^{0\phantom{-}}\) \\
-                \(\kappa\) & \(\phantom{-}1.523783\times10^{0\phantom{-}}\) \\
-                \(\zeta\) & \(-9.950813\times10^{-2}\) \\
-                \(\chi\), рад & \(\phantom{-}7.522721\times10^{-1}\) \\
-                \(j\) & \(-2.291710\times10^{-1}\) \\
-                \(\gamma\), рад & \(-3.544969\times10^{0\phantom{-}}\) \\
+                \(a\) & \(\phantom{-}1.523783\times10^{0\phantom{-}}\) & \\
+                \(e\) & \(\phantom{-}9.336536\times10^{-2}\) & \\
+                \(i\), рад & \(\phantom{-}3.226036\times10^{-2}\) & \\
+                \(\Omega\), рад & \(\phantom{-}8.640848\times10^{-1}\) & \\
+                \(\bar{\omega}\), рад & \(\phantom{-}5.865724\times10^{0\phantom{-}}\) & \\
+                \(\Phi_0\), рад & \(\phantom{-}2.187196\times10^{0\phantom{-}}\) & \\
+                \bottomrule
+            \end{tabular*}
+
+            \vspace{0.06cm}
+            {\centering\Large\(\Downarrow\)\par}
+
+            \vspace{1.40cm}
+            \begin{tabular*}{0.30\paperwidth}{@{}l@{\hspace{0.75em}}r@{\extracolsep{\fill}}l@{}}
+                \toprule
+                \multicolumn{3}{@{}l@{}}{Вектор \(\boldsymbol q_{\mathrm{init}}\)} \\
+                \midrule
+                \(\lambda_{\mathrm{corr}}\) & \(\phantom{-}1.268512\times10^{0\phantom{-}}\) & \\
+                \(\kappa\) & \(\phantom{-}1.523783\times10^{0\phantom{-}}\) & \\
+                \(\zeta\) & \(-9.950813\times10^{-2}\) & \\
+                \(\chi\), рад & \(\phantom{-}7.522721\times10^{-1}\) & \\
+                \(j\) & \(-2.291710\times10^{-1}\) & \\
+                \(\gamma\), рад & \(-3.544969\times10^{0\phantom{-}}\) & \\
                 \bottomrule
             \end{tabular*}
         \end{column}
-        \begin{column}{0.06\textwidth}
-            \vspace{0.62cm}
+        \begin{column}{0.05\textwidth}
+            \vspace{0.56\textheight}
             \centering
             \Large\(\Rightarrow\)
         \end{column}
-        \begin{column}{0.48\textwidth}
-            \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \begin{column}{0.57\textwidth}
+            \centering
+            \includegraphics[width=\linewidth,height=0.54\textheight,keepaspectratio]{chap4_mars_cleanver_rebuilt_Oxy}
+
+            \vspace{0.04cm}
+            \begin{tabular*}{0.30\paperwidth}{@{}l@{\hspace{0.75em}}r@{\extracolsep{\fill}}l@{}}
                 \toprule
-                \multicolumn{2}{@{}l@{}}{\textbf{Вектор \(\boldsymbol p_{\mathrm{init}}\)}} \\
+                \multicolumn{3}{@{}l@{}}{Вектор \(\boldsymbol p_{\mathrm{init}}\)} \\
                 \midrule
-                \(p_{r,x}\) & \(-7.012121\times10^{-3}\) \\
-                \(p_{r,y}\) & \(-1.785764\times10^{-2}\) \\
-                \(p_{r,z}\) & \(-1.984265\times10^{-3}\) \\
-                \(p_{v,x}\) & \(\phantom{-}1.747309\times10^{-2}\) \\
-                \(p_{v,y}\) & \(-4.626026\times10^{-3}\) \\
-                \(p_{v,z}\) & \(-3.796719\times10^{-3}\) \\
+                \(p_{r,x}\) & \(-7.012121\times10^{-3}\) & \\
+                \(p_{r,y}\) & \(-1.785764\times10^{-2}\) & \\
+                \(p_{r,z}\) & \(-1.984265\times10^{-3}\) & \\
+                \(p_{v,x}\) & \(\phantom{-}1.747309\times10^{-2}\) & \\
+                \(p_{v,y}\) & \(-4.626026\times10^{-3}\) & \\
+                \(p_{v,z}\) & \(-3.796719\times10^{-3}\) & \\
                 \bottomrule
             \end{tabular*}
         \end{column}
@@ -209,7 +237,7 @@
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.52\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{GlobalLocalVhyp}
+            \includegraphics[width=\linewidth]{GlobalLocalVhyp}
         \end{column}
         \begin{column}{0.44\textwidth}
             \presentationtextsize
@@ -228,7 +256,7 @@
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.56\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.56\textheight,keepaspectratio]{Venus_initial_guess_before_transfer.png}
+            \includegraphics[width=\linewidth]{Venus_initial_guess_before_transfer.png}
         \end{column}
         \begin{column}{0.40\textwidth}
             \presentationtextsize

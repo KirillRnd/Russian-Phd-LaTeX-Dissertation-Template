@@ -134,13 +134,20 @@
             \end{pmatrix}.
             \]
             \[
-            \begin{aligned}
-            Q_\chi&=R_z(\chi),&
-            R_{e\omega}&=Q_\chi R_e Q_\chi^T,\\
-            \chi(\omega)&=\frac{\omega}{2}
+            Q_\chi=
+            \begin{pmatrix}
+            \cos\chi & -\sin\chi & 0\\
+            \sin\chi & \cos\chi & 0\\
+            0&0&1
+            \end{pmatrix}.
+            \]
+            \[
+            R_{e\omega}=Q_\chi R_e Q_\chi^T.
+            \]
+            \[
+            \chi(\omega)=\frac{\omega}{2}
             +\frac{1}{6}\sin 2\omega
             +\frac{1}{32}\sin 4\omega.
-            \end{aligned}
             \]
             \begin{itemize}
                 \item \(\beta\) выделяет среднее по \(\kappa\) направление максимального изменения эксцентриситета.
@@ -164,11 +171,12 @@
             \mathcal A_0^{(e)}(\kappa)
             +
             \sin\omega
-            \left(
+            \Bigl(\\[-0.2em]
+            &\quad
             \mathcal A_1^{(e)}(\kappa)\sin\omega
             +
             \mathcal A_2^{(e)}(\kappa)\sin3\omega
-            \right),\\
+            \Bigr),\\
             \mathcal A_m^{(e)}(\kappa)&=C_m^{(e)}(\kappa-1),
             \qquad m=0,1,2.
             \end{aligned}
@@ -331,34 +339,4 @@
     \begin{newresult}
         Предложена композиция трёх линейных \(R\)-преобразований для перехода от компланарных перелётов между круговыми орбитами к некомпланарным перелётам между эллиптическими орбитами
     \end{newresult}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Начальные значения после композиции}
-    \presentationtextsize
-    \[
-    \mathbf p_{r0}^{\mathrm{init}}
-    =
-    (R_{\Sigma}^{T})^{-1}
-    \widehat{\mathbf p}_{r0},
-    \qquad
-    \mathbf p_{v0}^{\mathrm{init}}
-    =
-    (R_{\Sigma}^{T})^{-1}
-    \widehat{\mathbf p}_{v0}.
-    \]
-    \[
-    \mathbf y_0^{\mathrm{init}}
-    =
-    \left(
-    \mathbf r_0,
-    \mathbf v_0,
-    \mathbf p_{r0}^{\mathrm{init}},
-    \mathbf p_{v0}^{\mathrm{init}}
-    \right).
-    \]
-    \begin{itemize}
-        \item Композиция \(R_\Sigma\) преобразует начальные значения сопряжённых переменных \(\widehat{\mathbf z}_0\)
-        \item Полученный \(\mathbf y_0^{\mathrm{init}}\) используется для последующего уточнения КЗ
-    \end{itemize}
 \end{frame}
