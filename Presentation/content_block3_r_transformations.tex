@@ -39,7 +39,7 @@
 
 \begin{frame}[t]
     \frametitle{Инварианты и допустимый вид матрицы \(R\)}
-    \presentationcompactsize
+    \presentationtextsize
     \[
     \mathbf M=\mathbf r\times\mathbf p_r+\mathbf v\times\mathbf p_v,
     \qquad
@@ -113,58 +113,76 @@
 \begin{frame}[t]
     \frametitle{\(R\)-преобразование II типа}
     \presentationcompactsize
+    Матрица плоского преобразования
+    \vspace{-0.06cm}
+    \[
+    R_e(\alpha,\varepsilon)
+    =
+    \begin{pmatrix}
+    \alpha(1-\varepsilon) & 0 & 0\\
+    0 & \dfrac{1+\varepsilon}{\sqrt{\alpha(1-\varepsilon^2)}} & 0\\
+    0 & 0 &
+    \dfrac{\alpha(1-\varepsilon)(1+\varepsilon)}{\sqrt{\alpha(1-\varepsilon^2)}}
+    \end{pmatrix}.
+    \]
+    \vspace{-0.12cm}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.51\textwidth}
-            
+        \begin{column}{0.48\textwidth}
+            Промежуточная репараметризация
+            \vspace{-0.10cm}
             \[
-            \begin{gathered}
-            w_1=-\sin\beta+\zeta,\quad w_2=\cos\beta,\\
-            \varepsilon=w_1\cos\beta+w_2\sin\beta,\quad
-            \alpha=-w_1\sin\beta+w_2\cos\beta.
-            \end{gathered}
+            \makebox[\linewidth][l]{$\displaystyle
+            \begin{aligned}
+            w_1&=-\sin\beta+\zeta,&
+            w_2&=\cos\beta,\\
+            \varepsilon&=w_1\cos\beta+w_2\sin\beta,&
+            \alpha&=-w_1\sin\beta+w_2\cos\beta.
+            \end{aligned}
+            $}
             \]
+            Поворот подобными матрицами
+            \vspace{-0.10cm}
             \[
-            R_e(\alpha,\varepsilon)
-            =
-            \begin{pmatrix}
-            \alpha(1-\varepsilon) & 0 & 0\\
-            0 & \dfrac{1+\varepsilon}{\sqrt{\alpha(1-\varepsilon^2)}} & 0\\
-            0 & 0 &
-            \dfrac{\alpha(1-\varepsilon)(1+\varepsilon)}{\sqrt{\alpha(1-\varepsilon^2)}}
-            \end{pmatrix}.
-            \]
-            \[
+            \makebox[\linewidth][l]{$\displaystyle
             Q_\chi=
             \begin{pmatrix}
             \cos\chi & -\sin\chi & 0\\
             \sin\chi & \cos\chi & 0\\
             0&0&1
             \end{pmatrix}.
+            $}
             \]
+            \vspace{-0.12cm}
             \[
-            R_{e\omega}=Q_\chi R_e Q_\chi^T.
-            \]
-            \[
-            \chi(\omega)=\frac{\omega}{2}
+            \makebox[\linewidth][l]{$\displaystyle
+            \begin{aligned}
+            R_{e\omega}&=Q_\chi R_e Q_\chi^T,\\
+            \chi(\omega)&=\frac{\omega}{2}
             +\frac{1}{6}\sin 2\omega
             +\frac{1}{32}\sin 4\omega.
+            \end{aligned}
+            $}
             \]
-            \begin{itemize}
-                \item \(\beta\) выделяет среднее по \(\kappa\) направление максимального изменения эксцентриситета.
-                \item \(\zeta\) задаёт смещение вдоль этого направления.
-                \item \(\chi\) -- вспомогательный угол поворота матрицы к целевому \(\omega\).
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.45\textwidth}
-            \centering
-            \includegraphics[width=0.70\linewidth,height=0.23\textheight,keepaspectratio]{R_type_II_Ce_isolines_raw}
-            
+            Аппроксимация эксцентриситета
+            \vspace{-0.10cm}
             \[
+            \makebox[\linewidth][l]{$\displaystyle
             e \approx -\mathcal A^{(e)}(\kappa,\omega)\zeta,
             \qquad
             \zeta=-\frac{e}{\mathcal A^{(e)}(\kappa,\omega)}.
+            $}
             \]
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth,height=0.345\textheight,keepaspectratio]{R_type_II_Ce_isolines_raw}
+
+            \vspace{-0.02cm}
+            \raggedright
+            Аппроксимация коэффициент-функции
+            \vspace{-0.10cm}
             \[
+            \makebox[\linewidth][l]{$\displaystyle
             \begin{aligned}
             \mathcal A^{(e)}(\kappa,\omega)
             &=
@@ -180,6 +198,7 @@
             \mathcal A_m^{(e)}(\kappa)&=C_m^{(e)}(\kappa-1),
             \qquad m=0,1,2.
             \end{aligned}
+            $}
             \]
         \end{column}
     \end{columns}
@@ -248,11 +267,14 @@
             \includegraphics[width=\linewidth,height=0.34\textheight,keepaspectratio]{R_type_III_iOmega_example}
 
             \vspace{0.14cm}
-            \includegraphics[width=0.82\linewidth,height=0.15\textheight,keepaspectratio]{R_type_III_Ci_isolines}
+            \includegraphics[width=\linewidth,height=0.225\textheight,keepaspectratio]{R_type_III_Ci_isolines}
 
             \vspace{0.10cm}
-            {\presentationcompactsize
+            {\presentationcompactsize\raggedright
+                Аппроксимация коэффициент-функции
+                \vspace{-0.10cm}
                 \[
+                \makebox[\linewidth][l]{$\displaystyle
                 \begin{aligned}
                 \mathcal A^{(i)}(\kappa,\Omega)
                 &=
@@ -272,40 +294,51 @@
                 \left(\kappa-C_5^{(i)}\right)
                 \left(\kappa^3-C_6^{(i)}\right).
                 \end{aligned}
+                $}
                 \]
             }
         \end{column}
         \begin{column}{0.52\textwidth}
             \presentationcompactsize
+            Матрица пространственного преобразования
+            \vspace{-0.10cm}
             \[
+            \makebox[\linewidth][l]{$\displaystyle
             R_i(j)=
             \begin{pmatrix}
             1 & 0 & 0\\
             0 & \dfrac{1}{1+j^2} & -\dfrac{j}{1+j^2}\\
             0 & \dfrac{j}{1+j^2} & \dfrac{1}{1+j^2}
             \end{pmatrix}.
+            $}
             \]
+            Поворот подобными матрицами
+            \vspace{-0.10cm}
             \[
+            \makebox[\linewidth][l]{$\displaystyle
             Q_\Omega=
             \begin{pmatrix}
             \cos\Omega & -\sin\Omega & 0\\
             \sin\Omega & \cos\Omega & 0\\
             0&0&1
             \end{pmatrix}.
+            $}
             \]
+            \vspace{-0.12cm}
             \[
+            \makebox[\linewidth][l]{$\displaystyle
             R_{i\Omega}(j,\Omega)=Q_\Omega R_i(j)Q_\Omega^T.
+            $}
             \]
+            Аппроксимация наклонения
+            \vspace{-0.10cm}
             \[
+            \makebox[\linewidth][l]{$\displaystyle
             i\approx -\mathcal A^{(i)}(\kappa,\Omega)j,
             \qquad
             j=-\frac{i}{\mathcal A^{(i)}(\kappa,\Omega)}.
+            $}
             \]
-            \begin{itemize}
-                \item \(R\)-III используется для приближённого задания пространственной ориентации конечной орбиты
-                \item \(j,\gamma\) -- управляющие параметры матрицы
-                \item \(i,\Omega\) -- целевые орбитальные элементы
-            \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
