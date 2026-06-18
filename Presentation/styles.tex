@@ -51,6 +51,18 @@
 \newcommand{\presentationtitlesize}{\large}
 \newcommand{\newresultfontsize}{\presentationtextsize}
 \newcommand{\lowerbarfontsize}{\presentationtextsize}
+\newcommand{\presentationsectionmark}[1]{%
+    \AddToHookNext{shipout/foreground}{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[
+            anchor=north west,
+            text=white,
+            font=\presentationtextsize,
+            inner sep=0pt
+        ] at ([xshift=0.42cm,yshift=-0.18cm]current page.north west) {#1};
+    \end{tikzpicture}%
+    }%
+}
 \setbeamerfont{newresult title}{size=\newresultfontsize,series=\bfseries}
 \setbeamerfont{newresult body}{size=\newresultfontsize}
 \setbeamerfont{lowerbar body}{size=\lowerbarfontsize}
