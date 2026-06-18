@@ -1,38 +1,51 @@
 \section{Линейные R-преобразования}
 
 \begin{frame}
-    \frametitle{Механика линейного \(R\)-преобразования}
+    \frametitle{\(R\)-преобразование}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.42\textwidth}
             \presentationtextsize
+            Матрица линейного преобразования  
+            \vspace{-0.18cm}
             \[
-            \mathbf p'=(R^T)^{-1}\mathbf p .
+            R(\boldsymbol\rho,\boldsymbol\nu)
+            =
+            \begin{pmatrix}
+                \rho_x & \nu_x & \eta_x\\
+                \rho_y & \nu_y & \eta_y\\
+                \rho_z & \nu_z & \eta_z
+            \end{pmatrix}.
             \]
             \[
-            \begin{array}{c}
-            \mathrm{КЗ}_1
-            \longrightarrow
-            \mathbf p_{0,1}\\
-            \xrightarrow{R}\\
-            \mathbf p_{0,2}
-            \longrightarrow
-            \mathrm{КЗ}_2 .
-            \end{array}
-            \]
+            \boldsymbol\eta=\boldsymbol\rho\times\boldsymbol\nu .
+            \]            
             \[
-            \mathbf x_0=(\mathbf r_0,\mathbf v_0),
-            \qquad
             \mathbf p_0=(\mathbf p_{r0},\mathbf p_{v0}).
             \]
+            \[
+            \mathbf p_0'=(R^T)^{-1}\mathbf p_0 .
+            \]
+            \vspace{-0.18cm}
             \begin{itemize}
                 \item \(R\)-преобразование действует на начальные значения сопряжённых переменных
                 \item Затем интегрируется расширенная система уравнений движения 
                 \item После интегрирования получается экстремаль новой краевой задачи, не изначальной
             \end{itemize}
         \end{column}
-        \begin{column}{0.54\textwidth}
+        \begin{column}{0.57\textwidth}
+            \presentationtextsize
             \centering
             \includegraphics[width=\linewidth]{R_small_change_demo}
+            Пример действия преобразования
+            \vspace{-0.18cm}
+            \[
+            R=
+            \begin{pmatrix}
+                1.08 & 0 & 0\\
+                0    & 1 & 0\\
+                0    & 0 & 1.08
+            \end{pmatrix}.
+            \]
         \end{column}
     \end{columns}
 \end{frame}
@@ -40,16 +53,18 @@
 \begin{frame}[t]
     \frametitle{Инварианты и допустимый вид матрицы \(R\)}
     \presentationtextsize
+    Первый интеграл расширенной системы
     \[
-    \mathbf M=\mathbf r\times\mathbf p_r+\mathbf v\times\mathbf p_v,
-    \qquad
-    I_0=\mathbf c_0\cdot\mathbf M,\quad
-    \mathbf I_1=\mathbf c_0\times\mathbf M .
+    \mathbf M=\mathbf r\times\mathbf p_r+\mathbf v\times\mathbf p_v
     \]
+    Нормаль к исходной плоскости
     \[
-    \mathbf p'_{r0}=A\mathbf p_{r0},\qquad
-    \mathbf p'_{v0}=A\mathbf p_{v0},\qquad
-    A=(R^T)^{-1}.
+    \mathbf c_0=\mathbf r_0\times\mathbf v_0=(0,0,1)^T 
+    \]
+    Скалярный и векторный инварианты
+    \[
+    I_0=\mathbf c_0\cdot\mathbf M,\quad
+    \mathbf I_1=\mathbf c_0\times\mathbf M 
     \]
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.48\textwidth}
@@ -87,34 +102,50 @@
 \begin{frame}[t]
     \frametitle{\(R\)-преобразование I типа}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.43\textwidth}
+        \begin{column}{0.42\textwidth}
             \presentationtextsize
+            Составляем матрицу \(R\) из радиус-вектора, скорости и орбитального момента
+            \vspace{-0.18cm}
             \[
             R_0=R(\mathbf r_0,\mathbf v_0).
             \]
             \[
-            \mathbf p'_{r0}=(R_0^T)^{-1}\mathbf p_{r0},
-            \qquad
-            \mathbf p'_{v0}=(R_0^T)^{-1}\mathbf p_{v0}.
+            \begin{aligned}
+            \mathbf r'_0 &= R_0\mathbf r_0,\\
+            \mathbf v'_0 &= R_0\mathbf r_0,\\
+            \mathbf p'_{r0} &= (R_0^T)^{-1}\mathbf p_{r0},\\
+            \mathbf p'_{v0} &= (R_0^T)^{-1}\mathbf p_{v0}.
+            \end{aligned}
             \]
             \begin{itemize}
-                \item \(R\)-I изменяет начальный сопряжённый вектор согласованно с фазовым
-                \item Его роль -- учесть неортогональность \(\mathbf r_0\) и \(\mathbf v_0\) на эллиптической начальной орбите
+                \item \(R\)-I изменяет начальный сопряжённый вектор согласованно с фазовым вектором
                 \item В сравнении с простым поворотом невязки правого конца уменьшаются на \(2.5\) порядка
             \end{itemize}
         \end{column}
-        \begin{column}{0.53\textwidth}
+        \begin{column}{0.57\textwidth}
+            \presentationtextsize
             \centering
-            \includegraphics[width=\linewidth,height=0.45\textheight,keepaspectratio]{R_type_I_demo}
+            \includegraphics[width=\linewidth]{R_type_I_demo}
+            Получается другая траектория с той же матрицей
+            \vspace{-0.18cm}
+            \[
+            R=
+            \begin{pmatrix}
+                1.08 & 0 & 0\\
+                0    & 1 & 0\\
+                0    & 0 & 1.08
+            \end{pmatrix}.
+            \]
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}[t]
     \frametitle{\(R\)-преобразование II типа}
-    \presentationcompactsize
+    \presentationtextsize
+    \vspace{-0.18cm}
     Матрица плоского преобразования
-    \vspace{-0.06cm}
+    \vspace{-0.18cm}
     \[
     R_e(\alpha,\varepsilon)
     =
@@ -125,11 +156,11 @@
     \dfrac{\alpha(1-\varepsilon)(1+\varepsilon)}{\sqrt{\alpha(1-\varepsilon^2)}}
     \end{pmatrix}.
     \]
-    \vspace{-0.12cm}
+    \vspace{-0.18cm}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.48\textwidth}
             Промежуточная репараметризация
-            \vspace{-0.10cm}
+            \vspace{-0.18cm}
             \[
             \makebox[\linewidth][l]{$\displaystyle
             \begin{aligned}
@@ -141,7 +172,7 @@
             $}
             \]
             Поворот подобными матрицами
-            \vspace{-0.10cm}
+            \vspace{-0.18cm}
             \[
             \makebox[\linewidth][l]{$\displaystyle
             Q_\chi=
@@ -152,7 +183,7 @@
             \end{pmatrix}.
             $}
             \]
-            \vspace{-0.12cm}
+            \vspace{-0.18cm}
             \[
             \makebox[\linewidth][l]{$\displaystyle
             \begin{aligned}
@@ -164,7 +195,7 @@
             $}
             \]
             Аппроксимация эксцентриситета
-            \vspace{-0.10cm}
+            \vspace{-0.18cm}
             \[
             \makebox[\linewidth][l]{$\displaystyle
             e \approx -\mathcal A^{(e)}(\kappa,\omega)\zeta,
@@ -180,7 +211,7 @@
             \vspace{-0.02cm}
             \raggedright
             Аппроксимация коэффициент-функции
-            \vspace{-0.10cm}
+            \vspace{-0.18cm}
             \[
             \makebox[\linewidth][l]{$\displaystyle
             \begin{aligned}
@@ -207,35 +238,31 @@
 \begin{frame}[t]
     \frametitle{\(R\)-преобразование II типа: коррекция витковой дальности}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.49\textwidth}
+            \presentationtextsize
             \centering
             \includegraphics[width=\linewidth,height=0.30\textheight,keepaspectratio]{R_type_II_eomega_example}
-
+            Пример преобразования II типа
             \vspace{0.06cm}
             \includegraphics[width=0.82\linewidth,height=0.24\textheight,keepaspectratio]{R_type_II_lambda_correction_error_heatmap}
+            Сравнение тепловой карты невязки витковой дальности до и после коррекции
         \end{column}
-        \begin{column}{0.48\textwidth}
-            \presentationcompactsize
+        \begin{column}{0.50\textwidth}
+            \presentationtextsize
+            Коррекция невязки
             \[
-            \begin{gathered}
-            \Delta e=e_{\mathrm{num}}-e,\quad
-            \Delta\omega=\operatorname{wrap}(\omega_{\mathrm{num}}-\omega),\\
-            \Delta\lambda=\lambda_{\mathrm{num}}-\lambda,\quad
-            \Delta a_{\mathrm{orb}}=a_{\mathrm{orb}}^{\mathrm{num}}-a_{\mathrm{orb}}.
-            \end{gathered}
-            \]
-            \[
-            \begin{gathered}
+            \begin{aligned}
             \Delta\lambda
-            \approx
+            &\approx
             \frac{1}{2\pi}\mathcal B_\lambda(\omega,\lambda,\kappa)\zeta,\\
             \lambda_{\mathrm{corr}}
-            =
+            &=
             \lambda
             -
             \frac{1}{2\pi}\mathcal B_\lambda(\omega,\lambda,\kappa)\zeta.
-            \end{gathered}
+            \end{aligned}
             \]
+            Коэффициент-функция \(\mathcal B\)
             \[
             \begin{aligned}
             \mathcal B_\lambda
@@ -251,10 +278,7 @@
             \mathcal B_4^{(\lambda)}\sin3\omega .
             \end{aligned}
             \]
-            \begin{itemize}
-                \item \(R\)-II используется для приближённого задания \(e,\omega\), но влечёт изменение \(\lambda\)
-                \item Коррекция применяется к \(\lambda\), поскольку она связана с выбором ветви и продолжительностью перелёта
-            \end{itemize}
+
         \end{column}
     \end{columns}
 \end{frame}
@@ -263,15 +287,16 @@
     \frametitle{\(R\)-преобразование III типа}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.44\textwidth}
+            \presentationtextsize
             \centering
             \includegraphics[width=\linewidth,height=0.34\textheight,keepaspectratio]{R_type_III_iOmega_example}
-
+            Пример применения
             \vspace{0.14cm}
             \includegraphics[width=\linewidth,height=0.225\textheight,keepaspectratio]{R_type_III_Ci_isolines}
+            Аппроксимация коэффициент-функции
 
             \vspace{0.10cm}
             {\presentationcompactsize\raggedright
-                Аппроксимация коэффициент-функции
                 \vspace{-0.10cm}
                 \[
                 \makebox[\linewidth][l]{$\displaystyle
@@ -299,9 +324,9 @@
             }
         \end{column}
         \begin{column}{0.52\textwidth}
-            \presentationcompactsize
+            \presentationtextsize
             Матрица пространственного преобразования
-            \vspace{-0.10cm}
+            \vspace{-0.18cm}
             \[
             \makebox[\linewidth][l]{$\displaystyle
             R_i(j)=
@@ -313,7 +338,7 @@
             $}
             \]
             Поворот подобными матрицами
-            \vspace{-0.10cm}
+            \vspace{-0.18cm}
             \[
             \makebox[\linewidth][l]{$\displaystyle
             Q_\Omega=
@@ -324,14 +349,14 @@
             \end{pmatrix}.
             $}
             \]
-            \vspace{-0.12cm}
+            \vspace{-0.18cm}
             \[
             \makebox[\linewidth][l]{$\displaystyle
             R_{i\Omega}(j,\Omega)=Q_\Omega R_i(j)Q_\Omega^T.
             $}
             \]
             Аппроксимация наклонения
-            \vspace{-0.10cm}
+            \vspace{-0.18cm}
             \[
             \makebox[\linewidth][l]{$\displaystyle
             i\approx -\mathcal A^{(i)}(\kappa,\Omega)j,
@@ -346,7 +371,7 @@
 \begin{frame}[t]
     \frametitle{Композиция \(R\)-преобразований}
     \begin{columns}[T,onlytextwidth]
-        \begin{column}{0.46\textwidth}
+        \begin{column}{0.42\textwidth}
             \presentationtextsize
             
             \[
@@ -354,7 +379,7 @@
             R_\Sigma
             &=
             R_{i\Omega}(j,\gamma)
-            R_{e\omega}(\zeta,\bar{\omega}_{\mathrm{rel}})
+            R_{e\omega}(\zeta,\chi)
             R_0.
             \end{aligned}
             \]
@@ -364,9 +389,9 @@
                 \item \(R_{i\Omega}\) задаёт пространственную ориентацию конечной орбиты
             \end{itemize}
         \end{column}
-        \begin{column}{0.50\textwidth}
+        \begin{column}{0.57\textwidth}
             \centering
-            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{R_composition_sequential_example}
+            \includegraphics[width=\linewidth]{R_composition_sequential_example}
         \end{column}
     \end{columns}
     \begin{newresult}

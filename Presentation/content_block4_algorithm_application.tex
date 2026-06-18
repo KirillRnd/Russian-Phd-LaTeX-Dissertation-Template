@@ -1,7 +1,7 @@
 \section{Алгоритм и прикладная проверка}
 \begin{frame}[t]
     \frametitle{Управляющие параметры как неявная параметризация краевой задачи}
-    \presentationcompactsize
+    \presentationtextsize
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.45\textwidth}
             Управляющий вектор
@@ -16,11 +16,11 @@
             \begin{aligned}
             \mathbf p_{r0}^{\mathrm{init}}
             &=
-            \bigl(R_{\Sigma}^{T}(\zeta,\chi,j,\gamma;\mathbf r_0,\mathbf v_0)\bigr)^{-1}
+            \bigl(R_{\Sigma}^{T}(\zeta,\chi,j,\gamma,\mathbf r_0,\mathbf v_0)\bigr)^{-1}
             \widehat{\mathbf p}_{r0}(\lambda,\kappa),\\
             \mathbf p_{v0}^{\mathrm{init}}
             &=
-            \bigl(R_{\Sigma}^{T}(\zeta,\chi,j,\gamma;\mathbf r_0,\mathbf v_0)\bigr)^{-1}
+            \bigl(R_{\Sigma}^{T}(\zeta,\chi,j,\gamma,\mathbf r_0,\mathbf v_0)\bigr)^{-1}
             \widehat{\mathbf p}_{v0}(\lambda,\kappa).
             \end{aligned}
             \]
@@ -39,13 +39,17 @@
         \begin{column}{0.51\textwidth}
             \setlength{\tabcolsep}{2.6pt}
             \renewcommand{\arraystretch}{1.08}
-            \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.26\linewidth}>{\raggedright\arraybackslash}p{0.43\linewidth}>{\raggedright\arraybackslash}p{0.21\linewidth}@{}}
+
+            \begin{tabular}{@{}
+                >{\raggedright\arraybackslash}p{0.30\linewidth}
+                >{\raggedright\arraybackslash}p{0.70\linewidth}
+                @{}}
                 \toprule
-                Параметры & Роль & Источник \\
+                Параметры & Роль \\
                 \midrule
-                \(\lambda,\kappa\) & выбор ветви и точки оптимальной дальности & формулы главы 2 \\
-                \(\zeta,\chi\) & задание формы конечной орбиты: \(e,\omega\) & \(R\)-II \\
-                \(j,\gamma\) & задание пространственной ориентации: \(i,\Omega\) & \(R\)-III \\
+                \(\lambda,\kappa\) & выбор модельной КЗ \\
+                \(\zeta,\chi\) & задание формы конечной орбиты \\
+                \(j,\gamma\) & задание пространственной ориентации \\
                 \bottomrule
             \end{tabular}
         \end{column}
@@ -69,7 +73,7 @@
 \end{frame}
 \begin{frame}[t]
     \frametitle{Пример построения начального приближения: перелёт Земля--Марс}
-    \presentationcompactsize
+    \presentationtextsize
     \setlength{\tabcolsep}{0pt}
     \renewcommand{\arraystretch}{0.82}
     \begin{columns}[T,onlytextwidth]
@@ -89,7 +93,7 @@
             \end{tabular*}
             \vspace{0.06cm}
             {\centering\Large\(\Downarrow\)\par}
-            \vspace{1.40cm}
+            \vspace{0.95cm}
             \begin{tabular*}{0.30\paperwidth}{@{}l@{\hspace{0.75em}}r@{\extracolsep{\fill}}l@{}}
                 \toprule
                 \multicolumn{3}{@{}l@{}}{Вектор \(\boldsymbol q_{\mathrm{init}}\)} \\
@@ -225,13 +229,36 @@
     \frametitle{Продолжение к оптимальному гиперболическому избытку}
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.52\textwidth}
+        \presentationtextsize
             \centering
             \includegraphics[width=\linewidth]{GlobalLocalVhyp}
+            Продолжение по гип. избытку на примере перелёта Земля-Марс
+            \[
+                \mathbf v(t_0)
+                =
+                \mathbf v_E(t_0)+\tau_1\mathbf v_\infty,
+                \qquad
+                \|\mathbf v_\infty\|\leq v_{\mathrm{РБ}},
+                \qquad
+                \tau_1\in[0,1]
+            \]
+            \[
+                \frac{d\mathbf z_0}{d\tau_1}
+                =
+                -
+                \left(
+                    \frac{\partial \mathbf F}{\partial \mathbf z_0}
+                \right)^{-1}
+                \frac{\partial \mathbf F}{\partial \mathbf v_\infty}
+                \mathbf v_\infty,
+                \qquad
+                \mathbf z_0(0)=\mathbf z_0\big|_{\mathbf v(t_0)=\mathbf v_E(t_0)}
+            \]
         \end{column}
         \begin{column}{0.44\textwidth}
             \presentationtextsize
             \begin{itemize}
-                \item ИРТ-решение с нулевым гип. избытком используется в качестве начального приближения
+                \item ИРТ-решение с нулевым гип. избытком \(v_E\) используется в качестве начального приближения
                 \item Продолжение к оптимальному гип. избытку выполняется с учётом ограничений РБ
                 \item Благодаря непрерывному выполнению граничных условий сохраняется число витков
             \end{itemize}
@@ -243,7 +270,35 @@
     \begin{columns}[T,onlytextwidth]
         \begin{column}{0.56\textwidth}
             \centering
+            \presentationtextsize
             \includegraphics[width=\linewidth]{Venus_initial_guess_before_transfer.png}
+            ПСИ-перелёт Земля-Венера
+            \vspace{0.3cm}
+            \[
+                J_{\tau_2}
+                =
+                \int_{t_0}^{t_0+T}
+                \left(
+                    (1-\tau_2)\frac{\|\mathbf a(t)\|^2}{2}
+                    +
+                    \tau_2 \|\mathbf a(t)\|
+                \right)dt,
+                \qquad
+                \tau_2\in[0,1]
+            \]
+            \[
+                \frac{d\mathbf z_0}{d\tau_2}
+                =
+                -
+                \left(
+                    \frac{\partial \mathbf F}{\partial \mathbf z_0}
+                \right)^{-1}
+                \frac{\partial \mathbf F}{\partial \tau_2},
+                \qquad
+                \mathbf z_0(0)
+                =
+                \mathbf z_0\big|_{\tau_1=1,\;J=J_{\mathrm{ИРТ}}}
+            \]
         \end{column}
         \begin{column}{0.40\textwidth}
             \presentationtextsize
