@@ -241,12 +241,15 @@
             \centering
             \includegraphics[width=\linewidth]{GlobalLocalVhyp}
             Продолжение по гип. избытку на примере перелёта Земля-Марс
+            \vspace{-0.18cm}
             \[
                 \mathbf v(t_0)
                 =
-                \mathbf v_E(t_0)+\tau_1\mathbf v_\infty,
+                \mathbf v_E(t_0)+\tau_1v_{\text{РБ}}\mathbf n_\infty(\tau_1),
                 \qquad
-                \|\mathbf v_\infty\|\leq v_{\mathrm{РБ}},
+                \mathbf n_\infty(\tau_1)
+                =
+                \frac{\mathbf p_{v0}(\tau_1)}{\|\mathbf p_{v0}(\tau_1)\|},
                 \qquad
                 \tau_1\in[0,1]
             \]
@@ -257,10 +260,11 @@
                 \left(
                     \frac{\partial \mathbf F}{\partial \mathbf z_0}
                 \right)^{-1}
-                \frac{\partial \mathbf F}{\partial \mathbf v_\infty}
-                \mathbf v_\infty,
+                \frac{\partial \mathbf F}{\partial \tau_1},
                 \qquad
-                \mathbf z_0(0)=\mathbf z_0\big|_{\mathbf v(t_0)=\mathbf v_E(t_0)}
+                \mathbf z_0(0)
+                =
+                \mathbf z_0\big|_{\mathbf v(t_0)=\mathbf v_E(t_0)}
             \]
         \end{column}
         \begin{column}{0.44\textwidth}
