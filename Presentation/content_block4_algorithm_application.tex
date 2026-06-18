@@ -15,27 +15,28 @@
             Начальные значения после композиции
             \[
             \begin{aligned}
-            \mathbf p_{r0}^{\mathrm{init}}
+            \mathbf p'_{r0}
             &=
-            \bigl(R_{\Sigma}^{T}(\zeta,\chi,j,\gamma,\mathbf r_0,\mathbf v_0)\bigr)^{-1}
+            \bigl(R_{\Sigma}^{T}(\zeta,\chi,j,\gamma,\mathbf r'_0,\mathbf v'_0)\bigr)^{-1}
             \widehat{\mathbf p}_{r0}(\lambda,\kappa),\\
-            \mathbf p_{v0}^{\mathrm{init}}
+            \mathbf p'_{v0}
             &=
-            \bigl(R_{\Sigma}^{T}(\zeta,\chi,j,\gamma,\mathbf r_0,\mathbf v_0)\bigr)^{-1}
+            \bigl(R_{\Sigma}^{T}(\zeta,\chi,j,\gamma,\mathbf r'_0,\mathbf v'_0)\bigr)^{-1}
             \widehat{\mathbf p}_{v0}(\lambda,\kappa).
             \end{aligned}
             \]
             Начальное приближение
             \[
-            \mathbf y_0^{\mathrm{init}}
+            \mathbf y_0
             =
             \left(
-            \mathbf r_0,
-            \mathbf v_0,
-            \mathbf p_{r0}^{\mathrm{init}},
-            \mathbf p_{v0}^{\mathrm{init}}
+            \mathbf r'_0,
+            \mathbf v'_0,
+            \mathbf p'_{r0},
+            \mathbf p'_{v0}
             \right).
             \]
+            Управляющие параметры \(\mathbf q\) позволяют геометрически задавать начальное приближение
         \end{column}
         \begin{column}{0.51\textwidth}
             \setlength{\tabcolsep}{2.6pt}
@@ -67,7 +68,7 @@
         \item По формулам главы 2 из \(\lambda^\star\) и \(\kappa\) вычисляются \(\widehat T\), \(\widehat{\mathbf z}_0\)
         \item По формулам главы 3 строится \(R_\Sigma\) как функция от \(i,\Omega,e, \omega,\mathbf r_0,\mathbf v_0\)
         \item Линейное преобразование \(R_\Sigma\) применяется к вектору \(\widehat{\mathbf z}_0\)
-        \item Получается начальное приближение \(\mathbf y_0^{\mathrm{init}}\) для последующего уточнения
+        \item Получается начальное приближение \(\mathbf y_0\) для последующего уточнения
     \end{enumerate}
     \begin{newresult}
         Разработан алгоритм построения начального приближения по дате старта и параметрам целевой орбиты
@@ -99,7 +100,7 @@
             \vspace{0.95cm}
             \begin{tabular*}{0.30\paperwidth}{@{}l@{\hspace{0.75em}}r@{\extracolsep{\fill}}l@{}}
                 \toprule
-                \multicolumn{3}{@{}l@{}}{Вектор \(\boldsymbol q_{\mathrm{init}}\)} \\
+                \multicolumn{3}{@{}l@{}}{Вектор \(\mathbf q\)} \\
                 \midrule
                 \(\lambda_{\mathrm{corr}}\) & \(\phantom{-}1.268512\times10^{0\phantom{-}}\) & \\
                 \(\kappa\) & \(\phantom{-}1.523783\times10^{0\phantom{-}}\) & \\
@@ -121,7 +122,7 @@
             \vspace{0.04cm}
             \begin{tabular*}{0.30\paperwidth}{@{}l@{\hspace{0.75em}}r@{\extracolsep{\fill}}l@{}}
                 \toprule
-                \multicolumn{3}{@{}l@{}}{Вектор \(\boldsymbol p_{\mathrm{init}}\)} \\
+                \multicolumn{3}{@{}l@{}}{Вектор \(\mathbf z_0\)} \\
                 \midrule
                 \(p_{r,x}\) & \(-7.012121\times10^{-3}\) & \\
                 \(p_{r,y}\) & \(-1.785764\times10^{-2}\) & \\
