@@ -279,3 +279,259 @@
 \end{figure}
 
 Таким образом, первые две главы дают связанный результат: метод дискретного продолжения строит регулярное модельное многообразие, его геометрический анализ выделяет КЛО и~точки оптимальной дальности, а~конечные формулы преобразуют эти структуры в~компактное приближённое описание, пригодное для последующего переноса на~более общие постановки и~построения начального приближения.
+
+\FloatBarrier
+\noindent\textbf{В третьей главе} разработаны линейные преобразования начальных значений сопряжённых переменных, обеспечивающие переход от~плоской круговой модельной задачи к~постановкам с~изменённым начальным фазовым вектором, эллиптической и~пространственной конечной орбитой. Матрица $R$ строится по~двум неколлинеарным векторам $\boldsymbol\rho$, $\boldsymbol\nu$ и~их векторному произведению $\boldsymbol\eta=\boldsymbol\rho\times\boldsymbol\nu$:
+\begin{equation}
+    R(\boldsymbol\rho,\boldsymbol\nu)=
+    \begin{pmatrix}\boldsymbol\rho&\boldsymbol\nu&\boldsymbol\eta\end{pmatrix},
+    \qquad
+    \det R=\lVert\boldsymbol\rho\times\boldsymbol\nu\rVert^2>0.
+    \label{eq:syn-r-general}
+\end{equation}
+Вектор преобразуется по~правилу $\mathbf y'=R\mathbf y$, а~сопряжённый ковектор --- согласованно:
+\begin{equation}
+    \mathbf p'=(R^{\mathsf T})^{-1}\mathbf p.
+    \label{eq:syn-r-covector}
+\end{equation}
+После преобразования начального вектора расширенная система интегрируется заново. Ограничения на~структуру $R$ получены из~требования контролируемого изменения первых интегралов расширенной системы; в~частности, использован векторный инвариант
+\begin{equation}
+    \mathbf M=\mathbf r\times\mathbf p_r+\mathbf v\times\mathbf p_v.
+\end{equation}
+Этот аппарат позволяет отделить допустимую структуру линейного преобразования от~конкретного способа выбора его управляющих параметров.
+
+Предложена классификация из~трёх типов. $R$-преобразование I~типа применяется при изменении начального фазового вектора. Для пар $\mathbf x_a=(\mathbf r_a,\mathbf v_a)$ и~$\mathbf x_b=(\mathbf r_b,\mathbf v_b)$ матрица перехода имеет вид
+\begin{equation}
+    R_{a\to b}=R_bR_a^{-1},
+    \qquad
+    \mathbf p_{r,b}=R_{a\to b}^{-\mathsf T}\mathbf p_{r,a},
+    \qquad
+    \mathbf p_{v,b}=R_{a\to b}^{-\mathsf T}\mathbf p_{v,a}.
+    \label{eq:syn-r-type1}
+\end{equation}
+В~отличие от~простого поворота, преобразование учитывает изменение масштаба и~взаимного расположения начальных векторов положения и~скорости. Сравнение на~рис.~\ref{fig:syn-r-type1-compare} показывает, что согласованное преобразование фазовой и~сопряжённой частей даёт существенно меньшие невязки правого конца.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{R_type_I_angle_change_compare.png}
+    \caption{Сравнение $R$-преобразования I~типа с~простым поворотом при изменении направления начальной скорости}
+    \label{fig:syn-r-type1-compare}
+\end{figure}
+
+$R$-преобразование II~типа действует только на~$\mathbf p_{r0}$ и~$\mathbf p_{v0}$ при фиксированных $\mathbf r_0$, $\mathbf v_0$ и~задаёт эксцентриситет $e$ и~аргумент перицентра $\omega$ конечной орбиты. Базовая диагональная матрица $R_e(\alpha,\varepsilon)$ репараметризована управляющей величиной $\zeta$ вдоль направления $\beta=0.642$, а~ориентация задаётся ортогонально подобным преобразованием
+\begin{equation}
+    R_{e\omega}=Q_\chi R_eQ_\chi^{\mathsf T}.
+\end{equation}
+Угол матрицы и~управляющий параметр вычисляются по~конечным формулам
+\begin{equation}
+\begin{gathered}
+    \chi(\omega)=\frac{\omega}{2}+\frac16\sin2\omega+\frac1{32}\sin4\omega,\\
+    \zeta=-\frac{e}{\mathcal A^{(e)}(\kappa,\omega)},
+\end{gathered}
+\label{eq:syn-r-type2-control}
+\end{equation}
+где $\mathcal A^{(e)}$ --- коэффициент-функция чувствительности, имеющая гармоническую структуру по~$\omega$. Побочное изменение витковой дальности компенсируется предварительным сдвигом точки модельного многообразия:
+\begin{equation}
+    \lambda_{\mathrm{corr}}=
+    \lambda-\frac{1}{2\pi}\mathcal B_\lambda(\omega,\lambda,\kappa)\zeta.
+    \label{eq:syn-lambda-correction}
+\end{equation}
+На~исследованной области такая коррекция уменьшила RMSE витковой дальности с~$7.31\times10^{-2}$ до~$1.66\times10^{-2}$.
+
+$R$-преобразование III~типа предназначено для задания наклонения $i$ и~долготы восходящего узла $\Omega$. При фиксированном начальном фазовом векторе используются
+\begin{equation}
+    R_i(j)=
+    \begin{pmatrix}
+        1&0&0\\
+        0&(1+j^2)^{-1}&-j(1+j^2)^{-1}\\
+        0&j(1+j^2)^{-1}&(1+j^2)^{-1}
+    \end{pmatrix},
+    \qquad
+    R_{i\Omega}=Q_\Omega R_iQ_\Omega^{\mathsf T},
+\end{equation}
+а~управляющий параметр определяется формулой
+\begin{equation}
+    j=-\frac{i}{\mathcal A^{(i)}(\kappa,\Omega)}.
+    \label{eq:syn-r-type3-control}
+\end{equation}
+Коэффициент-функция $\mathcal A^{(i)}=\mathcal A_0^{(i)}(\kappa)+\mathcal A_1^{(i)}(\kappa)\cos2\Omega$ описывает локальную чувствительность наклонения к~параметру $j$. Примеры действия преобразований II и~III~типов приведены на~рис.~\ref{fig:syn-r-types23}.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{R_type_II_eomega_example.png}
+        \par\smallskip
+        II тип: задание $(e,\omega)$
+    \end{minipage}\hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{R_type_III_iOmega_example.png}
+        \par\smallskip
+        III тип: задание $(i,\Omega)$
+    \end{minipage}
+    \caption{Изменение траектории при фиксированном начальном фазовом векторе}
+    \label{fig:syn-r-types23}
+\end{figure}
+
+Для совместного задания полной геометрии преобразования объединяются в~композицию. Сначала по~$\lambda_{\mathrm{corr}}$ и~$\kappa$ вычисляется модельный сопряжённый вектор, затем учитываются реальный начальный фазовый вектор, эллиптичность и~пространственная ориентация конечной орбиты:
+\begin{equation}
+\begin{gathered}
+    R_\Sigma=R_{i\Omega}(j,\gamma)
+              R_{e\omega}(\zeta,\bar\omega_{\mathrm{rel}})R_0,\\
+    \mathbf p_{r0}^{\mathrm{init}}=R_\Sigma^{-\mathsf T}
+       \widehat{\mathbf p}_{r0}^{\mathrm{corr}},
+    \qquad
+    \mathbf p_{v0}^{\mathrm{init}}=R_\Sigma^{-\mathsf T}
+       \widehat{\mathbf p}_{v0}^{\mathrm{corr}},
+\end{gathered}
+\label{eq:syn-r-composition}
+\end{equation}
+где $\bar\omega_{\mathrm{rel}}=\Omega+\omega-L_0$, $\gamma=\Omega-L_0$, а~$L_0$ --- истинная долгота начального радиус-вектора. Композиция не является точным аналитическим решением полной задачи; она формирует геометрически согласованное начальное приближение для последующей численной коррекции. Последовательный эффект трёх типов показан на~рис.~\ref{fig:syn-r-composition}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.76\textwidth]{R_composition_sequential_example.png}
+    \caption{Изменение исходной траектории при последовательном применении $R$-преобразований I, II и~III~типов}
+    \label{fig:syn-r-composition}
+\end{figure}
+
+\FloatBarrier
+\noindent\textbf{В четвёртой главе} конечные формулы и~$R$-преобразования объединены в~алгоритм построения начального приближения для прикладных задач баллистического проектирования. Его состояние задаётся вектором управляющих параметров
+\begin{equation}
+    \mathbf q=(\lambda,\kappa,\zeta,\chi,j,\gamma).
+    \label{eq:syn-q}
+\end{equation}
+Пара $\lambda,\kappa$ выбирает точку на~аппроксимированном модельном многообразии; $\zeta,\chi$ задают эксцентриситет и~ориентацию линии апсид; $j,\gamma$ --- наклонение и~линию узлов. Тем самым вместо прямого подбора шести сопряжённых переменных используются параметры, связанные с~геометрией перелёта.
+
+Центральная вычислительная цепочка алгоритма представлена на~рис.~\ref{fig:syn-initial-guess-chain}. По~эфемеридам для даты старта находятся начальный фазовый вектор и~элементы целевой орбиты. Из~начальной синодической фазы выбираются до~трёх ближайших кандидатов $\lambda_k^\star$, $k\in\{-1,0,1\}$, после чего допустимая точка КЛО корректируется по~формуле~\eqref{eq:syn-lambda-correction}. Конечные формулы дают $\widehat T$, $\widehat J$ и~$\widehat{\mathbf z}_0^{\mathrm{pl}}$, а~композиция~\eqref{eq:syn-r-composition} переводит их в~$\mathbf z_0^{\mathrm{init}}$ для эфемеридной задачи.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        node distance=3.5mm,
+        every node/.style={font=\scriptsize,align=center},
+        block/.style={draw,rounded corners,minimum width=0.78\textwidth,minimum height=6.5mm,fill=gray!7},
+        arrow/.style={->,thick}
+    ]
+        \node[block] (input) {$t_0$, эфемериды, элементы целевой орбиты};
+        \node[block,below=of input] (model) {$\Phi\to(\lambda^\star,\kappa)\to(\lambda_{\mathrm{corr}},\kappa)$};
+        \node[block,below=of model] (formula) {конечные формулы: $\widehat T$, $\widehat J$, $\widehat{\mathbf z}_0^{\mathrm{pl}}$};
+        \node[block,below=of formula] (transform) {$R_0$, $R_{e\omega}$, $R_{i\Omega}$ и~композиция $R_\Sigma$};
+        \node[block,below=of transform] (initial) {$\mathbf y_0^{\mathrm{init}}=(\mathbf r_0,\mathbf v_0,\mathbf p_{r0}^{\mathrm{init}},\mathbf p_{v0}^{\mathrm{init}})$};
+        \node[block,below=of initial] (refine) {интегрирование и~численное уточнение краевой задачи};
+        \draw[arrow] (input)--(model);
+        \draw[arrow] (model)--(formula);
+        \draw[arrow] (formula)--(transform);
+        \draw[arrow] (transform)--(initial);
+        \draw[arrow] (initial)--(refine);
+    \end{tikzpicture}
+    \caption{Алгоритм построения и~уточнения начального приближения}
+    \label{fig:syn-initial-guess-chain}
+\end{figure}
+
+Для перелёта Земля--Марс начальное приближение построено по~эфемеридам JPL DE430. В~рассмотренном примере $\lambda^\star=1.324331$, после коррекции $\lambda_{\mathrm{corr}}=1.268512$, $\kappa=1.523783$; конечная формула дала $\widehat T=636.1619$~суток. После уточнения получено $T_{\mathrm{opt}}=653.8369$~суток, а~краевые невязки снижены до~$8.07\times10^{-4}$~км по~положению и~$9.41\times10^{-11}$~км/с по~скорости. Начальная и~уточнённая траектории показаны на~рис.~\ref{fig:syn-mars-initial-refined}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.80\textwidth]{chap4_mars_cleanver_rebuilt_Oxy.png}
+    \caption{Начальное приближение и~уточнённая траектория перелёта Земля--Марс}
+    \label{fig:syn-mars-initial-refined}
+\end{figure}
+
+Устойчивость алгоритма проверена на~эфемеридных конфигурациях, охватывающих периоды повторения геометрии Земля--Марс и~Земля--Венера. Компактная выборка средних абсолютных ошибок до~уточнения приведена в~табл.~\ref{tab:syn-mission-quality}. После оптимизации непосредственно в~параметрах $\mathbf q$ невязки элементов конечной орбиты снижались до~уровня $10^{-12}$--$10^{-15}$, что подтверждает пригодность $\mathbf q$ как локальной параметризации окрестности решения.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Средние абсолютные ошибки начального приближения}
+    \label{tab:syn-mission-quality}
+    \small
+    \begin{tabular}{lcc}
+        \toprule
+        Параметр & Земля--Марс & Земля--Венера \\
+        \midrule
+        $e$ & $3.0\times10^{-3}$ & $2.0\times10^{-2}$ \\
+        $i$ & $4.0\times10^{-3}\,{}^\circ$ & $2.0\times10^{-1}\,{}^\circ$ \\
+        $\Omega$ & $4.0\,{}^\circ$ & $2.0\,{}^\circ$ \\
+        $\omega$ & $11\,{}^\circ$ & $26\,{}^\circ$ \\
+        $\varphi$ & $3.0\,{}^\circ$ & $0.7\,{}^\circ$ \\
+        $a$ & $6.0\times10^{-2}$~а.е. & $4.0\times10^{-3}$~а.е. \\
+        $T$ & $8.5$~сут. & $0.7$~сут. \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Проведено сравнение с~продолжением по~гравитационному параметру на~сетке из~100 дат старта к~Марсу. Оба способа успешно уточнили все 100 задач до~уровня машинной точности. Среднее время предлагаемого подхода составило $0.636$~с против $1.89$~с для продолжения по~$\mu$. Последнее требовало проверки в~среднем $3.8$ ветвей, тогда как предложенный алгоритм прямо формирует приближение в~интерпретируемых параметрах $\mathbf q$ и~не требует заранее заданного номера ветви.
+
+Вычислительная цепочка развита для постановок с~дополнительным импульсом скорости $\mathbf v_\delta$ и~для перехода от~идеально регулируемой тяги (ИРТ) к~модели постоянной скорости истечения (ПСИ). ИРТ-решение используется как гладкая исходная точка параметрического продолжения: сначала раскрывается допустимая область $\lVert\mathbf v_\delta\rVert$, затем функционал деформируется от~квадратичного к~линейному по~модулю тяги. На~примере Земля--Венера получено опорное ПСИ-решение продолжительностью $390.8$~суток с~затратами топлива $41.77$~кг, характеристической скорости $3.18$~км/с и~дополнительным импульсом $2.67$~км/с. Это решение перенесено $R$-преобразованием I~типа на~другие даты старта (рис.~\ref{fig:syn-venus-transfer}) и~использовано в~расчёте с~суточным шагом на~интервале 01.01.2028--01.01.2037.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Venus_initial_guess_before_transfer.png}
+        \par\smallskip
+        опорное решение, 01.11.2032
+    \end{minipage}\hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Venus_initial_guess_after_transfer.png}
+        \par\smallskip
+        перенос на~01.01.2028
+    \end{minipage}
+    \caption{Перенос опорного решения перелёта Земля--Венера по~дате старта}
+    \label{fig:syn-venus-transfer}
+\end{figure}
+
+Конечные формулы, $R$-преобразования, интегрирование расширенной системы и~уточнение в~параметрах $\mathbf q$ реализованы в~программном комплексе \texttt{ILTT Toolbox}. Программная реализация обеспечивает воспроизводимость вычислительной схемы, но~не заменяет последующее уточнение траектории в~целевой модели движения и~двигательной установки.
+
+\FloatBarrier
+\clearpage
+\pdfbookmark[1]{Основные результаты и выводы}{main-results}
+\begin{center}
+    \textbf{ОСНОВНЫЕ РЕЗУЛЬТАТЫ И ВЫВОДЫ}
+\end{center}
+
+\begin{enumerate}
+    \item Построено модельное многообразие энергетически оптимальных решений задачи встречи с~идеально регулируемой тягой. Предложена методика его численного построения дискретным продолжением регулярной ветви, анализа геометрии и~аппроксимации компонент интерпретируемыми конечными формулами.
+
+    \item Показано, что расслоение многовитковых решений в~эфемеридных координатах переходит в~односвязное модельное многообразие. На~нём выделена кривая локальных оптимумов и~введены точки оптимальной дальности как пересечения этой кривой с~изолиниями фиксированной начальной синодической фазы.
+
+    \item Получены и~верифицированы конечные формулы для продолжительности перелёта, непрерывной фазы, квадратичного функционала и~начальных значений сопряжённых переменных в~основной и~маловитковой областях. Динамическая проверка выполнена повторным интегрированием расширенной системы и~контролем краевых невязок.
+
+    \item Разработаны линейные $R$-преобразования трёх типов: для изменения начального фазового вектора, задания эксцентриситета и~ориентации линии апсид, а~также задания наклонения и~линии узлов конечной орбиты. Построены конечные формулы управляющих параметров, коррекция витковой дальности и~композиция преобразований.
+
+    \item Предложен алгоритм построения начального приближения, который для заданной даты старта выбирает точку оптимальной дальности, вычисляет модельный сопряжённый вектор и~преобразует его к~целевой геометрии. Управляющие параметры $\mathbf q$ используются как интерпретируемая локальная параметризация при численном уточнении.
+
+    \item Алгоритм апробирован для перелётов Земля--Марс и~Земля--Венера, сопоставлен с~продолжением по~гравитационному параметру и~включён в~цепочку перехода к~постановкам с~дополнительным импульсом скорости и~ПСИ-моделью. Метод реализован в~комплексе \texttt{ILTT Toolbox} и~применён для серийных расчётов по~датам старта.
+\end{enumerate}
+
+\FloatBarrier
+\clearpage
+\renewcommand{\bibtitleauthor}{Список публикаций по теме диссертации}
+\nocite{%
+korneev_low_thrust_ks_2024,
+korneev_parametric_analysis_2025,
+korneev_regular_variables_2022,
+korneev_mars_platform_2024,
+korneev_venus_platform_2026,
+korneev_affine_transformations_2025,
+korneev_symbolic_regression_2024,
+korneev_duration_ngpm_2024,
+korneev_hybrid_mars_2024,
+korneev_exhaustive_parametric_2024,
+korneev_coplanar_circular_2025,
+korneev_affine_noncoplanar_2025,
+korneev_elliptic_circular_2025,
+korneev_solution_structure_mipt_2023,
+korneev_ks_canonical_2022,
+korneev_phase_variables_2021,
+korneev_regularized_trajectory_2020,
+korneev_propulsion_2024,
+korneev_fakel_2025,
+prog_iltt_toolbox}
+\begingroup
+\small
+\setlength{\bibitemsep}{0.35\baselineskip}
+\insertbiblioauthor
+\endgroup
