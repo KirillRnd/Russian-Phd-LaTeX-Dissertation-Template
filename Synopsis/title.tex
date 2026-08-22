@@ -1,12 +1,10 @@
 \thispagestyle{empty}
 
 \noindent%
-\begin{tabularx}{\textwidth}{@{}lXr@{}}%
-    & & \large{На правах рукописи}\\
-    \IfFileExists{images/logo.pdf}{\includegraphics[height=2.5cm]{logo}}{\rule[0pt]{0pt}{2.5cm}}  & &
-    \ifnumequal{\value{showperssign}}{0}{%
-        \rule[0pt]{0pt}{1.5cm}
-    }{
+\begin{tabularx}{\textwidth}{@{}Xr@{}}%
+    & \large{На правах рукописи}\\
+    \rule[0pt]{0pt}{2.5cm} &
+    \ifnumequal{\value{showperssign}}{0}{}{%
         \includegraphics[height=1.5cm]{personal-signature.png}
     }\\
 \end{tabularx}
@@ -69,8 +67,8 @@
                               \fi
                               \vspace{0.013\paperheight}\\
     \fi
+    \ifnumequal{\value{showopplead}}{0}{}{%
     Официальные оппоненты:  &
-    \ifnumequal{\value{showopplead}}{0}{\vspace{13\onelineskip plus1fill}}{%
         \textbf{\opponentOneFio,}\par
         \opponentOneRegalia,\par
         \opponentOneJobPlace,\par
@@ -88,18 +86,22 @@
         \opponentThreeJobPlace,\par
         \opponentThreeJobPost
     \fi
-    }%
     \vspace{0.013\paperheight} \\
     \ifdefined\leadingOrganizationTitle
     Ведущая организация:    &
-    \ifnumequal{\value{showopplead}}{0}{\vspace{6\onelineskip plus1fill}}{%
+    \ifnumequal{\value{showopplead}}{0}{}{%
         \leadingOrganizationTitle
     }%
     \fi
+    }%
 \end{tabularx}
 \vspace{0.008\paperheight plus1fill}
 
+\ifnumequal{\value{showprocedure}}{0}{%
+\noindent Диссертационный совет \defenseCouncilNumber\ создан на базе \defenseCouncilTitle. Адрес совета: \defenseCouncilAddress.
+}{%
 \noindent Защита состоится \defenseDate~на~заседании диссертационного совета \defenseCouncilNumber~при \defenseCouncilTitle~по адресу: \defenseCouncilAddress.
+}
 
 \vspace{0.008\paperheight plus1fill}
 \noindent С диссертацией можно ознакомиться в библиотеке \synopsisLibrary.
@@ -108,7 +110,7 @@
 \noindent Отзывы на автореферат в двух экземплярах, заверенные печатью учреждения, просьба направлять по адресу: \defenseCouncilAddress, ученому секретарю диссертационного совета~\defenseCouncilNumber.
 
 \vspace{0.008\paperheight plus1fill}
-\noindent{Автореферат разослан \synopsisDate.}
+\ifnumequal{\value{showprocedure}}{0}{}{\noindent{Автореферат разослан \synopsisDate.}}
 
 \noindent Телефон для справок: \defenseCouncilPhone.
 

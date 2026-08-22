@@ -6,6 +6,7 @@
 \newcounter{showperssign}
 \newcounter{showsecrsign}
 \newcounter{showopplead}
+\newcounter{showprocedure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% Список публикаций %%%
@@ -81,14 +82,16 @@
                                         % "--- здесь не работает
 
 %Демонстрация подписи диссертанта на автореферате
-\setcounter{showperssign}{1}  % 0 --- не показывать;
+\setcounter{showperssign}{0}  % 0 --- не показывать;
                               % 1 --- показывать
 %Демонстрация подписи учёного секретаря на автореферате
-\setcounter{showsecrsign}{1}  % 0 --- не показывать;
+\setcounter{showsecrsign}{0}  % 0 --- не показывать;
                               % 1 --- показывать
 %Демонстрация информации об оппонентах и ведущей организации на автореферате
-\setcounter{showopplead}{1}   % 0 --- не показывать;
+\setcounter{showopplead}{0}   % 0 --- не показывать;
                               % 1 --- показывать
+% Процедурные сведения (дата защиты и дата рассылки) пока не утверждены.
+\setcounter{showprocedure}{0} % 0 --- не показывать; 1 --- показывать
 
 %%% Цвета гиперссылок %%%
 % Latex color definitions: http://latexcolor.com/
