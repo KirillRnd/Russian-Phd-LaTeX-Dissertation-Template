@@ -12,6 +12,7 @@ import hashlib
 import json
 import re
 import shutil
+import unicodedata
 import zipfile
 from collections import Counter
 from dataclasses import dataclass
@@ -30,14 +31,35 @@ WVAL = f"{{{W}}}val"
 RID = f"{{{R}}}id"
 REMBED = f"{{{R}}}embed"
 
+EDITORIAL_FIXES = {
+    "эксперименотов": "экспериментов",
+    "формируемые материалов": "формируемые материалы",
+    "письменная репрезентаци": "письменная репрезентация",
+    "старо каталанский": "старокаталанский",
+    "испраивил": "исправил",
+    "в105-й": "в 105-й",
+    "клятва оказывалось": "клятва оказывалась",
+    "URL:https": "URL: https",
+}
+
 
 def normalise_text(text: str) -> str:
-    return (
+    value = unicodedata.normalize(
+        "NFC",
         text.replace("\u00ad", "")
         .replace("\u200b", "")
         .replace("\r", "")
-        .replace("\u2011", "-")
+        .replace("\u2011", "-"),
     )
+    for source, replacement in EDITORIAL_FIXES.items():
+        value = value.replace(source, replacement)
+    return value
+
+
+def apply_editorial_fixes(value: str) -> str:
+    for source, replacement in EDITORIAL_FIXES.items():
+        value = value.replace(source, replacement)
+    return value
 
 
 def escape_plain(text: str) -> str:
@@ -53,6 +75,10 @@ def escape_plain(text: str) -> str:
         "_": r"\_",
         "^": r"\textasciicircum{}",
         "~": r"\textasciitilde{}",
+        # Эти два средневековых сокращения отсутствуют в доступных шрифтах;
+        # даём их общепринятые буквенные раскрытия вместо пустых квадратов.
+        "ꝝ": r"{\unicodefallback r\textsuperscript{um}}",
+        "ꝫ": r"{\unicodefallback et}",
         "\u00a0": "~",
         "\u202f": "~",
         "\u2013": "--",
@@ -64,7 +90,35 @@ def escape_plain(text: str) -> str:
         "\u00b1": r"$\pm$",
         "\u00d7": r"$\times$",
     }
-    return "".join(replacements.get(char, char) for char in text)
+    fallback_chars = set("ṭṬʾἐὁὅꝑꝗ")
+    chunks: list[str] = []
+    fallback_run: list[str] = []
+    arabic_run: list[str] = []
+
+    def flush_fallback() -> None:
+        if fallback_run:
+            chunks.append(r"{\unicodefallback " + "".join(fallback_run) + "}")
+            fallback_run.clear()
+
+    def flush_arabic() -> None:
+        if arabic_run:
+            chunks.append(r"\arabictext{" + "".join(arabic_run) + "}")
+            arabic_run.clear()
+
+    for char in text:
+        if "\u0600" <= char <= "\u06ff":
+            flush_fallback()
+            arabic_run.append(char)
+        elif char in fallback_chars or unicodedata.combining(char):
+            flush_arabic()
+            fallback_run.append(char)
+        else:
+            flush_arabic()
+            flush_fallback()
+            chunks.append(replacements.get(char, char))
+    flush_arabic()
+    flush_fallback()
+    return "".join(chunks)
 
 
 URL_RE = re.compile(r"https?://[^\s<>()]+", re.I)
@@ -80,11 +134,33 @@ def escape_text(text: str) -> str:
         while url and url[-1] in ".,;:":
             trailing = url[-1] + trailing
             url = url[:-1]
-        chunks.append(r"\url{" + url.replace("%", r"\%") + "}")
+        safe_url = url.replace("%", r"\%").replace("#", r"\#")
+        chunks.append(r"\url{" + safe_url + "}")
         chunks.append(escape_plain(trailing))
         cursor = match.end()
     chunks.append(escape_plain(text[cursor:]))
     return "".join(chunks)
+
+
+SPLIT_URL_RE = re.compile(
+    r"(?<!\{)(?=https?://[^\s{}]*\\[&%#])https?://[^\s{}]+", re.I
+)
+
+
+def wrap_split_urls(value: str) -> str:
+    """Wrap URLs that Word split across runs before LaTeX conversion."""
+
+    def replacement(match: re.Match[str]) -> str:
+        url = match.group(0)
+        trailing = ""
+        while url and url[-1] in ".,;:)":
+            trailing = url[-1] + trailing
+            url = url[:-1]
+        url = url.replace(r"\&", "&").replace(r"\%", "%").replace(r"\#", "#")
+        safe_url = url.replace("%", r"\%").replace("#", r"\#")
+        return r"\url{" + safe_url + "}" + trailing
+
+    return SPLIT_URL_RE.sub(replacement, value)
 
 
 def xml_part(archive: zipfile.ZipFile, name: str) -> etree._Element | None:
@@ -231,7 +307,11 @@ class DocxConverter:
             elif child.tag == f"{{{W}}}tab":
                 chunks.append(r"\quad{}")
             elif child.tag in {f"{{{W}}}br", f"{{{W}}}cr"}:
-                chunks.append(r"\\{}")
+                # Word manual line breaks frequently occur inside table cells and
+                # formatted runs.  A LaTeX ``\\`` nested in ``\textbf`` is fragile
+                # and can also create spurious blank lines, so preserve the textual
+                # separation as an ordinary space.
+                chunks.append(" ")
             elif child.tag == f"{{{W}}}noBreakHyphen":
                 chunks.append("-")
             elif child.tag == f"{{{W}}}softHyphen":
@@ -245,6 +325,11 @@ class DocxConverter:
             return ""
         props = run.find("w:rPr", namespaces=NS)
         if props is None or value.startswith("\n\\begin{figure}"):
+            return value
+        # A Word footnote marker inherits the formatting of its surrounding run.
+        # Wrapping the generated \footnote in \emph/\textbf is invalid as soon as
+        # the note contains paragraph breaks (and is visually wrong in any case).
+        if value.startswith(r"\footnote{"):
             return value
         if r"\footnote{" not in value and safe_bool(props.find("w:vertAlign[@w:val='superscript']", namespaces=NS)):
             value = r"\textsuperscript{" + value + "}"
@@ -277,7 +362,7 @@ class DocxConverter:
                 chunks.append(self._inline_children(child, allow_footnote))
             elif child.tag == f"{{{W}}}del":
                 continue
-        return "".join(chunks)
+        return wrap_split_urls("".join(chunks))
 
     def paragraph_inline(self, paragraph: etree._Element, allow_footnote: bool = True) -> str:
         return self._inline_children(paragraph, allow_footnote)
@@ -304,15 +389,21 @@ class DocxConverter:
                 cells.append(r"\par ".join(paragraphs))
             column_count = max(column_count, len(cells))
             parsed_rows.append(cells)
+        width = r"\linewidth" if column_count >= 6 else r"\textwidth"
         spec = "|" + "|".join(
-            [r"p{\dimexpr0.94\textwidth/" + str(column_count) + r"\relax}"]
+            [r"p{\dimexpr0.94" + width + "/" + str(column_count) + r"\relax}"]
             * column_count
         ) + "|"
-        lines = [r"\begin{center}", r"\small", f"\\begin{{longtable}}{{{spec}}}", r"\hline"]
+        lines = []
+        if column_count >= 6:
+            lines.append(r"\begin{landscape}")
+        lines += [r"\begin{center}", r"\small", r"\setlength{\tabcolsep}{2pt}", f"\\begin{{longtable}}{{{spec}}}", r"\hline"]
         for cells in parsed_rows:
             cells = cells + [""] * (column_count - len(cells))
             lines.append(" & ".join(cells) + r" \\ \hline")
         lines += [r"\end{longtable}", r"\end{center}"]
+        if column_count >= 6:
+            lines.append(r"\end{landscape}")
         self.stats["tables"] += 1
         return "\n".join(lines)
 
@@ -444,11 +535,16 @@ def convert_standard(converter: DocxConverter, mode: str) -> str:
             start = header_end + chapter.start()
             end = header_end + chapter.end()
             result = result[:header_end] + result[start:end] + "\n" + result[header_end:start] + result[end:]
-    return result
+    return apply_editorial_fixes(result)
 
 
 def convert_appendix(converter: DocxConverter) -> str:
-    lines = ["% Автоматически перенесено из " + converter.source.name, ""]
+    lines = [
+        "% Автоматически перенесено из " + converter.source.name,
+        "",
+        r"\chapter{Материалы вычислительного анализа текстуальных соответствий}",
+        "",
+    ]
     in_code = False
     first = True
     for element in converter.body_elements():
@@ -473,7 +569,13 @@ def convert_appendix(converter: DocxConverter) -> str:
             in_code = not in_code
             continue
         if in_code:
-            lines.append(normalise_text(plain))
+            # Listings uses the monospaced family, which has no medieval
+            # abbreviation glyphs.  Preserve their scholarly meaning through
+            # explicit ASCII expansions instead of emitting missing-glyph boxes.
+            code_line = normalise_text(plain).translate(
+                str.maketrans({"ꝝ": "[rum]", "ꝫ": "[et]", "ꝑ": "[per]", "ꝗ": "[q]"})
+            )
+            lines.append(code_line)
             continue
         heading = re.match(r"^(#{1,4})\s+(.*)$", plain, re.S)
         if heading:
@@ -487,7 +589,7 @@ def convert_appendix(converter: DocxConverter) -> str:
             converter.stats["paragraphs"] += 1
     if in_code:
         lines.append(r"\end{lstlisting}")
-    return "\n".join(lines).rstrip() + "\n"
+    return apply_editorial_fixes("\n".join(lines).rstrip() + "\n")
 
 
 BIB_GROUPS = {
@@ -529,18 +631,7 @@ def bibliography_entries(source: Path) -> tuple[list[dict[str, str]], list[str]]
 
 
 def bib_escape(text: str) -> str:
-    return (
-        normalise_text(text)
-        .replace("\\", r"\textbackslash{}")
-        .replace("{", r"\{")
-        .replace("}", r"\}")
-        .replace("%", r"\%")
-        .replace("&", r"\&")
-        .replace("#", r"\#")
-        .replace("_", r"\_")
-        .replace("\u00a0", " ")
-        .replace("\u202f", " ")
-    )
+    return escape_text(normalise_text(text)).replace("~", " ")
 
 
 def write_bibliography(source: Path, output: Path, report_output: Path) -> dict[str, object]:
@@ -551,7 +642,6 @@ def write_bibliography(source: Path, output: Path, report_output: Path) -> dict[
             f"@MISC{{{entry['key']},",
             f"  title    = {{{{{bib_escape(entry['text'])}}}}},",
             f"  keywords = {{{entry['group']}}},",
-            "  language = {russian},",
             "}",
             "",
         ]

@@ -1,0 +1,129 @@
+{
+  "source": "D:/NIR/Russian-Phd-LaTeX-Dissertation-Template-KorneevaAnna/ОРИГИНАЛ/13.04 ДИССЕР/ВЕРСИЯ_3",
+  "documents": [
+    {
+      "source": "КОНТЕКСТ_ВЕРСИЯ_3.docx",
+      "output": "introduction_context.tex",
+      "sha256": "8f0741109a7acc07d033034f4d3c45287cf030d0226ceab4f5f6b883fee5777d",
+      "stats": {
+        "headings": 6,
+        "footnotes": 53,
+        "paragraphs": 37
+      },
+      "images": []
+    },
+    {
+      "source": "ИСТОРИОГРАФИЯ_ВЕРСИЯ_3.docx",
+      "output": "introduction_historiography.tex",
+      "sha256": "c6824399da13467b9ff8004c465882df17dc5d5f57de5f898b1979874ec3ad91",
+      "stats": {
+        "headings": 15,
+        "paragraphs": 145,
+        "footnotes": 227
+      },
+      "images": []
+    },
+    {
+      "source": "ИСТОЧНИК_ВЕРСИЯ_3.docx",
+      "output": "introduction_sources.tex",
+      "sha256": "223d601a52d608bc9d7cd058797443eb7fc385ddb860b3f2f3c1d341995951a4",
+      "stats": {
+        "headings": 11,
+        "paragraphs": 121,
+        "footnotes": 161
+      },
+      "images": []
+    },
+    {
+      "source": "ГЛАВА_1_ВЕРСИЯ_3.docx",
+      "output": "chapter1.tex",
+      "sha256": "430909411f51d22f24952bd620b7d7bb1109ed94f9e109afbb4859a801ecd5f2",
+      "stats": {
+        "paragraphs": 224,
+        "headings": 19,
+        "footnotes": 80,
+        "tables": 17,
+        "images": 6
+      },
+      "images": [
+        {
+          "source": "word/media/image1.png",
+          "output": "chapter1_01.png",
+          "alt": ""
+        },
+        {
+          "source": "word/media/image2.png",
+          "output": "chapter1_02.png",
+          "alt": ""
+        },
+        {
+          "source": "word/media/image3.png",
+          "output": "chapter1_03.png",
+          "alt": ""
+        },
+        {
+          "source": "word/media/image4.png",
+          "output": "chapter1_04.png",
+          "alt": ""
+        },
+        {
+          "source": "word/media/image5.png",
+          "output": "chapter1_05.png",
+          "alt": ""
+        },
+        {
+          "source": "word/media/image6.png",
+          "output": "chapter1_06.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "source": "ГЛАВА_2_ВЕРСИЯ_3.docx",
+      "output": "chapter2.tex",
+      "sha256": "ecb974b4eb2464128e52fdddd63f6fbe8e304e781980fef8308b692d8adad437",
+      "stats": {
+        "headings": 25,
+        "paragraphs": 291,
+        "footnotes": 253,
+        "tables": 12
+      },
+      "images": []
+    },
+    {
+      "source": "ГЛАВА_3_ВЕРСИЯ_3.docx",
+      "output": "chapter3.tex",
+      "sha256": "86dadc9cf004dbe799cec8bccb0a9116808e88d7651c2700d1f73061a8d04e42",
+      "stats": {
+        "headings": 29,
+        "paragraphs": 232,
+        "footnotes": 173
+      },
+      "images": []
+    },
+    {
+      "source": "ПРИЛОЖЕНИЕ 3.docx",
+      "output": "appendix_computational_report.tex",
+      "sha256": "5d291c152c114415c0f60beb70d86511437fc8c0be21ea704ebd49d8f2027da5",
+      "stats": {
+        "headings": 25,
+        "paragraphs": 44
+      },
+      "images": []
+    }
+  ],
+  "bibliography": {
+    "source": "D:/NIR/Russian-Phd-LaTeX-Dissertation-Template-KorneevaAnna/ОРИГИНАЛ/13.04 ДИССЕР/ВЕРСИЯ_3/СПИСОК_ЛИТЕРАТУРЫ.docx",
+    "entries": 492,
+    "groups": {
+      "sources": 42,
+      "reference": 10,
+      "software": 2,
+      "research": 438
+    },
+    "editorial_notes": [
+      "Издания исторических источников начинают с латиноязычных – основных, и только потом переводы на русский"
+    ],
+    "method": "verbatim records in BibLaTeX misc entries"
+  }
+}

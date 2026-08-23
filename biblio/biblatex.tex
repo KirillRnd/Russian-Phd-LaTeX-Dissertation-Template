@@ -134,9 +134,17 @@ sorting=none,% настройка сортировки списка литера
 \fi
 
 %%% Подключение файлов bib %%%
-\addbibresource[label=bl-external]{biblio/external.bib}
-\addbibresource[label=bl-author]{biblio/author.bib}
-\addbibresource[label=bl-registered]{biblio/registered.bib}
+\addbibresource[label=bl-korneeva]{biblio/korneeva.bib}
+
+% В миграционной базе полное библиографическое описание сохраняется в поле
+% title, чтобы не домысливать отсутствующую структуру исходных записей.
+\DeclareFieldFormat[misc]{title}{#1}
+\DeclareBibliographyDriver{misc}{%
+    \usebibmacro{bibindex}%
+    \usebibmacro{begentry}%
+    \printfield{title}%
+    \usebibmacro{finentry}%
+}
 
 %http://tex.stackexchange.com/a/141831/79756
 %There is a way to automatically map the language field to the langid field. The following lines in the preamble should be enough to do that.

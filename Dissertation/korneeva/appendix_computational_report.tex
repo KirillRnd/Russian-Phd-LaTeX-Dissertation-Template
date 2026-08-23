@@ -1,0 +1,800 @@
+% Автоматически перенесено из ПРИЛОЖЕНИЕ 3.docx
+
+\chapter{Материалы вычислительного анализа текстуальных соответствий}
+
+\section{Top borrowings explanation from ready experiment: latin\_to\_usatges}
+
+Источник данных: готовые checkpoint-артефакты шага 2/3/4/6. Pipeline не запускался.
+
+Формат отчёта: raw text $\rightarrow$ preprocessing trace $\rightarrow$ retrieval evidence $\rightarrow$ tesserae / soft overlaps $\rightarrow$ saved metrics.
+
+\subsection{\#1: rank\_final\_position = 1}
+
+\textbf{Pair:} \texttt{Etymologiae\_18} $\rightarrow$ \texttt{Us\_140}
+
+\textbf{Parents:} \texttt{Etymologiae\_18} $\rightarrow$ \texttt{Us\_140}
+
+\textbf{Corpora:} \texttt{Etymologiae} $\rightarrow$ \texttt{UsatgesBarcelona}
+
+\subsubsection{1. Raw leaf segments}
+
+\textbf{Left raw} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+DE PRIVILEGIIS. Privilegia autem sunt leges privatorum, quasi privatae leges. Nam privilegium inde dictum, quod in privato feratur.
+\end{lstlisting}
+
+\textbf{Right raw} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+Priuilegia autem sunt leges priuatorum, quasi priuate leges; nam priuilegium inde dictum, quod in priuato feratur.
+\end{lstlisting}
+
+\subsubsection{2. Preprocessing trace}
+
+\textbf{Left preprocessing} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+MODE:
+latin  scores={'latin': 31.8, 'romance': 0.0, 'ocr_noise': 2.778}
+RAW:
+de priuilegiis priuilegia autem sunt leges priuatorum quasi priuatae leges nam priuilegium inde dictum quod in priuato feratur
+NORMALIZED:
+de priuilegiis priuilegia autem sunt leges priuatorum quasi priuatae leges nam priuilegium inde dictum quod in priuato feratur
+STEMMED:
+de priuilegiis priuilegia autem sunt leges priuat quasi priu leges nam priuilegium inde dictum quod in priuato fera
+FINAL TOKENS:
+priuilegiis priuilegia sunt leges priuat quasi priu leges priuilegium dictum priuato fera
+RAW → NORMALIZED changes:
+(no visible token-level changes)
+NORMALIZED → STEMMED changes:
+priuatorum → priuat; priuatae → priu; feratur → fera
+Removed after filtering:
+de, autem, nam, inde, quod, in
+\end{lstlisting}
+
+\textbf{Right preprocessing} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+MODE:
+latin  scores={'latin': 27.2, 'romance': 0.0, 'ocr_noise': 2.5}
+RAW:
+priuilegia autem sunt leges priuatorum quasi priuate leges nam priuilegium inde dictum quod in priuato feratur
+NORMALIZED:
+priuilegia autem sunt leges priuatorum quasi priuate leges nam priuilegium inde dictum quod in priuato feratur
+STEMMED:
+priuilegia autem sunt leges priuat quasi priuate leges nam priuilegium inde dictum quod in priuato fera
+FINAL TOKENS:
+priuilegia sunt leges priuat quasi priuate leges priuilegium dictum priuato fera
+RAW → NORMALIZED changes:
+(no visible token-level changes)
+NORMALIZED → STEMMED changes:
+priuatorum → priuat; feratur → fera
+Removed after filtering:
+autem, nam, inde, quod, in
+\end{lstlisting}
+
+\textbf{Final token overlap after preprocessing} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+COMMON FINAL TOKENS:
+priuat, priuilegia, priuato, fera, priuilegium, leges, dictum, quasi, sunt
+LEFT ONLY:
+priuilegiis, priu
+RIGHT ONLY:
+priuate
+\end{lstlisting}
+
+\subsubsection{3. TF-IDF retrieval evidence}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small,language={}]
+{
+"candidate_rank_in_step4": 1,
+"cosine_from_rebuilt_tfidf": 0.917289,
+"cos_sim_saved_in_step6": 0.917289
+}
+\end{lstlisting}
+
+\textbf{Left top TF-IDF terms} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. leges    weight=0.248329
+2. dictum priuato    weight=0.218247
+3. dictum priuato fera    weight=0.218247
+4. leges priuat    weight=0.218247
+5. leges priuat quasi    weight=0.218247
+6. leges priuilegium    weight=0.218247
+7. leges priuilegium dictum    weight=0.218247
+8. priuat quasi    weight=0.218247
+9. priuato fera    weight=0.218247
+10. priuilegia sunt    weight=0.218247
+11. priuilegia sunt leges    weight=0.218247
+12. priuilegiis    weight=0.218247
+13. priuilegium dictum    weight=0.218247
+14. priuilegium dictum priuato    weight=0.218247
+15. quasi priu    weight=0.218247
+\end{lstlisting}
+
+\textbf{Right top TF-IDF terms} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. leges    weight=0.258871
+2. dictum priuato    weight=0.227513
+3. dictum priuato fera    weight=0.227513
+4. leges priuat    weight=0.227513
+5. leges priuat quasi    weight=0.227513
+6. leges priuilegium    weight=0.227513
+7. leges priuilegium dictum    weight=0.227513
+8. priuat quasi    weight=0.227513
+9. priuato fera    weight=0.227513
+10. priuilegia sunt    weight=0.227513
+11. priuilegia sunt leges    weight=0.227513
+12. priuilegium dictum    weight=0.227513
+13. priuilegium dictum priuato    weight=0.227513
+14. sunt leges priuat    weight=0.227513
+15. priuate    weight=0.209206
+\end{lstlisting}
+
+\textbf{Shared TF-IDF terms contributing to cosine} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. leges    left=0.248329    right=0.258871    product=0.064285
+2. dictum priuato    left=0.218247    right=0.227513    product=0.049654
+3. dictum priuato fera    left=0.218247    right=0.227513    product=0.049654
+4. leges priuat    left=0.218247    right=0.227513    product=0.049654
+5. leges priuat quasi    left=0.218247    right=0.227513    product=0.049654
+6. leges priuilegium    left=0.218247    right=0.227513    product=0.049654
+7. leges priuilegium dictum    left=0.218247    right=0.227513    product=0.049654
+8. priuat quasi    left=0.218247    right=0.227513    product=0.049654
+9. priuato fera    left=0.218247    right=0.227513    product=0.049654
+10. priuilegia sunt    left=0.218247    right=0.227513    product=0.049654
+11. priuilegia sunt leges    left=0.218247    right=0.227513    product=0.049654
+12. priuilegium dictum    left=0.218247    right=0.227513    product=0.049654
+13. priuilegium dictum priuato    left=0.218247    right=0.227513    product=0.049654
+14. sunt leges priuat    left=0.218247    right=0.227513    product=0.049654
+15. sunt leges    left=0.183125    right=0.190900    product=0.034959
+\end{lstlisting}
+
+\subsubsection{4. Tesserae: what exactly matched}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+SHARED LEMMAS USED BY TESSERAE:
+priuat, priuilegia, priuato, fera, priuilegium, leges, dictum, quasi, sunt
+\end{lstlisting}
+
+\textbf{Per-lemma IDF contributions} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. priuat    idf=7.005063
+2. priuilegia    idf=7.005063
+3. priuato    idf=6.742699
+4. fera    idf=6.668591
+5. priuilegium    idf=6.129595
+6. leges    idf=4.900929
+7. dictum    idf=4.373175
+8. quasi    idf=2.920769
+9. sunt    idf=2.137529
+\end{lstlisting}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small,language={}]
+{
+"shared_lemma_count": 9,
+"numerator_sum_idf": 47.883414,
+"normalizer_sqrt_unique_product": 10.488088,
+"recomputed_tesserae": 4.565504,
+"saved_tesserae_in_step6": 4.565504
+}
+\end{lstlisting}
+
+\subsubsection{5. Soft cosine: exact and fuzzy overlaps}
+
+\textbf{Exact overlaps} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+dictum, fera, leges, priuat, priuato, priuilegia, priuilegium, quasi, sunt
+\end{lstlisting}
+
+\textbf{Near matches within Levenshtein threshold} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. priuat ~ priuate    dist=1    sim=0.857143    hint=0.857143
+2. priuat ~ priuato    dist=1    sim=0.857143    hint=0.857143
+3. priuato ~ priuat    dist=1    sim=0.857143    hint=0.857143
+4. priuato ~ priuate    dist=1    sim=0.857143    hint=0.857143
+5. priuilegia ~ priuilegium    dist=2    sim=0.818182    hint=0.818182
+6. priuilegiis ~ priuilegia    dist=2    sim=0.818182    hint=0.818182
+7. priuilegiis ~ priuilegium    dist=2    sim=0.818182    hint=0.818182
+8. priuilegium ~ priuilegia    dist=2    sim=0.818182    hint=0.818182
+9. priu ~ priuat    dist=2    sim=0.666667    hint=0.666667
+\end{lstlisting}
+
+\subsubsection{6. Saved metrics from ready experiment}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small,language={}]
+{
+"cos_sim": 0.9172890186309814,
+"tesserae": 4.565504412640148,
+"soft_cos": 0.9293852556889164,
+"sw_score_raw": 19.0,
+"sw_norm": 1.7272727272727273,
+"alignment_a": [
+"priuilegia",
+"sunt",
+"leges",
+"priuat",
+"quasi",
+"priu",
+"leges",
+"priuilegium",
+"dictum",
+"priuato",
+"fera"
+],
+"alignment_b": [
+"priuilegia",
+"sunt",
+"leges",
+"priuat",
+"quasi",
+"priuate",
+"leges",
+"priuilegium",
+"dictum",
+"priuato",
+"fera"
+]
+}
+\end{lstlisting}
+
+\subsubsection{7. Why this pair ended up in top}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+Pareto layer: 1  (front=True)
+rank_cos=1, rank_tess=1, rank_soft=1, rank_sw=1
+rank_sum=4
+rank_final_position=1
+rank_score=1.0
+\end{lstlisting}
+
+\subsection{\#2: rank\_final\_position = 2}
+
+\textbf{Pair:} \texttt{CorpusJuris\_22.5.6} $\rightarrow$ \texttt{Us\_89}
+
+\textbf{Parents:} \texttt{CorpusJuris\_22.5.6} $\rightarrow$ \texttt{Us\_89}
+
+\textbf{Corpora:} \texttt{CorpusJuris} $\rightarrow$ \texttt{UsatgesBarcelona}
+
+\subsubsection{1. Raw leaf segments}
+
+\textbf{Left raw} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+Licinius 2 reg. Idonei non videntur esse testes, quibus imperari potest ut testes fiant.
+\end{lstlisting}
+
+\textbf{Right raw} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+Accusatores et testes esse non possunt qui ante esternum diem aut nudius tercius inimici fuerunt ne irati nocere cupiant, ne lesi se ulcisci uelint; inoffensus igitur accusatorum et testium affectus querendus est et non suspectus. Idonei testes non uidentur esse quibus imperari potest ut testes fiant.
+\end{lstlisting}
+
+\subsubsection{2. Preprocessing trace}
+
+\textbf{Left preprocessing} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+MODE:
+latin  scores={'latin': 15.8, 'romance': 0.0, 'ocr_noise': 1.429}
+RAW:
+licinius 2 reg idonei non uidentur esse testes quibus imperari potest ut testes fiant
+NORMALIZED:
+licinius 2 reg idonei non uidentur esse testes quibus imperari potest ut testes fiant
+STEMMED:
+licinius 2 reg idonei non uident esse testes quibus impera pot ut testes fia
+FINAL TOKENS:
+licinius 2 reg idonei uident testes quibus impera pot testes fia
+RAW → NORMALIZED changes:
+(no visible token-level changes)
+NORMALIZED → STEMMED changes:
+uidentur → uident; imperari → impera; potest → pot; fiant → fia
+Removed after filtering:
+non, esse, ut
+\end{lstlisting}
+
+\textbf{Right preprocessing} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+MODE:
+latin  scores={'latin': 60.0, 'romance': 1.5, 'ocr_noise': 2.174}
+RAW:
+accusatores et testes esse non possunt qui ante esternum diem aut nudius tercius inimici fuerunt ne irati nocere cupiant ne lesi se ulcisci uelint inoffensus igitur accusatorum et testium affectus querendus est et non suspectus idonei testes non uidentur esse quibus imperari potest ut testes fiant
+NORMALIZED:
+accusatores et testes esse non possunt qui ante esternum diem aut nudius tercius inimici fuerunt ne irati nocere cupiant ne lesi se ulcisci uelint inoffensus igitur accusatorum et testium affectus querendus est et non suspectus idonei testes non uidentur esse quibus imperari potest ut testes fiant
+STEMMED:
+accusator et testes esse non poss qui ante estern diem aut nudius terc inimici fuer ne irati noce cupia ne lesi se ulcisci ueli inoffensus igi accusat et test affect querend est et non suspect idonei testes non uident esse quibus impera pot ut testes fia
+FINAL TOKENS:
+accusator testes poss estern diem nudius terc inimici fuer irati noce cupia lesi ulcisci ueli inoffensus igi accusat test affect querend suspect idonei testes uident quibus impera pot testes fi
+RAW → NORMALIZED changes:
+(no visible token-level changes)
+NORMALIZED → STEMMED changes:
+accusatores → accusator; possunt → poss; esternum → estern; tercius → terc; fuerunt → fuer; nocere → noce; cupiant → cupia; uelint → ueli; igitur → igi; accusatorum → accusat; testium → test; affectus → affect; querendus → querend; suspectus → suspect; uidentur → uident; imperari → impera; potest → pot; fiant → fia
+Removed after filtering:
+et, esse, non, qui, ante, aut, ne, ne, se, et, est, et, non, non, esse, ut
+\end{lstlisting}
+
+\textbf{Final token overlap after preprocessing} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+COMMON FINAL TOKENS:
+impera, idonei, fia, testes, uident, quibus, pot
+LEFT ONLY:
+licinius, 2, reg
+RIGHT ONLY:
+accusator, poss, estern, diem, nudius, terc, inimici, fuer, irati, noce, cupia, lesi, ulcisci, ueli, inoffensus, igi, accusat, test, affect, querend, suspect
+\end{lstlisting}
+
+\subsubsection{3. TF-IDF retrieval evidence}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small,language={}]
+{
+"candidate_rank_in_step4": 3,
+"cosine_from_rebuilt_tfidf": 0.692144,
+"cos_sim_saved_in_step6": 0.692144
+}
+\end{lstlisting}
+
+\textbf{Left top TF-IDF terms} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. testes    weight=0.338294
+2. impera pot    weight=0.279500
+3. impera pot testes    weight=0.279500
+4. pot testes    weight=0.279500
+5. pot testes fia    weight=0.279500
+6. quibus impera    weight=0.279500
+7. quibus impera pot    weight=0.279500
+8. testes fia    weight=0.279500
+9. impera    weight=0.249771
+10. licinius    weight=0.243855
+11. 2 reg    weight=0.238854
+12. idonei    weight=0.200257
+13. fia    weight=0.178481
+14. uident    weight=0.162343
+15. 2    weight=0.160221
+\end{lstlisting}
+
+\textbf{Right top TF-IDF terms} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. testes    weight=0.392385
+2. idonei testes    weight=0.216126
+3. impera pot    weight=0.216126
+4. impera pot testes    weight=0.216126
+5. pot testes    weight=0.216126
+6. pot testes fia    weight=0.216126
+7. quibus impera    weight=0.216126
+8. quibus impera pot    weight=0.216126
+9. terc    weight=0.216126
+10. testes fia    weight=0.216126
+11. uident quibus    weight=0.216126
+12. querend    weight=0.205954
+13. testes poss    weight=0.198736
+14. impera    weight=0.193138
+15. affect    weight=0.188564
+\end{lstlisting}
+
+\textbf{Shared TF-IDF terms contributing to cosine} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. testes    left=0.338294    right=0.392385    product=0.132742
+2. impera pot    left=0.279500    right=0.216126    product=0.060407
+3. impera pot testes    left=0.279500    right=0.216126    product=0.060407
+4. pot testes    left=0.279500    right=0.216126    product=0.060407
+5. pot testes fia    left=0.279500    right=0.216126    product=0.060407
+6. quibus impera    left=0.279500    right=0.216126    product=0.060407
+7. quibus impera pot    left=0.279500    right=0.216126    product=0.060407
+8. testes fia    left=0.279500    right=0.216126    product=0.060407
+9. impera    left=0.249771    right=0.193138    product=0.048240
+10. idonei    left=0.200257    right=0.154851    product=0.031010
+11. fia    left=0.178481    right=0.138012    product=0.024633
+12. uident    left=0.162343    right=0.125533    product=0.020379
+13. quibus    left=0.105324    right=0.081443    product=0.008578
+14. pot    left=0.069278    right=0.053570    product=0.003711
+\end{lstlisting}
+
+\subsubsection{4. Tesserae: what exactly matched}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+SHARED LEMMAS USED BY TESSERAE:
+impera, idonei, fia, testes, uident, quibus, pot
+\end{lstlisting}
+
+\textbf{Per-lemma IDF contributions} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. impera    idf=7.698211
+2. idonei    idf=6.172154
+3. fia    idf=5.500986
+4. testes    idf=5.213304
+5. uident    idf=5.003583
+6. quibus    idf=3.246192
+7. pot    idf=2.135224
+\end{lstlisting}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small,language={}]
+{
+"shared_lemma_count": 7,
+"numerator_sum_idf": 34.969654,
+"normalizer_sqrt_unique_product": 16.733201,
+"recomputed_tesserae": 2.089837,
+"saved_tesserae_in_step6": 2.089837
+}
+\end{lstlisting}
+
+\subsubsection{5. Soft cosine: exact and fuzzy overlaps}
+
+\textbf{Exact overlaps} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+fia, idonei, impera, pot, quibus, testes, uident
+\end{lstlisting}
+
+\textbf{Near matches within Levenshtein threshold} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. testes ~ test    dist=2    sim=0.666667    hint=1.333333
+2. pot ~ poss    dist=2    sim=0.500000    hint=0.500000
+\end{lstlisting}
+
+\subsubsection{6. Saved metrics from ready experiment}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small,language={}]
+{
+"cos_sim": 0.6921442747116089,
+"tesserae": 2.0898365526290212,
+"soft_cos": 0.568439818619456,
+"sw_score_raw": 12.0,
+"sw_norm": 1.0909090909090908,
+"alignment_a": [
+"idonei",
+"-",
+"uident",
+"testes",
+"quibus",
+"impera",
+"pot",
+"testes",
+"fia"
+],
+"alignment_b": [
+"idonei",
+"testes",
+"uident",
+"-",
+"quibus",
+"impera",
+"pot",
+"testes",
+"fia"
+]
+}
+\end{lstlisting}
+
+\subsubsection{7. Why this pair ended up in top}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+Pareto layer: 2  (front=False)
+rank_cos=3, rank_tess=5, rank_soft=6, rank_sw=2
+rank_sum=16
+rank_final_position=2
+rank_score=0.5
+\end{lstlisting}
+
+\subsection{\#3: rank\_final\_position = 3}
+
+\textbf{Pair:} \texttt{ExceptPetri\_4.17} $\rightarrow$ \texttt{Us\_105}
+
+\textbf{Parents:} \texttt{ExceptPetri\_4.17} $\rightarrow$ \texttt{Us\_105}
+
+\textbf{Corpora:} \texttt{ExceptPetri} $\rightarrow$ \texttt{UsatgesBarcelona}
+
+\subsubsection{1. Raw leaf segments}
+
+\textbf{Left raw} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+luerint.. ca. xvij. Si quis aduerſus alium aliquam actionem habuerit: & ad iuſti ciam faciendam vocauerit: ille autem nec timore dei nec iuſſu Iudicis nec propinquo[rum] vel amico[rum] cōmonitu: iuſticiā actori facere voluerit: actor aūt ira COIIIIDTS: res eius mobiles raPuErit: immobiles inuaſerit: domos cōcremanerit: vineas meſ ſes: & arbores deuaſtauerit: poſteaq[et] reus aliquo tem[per]e ad iuſti ciam venerit: quicquid damni actori fœcit: vel luer quod de rebus ſiris poſſet cepiſſe: in primis ei reſtitunt. Poſtea actor ret quas ex bonis eius poſſedit reſtituat: conſumptum vero ſi [q]d Iucri ad preſens habet: tamen reſtauret.
+\end{lstlisting}
+
+\textbf{Right raw} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+SI QVIS CONTRA ALIVM aliquam querelam - habuerit et ad iusticiam faciendam eum uocauerit, ille autem, nec timore Dei, nec iudicis. iussu, nec propinquorum uel amicorum commonitu, iusticiam querelatori facere noluerit; querelator autem, ira commotus, res eius mobiles rapuerit, immobiles inuaserit, domos concremauerit, messes et vineas et arbores deuastauerit; posteaque reus aliquo tempore ad iusticiam uenerit; quicquid dampni ad querelatorem fecit uel lucrum quod posset de rebus suis cepisse, primum ei restituat, et postea querelator res quas ex bonis eius possidet ei reddat; consumpta uero, si aliquid lucri ad presens habet tantum restauret, et postea reus iusticiam faciat querelatori sicut facere debuerit et decet.
+\end{lstlisting}
+
+\subsubsection{2. Preprocessing trace}
+
+\textbf{Left preprocessing} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+MODE:
+latin  scores={'latin': 79.4, 'romance': 1.5, 'ocr_noise': 2.813}
+RAW:
+luerint ca xuii si quis aduersus alium aliquam actionem habuerit ad iusti ciam faciendam uocauerit ille autem nec timore dei nec iussu iudicis nec propinquo uel amico c monitu iustici actori facere uoluerit actor a t ira coiiiidts res eius mobiles rapuerit immobiles inuaserit domos c cremanerit uineas mes ses arbores deuastauerit posteaq reus aliquo tem e ad iusti ciam uenerit quicquid damni actori foecit uel luer quod de rebus siris posset cepisse in primis ei restitunt postea actor ret quas ex bonis eius possedit restituat consumptum uero si d iucri ad presens habet tamen restauret
+NORMALIZED:
+luerint ca xuii si quis aduersus alium aliquam actionem habuerit ad iusti ciam faciendam uocauerit ille autem nec timore dei nec iussu iudicis nec propinquo uel amico c monitu iustici actori facere uoluerit actor a t ira coiiiidts res eius mobiles rapuerit immobiles inuaserit domos c cremanerit uineas mes ses arbores deuastauerit posteaq reus aliquo tem e ad iusti ciam uenerit quicquid damni actori foecit uel luer quod de rebus siris posset cepisse in primis ei restitunt postea actor ret quas ex bonis eius possedit restituat consumptum uero si d iucri ad presens habet tamen restauret
+STEMMED:
+lueri ca xuii si quis aduers alium aliqu actionem habuer ad iusti ciam faciend uocauer ille autem nec timo dei nec iussu iudicis nec propinquo uel amico c monitu iustici acto face uoluer actor a t ira coiiiidts res eius mobiles rapuer immobiles inuaser domos c cremaner uineas mes ses arbor deuastauer posteaq reus aliquo tem e ad iusti ciam uener quicquid damni acto foec uel luer quod de rebus siris poss cepisse in primis ei restitunt postea actor ret quas ex bonis eius possed restituat consumptum uero si d iuc ad presens hab tamen restaur
+FINAL TOKENS:
+lueri xuii quis aduers alium aliqu actionem habuer iusti ciam faciend uocauer timo dei iussu iudicis propinquo amico c monitu iustici acto face uoluer actor ira coiiiidts res mobiles rapuer immobiles inuaser domos c cremaner uineas mes ses arbor deuastauer posteaq reus aliquo tem iusti ciam uener quicquid damni acto foec luer rebus siris poss cepisse primis restitunt postea actor ret quas bonis possed restituat consumptum uero d iuc presens hab restaur
+RAW → NORMALIZED changes:
+(no visible token-level changes)
+NORMALIZED → STEMMED changes:
+luerint → lueri; aduersus → aduers; aliquam → aliqu; habuerit → habuer; faciendam → faciend; uocauerit → uocauer; timore → timo; actori → acto; facere → face; uoluerit → uoluer; rapuerit → rapuer; inuaserit → inuaser; cremanerit → cremaner; arbores → arbor; deuastauerit → deuastauer; uenerit → uener; actori → acto; foecit → foec; posset → poss; possedit → possed; iucri → iuc; habet → hab; restauret → restaur
+Removed after filtering:
+ca, si, ad, ille, autem, nec, nec, nec, uel, a, t, eius, e, ad, uel, quod, de, in, ei, ex, eius, si, ad, tamen
+\end{lstlisting}
+
+\textbf{Right preprocessing} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+MODE:
+latin  scores={'latin': 111.8, 'romance': 0.0, 'ocr_noise': 2.596}
+RAW:
+si quis contra alium aliquam querelam habuerit et ad iusticiam faciendam eum uocauerit ille autem nec timore dei nec iudicis iussu nec propinquorum uel amicorum commonitu iusticiam querelatori facere noluerit querelator autem ira commotus res eius mobiles rapuerit immobiles inuaserit domos concremauerit messes et uineas et arbores deuastauerit postea que reus aliquo tempore ad iusticiam uenerit quicquid dampni ad querelatorem fecit uel lucrum quod posset de rebus suis cepisse primum ei restituat et postea querelator res quas ex bonis eius possidet ei reddat consumpta uero si aliquid lucri ad presens habet tantum restauret et postea reus iusticiam faciat querelatori sicut facere debuerit et decet
+NORMALIZED:
+si quis contra alium aliquam querelam habuerit et ad iusticiam faciendam eum uocauerit ille autem nec timore dei nec iudicis iussu nec propinquorum uel amicorum commonitu iusticiam querelatori facere noluerit querelator autem ira commotus res eius mobiles rapuerit immobiles inuaserit domos concremauerit messes et uineas et arbores deuastauerit postea que reus aliquo tempore ad iusticiam uenerit quicquid dampni ad querelatorem fecit uel lucrum quod posset de rebus suis cepisse primum ei restituat et postea querelator res quas ex bonis eius possidet ei reddat consumpta uero si aliquid lucri ad presens habet tantum restauret et postea reus iusticiam faciat querelatori sicut facere debuerit et decet
+STEMMED:
+si quis contra alium aliqu querel habuer et ad iusticiam faciend eum uocauer ille autem nec timo dei nec iudicis iussu nec propinquorum uel amic commonitu iusticiam querelato face noluer querel autem ira commotus res eius mobiles rapuer immobiles inuaser domos concremauerit messes et uineas et arbor deuastauer postea que reus aliquo tempo ad iusticiam uener quicquid dampni ad querelator fec uel lucrum quod poss de rebus suis cepisse primum ei restituat et postea querel res quas ex bonis eius possidet ei redd consumpta uero si aliquid luc ad presens hab tantum restaur et postea reus iusticiam faci querelato sicut face debuer et dec
+FINAL TOKENS:
+quis contra alium aliqu querel habuer iusticiam faciend eum uocauer timo dei iudicis iussu propinquorum amic commonitu iusticiam querelato face noluer querel ira commotus res mobiles rapuer immobiles inuaser domos concremauerit messes uineas arbor deuastauer postea reus aliquo tempo iusticiam uener quicquid dampni querelator fec lucrum poss rebus suis cepisse primum restituat postea querel res quas bonis possidet redd consumpta uero aliquid luc presens hab tantum restaur postea reus iusticiam faci querelato sicut face debuer dec
+RAW → NORMALIZED changes:
+(no visible token-level changes)
+NORMALIZED → STEMMED changes:
+aliquam → aliqu; querelam → querel; habuerit → habuer; faciendam → faciend; uocauerit → uocauer; timore → timo; amicorum → amic; querelatori → querelato; facere → face; noluerit → noluer; querelator → querel; rapuerit → rapuer; inuaserit → inuaser; arbores → arbor; deuastauerit → deuastauer; tempore → tempo; uenerit → uener; querelatorem → querelator; fecit → fec; posset → poss; querelator → querel; reddat → redd; lucri → luc; habet → hab; restauret → restaur; faciat → faci; querelatori → querelato; facere → face; debuerit → debuer; decet → dec
+Removed after filtering:
+si, et, ad, ille, autem, nec, nec, nec, uel, autem, eius, et, et, que, ad, ad, uel, quod, de, ei, et, ex, eius, ei, si, ad, et, et
+\end{lstlisting}
+
+\textbf{Final token overlap after preprocessing} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+COMMON FINAL TOKENS:
+deuastauer, cepisse, immobiles, restaur, domos, presens, uineas, inuaser, mobiles, rapuer, ira, uocauer, quicquid, timo, faciend, arbor, iussu, restituat, reus, aliquo, bonis, uener, habuer, quas, dei, iudicis, alium, rebus, aliqu, face, postea, hab, res, uero, quis, poss
+LEFT ONLY:
+lueri, xuii, aduers, actionem, iusti, ciam, propinquo, amico, c, monitu, iustici, acto, uoluer, actor, coiiiidts, cremaner, mes, ses, posteaq, tem, damni, foec, luer, siris, primis, restitunt, ret, possed, consumptum, d, iuc
+RIGHT ONLY:
+contra, querel, iusticiam, eum, propinquorum, amic, commonitu, querelato, noluer, commotus, concremauerit, messes, tempo, dampni, querelator, fec, lucrum, suis, primum, possidet, redd, consumpta, aliquid, luc, tantum, faci, sicut, debuer, dec
+\end{lstlisting}
+
+\subsubsection{3. TF-IDF retrieval evidence}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small,language={}]
+{
+"candidate_rank_in_step4": 4,
+"cosine_from_rebuilt_tfidf": 0.489168,
+"cos_sim_saved_in_step6": 0.489168
+}
+\end{lstlisting}
+
+\textbf{Left top TF-IDF terms} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. ciam    weight=0.247287
+2. iusti    weight=0.217740
+3. acto    weight=0.163766
+4. actionem habuer    weight=0.129750
+5. alium aliqu    weight=0.129750
+6. arbor deuastauer    weight=0.129750
+7. deuastauer    weight=0.129750
+8. immobiles inuaser    weight=0.129750
+9. immobiles inuaser domos    weight=0.129750
+10. inuaser domos    weight=0.129750
+11. mobiles rapuer    weight=0.129750
+12. mobiles rapuer immobiles    weight=0.129750
+13. presens hab    weight=0.129750
+14. quas bonis    weight=0.129750
+15. quis aduers    weight=0.129750
+\end{lstlisting}
+
+\textbf{Right top TF-IDF terms} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. iusticiam    weight=0.369222
+2. querel    weight=0.308515
+3. postea reus    weight=0.230158
+4. postea    weight=0.124441
+5. reus    weight=0.122610
+6. aliquid luc    weight=0.115079
+7. alium aliqu    weight=0.115079
+8. amic    weight=0.115079
+9. arbor deuastauer    weight=0.115079
+10. commotus    weight=0.115079
+11. deuastauer    weight=0.115079
+12. face noluer    weight=0.115079
+13. fec lucrum    weight=0.115079
+14. hab tantum    weight=0.115079
+15. immobiles inuaser    weight=0.115079
+\end{lstlisting}
+
+\textbf{Shared TF-IDF terms contributing to cosine} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. alium aliqu    left=0.129750    right=0.115079    product=0.014932
+2. arbor deuastauer    left=0.129750    right=0.115079    product=0.014932
+3. deuastauer    left=0.129750    right=0.115079    product=0.014932
+4. immobiles inuaser    left=0.129750    right=0.115079    product=0.014932
+5. immobiles inuaser domos    left=0.129750    right=0.115079    product=0.014932
+6. inuaser domos    left=0.129750    right=0.115079    product=0.014932
+7. mobiles rapuer    left=0.129750    right=0.115079    product=0.014932
+8. mobiles rapuer immobiles    left=0.129750    right=0.115079    product=0.014932
+9. presens hab    left=0.129750    right=0.115079    product=0.014932
+10. quas bonis    left=0.129750    right=0.115079    product=0.014932
+11. rapuer immobiles    left=0.129750    right=0.115079    product=0.014932
+12. rapuer immobiles inuaser    left=0.129750    right=0.115079    product=0.014932
+13. res mobiles rapuer    left=0.129750    right=0.115079    product=0.014932
+14. reus aliquo    left=0.129750    right=0.115079    product=0.014932
+15. timo dei    left=0.129750    right=0.115079    product=0.014932
+\end{lstlisting}
+
+\subsubsection{4. Tesserae: what exactly matched}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+SHARED LEMMAS USED BY TESSERAE:
+deuastauer, cepisse, immobiles, restaur, domos, presens, uineas, inuaser, mobiles, rapuer, ira, uocauer, quicquid, timo, faciend, arbor, iussu, restituat, reus, aliquo, bonis, uener, habuer, quas, dei, iudicis, alium, rebus, aliqu, face, postea, hab, res, uero, quis, poss
+\end{lstlisting}
+
+\textbf{Per-lemma IDF contributions} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. deuastauer    idf=8.614501
+2. cepisse    idf=7.921354
+3. immobiles    idf=7.698211
+4. restaur    idf=7.698211
+5. domos    idf=7.361738
+6. presens    idf=7.361738
+7. uineas    idf=7.228207
+8. inuaser    idf=7.005063
+9. mobiles    idf=7.005063
+10. rapuer    idf=6.822742
+11. ira    idf=6.599598
+12. uocauer    idf=6.363210
+13. quicquid    idf=6.263126
+14. timo    idf=6.088773
+15. faciend    idf=5.117994
+16. arbor    idf=5.017189
+17. iussu    idf=4.864997
+18. restituat    idf=4.743300
+19. reus    idf=4.589150
+20. aliquo    idf=4.487367
+21. bonis    idf=4.387668
+22. uener    idf=4.303702
+23. habuer    idf=4.103642
+24. quas    idf=3.994443
+25. dei    idf=3.979772
+26. iudicis    idf=3.932370
+27. alium    idf=3.923153
+28. rebus    idf=3.739304
+29. aliqu    idf=3.648166
+30. face    idf=3.250865
+31. postea    idf=3.105113
+32. hab    idf=3.038552
+33. res    idf=2.649638
+34. uero    idf=2.573057
+35. quis    idf=1.997098
+36. poss    idf=1.915001
+\end{lstlisting}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small,language={}]
+{
+"shared_lemma_count": 36,
+"numerator_sum_idf": 183.393078,
+"normalizer_sqrt_unique_product": 65.992424,
+"recomputed_tesserae": 2.779002,
+"saved_tesserae_in_step6": 2.779002
+}
+\end{lstlisting}
+
+\subsubsection{5. Soft cosine: exact and fuzzy overlaps}
+
+\textbf{Exact overlaps} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+aliqu, aliquo, alium, arbor, bonis, cepisse, dei, deuastauer, domos, face, faciend, hab, habuer, immobiles, inuaser
+\end{lstlisting}
+
+\textbf{Near matches within Levenshtein threshold} 
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+1. iustici ~ iusticiam    dist=2    sim=0.777778    hint=3.111111
+2. posteaq ~ postea    dist=1    sim=0.857143    hint=2.571429
+3. possed ~ postea    dist=2    sim=0.666667    hint=2.000000
+4. rebus ~ reus    dist=1    sim=0.800000    hint=1.600000
+5. res ~ reus    dist=1    sim=0.750000    hint=1.500000
+6. reus ~ res    dist=1    sim=0.750000    hint=1.500000
+7. mes ~ res    dist=1    sim=0.666667    hint=1.333333
+8. ret ~ res    dist=1    sim=0.666667    hint=1.333333
+9. ses ~ res    dist=1    sim=0.666667    hint=1.333333
+10. actor ~ arbor    dist=2    sim=0.600000    hint=1.200000
+11. iusti ~ iussu    dist=2    sim=0.600000    hint=1.200000
+12. rebus ~ res    dist=2    sim=0.600000    hint=1.200000
+13. mes ~ reus    dist=2    sim=0.500000    hint=1.000000
+14. ret ~ reus    dist=2    sim=0.500000    hint=1.000000
+15. ses ~ reus    dist=2    sim=0.500000    hint=1.000000
+\end{lstlisting}
+
+\subsubsection{6. Saved metrics from ready experiment}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small,language={}]
+{
+"cos_sim": 0.4891681373119354,
+"tesserae": 2.779002003105206,
+"soft_cos": 0.7031372128556733,
+"sw_score_raw": 57.48094940185547,
+"sw_norm": 0.7983465194702148,
+"alignment_a": [
+"quis",
+"aduers",
+"alium",
+"aliqu",
+"actionem",
+"habuer",
+"iusti",
+"ciam",
+"faciend",
+"-",
+"uocauer",
+"timo",
+"dei",
+"-",
+"iussu",
+"iudicis",
+"propinquo",
+"amico",
+"c",
+"monitu",
+"iustici",
+"acto",
+"face",
+"uoluer",
+"actor"
+],
+"alignment_b": [
+"quis",
+"contra",
+"alium",
+"aliqu",
+"querel",
+"habuer",
+"-",
+"iusticiam",
+"faciend",
+"eum",
+"uocauer",
+"timo",
+"dei",
+"iudicis",
+"iussu",
+"-",
+"propinquorum",
+"amic",
+"-",
+"commonitu",
+"iusticiam",
+"querelato",
+"face",
+"noluer",
+"querel"
+]
+}
+\end{lstlisting}
+
+\subsubsection{7. Why this pair ended up in top}
+
+\begin{lstlisting}[breaklines=true,basicstyle=\ttfamily\small]
+Pareto layer: 2  (front=False)
+rank_cos=4, rank_tess=2, rank_soft=3, rank_sw=18
+rank_sum=27
+rank_final_position=3
+rank_score=0.3333333333333333
+\end{lstlisting}

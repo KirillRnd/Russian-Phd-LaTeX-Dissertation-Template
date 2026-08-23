@@ -62,10 +62,9 @@
 	\ifnumequal{\value{contnumtab}}{1}{\counterwithout{table}{chapter}
 	}{\counterwithin{table}{chapter}}
 	
-	\include{Dissertation/chap1_methodology}      % Глава 1
-	\include{Dissertation/chap2_plane_model}      % Глава 2
-	\include{Dissertation/chap3_r_transformations}% Глава 3
-	\include{Dissertation/chap4_ballistic_design} % Глава 4
+	\include{Dissertation/korneeva/chapter1}      % Глава 1
+	\include{Dissertation/korneeva/chapter2}      % Глава 2
+	\include{Dissertation/korneeva/chapter3}      % Глава 3
 	
 	\setcounter{totalchapter}{\value{chapter}}    % Подсчёт количества глав
 	
@@ -78,9 +77,7 @@
 	\renewcommand*{\afterchapternum}{\par\nobreak\vskip \midchapskip}
 	\renewcommand\thechapter{\Asbuk{chapter}}     % Приложения русскими буквами
 	
-	\include{Dissertation/appendixA}              % Приложение А
-	\include{Dissertation/appendixB}              % Приложение Б
-	\include{Dissertation/appendixC}              % Приложение В
+	\include{Dissertation/korneeva/appendix_computational_report} % Приложение А
 	
 	\setcounter{totalappendix}{\value{chapter}}   % Подсчёт количества приложений
 	

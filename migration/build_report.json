@@ -1,0 +1,34 @@
+{
+  "entrypoint": "dissertation.tex",
+  "engine": "XeLaTeX",
+  "bibliography_processor": "biber",
+  "artifact": "output/pdf/dissertation-korneeva-version3.pdf",
+  "pages": 447,
+  "bytes": 2746024,
+  "sha256": "16ED4FDFE796A280D65A952F464DD5043AB8687BEA94CF10E23811E550004A4A",
+  "latex_errors": 0,
+  "undefined_references_or_citations": 0,
+  "missing_glyphs": 0,
+  "overfull_hboxes": 21,
+  "maximum_overfull_pt": 13.14987,
+  "outline_top_level_items": 13,
+  "visual_audit": {
+    "all_pages_contact_sheet_reviewed": true,
+    "representative_pages_full_resolution_reviewed": [
+      1,
+      2,
+      7,
+      8,
+      117,
+      147,
+      161,
+      200,
+      305,
+      383,
+      385,
+      426,
+      447
+    ],
+    "blocking_layout_defects": 0
+  }
+}

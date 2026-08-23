@@ -1,0 +1,14 @@
+{
+  "source": "D:/NIR/Russian-Phd-LaTeX-Dissertation-Template-KorneevaAnna/ОРИГИНАЛ/13.04 ДИССЕР/ВЕРСИЯ_3/СПИСОК_ЛИТЕРАТУРЫ.docx",
+  "entries": 492,
+  "groups": {
+    "sources": 42,
+    "reference": 10,
+    "software": 2,
+    "research": 438
+  },
+  "editorial_notes": [
+    "Издания исторических источников начинают с латиноязычных – основных, и только потом переводы на русский"
+  ],
+  "method": "verbatim records in BibLaTeX misc entries"
+}

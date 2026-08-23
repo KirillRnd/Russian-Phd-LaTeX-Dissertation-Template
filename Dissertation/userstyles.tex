@@ -1,4 +1,18 @@
 % для вертикального центрирования ячеек в tabulary
+\ifxetexorluatex
+    % Локальный fallback для знаков, отсутствующих в Times-совместимом
+    % Liberation Serif (арабская графика, политонический греческий и
+    % средневековые латинские сокращения).
+    \newfontfamily\unicodefallback[
+        BoldFont={DejaVu Sans}, ItalicFont={DejaVu Sans},
+        BoldItalicFont={DejaVu Sans}]{DejaVu Sans}
+    \newfontfamily\arabicfallback[
+        Script=Arabic, BoldFont={DejaVu Sans}, ItalicFont={DejaVu Sans},
+        BoldItalicFont={DejaVu Sans}]{DejaVu Sans}
+    \newcommand{\arabictext}[1]{{\TeXXeTstate=1\beginR\arabicfallback #1\endR}}
+\fi
+
+% для вертикального центрирования ячеек в tabulary
 \def\zz{\ifx\[$\else\aftergroup\zzz\fi}
 %$ \] % <-- чиним подсветку синтаксиса в некоторых редакторах
 \def\zzz{\setbox0\lastbox
