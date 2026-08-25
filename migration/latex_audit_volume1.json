@@ -1,5 +1,5 @@
 {
-  "entrypoint": "dissertation.tex",
+  "entrypoint": "dissertation-volume1.tex",
   "active_files": [
     "biblio/biblatex.tex",
     "biblio/predefined.tex",
@@ -28,8 +28,7 @@
     "Dissertation/title.tex",
     "Dissertation/userpackages.tex",
     "Dissertation/userstyles.tex",
-    "dissertation-volume1.tex",
-    "dissertation.tex"
+    "dissertation-volume1.tex"
   ],
   "missing_includes": [],
   "structural_issues": [],

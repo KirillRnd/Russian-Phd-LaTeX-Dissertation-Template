@@ -124,7 +124,7 @@ def main() -> None:
             "footnotes": len(re.findall(r"\\footnote\{", active_text)),
             "figures": len(re.findall(r"\\begin\{figure\}", active_text)),
             "longtables": len(re.findall(r"\\begin\{longtable\}", active_text)),
-            "bibliography_entries": len(re.findall(r"^@MISC\{", bib_text, flags=re.M | re.I)),
+            "bibliography_entries": len(re.findall(r"^@[a-z]+\{", bib_text, flags=re.M | re.I)),
         },
         "stale_topic_markers": stale_terms,
     }

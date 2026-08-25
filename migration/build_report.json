@@ -1,34 +1,43 @@
 {
-  "entrypoint": "dissertation.tex",
   "engine": "XeLaTeX",
-  "bibliography_processor": "biber",
-  "artifact": "output/pdf/dissertation-korneeva-version3.pdf",
-  "pages": 447,
-  "bytes": 2746024,
-  "sha256": "16ED4FDFE796A280D65A952F464DD5043AB8687BEA94CF10E23811E550004A4A",
-  "latex_errors": 0,
-  "undefined_references_or_citations": 0,
-  "missing_glyphs": 0,
-  "overfull_hboxes": 21,
-  "maximum_overfull_pt": 13.14987,
-  "outline_top_level_items": 13,
-  "visual_audit": {
-    "all_pages_contact_sheet_reviewed": true,
-    "representative_pages_full_resolution_reviewed": [
-      1,
-      2,
-      7,
-      8,
-      117,
-      147,
-      161,
-      200,
-      305,
-      383,
-      385,
-      426,
-      447
-    ],
-    "blocking_layout_defects": 0
-  }
+  "volumes": [
+    {
+      "volume": 1,
+      "entrypoint": "dissertation-volume1.tex",
+      "bibliography_processor": "biber",
+      "artifact": "output/pdf/dissertation-korneeva-volume-1.pdf",
+      "pages": 340,
+      "bytes": 2335445,
+      "sha256": "1AA42D1FF948A1594794653DBF10E3F3071BA163AD1D51BB3C09054545139B3B",
+      "latex_errors": 0,
+      "undefined_references_or_citations": 0,
+      "missing_glyphs": 0,
+      "overfull_hboxes": 21,
+      "maximum_overfull_pt": 13.14987,
+      "visual_audit": {
+        "all_pages_contact_sheet_reviewed": true,
+        "representative_pages_full_resolution_reviewed": [1, 7, 22, 33, 64, 115, 221, 293, 301, 340],
+        "blocking_layout_defects": 0
+      }
+    },
+    {
+      "volume": 2,
+      "entrypoint": "dissertation-volume2.tex",
+      "bibliography_processor": null,
+      "artifact": "output/pdf/dissertation-korneeva-volume-2.pdf",
+      "pages": 35,
+      "bytes": 168540,
+      "sha256": "B497B452A4AB6C3FEFA8B441A43C49908A06F492893DAD6D1CF3290E55BBC5A6",
+      "latex_errors": 0,
+      "undefined_references_or_citations": 0,
+      "missing_glyphs": 0,
+      "overfull_hboxes": 0,
+      "maximum_overfull_pt": 0.0,
+      "visual_audit": {
+        "all_pages_contact_sheet_reviewed": true,
+        "representative_pages_full_resolution_reviewed": [1, 3, 14, 35],
+        "blocking_layout_defects": 0
+      }
+    }
+  ]
 }

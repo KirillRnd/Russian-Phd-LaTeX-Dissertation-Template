@@ -1,0 +1,25 @@
+%&preformat-disser
+\def\thesisVolume{II}
+\def\dissertationvolume{2}
+\input{Dissertation/dissertation-preamble}
+
+\begin{document}
+\gappto\captionsrussian{\input{common/renames}}
+\input{common/renames}
+\gappto\captionsrussian{\input{Dissertation/renames}}
+\input{Dissertation/renames}
+
+\include{Dissertation/title}
+\include{Dissertation/contents}
+
+\appendix
+\setcounter{chapter}{1}% Приложение 1 (карта) заявлено во введении, но файл не предоставлен.
+\setlength{\midchapskip}{20pt}
+\renewcommand*{\afterchapternum}{\par\nobreak\vskip \midchapskip}
+\renewcommand\thechapter{\Asbuk{chapter}}
+
+\include{Dissertation/korneeva/appendix_glossary}
+\include{Dissertation/korneeva/appendix_computational_report}
+\setcounter{totalappendix}{\value{chapter}}
+
+\end{document}

@@ -20,6 +20,9 @@ from pathlib import Path, PurePosixPath
 
 from lxml import etree
 
+from bibliography_parser import audit as audit_bibliography
+from bibliography_parser import parse_record, serialize_biblatex
+
 
 W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
@@ -440,7 +443,12 @@ def heading_latex(text: str, style: str, mode: str) -> str | None:
             if command:
                 return f"\\{command}{{{escape_text(title)}}}"
         else:
-            command = {1: "subsection", 2: "subsubsection", 3: "paragraph"}.get(depth, "paragraph")
+            command_map = (
+                {1: "section", 2: "subsection", 3: "subsubsection"}
+                if mode == "context"
+                else {1: "subsection", 2: "subsubsection", 3: "paragraph"}
+            )
+            command = command_map.get(depth, "paragraph")
             display = escape_text("§" + number + ". " + title)
             if command == "paragraph":
                 return r"\paragraph*{" + display + "}"
@@ -451,6 +459,9 @@ def heading_latex(text: str, style: str, mode: str) -> str | None:
     if re.search(r"heading\s*1|заголовок\s*1", style, re.I) and mode == "front":
         title = escape_text(raw)
         return r"\section*{" + title + "}\n" + r"\addcontentsline{toc}{section}{" + title + "}"
+    if re.search(r"heading\s*1|заголовок\s*1", style, re.I) and mode == "context":
+        title = escape_text(raw)
+        return r"\chapter*{" + title + "}\n" + r"\addcontentsline{toc}{chapter}{" + title + "}"
     if re.search(r"heading\s*2|заголовок\s*2", style, re.I):
         command = "section" if mode == "chapter" else "subsection"
         return f"\\{command}{{{escape_text(raw)}}}" if mode == "chapter" else f"\\{command}*{{{escape_text(raw)}}}"
@@ -538,6 +549,84 @@ def convert_standard(converter: DocxConverter, mode: str) -> str:
     return apply_editorial_fixes(result)
 
 
+def convert_introduction(converter: DocxConverter) -> str:
+    """Convert the consolidated current introduction, including Word lists."""
+
+    lines = ["% Автоматически перенесено из " + converter.source.name, ""]
+    first = True
+    in_enumerate = False
+    standalone = {"Степень разработанности темы", "Положения, выносимые на защиту"}
+    for element in converter.body_elements():
+        if element.tag != f"{{{W}}}p":
+            continue
+        plain = node_text(element).strip()
+        inline = converter.paragraph_inline(element).strip()
+        if not plain:
+            continue
+        if first:
+            first = False
+            continue
+        numbered = bool(element.xpath("./w:pPr/w:numPr", namespaces=NS))
+        if numbered:
+            if not in_enumerate:
+                lines += [r"\begin{enumerate}", r"\setlength{\itemsep}{0pt}"]
+                in_enumerate = True
+            lines.append(r"\item " + inline)
+            converter.stats["list_items"] += 1
+            continue
+        if in_enumerate:
+            lines += [r"\end{enumerate}", ""]
+            in_enumerate = False
+        if cleaned_heading(plain) in standalone:
+            title = escape_text(cleaned_heading(plain))
+            lines += [r"\section*{" + title + "}", r"\addcontentsline{toc}{section}{" + title + "}", ""]
+            converter.stats["headings"] += 1
+            continue
+        lines += [inline, ""]
+        converter.stats["paragraphs"] += 1
+    if in_enumerate:
+        lines.append(r"\end{enumerate}")
+    return apply_editorial_fixes("\n".join(lines).rstrip() + "\n")
+
+
+def convert_glossary(converter: DocxConverter) -> str:
+    """Convert Appendix 2 into sections with explicit term definitions."""
+
+    lines = [
+        "% Автоматически перенесено из " + converter.source.name,
+        "",
+        r"\chapter{Словарь понятий и терминов}",
+        "",
+    ]
+    seen = 0
+    for element in converter.body_elements():
+        if element.tag != f"{{{W}}}p":
+            continue
+        plain = node_text(element).strip()
+        if not plain:
+            continue
+        seen += 1
+        if seen <= 2:
+            continue
+        if re.match(r"^[IVXLCDM]+\.\s+", plain):
+            lines += [r"\section{" + escape_text(cleaned_heading(plain)) + "}", ""]
+            converter.stats["headings"] += 1
+            continue
+        term = re.match(r"^(.+?)\s+[—–-]\s+(.+)$", plain, re.S)
+        if term:
+            name, definition = term.groups()
+            lines += [
+                r"\noindent\textbf{" + escape_text(cleaned_heading(name)) + r"} --- " + escape_text(definition.strip()),
+                r"\par\medskip",
+                "",
+            ]
+            converter.stats["terms"] += 1
+        else:
+            lines += [converter.paragraph_inline(element).strip(), ""]
+            converter.stats["paragraphs"] += 1
+    return apply_editorial_fixes("\n".join(lines).rstrip() + "\n")
+
+
 def convert_appendix(converter: DocxConverter) -> str:
     lines = [
         "% Автоматически перенесено из " + converter.source.name,
@@ -621,7 +710,7 @@ def bibliography_entries(source: Path) -> tuple[list[dict[str, str]], list[str]]
             source_instruction_seen = True
             continue
         text = re.sub(r"^\s*\d+\.\s*", "", text).strip()
-        if not text:
+        if not text.strip(" .;,"):
             continue
         key = f"korneeva-{group}-{sum(1 for e in entries if e['group'] == group) + 1:03d}"
         entries.append({"key": key, "group": group, "text": text})
@@ -636,25 +725,16 @@ def bib_escape(text: str) -> str:
 
 def write_bibliography(source: Path, output: Path, report_output: Path) -> dict[str, object]:
     entries, notes = bibliography_entries(source)
-    lines = ["% Полные записи перенесены из СПИСОК_ЛИТЕРАТУРЫ.docx.", "% Поле title намеренно хранит исходную запись без библиографического домысливания.", ""]
-    for entry in entries:
-        lines += [
-            f"@MISC{{{entry['key']},",
-            f"  title    = {{{{{bib_escape(entry['text'])}}}}},",
-            f"  keywords = {{{entry['group']}}},",
-            "}",
-            "",
-        ]
+    parsed = [parse_record(entry) for entry in entries]
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text("\n".join(lines), encoding="utf-8")
+    output.write_text(serialize_biblatex(parsed), encoding="utf-8")
     groups = Counter(entry["group"] for entry in entries)
-    report = {
+    report = audit_bibliography(parsed)
+    report.update({
         "source": source.as_posix(),
-        "entries": len(entries),
         "groups": dict(groups),
         "editorial_notes": notes,
-        "method": "verbatim records in BibLaTeX misc entries",
-    }
+    })
     report_output.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     return report
 
@@ -674,19 +754,26 @@ def main() -> None:
     image_dir.mkdir(parents=True, exist_ok=True)
 
     jobs = [
-        ("КОНТЕКСТ_ВЕРСИЯ_3.docx", "introduction_context.tex", "front"),
-        ("ИСТОРИОГРАФИЯ_ВЕРСИЯ_3.docx", "introduction_historiography.tex", "front"),
-        ("ИСТОЧНИК_ВЕРСИЯ_3.docx", "introduction_sources.tex", "front"),
+        ("ВВЕДЕНИЕ_ВЕРСИЯ_3.docx", "introduction.tex", "introduction"),
+        ("КОНТЕКСТ_ВЕРСИЯ_3.docx", "context.tex", "context"),
         ("ГЛАВА_1_ВЕРСИЯ_3.docx", "chapter1.tex", "chapter"),
         ("ГЛАВА_2_ВЕРСИЯ_3.docx", "chapter2.tex", "chapter"),
         ("ГЛАВА_3_ВЕРСИЯ_3.docx", "chapter3.tex", "chapter"),
+        ("ПРИЛОЖЕНИЕ_2_ВЕРСИЯ_3.docx", "appendix_glossary.tex", "glossary"),
         ("ПРИЛОЖЕНИЕ 3.docx", "appendix_computational_report.tex", "appendix"),
     ]
     report: dict[str, object] = {"source": source.as_posix(), "documents": []}
     for docx_name, tex_name, mode in jobs:
         converter = DocxConverter(source / docx_name, image_dir, "Dissertation/images/korneeva")
         try:
-            latex = convert_appendix(converter) if mode == "appendix" else convert_standard(converter, mode)
+            if mode == "appendix":
+                latex = convert_appendix(converter)
+            elif mode == "introduction":
+                latex = convert_introduction(converter)
+            elif mode == "glossary":
+                latex = convert_glossary(converter)
+            else:
+                latex = convert_standard(converter, mode)
             (output / tex_name).write_text(latex, encoding="utf-8")
             report["documents"].append(
                 {

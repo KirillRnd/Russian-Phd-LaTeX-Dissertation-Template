@@ -2,35 +2,25 @@
   "source": "D:/NIR/Russian-Phd-LaTeX-Dissertation-Template-KorneevaAnna/ОРИГИНАЛ/13.04 ДИССЕР/ВЕРСИЯ_3",
   "documents": [
     {
+      "source": "ВВЕДЕНИЕ_ВЕРСИЯ_3.docx",
+      "output": "introduction.tex",
+      "sha256": "8b18dee3f93b001c981441c9bfde71d2669d40f80dac57506e4b49f2bc2d40cf",
+      "stats": {
+        "footnotes": 8,
+        "paragraphs": 55,
+        "headings": 2,
+        "list_items": 5
+      },
+      "images": []
+    },
+    {
       "source": "КОНТЕКСТ_ВЕРСИЯ_3.docx",
-      "output": "introduction_context.tex",
+      "output": "context.tex",
       "sha256": "8f0741109a7acc07d033034f4d3c45287cf030d0226ceab4f5f6b883fee5777d",
       "stats": {
         "headings": 6,
         "footnotes": 53,
         "paragraphs": 37
-      },
-      "images": []
-    },
-    {
-      "source": "ИСТОРИОГРАФИЯ_ВЕРСИЯ_3.docx",
-      "output": "introduction_historiography.tex",
-      "sha256": "c6824399da13467b9ff8004c465882df17dc5d5f57de5f898b1979874ec3ad91",
-      "stats": {
-        "headings": 15,
-        "paragraphs": 145,
-        "footnotes": 227
-      },
-      "images": []
-    },
-    {
-      "source": "ИСТОЧНИК_ВЕРСИЯ_3.docx",
-      "output": "introduction_sources.tex",
-      "sha256": "223d601a52d608bc9d7cd058797443eb7fc385ddb860b3f2f3c1d341995951a4",
-      "stats": {
-        "headings": 11,
-        "paragraphs": 121,
-        "footnotes": 161
       },
       "images": []
     },
@@ -102,6 +92,17 @@
       "images": []
     },
     {
+      "source": "ПРИЛОЖЕНИЕ_2_ВЕРСИЯ_3.docx",
+      "output": "appendix_glossary.tex",
+      "sha256": "94a1a1080eb87fa70ad92dc60ae191b19a84624b033c385c838559d0f60d5985",
+      "stats": {
+        "paragraphs": 1,
+        "headings": 5,
+        "terms": 86
+      },
+      "images": []
+    },
+    {
       "source": "ПРИЛОЖЕНИЕ 3.docx",
       "output": "appendix_computational_report.tex",
       "sha256": "5d291c152c114415c0f60beb70d86511437fc8c0be21ea704ebd49d8f2027da5",
@@ -113,17 +114,127 @@
     }
   ],
   "bibliography": {
+    "entries": 491,
+    "types": {
+      "book": 144,
+      "article": 274,
+      "incollection": 66,
+      "online": 7
+    },
+    "confidence": {
+      "high": 487,
+      "medium": 4
+    },
+    "field_coverage": {
+      "annotation": {
+        "count": 491,
+        "percent": 100.0
+      },
+      "author": {
+        "count": 435,
+        "percent": 88.6
+      },
+      "booktitle": {
+        "count": 66,
+        "percent": 13.4
+      },
+      "date": {
+        "count": 485,
+        "percent": 98.8
+      },
+      "journaltitle": {
+        "count": 274,
+        "percent": 55.8
+      },
+      "keywords": {
+        "count": 491,
+        "percent": 100.0
+      },
+      "location": {
+        "count": 188,
+        "percent": 38.3
+      },
+      "note": {
+        "count": 82,
+        "percent": 16.7
+      },
+      "number": {
+        "count": 206,
+        "percent": 42.0
+      },
+      "pages": {
+        "count": 324,
+        "percent": 66.0
+      },
+      "pagetotal": {
+        "count": 100,
+        "percent": 20.4
+      },
+      "publisher": {
+        "count": 171,
+        "percent": 34.8
+      },
+      "title": {
+        "count": 491,
+        "percent": 100.0
+      },
+      "url": {
+        "count": 17,
+        "percent": 3.5
+      },
+      "urldate": {
+        "count": 16,
+        "percent": 3.3
+      },
+      "volume": {
+        "count": 103,
+        "percent": 21.0
+      }
+    },
+    "records_requiring_review": [
+      {
+        "key": "korneeva-research-014",
+        "confidence": "medium",
+        "warnings": [
+          "source contains an editorial placeholder"
+        ],
+        "source": "Ауров О.В. К вопросу о характере эдикта Эвриха: сюжет из истории права переходной эпохи // Электронный научно-образовательный журнал «История». 2012. Вып. 3 (11). С. 16–29. ссылка"
+      },
+      {
+        "key": "korneeva-research-037",
+        "confidence": "medium",
+        "warnings": [
+          "source contains an editorial placeholder"
+        ],
+        "source": "Варьяш О.И. Проблемы социализации индивида // ??? Пиренейские тетради: право, общество, власть и человек в СВ. М.: Наука, 2006. С"
+      },
+      {
+        "key": "korneeva-research-038",
+        "confidence": "medium",
+        "warnings": [
+          "source contains an editorial placeholder"
+        ],
+        "source": "Варьяш О.И. Юридическая культура португальского двора XIV в. (corte — двор, corte — суд) // ??? Пиренейские тетради: право, общество, власть и человек в СВ. М.: Наука, 2006. С. 64–68"
+      },
+      {
+        "key": "korneeva-research-039",
+        "confidence": "medium",
+        "warnings": [
+          "source contains an editorial placeholder"
+        ],
+        "source": "Варьяш О.И. Язык средневекового права // ??? Пиренейские тетради: право, общество, власть и человек в средние века / сост. и отв. ред. И. И. Варьяш, Г. А. Попова. М.: Наука, 2006. С. 90"
+      }
+    ],
+    "method": "deterministic multilingual field parser with verbatim annotation fallback",
     "source": "D:/NIR/Russian-Phd-LaTeX-Dissertation-Template-KorneevaAnna/ОРИГИНАЛ/13.04 ДИССЕР/ВЕРСИЯ_3/СПИСОК_ЛИТЕРАТУРЫ.docx",
-    "entries": 492,
     "groups": {
       "sources": 42,
       "reference": 10,
       "software": 2,
-      "research": 438
+      "research": 437
     },
     "editorial_notes": [
       "Издания исторических источников начинают с латиноязычных – основных, и только потом переводы на русский"
-    ],
-    "method": "verbatim records in BibLaTeX misc entries"
+    ]
   }
 }

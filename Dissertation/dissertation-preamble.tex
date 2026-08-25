@@ -1,0 +1,30 @@
+\RequirePackage[l2tabu,orthodox]{nag}
+% Формат А4, 14pt (ГОСТ Р 7.0.11-2011, 5.3.6)
+\documentclass[a4paper,14pt,oneside,openany]{memoir}
+
+\input{common/setup}
+\input{common/packages}
+\synopsisfalse
+\input{Dissertation/dispackages}
+\input{Dissertation/userpackages}
+\input{Dissertation/setup}
+\input{common/newnames}
+\input{common/data}
+\input{common/fonts}
+\input{common/styles}
+\input{Dissertation/disstyles}
+\input{Dissertation/userstyles}
+
+% Второй том содержит только приложения и не создаёт пустой Biber-контекст.
+\ifnum\dissertationvolume=1
+    \ifnumequal{\value{bibliosel}}{0}{\input{biblio/predefined}}{\input{biblio/biblatex}}
+\fi
+
+\typeout{Selected options:}
+\typeout{Dissertation volume: \thesisVolume}
+\typeout{Draft mode: \arabic{draft}}
+\typeout{Font: \arabic{fontfamily}}
+\typeout{AltFont: \arabic{usealtfont}}
+\typeout{Bibliography backend: \arabic{bibliosel}}
+\typeout{Precompile images: \arabic{imgprecompile}}
+\listfiles
