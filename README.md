@@ -6,9 +6,10 @@ DOCX `ОРИГИНАЛ/13.04 ДИССЕР/ВЕРСИЯ_3`. Техническа�
 
 Диссертация разделена на два самостоятельных тома:
 
-* [dissertation-volume1.tex](dissertation-volume1.tex) — основной текст и
-  структурированный список литературы;
-* [dissertation-volume2.tex](dissertation-volume2.tex) — приложения;
+* [dissertation-volume1.tex](dissertation-volume1.tex) — введение,
+  историко-правовой контекст и главы 1–2;
+* [dissertation-volume2.tex](dissertation-volume2.tex) — глава 3, заключение,
+  структурированный список литературы и приложения;
 * [dissertation.tex](dissertation.tex) — совместимый вход для сборки тома I.
 
 Ниже сохранена документация исходного шаблона оформления.

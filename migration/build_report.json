@@ -1,41 +1,46 @@
 {
   "engine": "XeLaTeX",
+  "distribution": {
+    "volume_1_percent": 58.4,
+    "volume_2_percent": 41.6,
+    "split_rule": "between chapters 2 and 3"
+  },
   "volumes": [
     {
       "volume": 1,
       "entrypoint": "dissertation-volume1.tex",
-      "bibliography_processor": "biber",
+      "bibliography_processor": null,
       "artifact": "output/pdf/dissertation-korneeva-volume-1.pdf",
-      "pages": 340,
-      "bytes": 2335445,
-      "sha256": "1AA42D1FF948A1594794653DBF10E3F3071BA163AD1D51BB3C09054545139B3B",
+      "pages": 219,
+      "bytes": 1947380,
+      "sha256": "DA4B8F9A0F7BE2B9958CE3698802C2492880FAB46F4D513F4A6DC66617865653",
       "latex_errors": 0,
       "undefined_references_or_citations": 0,
       "missing_glyphs": 0,
-      "overfull_hboxes": 21,
+      "overfull_hboxes": 18,
       "maximum_overfull_pt": 13.14987,
       "visual_audit": {
         "all_pages_contact_sheet_reviewed": true,
-        "representative_pages_full_resolution_reviewed": [1, 7, 22, 33, 64, 115, 221, 293, 301, 340],
+        "representative_pages_full_resolution_reviewed": [1, 2, 219],
         "blocking_layout_defects": 0
       }
     },
     {
       "volume": 2,
       "entrypoint": "dissertation-volume2.tex",
-      "bibliography_processor": null,
+      "bibliography_processor": "biber",
       "artifact": "output/pdf/dissertation-korneeva-volume-2.pdf",
-      "pages": 35,
-      "bytes": 168540,
-      "sha256": "B497B452A4AB6C3FEFA8B441A43C49908A06F492893DAD6D1CF3290E55BBC5A6",
+      "pages": 156,
+      "bytes": 608107,
+      "sha256": "0DC35017E4AE338A1EC1442FD6AA6D5F2F3DCD8C3A82BBF546CC48C50CC05030",
       "latex_errors": 0,
       "undefined_references_or_citations": 0,
       "missing_glyphs": 0,
-      "overfull_hboxes": 0,
-      "maximum_overfull_pt": 0.0,
+      "overfull_hboxes": 3,
+      "maximum_overfull_pt": 9.19046,
       "visual_audit": {
         "all_pages_contact_sheet_reviewed": true,
-        "representative_pages_full_resolution_reviewed": [1, 3, 14, 35],
+        "representative_pages_full_resolution_reviewed": [1, 2, 4, 82, 84, 124, 135, 156],
         "blocking_layout_defects": 0
       }
     }

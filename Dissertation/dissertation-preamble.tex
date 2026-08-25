@@ -15,8 +15,8 @@
 \input{Dissertation/disstyles}
 \input{Dissertation/userstyles}
 
-% Второй том содержит только приложения и не создаёт пустой Biber-контекст.
-\ifnum\dissertationvolume=1
+% Список литературы находится в томе II; том I не создаёт пустой Biber-контекст.
+\ifnum\dissertationvolume=2
     \ifnumequal{\value{bibliosel}}{0}{\input{biblio/predefined}}{\input{biblio/biblatex}}
 \fi
 
