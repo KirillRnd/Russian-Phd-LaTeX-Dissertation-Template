@@ -13,6 +13,7 @@ from pathlib import Path
 INCLUDE_RE = re.compile(r"\\(?:input|include)\{([^}]+)\}")
 BEGIN_RE = re.compile(r"\\begin\{([^}]+)\}")
 END_RE = re.compile(r"\\end\{([^}]+)\}")
+ADD_BIB_RE = re.compile(r"\\addbibresource(?:\[[^]]*\])?\{([^}]+)\}")
 
 
 def strip_comments(line: str) -> str:
@@ -111,7 +112,12 @@ def main() -> None:
         for term in (r"межпланет", r"баллистическ", r"электрореактив")
     }
     stale_terms = {term: count for term, count in stale_terms.items() if count}
-    bib_text = (root / "biblio/korneeva.bib").read_text(encoding="utf-8")
+    bibliography_files = [root / value for value in ADD_BIB_RE.findall(active_text)]
+    bibliography_entries = sum(
+        len(re.findall(r"^@[a-z]+\{", path.read_text(encoding="utf-8"), flags=re.M | re.I))
+        for path in bibliography_files
+        if path.is_file()
+    )
     payload = {
         "entrypoint": args.entrypoint,
         "active_files": [path.relative_to(root).as_posix() for path in files],
@@ -124,8 +130,11 @@ def main() -> None:
             "footnotes": len(re.findall(r"\\footnote\{", active_text)),
             "figures": len(re.findall(r"\\begin\{figure\}", active_text)),
             "longtables": len(re.findall(r"\\begin\{longtable\}", active_text)),
-            "bibliography_entries": len(re.findall(r"^@[a-z]+\{", bib_text, flags=re.M | re.I)),
+            "bibliography_entries": bibliography_entries,
         },
+        "bibliography_files": [
+            path.relative_to(root).as_posix() for path in bibliography_files if path.is_file()
+        ],
         "stale_topic_markers": stale_terms,
     }
     args.json.parent.mkdir(parents=True, exist_ok=True)

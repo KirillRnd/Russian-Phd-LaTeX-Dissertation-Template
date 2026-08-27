@@ -1,0 +1,206 @@
+{
+  "source": "D:/NIR/Russian-Phd-LaTeX-Dissertation-Template-KorneevaAnna/ОРИГИНАЛ/13.04 ДИССЕР/ВЕРСИЯ_3",
+  "documents": [
+    {
+      "source": "ВВЕДЕНИЕ_ВЕРСИЯ_3.docx",
+      "output": "introduction.tex",
+      "sha256": "8b18dee3f93b001c981441c9bfde71d2669d40f80dac57506e4b49f2bc2d40cf",
+      "stats": {
+        "footnotes": 8,
+        "paragraphs": 55,
+        "headings": 2,
+        "list_items": 5
+      },
+      "images": []
+    },
+    {
+      "source": "КОНТЕКСТ_ВЕРСИЯ_3.docx",
+      "output": "context.tex",
+      "sha256": "8f0741109a7acc07d033034f4d3c45287cf030d0226ceab4f5f6b883fee5777d",
+      "stats": {
+        "headings": 6,
+        "footnotes": 53,
+        "paragraphs": 37
+      },
+      "images": []
+    },
+    {
+      "source": "ГЛАВА_1_ВЕРСИЯ_3.docx",
+      "output": "chapter1.tex",
+      "sha256": "430909411f51d22f24952bd620b7d7bb1109ed94f9e109afbb4859a801ecd5f2",
+      "stats": {
+        "paragraphs": 224,
+        "headings": 19,
+        "footnotes": 80,
+        "tables": 17,
+        "images": 6
+      },
+      "images": [
+        {
+          "source": "word/media/image1.png",
+          "output": "chapter1_01.png",
+          "alt": ""
+        },
+        {
+          "source": "word/media/image2.png",
+          "output": "chapter1_02.png",
+          "alt": ""
+        },
+        {
+          "source": "word/media/image3.png",
+          "output": "chapter1_03.png",
+          "alt": ""
+        },
+        {
+          "source": "word/media/image4.png",
+          "output": "chapter1_04.png",
+          "alt": ""
+        },
+        {
+          "source": "word/media/image5.png",
+          "output": "chapter1_05.png",
+          "alt": ""
+        },
+        {
+          "source": "word/media/image6.png",
+          "output": "chapter1_06.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "source": "ГЛАВА_2_ВЕРСИЯ_3.docx",
+      "output": "chapter2.tex",
+      "sha256": "6c4a43febd9c717d7eee1ac36012ed1bf40fa10fb377c5531ed628b6db044222",
+      "stats": {
+        "headings": 25,
+        "paragraphs": 291,
+        "footnotes": 253,
+        "tables": 12
+      },
+      "images": []
+    },
+    {
+      "source": "ГЛАВА_3_ВЕРСИЯ_3.docx",
+      "output": "chapter3.tex",
+      "sha256": "59622314ac3de3f15f3984c35896edbc90ded124ce67b68bbf4d9bb8989d8381",
+      "stats": {
+        "headings": 29,
+        "paragraphs": 232,
+        "footnotes": 173
+      },
+      "images": []
+    },
+    {
+      "source": "ПРИЛОЖЕНИЕ_2_ВЕРСИЯ_3.docx",
+      "output": "appendix_glossary.tex",
+      "sha256": "94a1a1080eb87fa70ad92dc60ae191b19a84624b033c385c838559d0f60d5985",
+      "stats": {
+        "paragraphs": 1,
+        "headings": 5,
+        "terms": 86
+      },
+      "images": []
+    },
+    {
+      "source": "ПРИЛОЖЕНИЕ 3.docx",
+      "output": "appendix_computational_report.tex",
+      "sha256": "5d291c152c114415c0f60beb70d86511437fc8c0be21ea704ebd49d8f2027da5",
+      "stats": {
+        "headings": 25,
+        "paragraphs": 44
+      },
+      "images": []
+    }
+  ],
+  "bibliography": {
+    "entries": 491,
+    "types": {
+      "book": 144,
+      "article": 274,
+      "incollection": 66,
+      "online": 7
+    },
+    "confidence": {
+      "high": 491
+    },
+    "field_coverage": {
+      "annotation": {
+        "count": 491,
+        "percent": 100.0
+      },
+      "author": {
+        "count": 435,
+        "percent": 88.6
+      },
+      "booktitle": {
+        "count": 66,
+        "percent": 13.4
+      },
+      "date": {
+        "count": 485,
+        "percent": 98.8
+      },
+      "journaltitle": {
+        "count": 274,
+        "percent": 55.8
+      },
+      "keywords": {
+        "count": 491,
+        "percent": 100.0
+      },
+      "location": {
+        "count": 188,
+        "percent": 38.3
+      },
+      "note": {
+        "count": 81,
+        "percent": 16.5
+      },
+      "number": {
+        "count": 206,
+        "percent": 42.0
+      },
+      "pages": {
+        "count": 324,
+        "percent": 66.0
+      },
+      "pagetotal": {
+        "count": 100,
+        "percent": 20.4
+      },
+      "publisher": {
+        "count": 171,
+        "percent": 34.8
+      },
+      "title": {
+        "count": 491,
+        "percent": 100.0
+      },
+      "url": {
+        "count": 18,
+        "percent": 3.7
+      },
+      "urldate": {
+        "count": 16,
+        "percent": 3.3
+      },
+      "volume": {
+        "count": 104,
+        "percent": 21.2
+      }
+    },
+    "records_requiring_review": [],
+    "method": "deterministic multilingual field parser with verbatim annotation fallback",
+    "source": "D:/NIR/Russian-Phd-LaTeX-Dissertation-Template-KorneevaAnna/ОРИГИНАЛ/13.04 ДИССЕР/ВЕРСИЯ_3/СПИСОК_ЛИТЕРАТУРЫ.docx",
+    "groups": {
+      "sources": 42,
+      "reference": 10,
+      "software": 2,
+      "research": 437
+    },
+    "editorial_notes": [
+      "Издания исторических источников начинают с латиноязычных – основных, и только потом переводы на русский"
+    ]
+  }
+}

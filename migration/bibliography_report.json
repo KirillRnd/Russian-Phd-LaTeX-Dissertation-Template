@@ -7,8 +7,7 @@
     "online": 7
   },
   "confidence": {
-    "high": 487,
-    "medium": 4
+    "high": 491
   },
   "field_coverage": {
     "annotation": {
@@ -40,8 +39,8 @@
       "percent": 38.3
     },
     "note": {
-      "count": 82,
-      "percent": 16.7
+      "count": 81,
+      "percent": 16.5
     },
     "number": {
       "count": 206,
@@ -64,52 +63,19 @@
       "percent": 100.0
     },
     "url": {
-      "count": 17,
-      "percent": 3.5
+      "count": 18,
+      "percent": 3.7
     },
     "urldate": {
       "count": 16,
       "percent": 3.3
     },
     "volume": {
-      "count": 103,
-      "percent": 21.0
+      "count": 104,
+      "percent": 21.2
     }
   },
-  "records_requiring_review": [
-    {
-      "key": "korneeva-research-014",
-      "confidence": "medium",
-      "warnings": [
-        "source contains an editorial placeholder"
-      ],
-      "source": "Ауров О.В. К вопросу о характере эдикта Эвриха: сюжет из истории права переходной эпохи // Электронный научно-образовательный журнал «История». 2012. Вып. 3 (11). С. 16–29. ссылка"
-    },
-    {
-      "key": "korneeva-research-037",
-      "confidence": "medium",
-      "warnings": [
-        "source contains an editorial placeholder"
-      ],
-      "source": "Варьяш О.И. Проблемы социализации индивида // ??? Пиренейские тетради: право, общество, власть и человек в СВ. М.: Наука, 2006. С"
-    },
-    {
-      "key": "korneeva-research-038",
-      "confidence": "medium",
-      "warnings": [
-        "source contains an editorial placeholder"
-      ],
-      "source": "Варьяш О.И. Юридическая культура португальского двора XIV в. (corte — двор, corte — суд) // ??? Пиренейские тетради: право, общество, власть и человек в СВ. М.: Наука, 2006. С. 64–68"
-    },
-    {
-      "key": "korneeva-research-039",
-      "confidence": "medium",
-      "warnings": [
-        "source contains an editorial placeholder"
-      ],
-      "source": "Варьяш О.И. Язык средневекового права // ??? Пиренейские тетради: право, общество, власть и человек в средние века / сост. и отв. ред. И. И. Варьяш, Г. А. Попова. М.: Наука, 2006. С. 90"
-    }
-  ],
+  "records_requiring_review": [],
   "method": "deterministic multilingual field parser with verbatim annotation fallback",
   "source": "D:/NIR/Russian-Phd-LaTeX-Dissertation-Template-KorneevaAnna/ОРИГИНАЛ/13.04 ДИССЕР/ВЕРСИЯ_3/СПИСОК_ЛИТЕРАТУРЫ.docx",
   "groups": {

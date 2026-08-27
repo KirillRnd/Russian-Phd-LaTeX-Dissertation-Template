@@ -41,6 +41,62 @@ class ParsedEntry:
     warnings: list[str] = field(default_factory=list)
 
 
+# Four source rows contain editorial placeholders left by the original author.
+# Keep their verbatim strings in ``annotation`` for audit, but use verified
+# publication data in the printable BibLaTeX fields.  Keeping the corrections
+# here makes them reproducible for both DOCX conversion and graph rebuilding.
+CURATED_RECORD_CORRECTIONS: dict[str, tuple[str, dict[str, str]]] = {
+    "korneeva-research-014": (
+        "article",
+        {
+            "author": "Ауров, О. В.",
+            "title": "К вопросу о характере эдикта Эвриха: сюжет из истории права переходной эпохи",
+            "journaltitle": "Электронный научно-образовательный журнал «История»",
+            "date": "2012",
+            "volume": "3",
+            "number": "3 (11)",
+            "pages": "16--29",
+            "url": "https://history.jes.su/s207987840000375-1-1/",
+        },
+    ),
+    "korneeva-research-037": (
+        "incollection",
+        {
+            "author": "Варьяш, О. И.",
+            "title": "Проблемы социализации индивида. Предисловие",
+            "booktitle": "Пиренейские тетради: право, общество, власть и человек в средние века",
+            "location": "Москва",
+            "publisher": "Наука",
+            "date": "2006",
+        },
+    ),
+    "korneeva-research-038": (
+        "incollection",
+        {
+            "author": "Варьяш, О. И.",
+            "title": "Юридическая культура португальского двора XIV в. (corte — двор, corte — суд)",
+            "booktitle": "Пиренейские тетради: право, общество, власть и человек в средние века",
+            "location": "Москва",
+            "publisher": "Наука",
+            "date": "2006",
+            "pages": "64--77",
+        },
+    ),
+    "korneeva-research-039": (
+        "incollection",
+        {
+            "author": "Варьяш, О. И.",
+            "title": "Язык средневекового права",
+            "booktitle": "Пиренейские тетради: право, общество, власть и человек в средние века",
+            "location": "Москва",
+            "publisher": "Наука",
+            "date": "2006",
+            "pages": "86--90",
+        },
+    ),
+}
+
+
 def clean_space(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip(" .;,\t\n")
 
@@ -265,6 +321,17 @@ def parse_record(record: dict[str, str]) -> ParsedEntry:
     if entry_type == "incollection" and not fields.get("booktitle"):
         warnings.append("container title not identified")
 
+    correction = CURATED_RECORD_CORRECTIONS.get(record["key"])
+    if correction:
+        entry_type, corrected_fields = correction
+        # Audit-only fields preserve the original row and its source group.
+        fields = {
+            **corrected_fields,
+            "annotation": raw,
+            "keywords": record["group"],
+        }
+        warnings = []
+
     required = {
         "online": bool(fields.get("url")),
         "article": bool(fields.get("journaltitle") and fields.get("date")),
@@ -308,7 +375,7 @@ def serialize_biblatex(entries: Iterable[ParsedEntry]) -> str:
     ]
     order = [
         "author", "editor", "title", "journaltitle", "booktitle", "location",
-        "publisher", "date", "volume", "number", "pages", "pagetotal",
+        "publisher", "organization", "institution", "date", "volume", "number", "pages", "pagetotal",
         "url", "urldate", "note", "annotation", "keywords",
     ]
     for entry in entries:

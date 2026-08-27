@@ -36,7 +36,10 @@
     "footnotes": 394,
     "figures": 6,
     "longtables": 29,
-    "bibliography_entries": 491
+    "bibliography_entries": 553
   },
+  "bibliography_files": [
+    "biblio/korneeva_full.bib"
+  ],
   "stale_topic_markers": {}
 }
