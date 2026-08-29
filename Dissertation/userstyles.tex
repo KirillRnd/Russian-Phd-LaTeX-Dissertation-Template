@@ -1,14 +1,13 @@
 % для вертикального центрирования ячеек в tabulary
 \ifxetexorluatex
-    % Локальный fallback для знаков, отсутствующих в Times-совместимом
-    % Liberation Serif (арабская графика, политонический греческий и
-    % средневековые латинские сокращения).
+    % Локальные семейства для смены направления письма и редких знаков.
+    % По требованию оформления они также используют Times New Roman.
     \newfontfamily\unicodefallback[
-        BoldFont={DejaVu Sans}, ItalicFont={DejaVu Sans},
-        BoldItalicFont={DejaVu Sans}]{DejaVu Sans}
+        BoldFont={Times New Roman Bold}, ItalicFont={Times New Roman Italic},
+        BoldItalicFont={Times New Roman Bold Italic}]{Times New Roman}
     \newfontfamily\arabicfallback[
-        Script=Arabic, BoldFont={DejaVu Sans}, ItalicFont={DejaVu Sans},
-        BoldItalicFont={DejaVu Sans}]{DejaVu Sans}
+        Script=Arabic, BoldFont={Times New Roman Bold}, ItalicFont={Times New Roman Italic},
+        BoldItalicFont={Times New Roman Bold Italic}]{Times New Roman}
     \newcommand{\arabictext}[1]{{\TeXXeTstate=1\beginR\arabicfallback #1\endR}}
 \fi
 

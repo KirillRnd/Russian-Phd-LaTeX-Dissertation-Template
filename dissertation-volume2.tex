@@ -2,8 +2,14 @@
 \def\thesisVolume{II}
 \def\dissertationvolume{2}
 \input{Dissertation/dissertation-preamble}
+\usepackage{xr-hyper}
+\externaldocument[volI-]{dissertation-volume1}
 
 \begin{document}
+% Сквозная пагинация: титульный лист второго тома следует сразу за последней
+% физической страницей первого тома. Значение берётся из его aux-файла.
+\setcounter{page}{\getpagerefnumber{volI-TotPages}}
+\stepcounter{page}
 \gappto\captionsrussian{\input{common/renames}}
 \input{common/renames}
 \gappto\captionsrussian{\input{Dissertation/renames}}

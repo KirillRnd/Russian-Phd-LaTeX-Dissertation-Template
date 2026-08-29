@@ -14,6 +14,18 @@
 %\DoubleSpacing*     % Двойной интервал
 \OnehalfSpacing*    % Полуторный интервал
 %\setSpacing{1.42}   % Полуторный интервал, подобный Ворду (возможно, стоит включать вместе с предыдущей строкой)
+\setlength{\parskip}{0pt} % Межабзацный интервал везде одинаков и не добавляется.
+
+% Сноски набираются 12 кеглем без дополнительной отбивки от основного текста.
+\renewcommand*{\foottextfont}{\fontsize{12pt}{14pt}\selectfont}
+\setlength{\skip\footins}{0pt}
+
+% Текст и подписи таблиц набираются 12 кеглем.
+\AtBeginEnvironment{table}{\fontsize{12pt}{14pt}\selectfont}
+\AtBeginEnvironment{longtable}{\fontsize{12pt}{14pt}\selectfont}
+\AtBeginEnvironment{tabular}{\fontsize{12pt}{14pt}\selectfont}
+\AtBeginEnvironment{tabularx}{\fontsize{12pt}{14pt}\selectfont}
+\AtBeginEnvironment{tabulary}{\fontsize{12pt}{14pt}\selectfont}
 
 %%% Макет страницы %%%
 % Выставляем значения полей (ГОСТ 7.0.11-2011, 5.3.7)
@@ -142,6 +154,9 @@
 \setsubsubsecindent{\otstuplen}
 
 \sethangfrom{\noindent #1} %все заголовки подразделов центрируются с учетом номера, как block
+
+% Нумерованные подразделы основного текста и приложений обозначаются знаком §.
+\renewcommand{\thesection}{\S~\thechapter.\arabic{section}}
 
 \ifnumequal{\value{chapstyle}}{1}{%
     \chapterstyle{thesisgostchapname}

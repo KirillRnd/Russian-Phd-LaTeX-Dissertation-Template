@@ -1,39 +1,21 @@
 % Оглавление (ГОСТ Р 7.0.11-2011, 5.2)
-\providecommand{\dissertationtocvolumemark}[1]{%
-    \addvspace{1.25em}%
-    \noindent\textbf{Том #1}\par\nobreak
-    \addvspace{0.35em}%
-}
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемому оглавлению
-\ifnum\dissertationvolume=1
-    % ГОСТ Р 7.0.11-2011, 5.2.2: первый том многотомной диссертации
-    % должен содержать оглавление всей работы.
-    \addtocontents{toc}{\protect\dissertationtocvolumemark{I}}
-\fi
 \tableofcontents*
 \ifnum\dissertationvolume=1
-    \dissertationtocvolumemark{II}
     \begingroup
-        % Заголовок «Стр.» уже повторяется на каждой странице основного
-        % оглавления; первый вызов из файла тома II только восстанавливает
-        % исходную команду и не запускает второй параллельный цикл.
-        \let\dissertationtocheader\tocheader
-        \def\tocheader{\let\tocheader\dissertationtocheader}
-        \makeatletter
-        \renewcommand{\@pnumwidth}{6.5em}
-        \renewcommand{\@tocrmarg}{7em}
-        \makeatother
-        % У томов самостоятельная пагинация, поэтому номер тома является
-        % частью ссылки на страницу в сводном оглавлении.
+        % Том I содержит сводное оглавление всей работы. Сам том II продолжает
+        % счётчик страниц тома I, поэтому его номера подставляются без префиксов.
         \let\dissertationoriginalcontentsline\contentsline
         \renewcommand{\contentsline}[4]{%
-            \dissertationoriginalcontentsline{#1}{#2}{Т.~II, с.~#3}{}%
+            \dissertationoriginalcontentsline{#1}{#2}{#3}{}%
         }
+        \makeatletter
         \InputIfFileExists{dissertation-volume2.toc}{}{%
             \PackageWarning{dissertation}{%
                 Сначала соберите dissertation-volume2.tex: файл его оглавления не найден%
             }%
         }
+        \makeatother
     \endgroup
 \fi
 \addtocontents{toc}{\protect\tocheader}
