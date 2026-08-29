@@ -89,6 +89,10 @@ endef
 dissertation:
 	$(PYTHON) tools/build_dissertation.py
 
+##! проверка только библиографии с выводом в читаемый HTML (без PDF)
+bibliography:
+	$(PYTHON) tools/build_bibliography.py
+
 ##! компиляция автореферата
 synopsis: TARGET=synopsis
 synopsis: SOURCE=synopsis
@@ -180,6 +184,6 @@ distclean:
 # include after "all" rule
 include examples.mk
 
-.PHONY: all dissertation synopsis presentation dissertation-draft \
+.PHONY: all dissertation bibliography synopsis presentation dissertation-draft \
 synopsis-draft pdflatex draft synopsis-booklet presentation-booklet\
 tikz release clean-target distclean-target clean distclean

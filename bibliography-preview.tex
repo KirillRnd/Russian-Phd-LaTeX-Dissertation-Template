@@ -1,0 +1,49 @@
+% HTML-представление библиографии. PDF намеренно не создаётся.
+\documentclass[12pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T2A,T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \DeclareUnicodeCharacter{1E6C}{\d{T}}
+  \DeclareUnicodeCharacter{1E6D}{\d{t}}
+  \DeclareUnicodeCharacter{02BE}{\textquoteright}
+  \DeclareUnicodeCharacter{1F10}{e}
+  \DeclareUnicodeCharacter{1F41}{o}
+  \DeclareUnicodeCharacter{1F45}{o}
+  \DeclareUnicodeCharacter{A751}{p}
+  \DeclareUnicodeCharacter{A757}{q}
+\else
+  \usepackage{fontspec}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Times New Roman}
+\fi
+\usepackage[english,catalan,french,german,italian,latin,portuguese,spanish,russian]{babel}
+\providecommand{\cyrdash}{\textemdash}
+\providecommand{\unicodefallback}[1]{#1}
+\usepackage{etoolbox}
+\usepackage{totcount}
+
+% Минимальная среда для загрузки той же конфигурации biblio/biblatex.tex,
+% которую использует диссертация, без пакетов верстки и PDF.
+\newif\ifxetexorluatex
+\ifPDFTeX\xetexorluatexfalse\else\xetexorluatextrue\fi
+\newif\ifsynopsis
+\synopsisfalse
+\newif\ifpresentation
+\presentationfalse
+\newcounter{draft}
+\setcounter{draft}{0}
+\newcounter{usefootcite}
+\setcounter{usefootcite}{0}
+\newcounter{mediadisplay}
+\setcounter{mediadisplay}{2}
+\input{biblio/biblatex}
+% TeX4ht не преобразует OpenType-шрифты при переключении babel внутри записи.
+% Для HTML фиксируем русский язык самого библиографического описания; langid
+% остаётся в данных и используется основной сборкой диссертации.
+\ExecuteBibliographyOptions{autolang=none}
+
+\begin{document}
+\nocite{*}
+\printbibliography[title={Проверка списка литературы}]
+\end{document}

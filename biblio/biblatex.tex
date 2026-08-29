@@ -12,11 +12,14 @@ style=gost-numeric,
 language=autobib,
 autolang=other,
 clearlang=true,
+otherlangs=true,
 defernumbers=true,
 sortcites=true,
-doi=false,
-isbn=false,
-movenames=false,
+doi=true,
+isbn=true,
+url=true,
+eprint=true,
+movenames=true,
 maxnames=3,
 minnames=1,
 blockpunct=space,
@@ -145,6 +148,15 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldsource=language, fieldset=langid, origfieldval, final]
             \step[fieldset=language, null]
         }
+        \map{% кириллические записи получают русские локализованные строки
+            \step[notfield=langid, final]
+            \step[fieldsource=title, match=\regexp{[А-Яа-яЁё]}, final]
+            \step[fieldset=langid, fieldvalue={russian}]
+        }
+        \map{% латинографические записи без явного языка считаются английскими
+            \step[notfield=langid, final]
+            \step[fieldset=langid, fieldvalue={english}]
+        }
         \map{% перекидываем значения полей numpages в поля pagetotal, которыми пользуется biblatex
             \step[fieldsource=numpages, fieldset=pagetotal, origfieldval, final]
             \step[fieldset=numpages, null]
@@ -170,9 +182,6 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=media, fieldvalue=eresource]
             \step[fieldset=medium, null]
         }
-        \map[overwrite]{% стираем значения всех полей issn
-            \step[fieldset=issn, null]
-        }
         \map[overwrite]{% стираем значения всех полей abstract, поскольку ими не пользуемся, а там бывают "неприятные" латеху символы
             \step[fieldsource=abstract]
             \step[fieldset=abstract,null]
@@ -183,10 +192,8 @@ sorting=none,% настройка сортировки списка литера
             replace={$3-$2-$1$4}, % $4 вставлен исключительно ради нормальной работы программ подсветки синтаксиса, которые некорректно обрабатывают $ в таких конструкциях
             final]
         }
-        \map[overwrite]{ % стираем ключевые слова
-            \step[fieldsource=keywords]
-            \step[fieldset=keywords,null]
-        }
+        % Сохраняем предметные категории из канонического .bib
+        % (sources, research, reference, institutional и т. п.).
         % реализация foreach различается для biblatex v3.12 и v3.13.
         % Для версии v3.13 эта конструкция заменяет последующие 7 структур map
         % \map[overwrite,foreach={authorvak,authorscopus,authorwos,authorconf,authorother,authorparent,authorprogram}]{ % записываем информацию о типе публикации в ключевые слова

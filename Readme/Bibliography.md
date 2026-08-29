@@ -29,10 +29,11 @@
 [`biblatex-gost`](http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-gost/doc/biblatex-gost.pdf).
 * Лучше всего всегда обрамлять значение BibTeX-атрибутов в фигурные скобки или
 кавычки (то есть вместо *month = jul* писать *month = {jul}*).
-* Также лучше всегда указывать язык BibTeX-записи (например, *language =
-{russian}* или *language = {english}*). Запись языков всегда должна вестись
-строчными (маленькими) буквами.
-* Параметр *langid* заполнять не нужно -- он копируется из параметра *language*.
+* В канонической базе язык каждой записи задаётся явно полем *langid*
+  (`russian`, `english`, `catalan`, `spanish`, `french`, `german`, `italian`,
+  `latin`). Это позволяет локализовать служебные слова независимо от языка
+  диссертации. Поле *language* оставлено только как совместимый вход для
+  внешних баз и при сборке переносится в *langid*.
 * Для пометки базы своей статьи (ВАК, Scopus, Web of Science), можно использовать *addendum = {(ВАК, Scopus, Web of Science)}*.
 * Для автоматического подсчёта публикаций требуется добавить поля в публикациях в файле `biblio/author.bib`:
   * *authorvak = {true}* если публикация индексирована ВАК,
@@ -53,6 +54,11 @@
 `biblatex-gost`](http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-gost/doc/biblatex-gost-examples.pdf).
 
 ## Назначение и размещение файлов с библиографией
+Для текущей диссертации единственным каноническим источником является
+[korneeva_full.bib](../biblio/korneeva_full.bib). Правила полей, языков,
+электронных ресурсов, аудита и HTML-сборки зафиксированы в
+[рабочей политике](../docs/gost-bibliography/BIBLIOGRAPHY-WORKFLOW.md).
+
 Файлы с библиографией расположены в папке [biblio/](../biblio/):
 * работы автора — [author.bib](../biblio/author.bib);
 * зарегистрированные патенты и программы для ЭВМ — [registered.bib](../biblio/reigstered.bib);
