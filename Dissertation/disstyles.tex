@@ -16,9 +16,11 @@
 %\setSpacing{1.42}   % Полуторный интервал, подобный Ворду (возможно, стоит включать вместе с предыдущей строкой)
 \setlength{\parskip}{0pt} % Межабзацный интервал везде одинаков и не добавляется.
 
-% Сноски набираются 12 кеглем без дополнительной отбивки от основного текста.
+% Сноски набираются 12 кеглем. Стандартная вертикальная отбивка memoir
+% предотвращает наложение сносок на основной текст; абзацного отступа нет.
 \renewcommand*{\foottextfont}{\fontsize{12pt}{14pt}\selectfont}
-\setlength{\skip\footins}{0pt}
+\setfootins{\bigskipamount}{\bigskipamount}
+\setlength{\footparindent}{0pt}
 
 % Текст и подписи таблиц набираются 12 кеглем.
 \AtBeginEnvironment{table}{\fontsize{12pt}{14pt}\selectfont}
