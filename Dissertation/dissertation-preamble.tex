@@ -27,4 +27,6 @@
 \typeout{AltFont: \arabic{usealtfont}}
 \typeout{Bibliography backend: \arabic{bibliosel}}
 \typeout{Precompile images: \arabic{imgprecompile}}
-\listfiles
+% \listfiles is intentionally disabled here.  Bibliography language switches
+% re-read the caption rename files for every entry, and recording every input
+% exhausts TeX's main memory in the full 682-entry volume II build.
