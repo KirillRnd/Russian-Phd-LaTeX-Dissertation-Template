@@ -37,6 +37,118 @@ TYPE_UPDATES = {
     "korneeva-footnote-167": "online",
 }
 
+# ``Право в средневековом мире`` is not normalized as an ordinary journal.
+# Its bibliographic form changed over time: the 2001 item is issues 2--3 of
+# the earlier collection, while the 2007--2010 items form a renewed run of
+# annual edited collections.  Keep these decisions isolated and review each
+# physical issue independently instead of inferring its type from the shared
+# title.  Sources and unresolved conflicts are documented in
+# docs/gost-bibliography/PRAVO-V-SREDNEVEKOVOM-MIRE.md.
+MEDIEVAL_LAW_TYPE_UPDATES = {
+    "korneeva-footnote-116": "collection",
+    "korneeva-footnote-116b": "collection",
+    "korneeva-footnote-116c": "collection",
+    "korneeva-footnote-116d": "collection",
+    "korneeva-footnote-116e": "collection",
+    "korneeva-footnote-116f": "collection",
+    "korneeva-research-100": "incollection",
+}
+
+MEDIEVAL_LAW_FIELD_UPDATES: dict[str, dict[str, str | None]] = {
+    "korneeva-footnote-116": {
+        "title": "Право в средневековом мире",
+        "subtitle": "сборник статей",
+        "editor": "Варьяш, О. И.",
+        "location": "Москва",
+        "publisher": "ИВИ РАН",
+        "date": "1996",
+    },
+    "korneeva-footnote-116b": {
+        "title": "Право в средневековом мире",
+        "subtitle": "сборник статей. Вып. 2--3",
+        "editor": "Варьяш, О. И. and Глебов, А. Г. and Закс, В. А. and Варьяш, И. И.",
+        "location": "Санкт-Петербург",
+        "publisher": "Алетейя",
+        "date": "2001",
+        "pagetotal": "343, [3]",
+        "isbn": "5-89329-359-2",
+        "note": None,
+    },
+    "korneeva-footnote-116c": {
+        "title": "Право в средневековом мире. 2007",
+        "subtitle": "сборник статей",
+        "editor": "Варьяш, И. И. and Попова, Г. А.",
+        "location": "Москва",
+        "publisher": "ИВИ РАН",
+        "date": "2007",
+        "pagetotal": "292, [1]",
+        "isbn": "5-94067-213-2",
+    },
+    "korneeva-footnote-116d": {
+        "title": "Право в средневековом мире. 2008",
+        "subtitle": "сборник статей",
+        "editor": "Варьяш, И. И. and Попова, Г. А.",
+        "location": "Москва",
+        "publisher": "ИВИ РАН",
+        "date": "2008",
+        "pagetotal": "276",
+        "isbn": "5-94067-249-3",
+    },
+    "korneeva-footnote-116e": {
+        "title": "Право в средневековом мире. 2009",
+        "subtitle": "сборник статей",
+        "editor": "Варьяш, И. И. and Попова, Г. А.",
+        "location": "Москва",
+        "publisher": "ИВИ РАН",
+        "date": "2009",
+        "pagetotal": None,
+    },
+    "korneeva-footnote-116f": {
+        "title": "Право в средневековом мире",
+        "subtitle": "сборник статей",
+        "editor": "Попова, Г. А.",
+        "location": "Москва",
+        "publisher": "ИВИ РАН",
+        "date": "2010",
+        "pagetotal": "292",
+    },
+    "korneeva-research-096": {
+        "booktitle": "Право в средневековом мире. 2009",
+        "editor": "Варьяш, И. И. and Попова, Г. А.",
+        "location": "Москва",
+        "publisher": "ИВИ РАН",
+        "crossref": "korneeva-footnote-116e",
+    },
+    "korneeva-research-100": {
+        "booktitle": "Право в средневековом мире",
+        "editor": "Попова, Г. А.",
+        "location": "Москва",
+        "publisher": "ИВИ РАН",
+        "crossref": "korneeva-footnote-116f",
+    },
+    "korneeva-research-117": {
+        "booktitle": "Право в средневековом мире. 2008",
+        "editor": "Варьяш, И. И. and Попова, Г. А.",
+        "location": "Москва",
+        "publisher": "ИВИ РАН",
+        "crossref": "korneeva-footnote-116d",
+    },
+    "korneeva-research-123": {
+        "booktitle": "Право в средневековом мире. 2009",
+        "editor": "Варьяш, И. И. and Попова, Г. А.",
+        "location": "Москва",
+        "publisher": "ИВИ РАН",
+        "crossref": "korneeva-footnote-116e",
+    },
+    "korneeva-curated-varyash-oath": {
+        "booktitle": "Право в средневековом мире. 2009",
+        "editor": "Варьяш, И. И. and Попова, Г. А.",
+        "location": "Москва",
+        "publisher": "ИВИ РАН",
+        "crossref": "korneeva-footnote-116e",
+    },
+}
+
 DELETED_KEYS = {
     "korneeva-research-383",  # duplicate of korneeva-sources-020
     "korneeva-research-241",  # duplicate of korneeva-sources-022
@@ -94,38 +206,48 @@ ADDITIONAL_ENTRIES = r"""
   keywords     = {footnote-only},
 }
 
-@book{korneeva-footnote-116b,
+@collection{korneeva-footnote-116b,
   title        = {Право в средневековом мире},
-  editor       = {Варьяш, О. И. and Варьяш, И. И.},
+  subtitle     = {сборник статей. Вып. 2--3},
+  editor       = {Варьяш, О. И. and Глебов, А. Г. and Закс, В. А. and Варьяш, И. И.},
   location     = {Санкт-Петербург},
   publisher    = {Алетейя},
   date         = {2001},
+  pagetotal    = {343, [3]},
+  isbn         = {5-89329-359-2},
   langid       = {russian},
   keywords     = {footnote-only},
 }
 
-@book{korneeva-footnote-116c,
-  title        = {Право в средневековом мире},
+@collection{korneeva-footnote-116c,
+  title        = {Право в средневековом мире. 2007},
+  subtitle     = {сборник статей},
   editor       = {Варьяш, И. И. and Попова, Г. А.},
   location     = {Москва},
   publisher    = {ИВИ РАН},
   date         = {2007},
+  pagetotal    = {292, [1]},
+  isbn         = {5-94067-213-2},
   langid       = {russian},
   keywords     = {footnote-only},
 }
 
-@book{korneeva-footnote-116d,
-  title        = {Право в средневековом мире},
+@collection{korneeva-footnote-116d,
+  title        = {Право в средневековом мире. 2008},
+  subtitle     = {сборник статей},
   editor       = {Варьяш, И. И. and Попова, Г. А.},
   location     = {Москва},
   publisher    = {ИВИ РАН},
   date         = {2008},
+  pagetotal    = {276},
+  isbn         = {5-94067-249-3},
   langid       = {russian},
   keywords     = {footnote-only},
 }
 
-@book{korneeva-footnote-116e,
-  title        = {Право в средневековом мире},
+@collection{korneeva-footnote-116e,
+  title        = {Право в средневековом мире. 2009},
+  subtitle     = {сборник статей},
   editor       = {Варьяш, И. И. and Попова, Г. А.},
   location     = {Москва},
   publisher    = {ИВИ РАН},
@@ -134,12 +256,14 @@ ADDITIONAL_ENTRIES = r"""
   keywords     = {footnote-only},
 }
 
-@book{korneeva-footnote-116f,
+@collection{korneeva-footnote-116f,
   title        = {Право в средневековом мире},
+  subtitle     = {сборник статей},
   editor       = {Попова, Г. А.},
   location     = {Москва},
   publisher    = {ИВИ РАН},
   date         = {2010},
+  pagetotal    = {292},
   langid       = {russian},
   keywords     = {footnote-only},
 }
@@ -698,17 +822,22 @@ def normalize(source: Path) -> tuple[str, dict[str, int]]:
             language, _confidence = infer_language(entry)
             block = set_field(block, "langid", language)
             langids_added += 1
-        if key in TYPE_UPDATES:
-            block = re.sub(r"^@[A-Za-z]+", f"@{TYPE_UPDATES[key]}", block, count=1)
-        if key in FIELD_UPDATES:
-            for field, value in FIELD_UPDATES[key].items():
+        type_update = MEDIEVAL_LAW_TYPE_UPDATES.get(key, TYPE_UPDATES.get(key))
+        field_update = {
+            **FIELD_UPDATES.get(key, {}),
+            **MEDIEVAL_LAW_FIELD_UPDATES.get(key, {}),
+        }
+        if type_update:
+            block = re.sub(r"^@[A-Za-z]+", f"@{type_update}", block, count=1)
+        if field_update:
+            for field, value in field_update.items():
                 block = set_field(block, field, value)
             structural_entries += 1
         # An edited volume without a named author is a collection in BibLaTeX,
         # not a monograph.  This also removes false mandatory-author warnings.
-        effective_editor = entry.fields.get("editor") or (FIELD_UPDATES.get(key, {}).get("editor"))
-        effective_author = entry.fields.get("author") or (FIELD_UPDATES.get(key, {}).get("author"))
-        target_type = TYPE_UPDATES.get(key, entry.entry_type)
+        effective_editor = entry.fields.get("editor") or field_update.get("editor")
+        effective_author = entry.fields.get("author") or field_update.get("author")
+        target_type = type_update or entry.entry_type
         if target_type == "book" and effective_editor and not effective_author:
             block = re.sub(r"^@[A-Za-z]+", "@collection", block, count=1)
         if block != original:
