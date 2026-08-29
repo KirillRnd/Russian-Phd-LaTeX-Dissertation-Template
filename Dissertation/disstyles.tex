@@ -31,7 +31,9 @@
 %%% Макет страницы %%%
 % Выставляем значения полей (ГОСТ 7.0.11-2011, 5.3.7)
 \geometry{a4paper, top=2cm, bottom=2cm, left=2.5cm, right=1cm, nofoot, nomarginpar} %, heightrounded, showframe
-\setlength{\topskip}{0pt}   %размер дополнительного верхнего поля
+% Topskip откалиброван по двум принятым Word-диссертациям: верх первой строки
+% находится примерно в 70 pt от края листа при неизменном поле 20 мм.
+\setlength{\topskip}{\dimexpr\curtextsize+10pt\relax}
 \setlength{\footskip}{12.3pt} % снимет warning, согласно https://tex.stackexchange.com/a/334346
 
 %%% Выравнивание и переносы %%%
@@ -89,8 +91,10 @@
 
 %%% Колонтитулы %%%
 % Порядковый номер страницы печатают на середине верхнего поля страницы (ГОСТ Р 7.0.11-2011, 5.3.8)
-\makeevenhead{plain}{}{\rmfamily\thepage}{}
-\makeoddhead{plain}{}{\rmfamily\thepage}{}
+% В примерах номер стоит визуально в середине верхнего поля, а не у края листа.
+\newcommand*{\thesispagenumber}{\raisebox{-19pt}[0pt][0pt]{\rmfamily\thepage}}
+\makeevenhead{plain}{}{\thesispagenumber}{}
+\makeoddhead{plain}{}{\thesispagenumber}{}
 \makeevenfoot{plain}{}{}{}
 \makeoddfoot{plain}{}{}{}
 \pagestyle{plain}

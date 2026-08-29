@@ -6,10 +6,8 @@
 \externaldocument[volI-]{dissertation-volume1}
 
 \begin{document}
-% Сквозная пагинация: титульный лист второго тома следует сразу за последней
-% физической страницей первого тома. Значение берётся из его aux-файла.
-\setcounter{page}{\getpagerefnumber{volI-TotPages}}
-\stepcounter{page}
+% Каждый том имеет самостоятельную пагинацию: титульный лист считается
+% первой страницей (номер не печатается), оглавление начинается со страницы 2.
 \gappto\captionsrussian{\input{common/renames}}
 \input{common/renames}
 \gappto\captionsrussian{\input{Dissertation/renames}}
