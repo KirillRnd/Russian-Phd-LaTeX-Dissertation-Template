@@ -1,2 +1,13 @@
-% Совместимый вход по умолчанию: первый том.
-\input{dissertation-volume1}
+% Единая PDF-обёртка для двух самостоятельно собранных томов.
+% Для сохранения всех исходных закладок используйте
+% tools/merge_dissertation_volumes.py.
+\documentclass[a4paper]{article}
+\usepackage{pdfpages}
+\usepackage[unicode]{hyperref}
+
+\begin{document}
+\pdfbookmark[0]{Том I}{volume-1}
+\includepdf[pages=-]{dissertation-volume1.pdf}
+\pdfbookmark[0]{Том II}{volume-2}
+\includepdf[pages=-]{dissertation-volume2.pdf}
+\end{document}

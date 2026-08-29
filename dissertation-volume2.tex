@@ -16,7 +16,8 @@
 \include{Dissertation/title}
 \include{Dissertation/contents}
 
-\setcounter{chapter}{2}% Том II продолжает сквозную нумерацию основного текста.
+\setcounter{chapter}{1}% Том II продолжает сквозную нумерацию основного текста.
+\include{Dissertation/korneeva/chapter2}
 \include{Dissertation/korneeva/chapter3}
 \setcounter{totalchapter}{\value{chapter}}
 
@@ -24,11 +25,12 @@
 \include{Dissertation/references}
 
 \appendix
-\setcounter{chapter}{1}% Приложение 1 (карта) заявлено во введении, но файл не предоставлен.
+\setcounter{chapter}{0}
 \setlength{\midchapskip}{20pt}
 \renewcommand*{\afterchapternum}{\par\nobreak\vskip \midchapskip}
-\renewcommand\thechapter{\Asbuk{chapter}}
+\renewcommand\thechapter{\arabic{chapter}}
 
+\include{Dissertation/korneeva/appendix_map}
 \include{Dissertation/korneeva/appendix_glossary}
 \include{Dissertation/korneeva/appendix_computational_report}
 \setcounter{totalappendix}{\value{chapter}}
