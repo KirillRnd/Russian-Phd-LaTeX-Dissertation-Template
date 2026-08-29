@@ -12,14 +12,19 @@
 |---|---|---|
 | монография с автором | `book` | `author`, `title`, `date`, `location`, `publisher` |
 | сборник или издание под редакцией | `collection` | `editor`, `title`, `date`, `location`, `publisher` |
-| статья в журнале | `article` | `author`, `title`, `journaltitle`, `date`, `volume`/`number`, `pages` |
+| статья в журнале | `article` | `author`, `title`, `journaltitle`, `date`, `volume`/`number`, `pages`; для электронной статьи без пагинации — `eid`, `doi` или точный `url` вместо `pages` |
 | глава в сборнике | `incollection` | `author`, `title`, `booktitle`, `editor`, `date`, `pages` |
 | доклад в трудах конференции | `inproceedings` | `author`, `title`, `booktitle`, `editor`, `date`, `pages` |
 | самостоятельная веб-страница, словарная статья, база, ПО | `online` | `title`, `url`, `urldate`; автор/организация и дата — если указаны ресурсом |
 | архивная единица хранения | `misc` | `title`, `institution`/`organization`, шифр в структурных полях или `note` |
+| диссертация | `thesis` | `author`, `title`, `type`, `institution`, `date`, `location` |
 
 Нельзя записывать журнал целиком в `booktitle`, дату обращения — в `date`,
 а обозначения `С.`, `P.`, `Vol.` — внутрь числовых полей.
+
+Дата создания архивной единицы приводится, когда она установлена. Само по
+себе её отсутствие не делает ссылку неполной, если архив, коллекция, шифр и
+листы позволяют однозначно найти объект.
 
 ## Язык и имена
 
@@ -58,10 +63,10 @@ python tools/normalize_bibliography.py --write
 ```
 
 Аудит пишет читаемый отчёт `output/bibliography/audit.md` и с флагом ниже
-останавливает сборку при структурных ошибках:
+останавливает сборку, если хотя бы одна запись не готова:
 
 ```powershell
-python tools/audit_bibliography.py --fail-on-error
+python tools/audit_bibliography.py --fail-on-not-ready
 ```
 
 Единственная отдельная сборка библиографии:
@@ -73,6 +78,5 @@ python tools/build_bibliography.py
 Результат — `output/bibliography/bibliography-preview.html`. PDF на этом этапе
 не создаётся. После сборки автоматически проверяются полнота списка, Unicode,
 диакритика и несколько русских, латинографических и сетевых регрессионных
-случаев. Предупреждения уровня `review` обозначают неизвестные факты,
-которые нельзя безопасно восстановить автоматически; это не разрешение
-подставлять предполагаемые сведения.
+случаев. Диагностические пометы `review` сохраняются отдельно и не означают,
+что отсутствующую в самом издании факультативную роль следует выдумывать.

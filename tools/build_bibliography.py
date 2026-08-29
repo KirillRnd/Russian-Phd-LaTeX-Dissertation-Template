@@ -55,7 +55,7 @@ def find_program(name: str) -> str:
 
 def build() -> Path:
     subprocess.run(
-        [sys.executable, str(ROOT / "tools" / "audit_bibliography.py"), "--fail-on-error"],
+        [sys.executable, str(ROOT / "tools" / "audit_bibliography.py"), "--fail-on-not-ready"],
         cwd=ROOT,
         check=True,
     )
@@ -80,6 +80,11 @@ def build() -> Path:
         html = OUTPUT / "bibliography-preview.html"
         if not html.exists() or html.stat().st_size == 0:
             raise RuntimeError(f"HTML библиографии не создан: {html}")
+        # make4ht leaves padding spaces in generated markup.  They are not
+        # meaningful HTML, but make reviews and `git diff --check` noisy.
+        content = html.read_text(encoding="utf-8")
+        normalized = "\n".join(line.rstrip() for line in content.splitlines()) + "\n"
+        html.write_text(normalized, encoding="utf-8")
         log = ROOT / "bibliography-preview.blg"
         if log.exists():
             shutil.copy2(log, OUTPUT / "biber.log")

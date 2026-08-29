@@ -295,23 +295,12 @@ def issues(entry: Entry) -> list[tuple[str, str]]:
         result.append(("warning", f"нет langid; кандидат {language} ({confidence})"))
     if "credits" in fields:
         result.append(("error", "поле credits не поддерживается моделью BibLaTeX"))
-    if "volume" in fields and not fields["volume"].isdigit():
-        result.append(("error", f"volume не является целым числом: {fields['volume']}"))
+    if "volume" in fields and not re.fullmatch(
+        r"(?:\d+|[IVXLCDM]+)(?:--(?:\d+|[IVXLCDM]+))?", fields["volume"], re.I
+    ):
+        result.append(("error", f"volume не является номером или диапазоном томов: {fields['volume']}"))
     if entry.entry_type == "online" and "pages" in fields:
         result.append(("error", "pages недопустимо для online"))
-    if entry.entry_type == "article" and "author" not in fields:
-        result.append(("review", "у статьи не установлен автор или корпоративный автор"))
-    if entry.entry_type == "book" and "author" not in fields:
-        result.append(("review", "у монографии не установлен автор; возможно, требуется тип collection"))
-    if entry.entry_type == "collection" and "editor" not in fields:
-        result.append(("review", "у сборника не установлен редактор"))
-    if entry.entry_type == "incollection":
-        if "author" not in fields:
-            result.append(("review", "у части издания не установлен автор или корпоративный автор"))
-        if "editor" not in fields:
-            result.append(("review", "у части издания не установлен редактор сборника"))
-    if entry.entry_type in {"online", "misc"} and not ({"date", "year"} & fields.keys()):
-        result.append(("review", "не установлена дата публикации/создания"))
     if "url" in fields and "urldate" not in fields:
         result.append(("warning", "у URL нет urldate"))
     if "urldate" in fields and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", fields["urldate"]):
@@ -320,6 +309,25 @@ def issues(entry: Entry) -> list[tuple[str, str]]:
         result.append(("error", "doi содержит URL-префикс"))
     if "pages" in fields and re.search(r"(?i)(?:^|\s)(?:с|p|pp|s)\.?\s*\d", fields["pages"]):
         result.append(("error", "в pages записано языковое обозначение страниц"))
+    # The one-time DOCX migration frequently copied a citation postnote (the
+    # exact page cited in the thesis) into ``pages``.  That is not the extent
+    # of an article/chapter and therefore is a binary readiness failure.  The
+    # small allowlist contains genuinely one-page/one-column source fragments,
+    # checked individually rather than inferred from their type.
+    single_page_components = {
+        "korneeva-curated-panormia",  # one column of Panormia
+        "korneeva-footnote-141",     # formula in a medieval glossary
+        "korneeva-footnote-153",     # dictionary entry
+        "korneeva-footnote-156",     # dictionary entry
+    }
+    if (
+        entry.entry_type in {"article", "incollection", "inproceedings"}
+        and entry.key not in single_page_components
+        and re.fullmatch(r"\d+", fields.get("pages", "").strip())
+    ):
+        result.append(("review", "одиночная страница аналитической публикации похожа на постраничную ссылку"))
+    if entry.entry_type in {"book", "collection"} and "pages" in fields:
+        result.append(("review", "у книги поле pages похоже на постраничную ссылку; объём задаётся pagetotal"))
     review_title = bool(re.match(r"(?i)^\[?(?:рец|рецензия|review)\b", fields.get("title", "")))
     if not review_title and "note" in fields and re.search(
         r"(?i)(?:^|[;/])\s*(?:под ред|отв\. ред|ред\.|пер\.|ed\.|eds\.|edited by|hrsg|hg\.)",
@@ -327,6 +335,55 @@ def issues(entry: Entry) -> list[tuple[str, str]]:
     ):
         result.append(("review", "роли редактора/переводчика находятся в note"))
     return result
+
+
+STRICT_REQUIRED_FIELDS = {
+    "book": ("title", "date", "location", "publisher"),
+    "collection": ("title", "date", "location", "publisher"),
+    "article": ("title", "journaltitle", "date"),
+    "incollection": (
+        "title", "booktitle", "date", "pages",
+        "location", "publisher",
+    ),
+    "inproceedings": (
+        "title", "booktitle", "date", "pages",
+        "location", "publisher",
+    ),
+    "online": ("title", "url", "urldate"),
+    "misc": ("title",),
+    "thesis": ("author", "title", "type", "institution", "date", "location"),
+}
+
+
+def inherited_field(entry: Entry, name: str, entries_by_key: dict[str, Entry]) -> str | None:
+    """Read an explicit field or its value from a reviewed crossref parent."""
+    if value := entry.fields.get(name):
+        return value
+    parent = entries_by_key.get(entry.fields.get("crossref", ""))
+    return parent.fields.get(name) if parent else None
+
+
+def strict_issues(entry: Entry, entries_by_key: dict[str, Entry]) -> list[str]:
+    """Return binary readiness failures; one failure makes an entry not ready."""
+    result = [message for _severity, message in issues(entry)]
+    required = STRICT_REQUIRED_FIELDS.get(entry.entry_type, ("title",))
+    for name in required:
+        if not inherited_field(entry, name, entries_by_key):
+            result.append(f"нет обязательного поля {name}")
+    fields = entry.fields
+    if entry.entry_type == "article" and not (
+        fields.get("volume") or fields.get("number") or fields.get("issueyear")
+    ):
+        result.append("нет обязательного volume/number")
+    if entry.entry_type == "article" and not (
+        fields.get("pages") or fields.get("eid") or fields.get("doi") or fields.get("url")
+    ):
+        result.append("нет страниц или электронного идентификатора статьи")
+    if entry.entry_type == "online" and not (fields.get("author") or fields.get("organization")):
+        result.append("нет автора или ответственной организации электронного ресурса")
+    if entry.entry_type == "misc" and not (fields.get("institution") or fields.get("organization")):
+        result.append("нет учреждения архивного хранения")
+    return sorted(set(result))
 
 
 def render_report(entries: list[Entry], source: Path) -> str:
@@ -337,6 +394,16 @@ def render_report(entries: list[Entry], source: Path) -> str:
     severity_counts = collections.Counter(severity for _, severity, _ in all_issues)
     review_reason_counts = collections.Counter(
         message for _, severity, message in all_issues if severity == "review"
+    )
+    entries_by_key = {entry.key: entry for entry in entries}
+    readiness_failures = {
+        entry.key: strict_issues(entry, entries_by_key)
+        for entry in entries
+        if strict_issues(entry, entries_by_key)
+    }
+    ready_count = len(entries) - len(readiness_failures)
+    readiness_reason_counts = collections.Counter(
+        message for messages in readiness_failures.values() for message in messages
     )
 
     title_groups: dict[tuple[str, ...], list[Entry]] = collections.defaultdict(list)
@@ -353,6 +420,13 @@ def render_report(entries: list[Entry], source: Path) -> str:
         f"Всего записей: **{len(entries)}**.",
         "",
         "## Сводка",
+        "",
+        "### Бинарная готовность",
+        "",
+        "| Статус | Количество |",
+        "|---|---:|",
+        f"| Готово | {ready_count} |",
+        f"| Не готово | {len(readiness_failures)} |",
         "",
         "### Типы записей",
         "",
@@ -377,6 +451,9 @@ def render_report(entries: list[Entry], source: Path) -> str:
     if review_reason_counts:
         lines.extend(("", "### Причины ручной проверки", "", "| Причина | Количество |", "|---|---:|"))
         lines.extend(f"| {message} | {count} |" for message, count in review_reason_counts.most_common())
+    if readiness_reason_counts:
+        lines.extend(("", "### Причины неготовности", "", "| Причина | Количество |", "|---|---:|"))
+        lines.extend(f"| {message} | {count} |" for message, count in readiness_reason_counts.most_common())
     lines.extend(("", f"Групп с совпадающей сигнатурой издания: **{len(duplicates)}**.", ""))
 
     if duplicates:
@@ -398,6 +475,17 @@ def render_report(entries: list[Entry], source: Path) -> str:
             title = entry.fields.get("title", "<без заглавия>")
             lines.append(f"- `{entry.key}` (строка {entry.line}): {message}. — {title}")
         lines.append("")
+    lines.extend((f"## НЕ ГОТОВО — {len(readiness_failures)}", ""))
+    if not readiness_failures:
+        lines.extend(("Нет.", ""))
+    else:
+        for entry in entries:
+            if entry.key not in readiness_failures:
+                continue
+            reasons = "; ".join(readiness_failures[entry.key])
+            title = entry.fields.get("title", "<без заглавия>")
+            lines.append(f"- `{entry.key}` (строка {entry.line}): {reasons}. — {title}")
+        lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -406,6 +494,7 @@ def main() -> None:
     parser.add_argument("bib", nargs="?", type=Path, default=DEFAULT_BIB)
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     parser.add_argument("--fail-on-error", action="store_true")
+    parser.add_argument("--fail-on-not-ready", action="store_true")
     args = parser.parse_args()
     source = args.bib if args.bib.is_absolute() else ROOT / args.bib
     report = args.report if args.report.is_absolute() else ROOT / args.report
@@ -415,6 +504,10 @@ def main() -> None:
     print(f"Bibliography audit: {len(entries)} entries -> {report.relative_to(ROOT)}")
     if args.fail_on_error and any(severity == "error" for entry in entries for severity, _ in issues(entry)):
         sys.exit(1)
+    if args.fail_on_not_ready:
+        entries_by_key = {entry.key: entry for entry in entries}
+        if any(strict_issues(entry, entries_by_key) for entry in entries):
+            sys.exit(2)
 
 
 if __name__ == "__main__":
