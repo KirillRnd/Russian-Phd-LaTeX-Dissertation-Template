@@ -110,12 +110,11 @@
 
 На первом переходе унифицируется графическая запись, на втором сокращается часть окончаний. При содержательной проверке исследователь возвращается к исходному чтению; редуцированная форма нужна лишь для того, чтобы орфографическая и морфологическая вариативность меньше мешала поиску возможных соответствий.
 
-\emph{Таблица 1. Пример последовательной }\emph{предварительной обработки текста на латинском языке (}\emph{111 (123)}\emph{ статья «Барселонских обычаев}\emph{» --- фрагмент}\emph{)}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/5\relax}|p{\dimexpr0.94\textwidth/5\relax}|p{\dimexpr0.94\textwidth/5\relax}|p{\dimexpr0.94\textwidth/5\relax}|p{\dimexpr0.94\textwidth/5\relax}|}
+\caption{Пример последовательной предварительной обработки текста на латинском языке (статья 111 (123) «Барселонских обычаев» --- фрагмент)}\label{tab:ch1-preprocessing}\\
 \hline
  & \textbf{Исходный текст} & \textbf{Нормализ}\textbf{ация} & \textbf{Стемми}\textbf{нг} & \textbf{Итоговый набор токенов} \\ \hline
 \textbf{Текст} & CONSTITVERVNT IGITVR ut si quis cum aliquo ierit uel fuerit, siue in uia, aut in domo, siue in agro, seu in alio quolibet loco, si aliquis inde eum requisierit uel aliquid de suo ei tollere uoluerit, adiu-\par 5 uet eum prout melius possit & constituerunt igitur ut si quis cum aliquo ierit uel fuerit si ue in uia aut in domo si ue in agro seu in alio quolibet loco si aliquis inde eum requisierit uel aliquid de suo ei tollere uoluerit adiu 5 uet eum prout melius possit & constituerunt igi ut si quis cum aliquo ier uel fuer si ue in uia aut in domo si ue in agro seu in alio quolibet loco si aliqu inde eum requisierit uel aliquid de suo ei tolle uoluer adiu 5 uet eum prout melius poss & constituerunt igi quis aliquo ier fuer uia domo agro seu alio quolibet loco aliqu eum requisierit aliquid tolle uoluer adiu uet prout melius poss \\ \hline
@@ -441,14 +440,13 @@ w(n)=\frac{1}{n}.
 
 Содержательное значение такой конфигурации особенно хорошо видно на материале сильнейших соответствий, зафиксированных в markdown-отчёте к данному эксперименту.
 
-\emph{Таблица 2. Значения метрик и итоговое ранжирование трёх сильнейших }\emph{соответствий латинских источников и «Барселонских обычаев»}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 % Метрики расположены по строкам: так таблица сохраняет 12-й кегль и
 % полностью помещается на странице книжной ориентации.
 \begin{longtable}{|p{0.22\textwidth}|p{0.24\textwidth}|p{0.24\textwidth}|p{0.24\textwidth}|}
+\caption{Значения метрик и итоговое ранжирование трёх сильнейших соответствий латинских источников и «Барселонских обычаев»}\label{tab:ch1-latin-ranking}\\
 \hline
 \textbf{Показатель} & \textbf{\emph{Etymologiae} V.18 $\rightarrow$ Us. 140} & \textbf{Dig. 22.5.6 $\rightarrow$ Us. 89} & \textbf{\emph{Exceptiones legum Romanorum} IV.17 $\rightarrow$ Us. 105} \\ \hline
 Косинусное сходство & 0,917 (1) & 0,692 (3) & 0,489 (4) \\ \hline
@@ -465,12 +463,11 @@ Tesserae & 4,566 (1) & 2,090 (5) & 2,779 (2) \\ \hline
 
 Наиболее сильное совпадение было выявлено между фрагментом из XVIII книги «Этимологий» Исидора Севильского, озаглавленным «О привилегиях», и 140-й статьёй «Барселонских обычаев». В обоих текстах содержится одна и та же дефиниция: привилегии определяются как \emph{«законы частных лиц»}, а происхождение самого термина объясняется его принадлежностью к сфере частного права.
 
-\emph{Таблица}\emph{ }\emph{3}\emph{. Сопоставление текста }\emph{Etymologiae}\emph{ V.18 и }\emph{D}\emph{2 (140) }\emph{статьи «Барселонских обычаев»}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление текста \emph{Etymologiae} V.18 и статьи D2 (140) «Барселонских обычаев»}\label{tab:ch1-etymologiae}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{\emph{Etymologiae}}\textbf{ V.18} & \textbf{«Барселонские обычаи», }\textbf{ }\textbf{Us}\textbf{. D2 (140)} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{priuilegiis}\emph{ }\emph{priuilegia}\emph{ }\emph{sunt}\emph{ }\emph{leges}\emph{ }\emph{priuat}\emph{ }\emph{quasi}\emph{ }\emph{priu}\emph{ }\emph{leges}\emph{ }\emph{priuilegium}\emph{ }\emph{dictum}\emph{ }\emph{priuato}\emph{ }\emph{fera} & \emph{priuilegia}\emph{ sunt leges }\emph{priuat}\emph{ quasi }\emph{priuate}\emph{ leges }\emph{priuilegium}\emph{ dictum }\emph{priuato}\emph{ }\emph{fera} \\ \hline
@@ -487,12 +484,11 @@ Tesserae & 4,566 (1) & 2,090 (5) & 2,779 (2) \\ \hline
 
 Второе место по силе в данном эксперименте занимает соответствие между фрагментом 22-й книги «Свода Юстиниана» и B6-й (89-й) статьёй «Барселонских обычаев».
 
-\emph{Таблица }\emph{4}\emph{. Сопоставление текста }\emph{Digesta}\emph{ 22.5.6 и статьи }\emph{B}\emph{6 (}\emph{89}\emph{)}\emph{ «Барселонских обычаев»}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление текста \emph{Digesta} 22.5.6 и статьи B6 (89) «Барселонских обычаев»}\label{tab:ch1-digesta}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{\emph{Digesta}}\textbf{ 22.5.6} & \textbf{«Барселонские обычаи», }\textbf{ }\textbf{Us}\textbf{. B6 (89)} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{idon uident testes impera pot testes fia} & \emph{idon testes uident impera pot testes fia} \\ \hline
@@ -509,12 +505,11 @@ Tesserae & 4,566 (1) & 2,090 (5) & 2,779 (2) \\ \hline
 
 Третье по значимости совпадение связывает фрагмент из «Составленных Петром извлечений из римских законов» с 80-й (105-й) статьёй «Барселонских обычаев».
 
-\emph{Таблица }\emph{5}\emph{. Сопоставление текста }\emph{«Составленные Петром извлечения из римских законов»}\emph{ IV.17 и статьи }\emph{80 (}\emph{105}\emph{)}\emph{ «Барселонских обычаев»}\emph{}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление текста «Составленные Петром извлечения из римских законов» IV.17 и статьи 80 (105) «Барселонских обычаев»}\label{tab:ch1-petri-exceptiones}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{\emph{«Составленные Петром извлечения из римских законов»,}}\textbf{ IV.17} & \textbf{«Барселонские обычаи», }\textbf{Us}\textbf{.}\textbf{ 80}\textbf{ }\textbf{(}\textbf{105}\textbf{)} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{aduers}\emph{ }\emph{alium}\emph{ }\emph{aliqu}\emph{ }\emph{actionem}\emph{ }\emph{habuer}\emph{ }\emph{iusti}\emph{с}\emph{ }\emph{faciend}\emph{ }\emph{uocauer}\emph{ }\emph{timo}\emph{ }\emph{dei}\emph{ }\emph{iussu}\emph{ }\emph{iudicis}\emph{ }\emph{propinquo}\emph{ }\emph{amico}\emph{ c}\emph{o}\emph{monitu}\emph{ }\emph{iustic}\emph{ }\emph{acto}\emph{ }\emph{face}\emph{ }\emph{uoluer}\emph{ }\emph{actor}\emph{ }\emph{ira}\emph{ }\emph{co}\emph{mmo}\emph{ts}\emph{ }\emph{res}\emph{ }\emph{mobil}\emph{ }\emph{rapuer}\emph{ }\emph{immobiles}\emph{ }\emph{inuaser}\emph{ }\emph{domos}\emph{ c }\emph{cremaner}\emph{ }\emph{uineas}\emph{ }\emph{mes}\emph{ }\emph{ses}\emph{ }\emph{arbor}\emph{ }\emph{deuastauer}\emph{ }\emph{posteaq}\emph{ }\emph{reus}\emph{ }\emph{aliquo}\emph{ }\emph{tem}\emph{ }\emph{iusti}\emph{ }\emph{ciam}\emph{ }\emph{uener}\emph{ }\emph{quicquid}\emph{ }\emph{damni}\emph{ }\emph{acto}\emph{ }\emph{foec}\emph{ }\emph{luer}\emph{ }\emph{rebus}\emph{ }\emph{siris}\emph{ }\emph{poss}\emph{ }\emph{cepisse}\emph{ }\emph{primis}\emph{ }\emph{restitunt}\emph{ }\emph{postea}\emph{ }\emph{actor}\emph{ }\emph{ret}\emph{ }\emph{quas}\emph{ }\emph{bonis}\emph{ }\emph{possed}\emph{ }\emph{restituat}\emph{ }\emph{consumptum}\emph{ }\emph{uero}\emph{ d }\emph{iuc}\emph{ }\emph{presens}\emph{ }\emph{hab}\emph{ }\emph{restaur} & \emph{contra}\emph{ }\emph{alium}\emph{ }\emph{aliqu}\emph{ }\emph{querel}\emph{ }\emph{habuer}\emph{ }\emph{iustic}\emph{ }\emph{faciend}\emph{ }\emph{eum}\emph{ }\emph{uocauer}\emph{ }\emph{timo}\emph{ }\emph{dei}\emph{ }\emph{iudicis}\emph{ }\emph{iussu}\emph{ }\emph{propinqu}\emph{o}\emph{ }\emph{amic}\emph{ }\emph{commonitu}\emph{ }\emph{iustic}\emph{ }\emph{querelato}\emph{ }\emph{face}\emph{ }\emph{noluer}\emph{ }\emph{querel}\emph{ }\emph{ira}\emph{ }\emph{commot}\emph{ }\emph{res}\emph{ }\emph{mobil}\emph{ }\emph{rapuer}\emph{ }\emph{immobiles}\emph{ }\emph{inuaser}\emph{ }\emph{domos}\emph{ }\emph{concremauerit}\emph{ }\emph{messes}\emph{ }\emph{uineas}\emph{ }\emph{arbor}\emph{ }\emph{deuastauer}\emph{ }\emph{postea}\emph{ }\emph{reus}\emph{ }\emph{aliquo}\emph{ }\emph{tempo}\emph{ }\emph{iusticiam}\emph{ }\emph{uener}\emph{ }\emph{quicquid}\emph{ }\emph{dampni}\emph{ }\emph{querelator}\emph{ }\emph{fec}\emph{ }\emph{lucrum}\emph{ }\emph{poss}\emph{ }\emph{rebus}\emph{ }\emph{suis}\emph{ }\emph{cepisse}\emph{ }\emph{primum}\emph{ }\emph{restituat}\emph{ }\emph{postea}\emph{ }\emph{querel}\emph{ }\emph{res}\emph{ }\emph{quas}\emph{ }\emph{bonis}\emph{ }\emph{possidet}\emph{ }\emph{redd}\emph{ }\emph{consumpta}\emph{ }\emph{uero}\emph{ }\emph{aliquid}\emph{ }\emph{luc}\emph{ }\emph{presens}\emph{ }\emph{hab}\emph{ }\emph{tantum}\emph{ }\emph{restaur}\emph{ }\emph{postea}\emph{ }\emph{reus}\emph{ }\emph{iustic}\emph{ }\emph{faci}\emph{ }\emph{querelato}\emph{ }\emph{sicut}\emph{ }\emph{face}\emph{ }\emph{debuer}\emph{ }\emph{dec} \\ \hline
@@ -561,12 +556,11 @@ Tesserae & 4,566 (1) & 2,090 (5) & 2,779 (2) \\ \hline
 
 Наиболее заметная особенность графа состоит в концентрации связей вокруг норм книги IX «Обычаев Тортосы». К этому корпусу ведёт большинство из 50 рёбер, сохранённых после парето-фильтрации, ранжирования и итогового отбора. Доминирование «Обычаев Тортосы» проявляется, таким образом, прежде всего в \textbf{числе высокоранжированных соответствий}, а не только в визуальной плотности линий. Дополнительным показателем служит то, что все три связи, выделенные увеличенной толщиной, соединяют статьи «Барселонских обычаев» именно с нормами IX.29.13, IX.29.10 и IX.29.3 «Обычаев Тортосы». Эти линии соответствуют трём первым позициям итогового ранжирования; их толщина не обозначает отдельного численного порога, а служит графическим маркером трёх сильнейших пар во всём отобранном множестве. Остальные рёбра, независимо от конкретных значений метрик и корпуса назначения, показаны одинаково тонкими линиями. Поэтому граф позволяет различить два самостоятельных признака --- количественное преобладание связей с «Обычаями Тортосы» и принадлежность трёх наиболее высоко ранжированных соответствий к тому же корпусу.
 
-\emph{Таблица 6. Пары текстуальных совпадений «Барселонских обычаев» и «Обычаев Тортосы»}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{0.22\textwidth}|p{0.24\textwidth}|p{0.24\textwidth}|p{0.24\textwidth}|}
+\caption{Пары текстуальных совпадений «Барселонских обычаев» и «Обычаев Тортосы»}\label{tab:ch1-tortosa-pairs}\\
 \hline
 \textbf{Показатель} & \textbf{Us. 132 $\rightarrow$ \emph{Costums de Tortosa} IX.29.13} & \textbf{Us. 129 $\rightarrow$ \emph{Costums de Tortosa} IX.29.10} & \textbf{Us. 9 $\rightarrow$ \emph{Costums de Tortosa} IX.29.3} \\ \hline
 Косинусное сходство & 0,836 (1) & 0,717 (6) & 0,762 (2) \\ \hline
@@ -581,12 +575,11 @@ Tesserae & 3,172 (4) & 3,573 (2) & 2,890 (7) \\ \hline
 
 Markdown-отчёт по данному эксперименту позволяет конкретизировать эту картину на уровне отдельных пар:
 
-\emph{Таблица 7. Сопоставление статьи 132 «Барселонских обычаев» и статьи IX.29.13 «Обычаев Тортосы»}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление статьи 132 «Барселонских обычаев» и статьи IX.29.13 «Обычаев Тортосы»}\label{tab:ch1-tortosa-132}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{«Барселонские обычаи», }\textbf{ }\textbf{Us}\textbf{. }\textbf{111 (}\textbf{132}\textbf{)} & \textbf{«Обычаи Тортосы», IX.29.13} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{constituerunt}\emph{ }\emph{igi}\emph{ }\emph{quis}\emph{ }\emph{aliquo}\emph{ }\emph{ier}\emph{ }\emph{fuer}\emph{ }\emph{uia}\emph{ }\emph{domo}\emph{ }\emph{agro}\emph{ }\emph{seu}\emph{ }\emph{alio}\emph{ }\emph{quolibet}\emph{ }\emph{loco}\emph{ }\emph{aliqu}\emph{ }\emph{eum}\emph{ }\emph{requisierit}\emph{ }\emph{aliquid}\emph{ }\emph{tolle}\emph{ }\emph{uoluer}\emph{ }\emph{adiu}\emph{ }\emph{uet}\emph{ }\emph{eum}\emph{ }\emph{prout}\emph{ }\emph{melius}\emph{ }\emph{poss}\emph{ }\emph{engan}\emph{ }\emph{contra}\emph{ }\emph{cunctos}\emph{ }\emph{eciam}\emph{ }\emph{contra}\emph{ }\emph{senior}\emph{ }\emph{suos}\emph{ }\emph{nullam}\emph{ }\emph{pertimesc}\emph{ }\emph{calumpniam}\emph{ }\emph{senior}\emph{ }\emph{suus}\emph{ }\emph{nullo}\emph{ }\emph{modo}\emph{ }\emph{poss} & \emph{constituerunt}\emph{ }\emph{igi}\emph{ }\emph{quis}\emph{ }\emph{alio}\emph{ }\emph{ier}\emph{ }\emph{fuer}\emph{ }\emph{uia}\emph{ }\emph{domo}\emph{ }\emph{agro}\emph{ }\emph{seu}\emph{ }\emph{alio}\emph{ }\emph{quolibet}\emph{ }\emph{loco}\emph{ }\emph{aliqu}\emph{ }\emph{eum}\emph{ }\emph{requisierit}\emph{ }\emph{aliquid}\emph{ }\emph{desuo}\emph{ }\emph{tolle}\emph{ }\emph{uoluer}\emph{ }\emph{adiuu}\emph{ }\emph{eum}\emph{ }\emph{prout}\emph{ }\emph{melius}\emph{ }\emph{poss}\emph{ }\emph{enganno}\emph{ }\emph{contra}\emph{ }\emph{cunctos}\emph{ }\emph{contra}\emph{ }\emph{senior}\emph{ }\emph{suos}\emph{ }\emph{nullam}\emph{ }\emph{pertimesc}\emph{ }\emph{calumpniam}\emph{ }\emph{senior}\emph{ }\emph{suus}\emph{ }\emph{nullo}\emph{ }\emph{modo}\emph{ }\emph{poss}\emph{ }\emph{eum}\emph{ }\emph{suos}\emph{ }\emph{nullam}\emph{ }\emph{pertimesc}\emph{ }\emph{calumpniam}\emph{ }\emph{senior}\emph{ }\emph{suus}\emph{ }\emph{nullo}\emph{ }\emph{modo}\emph{ }\emph{poss} \\ \hline
@@ -599,12 +592,11 @@ Markdown-отчёт по данному эксперименту позволя�
 
 Изменения относятся в основном к синтаксической организации. Так, смешанная последовательность союзов «\textbf{sive} in via, \textbf{aut} in domo, \textbf{sive} in agro»\footnote{Usatges de Barcelona. Us. 111(132). P.~144.} заменена однородным перечислением «\textbf{sive} in via, \textbf{sive} in domo, \textbf{sive} in agro»\footnote{Costums de Tortosa. 9.29.13. P.~523.}. В конструкции \emph{«}\emph{…}\emph{и}\emph{ если кто-либо выступит против его спутника <…>, он должен помочь ему}\emph{»}\footnote{Usatges de Barcelona. Us. 111(132): «…si aliquis \textbf{inde} eum requisierit <…>, adiuuet eum …». P.~144. Ср. Costums de Tortosa. 9.29.13: «…si aliquis eum requisierit <…>, adiuvet eum \textbf{inde} …». P.~523.} наречие inde перенесено к предписанию. Из фразы \emph{«}\emph{либо захочет отнять что-либо из принадлежащего ему}\emph{»}\footnote{Usatges de Barcelona. Us. 111(132): «…uel aliquid de suo ei tollere uoluerit…». P.~144.} было исключено местоимение ei, благодаря этому связь между нападением и обязанностью оказать помощь становится синтаксически более ясной. Таким образом, в «Обычаях Тортосы» цитата из «Барселонских обычаев» фиксируется практически без изменений с минимальным упорядочиванием синтаксической структуры.
 
-\emph{Таблица 8. Сопоставление статьи 129 «Барселонских обычаев» и статьи IX.29.10 «Обычаев Тортосы»}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление статьи 129 «Барселонских обычаев» и статьи IX.29.10 «Обычаев Тортосы»}\label{tab:ch1-tortosa-129}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{«Барселонские обычаи», }\textbf{Us}\textbf{.}\textbf{~108 (}\textbf{129}\textbf{)} & \textbf{«Обычаи Тортосы», IX.29.10} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{statuer}\emph{ }\emph{equid}\emph{ }\emph{prelibati}\emph{ }\emph{principes}\emph{ }\emph{contencio}\emph{ }\emph{euener}\emph{ }\emph{placit}\emph{ }\emph{surrexer}\emph{ }\emph{christianos}\emph{ }\emph{iudeos}\emph{ }\emph{sufficiant}\emph{ }\emph{utra}\emph{ }\emph{parte}\emph{ }\emph{duo}\emph{ }\emph{testes}\emph{ }\emph{comprobanda}\emph{ }\emph{negocia}\emph{ }\emph{uidelic}\emph{ }\emph{unus}\emph{ }\emph{christianus}\emph{ }\emph{alter}\emph{ }\emph{iudeus}\emph{ }\emph{probaueri}\emph{ }\emph{christianis}\emph{ }\emph{testificent}\emph{ }\emph{ambo}\emph{ }\emph{iur}\emph{ }\emph{iudeus}\emph{ }\emph{probaueri}\emph{ }\emph{iudeis}\emph{ }\emph{similiter}\emph{ }\emph{ambo}\emph{ }\emph{testificent}\emph{ }\emph{iur}\emph{ }\emph{christianus} & \emph{statuer}\emph{ }\emph{equid}\emph{ }\emph{prelibati}\emph{ }\emph{principes}\emph{ }\emph{contencio}\emph{ }\emph{uen}\emph{ }\emph{placit}\emph{ }\emph{surrexer}\emph{ }\emph{iudeos}\emph{ }\emph{xristianos}\emph{ }\emph{sufficiant}\emph{ }\emph{utra}\emph{ }\emph{parte}\emph{ }\emph{duo}\emph{ }\emph{testes}\emph{ }\emph{comprobanda}\emph{ }\emph{negocia}\emph{ }\emph{uidelic}\emph{ }\emph{unus}\emph{ }\emph{xristianus}\emph{ }\emph{alter}\emph{ }\emph{iudeus}\emph{ }\emph{lta}\emph{ }\emph{probauer}\emph{ }\emph{xristianis}\emph{ }\emph{testificentur}\emph{ }\emph{ambo}\emph{ }\emph{iur}\emph{ }\emph{iudeus}\emph{ }\emph{probauer}\emph{ }\emph{iudeis}\emph{ }\emph{similiter}\emph{ }\emph{ambo}\emph{ }\emph{testificentur}\emph{ }\emph{iur}\emph{ }\emph{xristianus} \\ \hline
@@ -626,12 +618,11 @@ Markdown-отчёт по данному эксперименту позволя�
 
 В контексте двух других соответствий статья подтверждает использование того же утраченного латинского списка, близкого к ветви N-K, но содержавшего и некоторые чтения, известные по другим рукописям. Составители «Обычаев Тортосы» могли позаимствовать грамматические упрощения и уточнения из неизвестной нам рукописи «Барселонских обычаев» ветви N-K.
 
-\emph{Таблица 9. Сопоставление }\emph{7-й (9-й) }\emph{статьи}\emph{ }\emph{«Барселонских обычаев» и статьи }\emph{IX.29.3 «Обычаев Тортосы»}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление 7-й (9-й) статьи «Барселонских обычаев» и статьи IX.29.3 «Обычаев Тортосы»}\label{tab:ch1-tortosa-9}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{«Барселонские обычаи», }\textbf{Us}\textbf{. }\textbf{7 (}\textbf{9}\textbf{)} & \textbf{«Обычаи Тортосы», }\textbf{IX}\textbf{.29.3} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{miles}\emph{ }\emph{uero}\emph{ }\emph{caualleri}\emph{ }\emph{dimiserit}\emph{ }\emph{eam}\emph{ }\emph{tene}\emph{ }\emph{poss}\emph{ }\emph{nullo}\emph{ }\emph{modo}\emph{ }\emph{iudicetur}\emph{ }\emph{emende}\emph{ }\emph{sicut}\emph{ }\emph{miles}\emph{ }\emph{caualleri}\emph{ }\emph{satis}\emph{ }\emph{dimitit}\emph{ }\emph{cauall}\emph{ }\emph{arma}\emph{ }\emph{hab}\emph{ }\emph{feuum}\emph{ }\emph{milite}\emph{ }\emph{ten}\emph{ }\emph{hostes}\emph{ }\emph{caualcat}\emph{ }\emph{uad}\emph{ }\emph{placit}\emph{ }\emph{curias}\emph{ }\emph{sicut}\emph{ }\emph{miles}\emph{ }\emph{senect}\emph{ }\emph{eum}\emph{ }\emph{detinuer} & \emph{aguayt}\emph{ }\emph{encalc}\emph{ }\emph{caualiers}\emph{ }\emph{assalt}\emph{ }\emph{castello}\emph{ }\emph{emende}\emph{ }\emph{hominaticum}\emph{ }\emph{aliscari}\emph{ }\emph{sicut}\emph{ }\emph{uisum}\emph{ }\emph{fuer}\emph{ }\emph{iudicanti}\emph{ }\emph{iudicauerit}\emph{ }\emph{illam}\emph{ }\emph{causam}\emph{ }\emph{filius}\emph{ }\emph{mili}\emph{ }\emph{emende}\emph{ }\emph{pater}\emph{ }\emph{xxx}\emph{ }\emph{annos}\emph{ }\emph{deinde}\emph{ }\emph{rusticus}\emph{ }\emph{erit}\emph{ }\emph{miles}\emph{ }\emph{factus}\emph{ }\emph{miles}\emph{ }\emph{uero}\emph{ }\emph{caualleri}\emph{ }\emph{dimittit}\emph{ }\emph{eam}\emph{ }\emph{tene}\emph{ }\emph{poss}\emph{ }\emph{nullo}\emph{ }\emph{modo}\emph{ }\emph{iudicetur}\emph{ }\emph{emende}\emph{ }\emph{sicut}\emph{ }\emph{miles}\emph{ }\emph{caualleri}\emph{ }\emph{satis}\emph{ }\emph{di}\emph{ }\emph{mitt}\emph{ }\emph{cauall}\emph{ }\emph{arma}\emph{ }\emph{hab}\emph{ }\emph{feuum}\emph{ }\emph{milite}\emph{ }\emph{ten}\emph{ }\emph{caualcat}\emph{ }\emph{uad}\emph{ }\emph{placit}\emph{ }\emph{curias}\emph{ }\emph{sicut}\emph{ }\emph{miles}\emph{ }\emph{senect}\emph{ }\emph{eum}\emph{ }\emph{detinuer}\emph{ }\emph{ciues}\emph{ }\emph{burgens}\emph{ }\emph{sint}\emph{ }\emph{pla} \\ \hline
@@ -652,6 +643,7 @@ Markdown-отчёт по данному эксперименту позволя�
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{0.22\textwidth}|p{0.24\textwidth}|p{0.24\textwidth}|p{0.24\textwidth}|}
+\caption{Значения метрик и итоговое ранжирование трёх сильнейших соответствий между «Барселонскими обычаями» и дочерними сводами}\label{tab:ch1-codes-ranking}\\
 \hline
 \textbf{Показатель} & \textbf{Us. 18 $\rightarrow$ «Обычаи Миравета», ст. 14} & \textbf{Us. 107 $\rightarrow$ «Обычаи Орты», ст. 36} & \textbf{Us. 128 $\rightarrow$ «Обычаи Тарреги», ст. 18} \\ \hline
 Косинусное сходство & 0,254 (27) & 0,186 (50) & 0,247 (30) \\ \hline
@@ -666,12 +658,11 @@ Tesserae & 1,551 (22) & 0,725 (63) & 0,710 (69) \\ \hline
 
 После анализа трёх первых позиций, связанных с «Обычаями Тортосы», следует обратиться к примерам из других дочерних сводов. Для сопоставления были выбраны наиболее убедительные соответствия из «Обычаев Миравета», Орты и Тарреги. При их выборе учитывалась не только итоговая позиция в автоматическом ранжировании, но и содержательная близость текстов --- сохранение нормативной конструкции, характерной терминологии и последовательности юридически значимых действий. Сравнительно невысокие позиции некоторых пар объясняются тем, что позднейшие составители не воспроизводили исходные статьи дословно, а сокращали их, изменяли и адаптировали нормы к местным институтам.
 
-\emph{Таблица 10. Сопоставление 15-й (18-й) статьи «Барселонских обычаев» и 14}\emph{ }\emph{статьи «Обычаев }\emph{Миравета}\emph{»}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление 15-й (18-й) статьи «Барселонских обычаев» и статьи 14 «Обычаев Миравета»}\label{tab:ch1-miravet}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{«Барселонские обычаи», }\textbf{ }\textbf{Us}\textbf{. }\textbf{15 (}\textbf{18}\textbf{)} & \textbf{«Обычаи }\textbf{Миравета}\textbf{», ст. 14} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{quis impulerit aliqu una man solidum duabus solidos terram solidos det er} & \emph{item aliqu impulserit aliqu una manu duabus irose det solu dominacioni pena quin solidos cecider terr solidos} \\ \hline
@@ -686,12 +677,11 @@ Tesserae & 1,551 (22) & 0,725 (63) & 0,710 (69) \\ \hline
 
 Соотношение показателей квантитативного анализа в данном случае соответствует характеру текстовой связи. Метрика \emph{Tesserae} фиксирует общие значимые леммы \emph{duabus}\emph{, }\emph{terram}\emph{, }\emph{det}\emph{, }\emph{una}\emph{, }\emph{solidos}\emph{, }\emph{aliqu}, тогда как мягкое косинусное сходство учитывает также близость форм \emph{impulerit}\emph{ / }\emph{impulserit} и \emph{solidum}\emph{ / }\emph{solidos}. Умеренные значения косинусного сходства и локального выравнивания объясняются содержательной переработкой системы санкций. Заимствование формулы вместе с изменением конкретного содержания нормы свидетельствует о том, что установления «Барселонских обычаев» довольно прочно вошли в правовую культуру и могли использоваться составителями местных сводов обычного права не всегда намеренно и осознанно.
 
-\emph{Таблица 11. Сопоставление }\emph{84-й (107-й) }\emph{статьи «Барселонских обычаев» и }\emph{36-й }\emph{статьи «Обычаев Орты»}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление 84-й (107-й) статьи «Барселонских обычаев» и статьи 36 «Обычаев Орты»}\label{tab:ch1-horta}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{«Барселонские обычаи», }\textbf{ }\textbf{Us}\textbf{. }\textbf{84 (}\textbf{107}\textbf{)} & \textbf{«Обычаи Орты»,}\textbf{ }\textbf{XXXVI} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{rusticus desemparauer recte empar fuer sola presumpcione det quin solidos rem traxer restituat duplo saluo iure miles uero desemparauer solu abstulerit restituat simplum sacramento} & \emph{item quicum tenuer empara mobili factum solu banno comendato quin solidos rem emparat redd} \\ \hline
@@ -704,12 +694,11 @@ Tesserae & 1,551 (22) & 0,725 (63) & 0,710 (69) \\ \hline
 
 При этом составители «Обычаев Орты» значительно сократили исходную норму «Барселонских обычаев»: из неё исчезли социальные различия, двойное возмещение, оговорка \emph{«}\emph{без ущерба для своего права}\emph{»}\footnote{Usatges de Barcelona.Us. 84(107): «…salvo suo iure…». P.~122.} и подтверждение клятвой. Одновременно появились уточнения: в «Обычаях Орты» речь уже шла только о движимой вещи, а штраф уплачивался комендатору. Пространная статья «Барселонских обычаев» оказалась преобразована в краткое предписание, адаптированное к местным административным реалиям.
 
-\emph{Таблица 12. Сопоставление статьи }\emph{107 (}\emph{128}\emph{)}\emph{ «Барселонских обычаев» и }\emph{18-й }\emph{статьи «Обычаев Тарреги»}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление статьи 107 (128) «Барселонских обычаев» и статьи 18 «Обычаев Тарреги»}\label{tab:ch1-tarrega}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{«Барселонские обычаи», }\textbf{Us}\textbf{. }\textbf{107 (}\textbf{128}\textbf{)} & \textbf{«Обычаи Тарреги», }\textbf{[}\textbf{18}\textbf{]} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{item}\emph{ }\emph{statuer}\emph{ }\emph{aliqu}\emph{ }\emph{filius}\emph{ }\emph{magn}\emph{ }\emph{ter}\emph{ }\emph{maior}\emph{ }\emph{minorum}\emph{ }\emph{fecer}\emph{ }\emph{aliquod}\emph{ }\emph{malum}\emph{ }\emph{alicui}\emph{ }\emph{homini}\emph{ }\emph{castro}\emph{ }\emph{patris}\emph{ }\emph{sui}\emph{ }\emph{hono}\emph{ }\emph{hominibus}\emph{ }\emph{suis}\emph{ }\emph{cog}\emph{ }\emph{filium}\emph{ }\emph{homines}\emph{ }\emph{suam}\emph{ }\emph{terram}\emph{ }\emph{tenent}\emph{ }\emph{redirigere}\emph{ }\emph{malum}\emph{ }\emph{feceri}\emph{ }\emph{illis}\emph{ }\emph{redirigat}\emph{ }\emph{filius}\emph{ }\emph{adhuc}\emph{ }\emph{aliis}\emph{ }\emph{locis}\emph{ }\emph{hono}\emph{ }\emph{paterno}\emph{ }\emph{castro}\emph{ }\emph{hominibus}\emph{ }\emph{patris}\emph{ }\emph{aliquod}\emph{ }\emph{malum}\emph{ }\emph{alicui}\emph{ }\emph{fecer}\emph{ }\emph{rede}\emph{ }\emph{patern}\emph{ }\emph{castr}\emph{ }\emph{honorem}\emph{ }\emph{pater}\emph{ }\emph{mater}\emph{ }\emph{impenda}\emph{ }\emph{aliquod}\emph{ }\emph{benefic}\emph{ }\emph{protega}\emph{ }\emph{eum}\emph{ }\emph{aliquo}\emph{ }\emph{feceri}\emph{ }\emph{emend}\emph{ }\emph{malum}\emph{ }\emph{filius}\emph{ }\emph{perpetrauer}\emph{ }\emph{homines}\emph{ }\emph{quos}\emph{ }\emph{secum}\emph{ }\emph{deduxer} & \emph{filius}\emph{ }\emph{alicu}\emph{ }\emph{comiserit}\emph{ }\emph{aliquod}\emph{ }\emph{malefic}\emph{ }\emph{pater}\emph{ }\emph{nea}\emph{ }\emph{aliquo}\emph{ }\emph{respondere}\emph{ }\emph{patrn}\emph{ }\emph{sciente}\emph{ }\emph{filius}\emph{ }\emph{bona}\emph{ }\emph{loca}\emph{ }\emph{patris}\emph{ }\emph{redier}\emph{ }\emph{ipsum}\emph{ }\emph{scienter} \\ \hline
@@ -746,12 +735,11 @@ Tesserae & 1,551 (22) & 0,725 (63) & 0,710 (69) \\ \hline
 
 Визуально граф имеет чётко выраженный центр тяжести: подавляющее большинство сильных рёбер исходит от «Вестготской правды», причём эти связи распределяются как по корпусу грамот IX--XI~вв., так и по грамотам XII~в., что позволяет говорить не о случайном совпадении с единичным подкорпусом, а о систематическом присутствии вестготского правового материала в документальном поле. На этом фоне связи с «Барселонскими обычаями», «Сводом гражданского права» Юстиниана, «Вульгатой» и «Составленными Петром извлечениями из римских законов» выглядят существенно более фрагментарными и менее систематическими. Уже сама эта конфигурация представляет серьёзный исследовательский интерес, поскольку она показывает, что в логике данного эксперимента именно «Вестготская правда» выступает главным нормативным ориентиром, с которым соотносятся анализируемые грамоты раннего периода.\emph{ }
 
-\emph{Таблица 15. Значения метрик и итоговое ранжирование трёх сильнейших соответствий между «Вестготской правдой» и актовым материалом}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{0.22\textwidth}|p{0.24\textwidth}|p{0.24\textwidth}|p{0.24\textwidth}|}
+\caption{Значения метрик и итоговое ранжирование трёх сильнейших соответствий между «Вестготской правдой» и актовым материалом}\label{tab:ch1-charters-ranking}\\
 \hline
 \textbf{Показатель} & \textbf{\emph{Lex Visigothorum} V.6.3 $\rightarrow$ грамота №~160} & \textbf{\emph{Lex Visigothorum} V.1.1 $\rightarrow$ грамота №~186} & \textbf{\emph{Lex Visigothorum} V.6.3 $\rightarrow$ грамота №~194} \\ \hline
 Косинусное сходство & 0,635 (1) & 0,544 (6) & 0,564 (4) \\ \hline
@@ -768,12 +756,11 @@ Tesserae & 3,596 (2) & 3,124 (4) & 2,948 (5) \\ \hline
 
 Анализ наиболее сильных совпадений между «Вестготской правдой» и грамотами IX--XI~вв. показывает, что обращение к вестготской правовой традиции в грамотах IX--XI~вв. носило постоянный характер. Наиболее отчётливо это видно в нормах о залоге по долгу и о церковных дарениях: в первом случае в грамотах воспроизводится правило о порядке обращения взыскания на заложенное имущество через судью или иное должностное лицо с последующей оценкой и продажей вещи, во втором --- положение о неотчуждаемости и правовой прочности пожалований, сделанных Церкви. Особенно показательно, что в одном из случаев текст закона вводится в грамоту как прямая цитата со ссылкой на книгу, титул и главу, означающая письменное обоснование конкретного решения. Рассмотрим подробнее эти примеры.
 
-\emph{Таблица 16. Сопоставление главы V.6.3 «Вестготской правды» и грамоты №~160 о продаже заложенной земли в }\emph{Сентменате}\emph{ (13 июня 1012~г.)}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление главы V.6.3 «Вестготской правды» и грамоты №~160 о продаже заложенной земли в Сентменате (13 июня 1012~г.)}\label{tab:ch1-charter-160}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{«Вестготская правда», V.6.3} & \textbf{Грамота}\textbf{ №~160} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{reforma}\emph{ }\emph{dissimulet}\emph{ }\emph{diem}\emph{ }\emph{cautionis}\emph{ }\emph{exact}\emph{ }\emph{usque}\emph{ }\emph{decem}\emph{ }\emph{dies}\emph{ }\emph{pignus}\emph{ }\emph{saluum}\emph{ }\emph{domino}\emph{ }\emph{reserue}\emph{ }\emph{eidem}\emph{ }\emph{domino}\emph{ }\emph{propinquo}\emph{ }\emph{reporte}\emph{ }\emph{restituat}\emph{ }\emph{debit}\emph{ }\emph{monea}\emph{ }\emph{neglegenti}\emph{ }\emph{suam}\emph{ }\emph{debitor}\emph{ }\emph{diem}\emph{ }\emph{constitutum}\emph{ }\emph{adesse}\emph{ }\emph{neclexer}\emph{ }\emph{debit}\emph{ }\emph{inple}\emph{ }\emph{distulerit}\emph{ }\emph{addant}\emph{ }\emph{usu}\emph{ }\emph{ceter}\emph{ }\emph{adesse}\emph{ }\emph{usque}\emph{ }\emph{decem}\emph{ }\emph{dies}\emph{ }\emph{sicut}\emph{ }\emph{supra}\emph{ }\emph{scriptum}\emph{ }\emph{deb}\emph{ }\emph{reforma}\emph{ }\emph{dissimulauerit}\emph{ }\emph{tunc}\emph{ }\emph{creditor}\emph{ }\emph{iudici}\emph{ }\emph{preposito}\emph{ }\emph{ciuitatis}\emph{ }\emph{pignus}\emph{ }\emph{ostend}\emph{ }\emph{quant}\emph{ }\emph{iudicio}\emph{ }\emph{trium}\emph{ }\emph{honest}\emph{ }\emph{uirorum}\emph{ }\emph{fuer}\emph{ }\emph{estim}\emph{ }\emph{sit}\emph{ }\emph{licentia}\emph{ }\emph{distrahendi}\emph{ }\emph{postmodum}\emph{ }\emph{pretio}\emph{ }\emph{uenditi}\emph{ }\emph{pigner}\emph{ }\emph{creditor}\emph{ }\emph{quant}\emph{ }\emph{debe}\emph{ }\emph{euident}\emph{ }\emph{toll}\emph{ }\emph{relic}\emph{ }\emph{recipi}\emph{ }\emph{pignus}\emph{ }\emph{seposuer} & \emph{reforma}\emph{ }\emph{dissimulauerit}\emph{ }\emph{tunc}\emph{ }\emph{creditor}\emph{ }\emph{prepositos}\emph{ }\emph{ciuitatis}\emph{ }\emph{pignus}\emph{ }\emph{ostend}\emph{ }\emph{quant}\emph{ }\emph{iudicio}\emph{ }\emph{trium}\emph{ }\emph{onest}\emph{ }\emph{uirorum}\emph{ }\emph{fuer}\emph{ }\emph{extima}\emph{ }\emph{tum}\emph{ }\emph{sid}\emph{ }\emph{licencia}\emph{ }\emph{distraendi}\emph{ }\emph{postmodum}\emph{ }\emph{precio}\emph{ }\emph{uenditi}\emph{ }\emph{pigner}\emph{ }\emph{creditor}\emph{ }\emph{quant}\emph{ }\emph{debeba}\emph{ }\emph{euidenc}\emph{ }\emph{toll}\emph{ }\emph{relic}\emph{ }\emph{recipi}\emph{ }\emph{pignus}\emph{ }\emph{deposuer}\emph{ }\emph{debi}\emph{ }\emph{pignoribus}\emph{ }\emph{transac}\emph{ x }\emph{diebus}\emph{ }\emph{licenti}\emph{ }\emph{habe}\emph{ }\emph{credi}\emph{ }\emph{tor}\emph{ }\emph{uendendi}\emph{ }\emph{donandi}\emph{ }\emph{faciendi}\emph{ }\emph{suam}\emph{ }\emph{uoluntatem}\emph{ }\emph{lu}\emph{ u }\emph{tunc}\emph{ }\emph{creditor}\emph{ }\emph{preposito}\emph{ }\emph{ciuitatis}\emph{ }\emph{pignus}\emph{ }\emph{ostend}\emph{ }\emph{quant}\emph{ }\emph{iudicio}\emph{ }\emph{trium}\emph{ }\emph{honest}\emph{ }\emph{uirorum}\emph{ }\emph{fuer}\emph{ }\emph{extim}\emph{ }\emph{sit}\emph{ }\emph{licencia}\emph{ }\emph{distraendi}\emph{ }\emph{postmodum}\emph{ }\emph{precio}\emph{ }\emph{uenditi}\emph{ }\emph{pigner}\emph{ }\emph{creditor}\emph{ }\emph{quant}\emph{ }\emph{debeb}\emph{ }\emph{euident}\emph{ }\emph{toll}\emph{ }\emph{reliqu}\emph{ }\emph{recipi}\emph{ }\emph{pignus}\emph{ }\emph{deposuer} \\ \hline
@@ -794,12 +781,11 @@ Tesserae & 3,596 (2) & 3,124 (4) & 2,948 (5) \\ \hline
 
 Обратимся к анализу следующего по силе соответствия.
 
-\emph{Таблица 17. Сопоставление главы V.1.1 «Вестготской правды» и грамоты №~186 о возвращении монастырю Санта-Мария-де-}\emph{Серратейш}\emph{ аллодов }\emph{Пужол}\emph{ и Вивер (Берга, 27 января 1020~г.)}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление главы V.1.1 «Вестготской правды» и грамоты №~186 о возвращении монастырю Санта-Мария-де-Серратейш аллодов Пужол и Вивер (Берга, 27 января 1020~г.)}\label{tab:ch1-charter-186}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{«Вестготская правда», V.1.1} & \textbf{Грамота}\textbf{ №~186} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{quapropter}\emph{ }\emph{quecum}\emph{ }\emph{res}\emph{ }\emph{sanc}\emph{ }\emph{dei}\emph{ }\emph{basilicis}\emph{ }\emph{principum}\emph{ }\emph{quoramlib}\emph{ }\emph{fidel}\emph{ }\emph{donation}\emph{ }\emph{conlate}\emph{ }\emph{repperiun}\emph{ }\emph{uoti}\emph{ }\emph{potentialiter}\emph{ }\emph{certo}\emph{ }\emph{cense}\emph{ }\emph{earum}\emph{ }\emph{iure}\emph{ }\emph{inreuocabili}\emph{ }\emph{modo}\emph{ }\emph{legum}\emph{ }\emph{eternitate}\emph{ }\emph{firment} & \emph{precip}\emph{ }\emph{libr}\emph{ }\emph{iudic}\emph{ }\emph{libr}\emph{ }\emph{quint}\emph{ }\emph{donation}\emph{ }\emph{ecclesi}\emph{ }\emph{fac}\emph{ }\emph{dicens}\emph{ }\emph{quapropter}\emph{ }\emph{quasc}\emph{ }\emph{res}\emph{ }\emph{sunt}\emph{ }\emph{dei}\emph{ }\emph{basilicis}\emph{ }\emph{principium}\emph{ }\emph{quarumlibet}\emph{ }\emph{fidel}\emph{ }\emph{donation}\emph{ }\emph{collate}\emph{ }\emph{reperiun}\emph{ }\emph{uoti}\emph{ }\emph{potencialiter}\emph{ }\emph{certo}\emph{ }\emph{cense}\emph{ }\emph{earum}\emph{ }\emph{iure}\emph{ }\emph{inreuocabili}\emph{ }\emph{modo}\emph{ }\emph{legum}\emph{ }\emph{aternitate}\emph{ }\emph{firment} \\ \hline
@@ -816,12 +802,11 @@ Tesserae & 3,596 (2) & 3,124 (4) & 2,948 (5) \\ \hline
 
 Обратимся к следующему примеру.
 
-\emph{Таблица 18. Сопоставление главы V.6.3 «Вестготской правды» и записи судебного заседания по жалобе аббата Санта-Мария-де-}\emph{Жерри}\emph{ на }\emph{Алегрета}\emph{ де }\emph{Клавероля}\emph{ и его братьев (18 февраля 1138~г., замок Салас-де-}\emph{Пальярс}\emph{; грамота №~194)}
-
 \begin{center}
 \small
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|p{\dimexpr0.94\textwidth/3\relax}|}
+\caption{Сопоставление главы V.6.3 «Вестготской правды» и записи судебного заседания по жалобе аббата Санта-Мария-де-Жерри на Алегрета де Клавероля и его братьев (18 февраля 1138~г., замок Салас-де-Пальярс; грамота №~194)}\label{tab:volume1-last}\\
 \hline
 \textbf{Элемент сопоставления} & \textbf{«Вестготская правда», V.6.3} & \textbf{Грамота}\textbf{ №~194} \\ \hline
 \textbf{Итоговый редуцированный текст} & \emph{pigne}\emph{ }\emph{debito}\emph{ }\emph{depona}\emph{ }\emph{pignus}\emph{ }\emph{debito}\emph{ }\emph{deponi}\emph{ }\emph{cautionem}\emph{ }\emph{fuer}\emph{ }\emph{obligatum}\emph{ }\emph{pignus}\emph{ }\emph{deposuer}\emph{ }\emph{tempus}\emph{ }\emph{constitutum}\emph{ }\emph{debit}\emph{ }\emph{reforma}\emph{ }\emph{dissimulet}\emph{ }\emph{diem}\emph{ }\emph{cautionis}\emph{ }\emph{exact}\emph{ }\emph{usque}\emph{ }\emph{decem}\emph{ }\emph{dies}\emph{ }\emph{pignus}\emph{ }\emph{saluum}\emph{ }\emph{domino}\emph{ }\emph{reserue}\emph{ }\emph{eidem}\emph{ }\emph{domino}\emph{ }\emph{propinquo}\emph{ }\emph{reporte}\emph{ }\emph{restituat}\emph{ }\emph{debit}\emph{ }\emph{monea}\emph{ }\emph{neglegenti}\emph{ }\emph{suam}\emph{ }\emph{debitor}\emph{ }\emph{diem}\emph{ }\emph{constitutum}\emph{ }\emph{adesse}\emph{ }\emph{neclexer}\emph{ }\emph{debit}\emph{ }\emph{inple}\emph{ }\emph{distulerit}\emph{ }\emph{addant}\emph{ }\emph{usu}\emph{ }\emph{ceter}\emph{ }\emph{adesse}\emph{ }\emph{usque}\emph{ }\emph{decem}\emph{ }\emph{dies}\emph{ }\emph{sicut}\emph{ }\emph{supra}\emph{ }\emph{scriptum}\emph{ }\emph{deb}\emph{ }\emph{reforma}\emph{ }\emph{dissimulauerit}\emph{ }\emph{tunc}\emph{ }\emph{creditor}\emph{ }\emph{iudici}\emph{ }\emph{preposito}\emph{ }\emph{ciuitatis}\emph{ }\emph{pignus}\emph{ }\emph{ostend}\emph{ }\emph{quant}\emph{ }\emph{iudicio}\emph{ }\emph{trium}\emph{ }\emph{honest}\emph{ }\emph{uirorum}\emph{ }\emph{fuer}\emph{ }\emph{estim}\emph{ }\emph{sit}\emph{ }\emph{licentia}\emph{ }\emph{distrahendi}\emph{ }\emph{postmodum}\emph{ }\emph{pretio}\emph{ }\emph{uenditi}\emph{ }\emph{pigner}\emph{ }\emph{creditor}\emph{ }\emph{quant}\emph{ }\emph{debe}\emph{ }\emph{euident}\emph{ }\emph{toll}\emph{ }\emph{relic}\emph{ }\emph{recipi}\emph{ }\emph{pignus}\emph{ }\emph{seposuer} & \emph{quem}\emph{ }\emph{lex}\emph{ }\emph{continetur}\emph{ u }\emph{titulo}\emph{ }\emph{ui}\emph{ }\emph{capitula}\emph{ }\emph{iii}\emph{ }\emph{dic}\emph{ }\emph{pignus}\emph{ }\emph{debito}\emph{ }\emph{deponi}\emph{ }\emph{debito}\emph{ }\emph{deponi}\emph{ }\emph{cautionem}\emph{ }\emph{fuer}\emph{ }\emph{obligatum}\emph{ }\emph{pignus}\emph{ }\emph{deposuer}\emph{ }\emph{tempus}\emph{ }\emph{constitutum}\emph{ }\emph{debit}\emph{ }\emph{reforma}\emph{ }\emph{dissimulet}\emph{ }\emph{diem}\emph{ }\emph{cautionis}\emph{ }\emph{exact}\emph{ }\emph{usque}\emph{ }\emph{decem}\emph{ }\emph{dies}\emph{ }\emph{pignus}\emph{ }\emph{saluum}\emph{ }\emph{domino}\emph{ }\emph{reserue}\emph{ }\emph{eidem}\emph{ }\emph{domino}\emph{ }\emph{propinquo}\emph{ }\emph{reporte}\emph{ }\emph{restituat}\emph{ }\emph{debit}\emph{ }\emph{monea}\emph{ }\emph{neglegenti}\emph{ }\emph{suam}\emph{ }\emph{debitor}\emph{ }\emph{debit}\emph{ }\emph{imple}\emph{ }\emph{distulerit}\emph{ }\emph{addant}\emph{ }\emph{usu}\emph{ }\emph{certe}\emph{ }\emph{debit}\emph{ }\emph{reforma}\emph{ }\emph{dissimulauerit}\emph{ }\emph{tunc}\emph{ }\emph{creditor}\emph{ }\emph{preposito}\emph{ }\emph{ciuitatis}\emph{ }\emph{pignus}\emph{ }\emph{ostend}\emph{ }\emph{quant}\emph{ }\emph{iudicio}\emph{ }\emph{trium}\emph{ }\emph{honest}\emph{ }\emph{uirorum}\emph{ }\emph{fuer}\emph{ }\emph{estim}\emph{ }\emph{sit}\emph{ }\emph{licen}\emph{ }\emph{tia}\emph{ }\emph{distrahendi}\emph{ }\emph{postmodum}\emph{ }\emph{precio}\emph{ }\emph{uenditi}\emph{ }\emph{pigner}\emph{ }\emph{creditor}\emph{ }\emph{quant}\emph{ }\emph{debe}\emph{ }\emph{euident}\emph{ }\emph{toll}\emph{ }\emph{reliq}\emph{ }\emph{recipi}\emph{ }\emph{pignus}\emph{ }\emph{deposuer}\emph{ }\emph{comodis}\emph{ }\emph{iudicum}\emph{ }\emph{saion}\emph{ }\emph{lex}\emph{ }\emph{continetur}\emph{ }\emph{titulo} \\ \hline

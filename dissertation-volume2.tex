@@ -2,6 +2,7 @@
 \def\thesisVolume{II}
 \def\dissertationvolume{2}
 \input{Dissertation/dissertation-preamble}
+\usepackage{refcount}
 \usepackage{xr-hyper}
 \externaldocument[volI-]{dissertation-volume1}
 
@@ -17,6 +18,7 @@
 \include{Dissertation/contents}
 
 \setcounter{chapter}{1}% Том II продолжает сквозную нумерацию основного текста.
+\setcounter{table}{\getrefnumber{volI-tab:volume1-last}}% Продолжение нумерации таблиц тома I.
 \include{Dissertation/korneeva/chapter2}
 \include{Dissertation/korneeva/chapter3}
 \setcounter{totalchapter}{\value{chapter}}
