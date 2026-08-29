@@ -5,8 +5,7 @@
 
 Актуальное `introduction.tex` имеет приоритет над прежними отдельными файлами
 историографии и источниковедения. `context.tex` остаётся самостоятельным
-ненумерованным разделом тома I. `appendix_glossary.tex` и
-`appendix_map.tex`, `appendix_glossary.tex` и
+ненумерованным разделом тома I. `appendix_map.tex`, `appendix_glossary.tex` и
 `appendix_computational_report.tex` входят в том II как приложения 1, 2 и 3.
 Глава 1 входит в том I; главы 2–3, заключение и список литературы — в том II.
 

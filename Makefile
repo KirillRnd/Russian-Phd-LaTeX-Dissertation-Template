@@ -20,6 +20,9 @@ include compress.mk
 # Config file
 MKRC ?= latexmkrc
 
+# Python is used by the fixed two-volume dissertation build.
+PYTHON ?= python
+
 # Source .tex file
 SOURCE ?= dissertation
 
@@ -83,10 +86,8 @@ define compile
 endef
 
 ##! компиляция диссертации
-dissertation: TARGET=dissertation
-dissertation: SOURCE=dissertation
 dissertation:
-	$(compile)
+	$(PYTHON) tools/build_dissertation.py
 
 ##! компиляция автореферата
 synopsis: TARGET=synopsis
@@ -145,7 +146,7 @@ tikz:
 
 ##! добавление .pdf автореферата и диссертации в систему контроля версий
 release: all
-	git add dissertation.pdf
+	git add output/pdf/dissertation-korneeva.pdf
 	git add synopsis.pdf
 
 ##! очистка от временных файлов цели TARGET
@@ -158,7 +159,9 @@ distclean-target:
 
 ##! очистка проекта от временных файлов
 clean:
-	"$(MAKE)" SOURCE=dissertation TARGET=dissertation clean-target
+	"$(MAKE)" SOURCE=dissertation-volume1 TARGET=dissertation-volume1 clean-target
+	"$(MAKE)" SOURCE=dissertation-volume2 TARGET=dissertation-volume2 clean-target
+	$(RM) output/pdf/dissertation-korneeva.pdf
 	"$(MAKE)" SOURCE=synopsis TARGET=synopsis clean-target
 	"$(MAKE)" SOURCE=presentation TARGET=presentation clean-target
 	"$(MAKE)" SOURCE=presentation_booklet TARGET=presentation_booklet clean-target
@@ -166,7 +169,9 @@ clean:
 
 ##! полная очистка проекта от временных файлов
 distclean:
-	"$(MAKE)" SOURCE=dissertation TARGET=dissertation distclean-target
+	"$(MAKE)" SOURCE=dissertation-volume1 TARGET=dissertation-volume1 distclean-target
+	"$(MAKE)" SOURCE=dissertation-volume2 TARGET=dissertation-volume2 distclean-target
+	$(RM) output/pdf/dissertation-korneeva.pdf
 	"$(MAKE)" SOURCE=synopsis TARGET=synopsis distclean-target
 	"$(MAKE)" SOURCE=presentation TARGET=presentation distclean-target
 	"$(MAKE)" SOURCE=presentation_booklet TARGET=presentation_booklet distclean-target
