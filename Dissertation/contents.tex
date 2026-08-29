@@ -1,13 +1,30 @@
 % Оглавление (ГОСТ Р 7.0.11-2011, 5.2)
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемому оглавлению
-% В принятых диссертациях каждый том содержит собственное оглавление и
-% самостоятельные номера страниц. Название тома ставится отдельной строкой,
-% поэтому префиксы вида «Т. II, с.» у отдельных пунктов не требуются.
+% Первый том многотомной диссертации содержит сводное оглавление всей работы;
+% второй том — собственное оглавление. При самостоятельной пагинации номер
+% тома должен быть частью ссылки на страницы второго тома.
 \renewcommand*{\aftertoctitle}{%
     \par\nobreak\vskip1.7\onelineskip
     \noindent Том~\thesisVolume\par\nobreak
 }
 \tableofcontents*
+\ifnum\dissertationvolume=1
+    \begingroup
+        \par\addvspace{1.7\onelineskip}
+        {\centering\textbf{Том II}\par\nobreak}
+        \let\dissertationoriginalcontentsline\contentsline
+        \renewcommand{\contentsline}[4]{%
+            \dissertationoriginalcontentsline{#1}{#2}{#3}{volume2.#4}%
+        }
+        \makeatletter
+        \InputIfFileExists{dissertation-volume2.toc}{}{%
+            \PackageWarning{dissertation}{%
+                Сводное оглавление неполно: используйте tools/build_dissertation.py%
+            }%
+        }
+        \makeatother
+    \endgroup
+\fi
 \addtocontents{toc}{\protect\tocheader}
 \endTOCtrue
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}

@@ -119,13 +119,20 @@ def build() -> Path:
     started_at = time.time_ns()
     clean_auxiliaries()
 
-    # Том I формирует .aux, от которого зависит том II.
+    # Предварительный том I формирует .aux, от которого зависит том II.
+    # На этом этапе его сводное оглавление ещё не может быть полным: файл
+    # dissertation-volume2.toc будет создан только следующим шагом.
     settle_xelatex(engine, VOLUME_1, minimum_passes=3)
 
-    # Том II зависит от .aux тома I и содержит собственную библиографию.
+    # Том II зависит от .aux тома I, содержит собственную библиографию и
+    # создаёт .toc, который затем включается в сводное оглавление тома I.
     xelatex(engine, VOLUME_2)
     run([biber, VOLUME_2.stem])
     settle_xelatex(engine, VOLUME_2, minimum_passes=2)
+
+    # Окончательный том I включает устойчивое оглавление тома II. Дополнительный
+    # проход нужен, поскольку увеличившееся оглавление сдвигает страницы тома I.
+    settle_xelatex(engine, VOLUME_1, minimum_passes=2)
 
     missing = [str(path) for path, _ in VOLUME_FILES if not path.exists()]
     if missing:
