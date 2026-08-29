@@ -20,6 +20,8 @@
     "Dissertation/korneeva/chapter2.tex",
     "Dissertation/korneeva/context.tex",
     "Dissertation/korneeva/introduction.tex",
+    "Dissertation/korneeva/introduction_historiography.tex",
+    "Dissertation/korneeva/introduction_sources.tex",
     "Dissertation/renames.tex",
     "Dissertation/setup.tex",
     "Dissertation/title.tex",
@@ -33,10 +35,10 @@
     "chapters": 2,
     "sections": 7,
     "subsections": 33,
-    "footnotes": 394,
+    "footnotes": 782,
     "figures": 6,
     "longtables": 29,
-    "bibliography_entries": 553
+    "bibliography_entries": 686
   },
   "bibliography_files": [
     "biblio/korneeva_full.bib"

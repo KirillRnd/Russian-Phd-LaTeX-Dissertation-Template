@@ -59,6 +59,17 @@ OP_CIT_RE = re.compile(
     r"Цит\.?\s*соч\.?)",
     re.I,
 )
+OP_CIT_AUTHOR_OVERRIDES = {
+    # Both standalone chapter files begin after the full Giraud citation that
+    # supplied the antecedent in the author's larger working document.
+    "giraud": "korneeva-sources-024",
+}
+ARCHIVAL_REFERENCE_RE = re.compile(
+    r"^(?:Archivo|Arxiu|(?:La\s+)?Biblioteca|Biblicteca|Fundació|Real Biblioteca|AHN\b)"
+    r".*(?:Ms\.|Cod\.|Cód\.|Sign\.|Perg(?:amino|arnino|aminos)?\b|"
+    r"Libro\b|Vol\.|Núm\.|№|Ff?\.|Fols?\.|Caja\b|Carp\.|Doc\.)",
+    re.I,
+)
 CROSS_REFERENCE_RE = re.compile(r"^(?P<surface>supra|infra|см\.\s*(?:выше|ниже))\b", re.I)
 AUTHOR_PREFIX_RE = re.compile(
     r"^(?P<author>[A-ZА-ЯЁÀ-ÖØ-Þ][\w'’`-]{1,60}"
@@ -67,10 +78,7 @@ AUTHOR_PREFIX_RE = re.compile(
 )
 
 ACTIVE_DOCX = list(DOCX_JOBS)
-EXCLUDED_SUPERSEDED_DOCX = {
-    "ИСТОРИОГРАФИЯ_ВЕРСИЯ_3.docx": "superseded by ВВЕДЕНИЕ_ВЕРСИЯ_3.docx",
-    "ИСТОЧНИК_ВЕРСИЯ_3.docx": "superseded by ВВЕДЕНИЕ_ВЕРСИЯ_3.docx",
-}
+EXCLUDED_SUPERSEDED_DOCX: dict[str, str] = {}
 
 # Families identify a historical work whose citations may leave the edition
 # implicit.  They prevent a short work title from being assigned to the one
@@ -262,6 +270,27 @@ def graph_split_units(value: str) -> list[str]:
                 re.search(r"(?:св|пер|ред|изд|сост|тип)\.\s*$", repaired[-1], re.I)
                 or re.match(r"^Владимира\s+Н\.Т\.\s+Корчак-Новицкого", unit)
                 or (
+                    re.match(r"^(?:Armario|Cajón)\b", unit, re.I)
+                    and re.match(r"^Archivo\b", repaired[-1], re.I)
+                )
+                or re.search(r"\bРец\.:\s*$", repaired[-1], re.I)
+                or (
+                    repaired[-1].endswith("Cambridge")
+                    and re.match(r"^New York,\s*1991\s*//", unit)
+                )
+                or (
+                    re.match(r"^Fishman\s+J\.A\.\s+Bilingualism with and without Diglossia$", repaired[-1])
+                    and re.match(r"^Diglossia with and without Bilingualism\s*//", unit)
+                )
+                or (
+                    re.match(r"^Аникьев\s+И\.И\.,\s*Филиппов\s+И\.С\.$", repaired[-1])
+                    and re.match(r"^Banniard\s+M\.", unit)
+                )
+                or (
+                    re.match(r"^Аникьев\s+И\.И\.,\s*Филиппов\s+И\.С\.\s+Banniard\s+M\.", repaired[-1])
+                    and re.match(r"^Баньяр\s+М\.", unit)
+                )
+                or (
                     re.match(r"^Горбун\s+Г\.\s*С\.\s+\d{4}", unit)
                     and re.search(r"(?:под\s+ред|пер)\.\s*$", repaired[-1], re.I)
                 )
@@ -300,7 +329,39 @@ def graph_split_units(value: str) -> list[str]:
                     refined.append(second)
             else:
                 refined.append(unit)
-    return refined
+
+    # Russian same-author operators introduce a new bibliographic object even
+    # when Word keeps both citations in one footnote sentence.
+    result: list[str] = []
+    for unit in refined:
+        boundaries = [
+            match.start()
+            for match in re.finditer(
+                r"(?<=\.)\s+(?=(?:Он|Она|Они|Его|Её|Их)\s+же\.)",
+                unit,
+                re.I,
+            )
+        ]
+        start = 0
+        for boundary in boundaries:
+            part = unit[start:boundary].strip()
+            if part:
+                result.append(part)
+            start = boundary
+        tail = unit[start:].strip()
+        if tail:
+            result.append(tail)
+    archival_result: list[str] = []
+    for unit in result:
+        archival_result.extend(
+            part.strip()
+            for part in re.split(
+                r";\s*(?=(?:AHN|ACA|ACBEB|AHCB|AML|AMT|ARM|BCC|BE|BNF)\.)",
+                unit,
+            )
+            if part.strip()
+        )
+    return archival_result
 
 
 def detect_relation(value: str) -> Relation:
@@ -348,6 +409,8 @@ def commentary_only(value: str) -> bool:
     if re.match(
         r"^(?:Здесь и далее|В историографии|Для исследования|Название .+ появилось|"
         r"В данном исследовании|Проблема заключается|Детальн(?:ая|ые) библиограф|"
+        r"Этому направлению исследований|Обращение к .+ означает|"
+        r"Жозеф Кальмет .+ французский историк|"
         r"[^:]{1,120}\s+отмечал[аи]?,?\s+что)",
         stripped,
         re.I,
@@ -669,11 +732,42 @@ def canonical_author_candidates(
     return candidates
 
 
+def inherited_author_title_candidate(
+    author: str,
+    payload: str,
+    registry: WorkRegistry,
+) -> tuple[str | None, float | None]:
+    """Resolve a full ``Он/Она же`` citation against that author's records."""
+
+    candidates = canonical_author_candidates(author, payload, registry)
+    payload_tokens = tokens(strip_locator(payload))
+    ranked: list[tuple[float, str]] = []
+    for key in candidates:
+        title_tokens = tokens(registry.by_key[key].fields.get("title", ""))
+        if not payload_tokens or not title_tokens:
+            continue
+        score = len(payload_tokens & title_tokens) / min(len(payload_tokens), len(title_tokens))
+        if score >= 0.65:
+            ranked.append((score, key))
+    ranked.sort(reverse=True)
+    if not ranked:
+        return None, None
+    if len(ranked) > 1 and ranked[0][0] - ranked[1][0] < 0.12:
+        return None, None
+    return ranked[0][1], round(ranked[0][0], 3)
+
+
 def direct_match(
     mention: GraphMention,
     registry: WorkRegistry,
 ) -> tuple[str | None, list[str], str | None, float | None]:
-    family, candidates = family_candidates(mention.explicit_payload, registry.by_key)
+    # A complete scholarly reference may mention a historical source in its
+    # title.  That does not turn the article itself into an edition of the
+    # source; family-level matching is reserved for genuinely short citations.
+    family = None
+    candidates: list[str] = []
+    if not INITIALS_RE.match(citation_payload(mention.explicit_payload).strip()):
+        family, candidates = family_candidates(mention.explicit_payload, registry.by_key)
     mention.source_family = family
     if family:
         if len(candidates) == 1:
@@ -726,6 +820,40 @@ def build_graph(
     current_document: str | None = None
     last_citation: GraphMention | None = None
     author_history: dict[str, list[tuple[str, str]]] = defaultdict(list)
+
+    def add_institutional_reference(
+        mention: GraphMention,
+        title: str,
+        organization: str,
+        method: str,
+        source_text: str | None = None,
+    ) -> None:
+        annotation = source_text or title
+        fingerprint = re.sub(r"\s+", " ", f"{organization}|{title}").casefold().strip()
+        key = institution_by_fingerprint.get(fingerprint)
+        if key is None:
+            key = f"korneeva-institution-{len(institutional_entries) + 1:03d}"
+            entry = ParsedEntry(
+                key=key,
+                group="institutional",
+                entry_type="misc",
+                fields={
+                    "title": title,
+                    "organization": organization,
+                    "annotation": annotation,
+                    "keywords": "institutional",
+                },
+                confidence="high",
+            )
+            institutional_entries.append(entry)
+            registry.entries.append(entry)
+            registry.by_key[key] = entry
+            institution_by_fingerprint[fingerprint] = key
+        mention.resolved_work_id = key
+        mention.candidate_work_ids = [key]
+        mention.resolution = "resolved_explicit"
+        mention.resolution_method = method
+        mention.confidence = 1.0
 
     def remember(mention: GraphMention) -> None:
         nonlocal last_citation
@@ -817,38 +945,47 @@ def build_graph(
                     remember(mention)
                     continue
                 if abbreviation not in JOURNAL_ABBREVIATIONS:
-                    fingerprint = normalize(unit)
-                    key = institution_by_fingerprint.get(fingerprint)
-                    if key is None:
-                        key = f"korneeva-institution-{len(institutional_entries) + 1:03d}"
-                        title = unit
-                        marker = re.search(r"(?<![\w])" + re.escape(abbreviation) + r"\.\s*", title)
-                        if marker:
-                            title = title[marker.end() :].strip(" .")
-                        entry = ParsedEntry(
-                            key=key,
-                            group="institutional",
-                            entry_type="misc",
-                            fields={
-                                "title": title,
-                                "organization": primary_expansion(abbreviations[abbreviation]),
-                                "annotation": unit,
-                                "keywords": "institutional",
-                            },
-                            confidence="high",
-                        )
-                        institutional_entries.append(entry)
-                        registry.entries.append(entry)
-                        registry.by_key[key] = entry
-                        institution_by_fingerprint[fingerprint] = key
-                    mention.resolved_work_id = key
-                    mention.candidate_work_ids = [key]
-                    mention.resolution = "resolved_explicit"
-                    mention.resolution_method = "authoritative_institutional_abbreviation"
-                    mention.confidence = 1.0
+                    title = unit
+                    marker = re.search(r"(?<![\w])" + re.escape(abbreviation) + r"\.\s*", title)
+                    if marker:
+                        title = title[marker.end() :].strip(" .")
+                    add_institutional_reference(
+                        mention,
+                        title,
+                        primary_expansion(abbreviations[abbreviation]),
+                        "authoritative_institutional_abbreviation",
+                        source_text=unit,
+                    )
                     mentions.append(mention)
                     remember(mention)
                     continue
+
+            if relation.relation_type is None and ARCHIVAL_REFERENCE_RE.search(unit.strip()):
+                archival_text = unit.strip()
+                shelfmark = re.search(
+                    r"\.(?=\s*(?:Ms|Cod|Cód|Sign|Perg|Libro|Vol|Núm|№|Ff|Fol|Caja|Carp|Doc|"
+                    r"[A-Z]?\d+[A-Z]?(?:[-/]\d+)+)\b)",
+                    archival_text,
+                    flags=re.I,
+                )
+                organization = (
+                    archival_text[: shelfmark.start()].strip(" .")
+                    if shelfmark else archival_text.strip(" .")
+                )
+                title = (
+                    archival_text[shelfmark.end() :].strip(" .")
+                    if shelfmark else archival_text
+                )
+                add_institutional_reference(
+                    mention,
+                    title,
+                    organization,
+                    "explicit_archival_repository_and_shelfmark",
+                    source_text=unit,
+                )
+                mentions.append(mention)
+                remember(mention)
+                continue
 
             if relation.relation_type == "same_work":
                 if last_citation is None:
@@ -856,6 +993,16 @@ def build_graph(
                     mention.resolution_method = "no_previous_citation_in_document"
                 else:
                     mention.antecedent_mention_id = last_citation.mention_id
+                    mention.inherited_author = (
+                        last_citation.inherited_author
+                        or concise_inherited_author(
+                            work_author(registry, last_citation.resolved_work_id)
+                        )
+                    )
+                    if mention.inherited_author is None:
+                        leading_author = INITIALS_RE.match(last_citation.text.strip())
+                        if leading_author:
+                            mention.inherited_author = leading_author.group(0).strip()
                     mention.inherited_work_id = last_citation.resolved_work_id
                     mention.resolved_work_id = last_citation.resolved_work_id
                     if mention.explicit_locator is None:
@@ -903,6 +1050,12 @@ def build_graph(
                     inherited_author = concise_inherited_author(
                         work_author(registry, last_citation.resolved_work_id)
                     )
+                    if inherited_author is None:
+                        inherited_author = last_citation.inherited_author
+                    if inherited_author is None:
+                        leading_author = INITIALS_RE.match(last_citation.text.strip())
+                        if leading_author:
+                            inherited_author = leading_author.group(0).strip()
                     mention.inherited_author = inherited_author
                 if inherited_author is None:
                     mention.warnings.append("same-author operator has no resolved author antecedent")
@@ -933,6 +1086,9 @@ def build_graph(
                     continue
                 if author_value:
                     unique_work_ids = canonical_author_candidates(author_value, unit, registry)
+                    override = OP_CIT_AUTHOR_OVERRIDES.get(author_lookup_key(author_value))
+                    if not unique_work_ids and override in registry.by_key:
+                        unique_work_ids = [override]
                 mention.candidate_work_ids = unique_work_ids
                 if len(unique_work_ids) == 1:
                     mention.inherited_work_id = unique_work_ids[0]
@@ -951,6 +1107,17 @@ def build_graph(
                 continue
 
             key, candidates, method, score = direct_match(mention, registry)
+            if key is None and inherited_author:
+                inherited_key, inherited_score = inherited_author_title_candidate(
+                    inherited_author,
+                    mention.explicit_payload,
+                    registry,
+                )
+                if inherited_key:
+                    key = inherited_key
+                    candidates = [inherited_key]
+                    method = "inherited_author_and_title"
+                    score = inherited_score
             mention.candidate_work_ids = candidates
             if key:
                 mention.resolved_work_id = key

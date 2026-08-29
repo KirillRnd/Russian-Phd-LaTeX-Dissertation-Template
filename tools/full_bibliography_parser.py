@@ -39,6 +39,8 @@ from docx_to_latex import NS, W, bibliography_entries, node_text, xml_part
 
 DOCX_JOBS = [
     "ВВЕДЕНИЕ_ВЕРСИЯ_3.docx",
+    "ИСТОРИОГРАФИЯ_ВЕРСИЯ_3.docx",
+    "ИСТОЧНИК_ВЕРСИЯ_3.docx",
     "КОНТЕКСТ_ВЕРСИЯ_3.docx",
     "ГЛАВА_1_ВЕРСИЯ_3.docx",
     "ГЛАВА_2_ВЕРСИЯ_3.docx",
