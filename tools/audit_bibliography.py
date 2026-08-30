@@ -296,9 +296,17 @@ def issues(entry: Entry) -> list[tuple[str, str]]:
     if "credits" in fields:
         result.append(("error", "поле credits не поддерживается моделью BibLaTeX"))
     if "volume" in fields and not re.fullmatch(
-        r"(?:\d+|[IVXLCDM]+)(?:--(?:\d+|[IVXLCDM]+))?", fields["volume"], re.I
+        r"(?:\d+|[IVXLCDM]+)(?: \((?:\d+|[IVXLCDM]+)\)|--(?:\d+|[IVXLCDM]+))?",
+        fields["volume"],
+        re.I,
     ):
-        result.append(("error", f"volume не является номером или диапазоном томов: {fields['volume']}"))
+        result.append(
+            (
+                "error",
+                "volume не является номером, двойной нумерацией или диапазоном томов: "
+                f"{fields['volume']}",
+            )
+        )
     if entry.entry_type == "online" and "pages" in fields:
         result.append(("error", "pages недопустимо для online"))
     if "url" in fields and "urldate" not in fields:
