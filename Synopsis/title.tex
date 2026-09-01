@@ -37,11 +37,13 @@
 \newpage
 % оборотная сторона обложки
 \thispagestyle{empty}
+\begingroup
+\small
 \noindent Работа выполнена в {\thesisInOrganization}.
 
 \vspace{0.008\paperheight plus1fill}
 \noindent%
-\begin{tabularx}{\textwidth}{@{}lX@{}}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{8.5em}X@{}}
     \ifdefined\supervisorTwoFio
     Научные руководители:   & \supervisorRegalia\par
                               \ifdefined\supervisorDead
@@ -110,7 +112,7 @@
 \noindent Отзывы на автореферат в двух экземплярах, заверенные печатью учреждения, просьба направлять по адресу: \defenseCouncilAddress, ученому секретарю диссертационного совета~\defenseCouncilNumber.
 
 \vspace{0.008\paperheight plus1fill}
-\ifnumequal{\value{showprocedure}}{0}{}{\noindent{Автореферат разослан \synopsisDate.}}
+\ifnumequal{\value{showmailingdate}}{0}{}{\noindent{Автореферат разослан \synopsisDate.}}
 
 \noindent Телефон для справок: \defenseCouncilPhone.
 
@@ -132,3 +134,4 @@ r
     &
     \defenseSecretaryFio
 \end{tabularx}
+\endgroup
