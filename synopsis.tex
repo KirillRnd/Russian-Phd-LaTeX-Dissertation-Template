@@ -3,7 +3,7 @@
 
 % Откомментируйте, чтобы отключить генерацию закладок в pdf
 % \PassOptionsToPackage{bookmarks=false}{hyperref}
-\documentclass[a5paper,10pt,twoside,openany,article]{memoir} %,draft
+\documentclass[a4paper,14pt,twoside,openany,article]{memoir} %,draft
 
 \input{common/setup}          % общие настройки шаблона
 \input{common/packages}       % Пакеты общие для диссертации и автореферата
@@ -15,6 +15,7 @@
 \input{Synopsis/setup}        % Упрощённые настройки шаблона
 
 \input{common/data}           % Основные сведения
+\input{Synopsis/data}       % Сведения только для автореферата
 \input{common/fonts}          % Определение шрифтов (частичное)
 \input{common/styles}         % Стили общие для диссертации и автореферата
 \input{Synopsis/synstyles}    % Стили для автореферата
@@ -25,6 +26,13 @@
     \input{biblio/predefined} % Встроенная реализация с загрузкой файла через движок bibtex8
 }{
     \input{biblio/biblatex}   % Реализация пакетом biblatex через движок biber
+}
+
+% В работах о платформах перечисляем авторов до соискателя включительно.
+\AtEveryBibitem{%
+    \ifboolexpr{test {\iffieldequalstr{entrykey}{korneev_mars_platform_2024}}
+        or test {\iffieldequalstr{entrykey}{korneev_venus_platform_2026}}}
+        {\defcounter{maxnames}{2}\defcounter{minnames}{2}}{}%
 }
 
 % Вывести информацию о выбранных опциях в лог сборки
@@ -53,9 +61,9 @@
 \par\vfill
 \begingroup
 \footnotesize
-\noindent\rule{\textwidth}{0.4pt}
+\noindent
 {\centering
-Подписано в~печать \blank[\widthof{00}].\blank[\widthof{00}].\blank[\widthof{0000}].
+Подписано в~печать \blank[\widthof{00}].\blank[\widthof{00}].2026.
 Формат 60\(\times\)84/16. Усл. печ. л. 1,2. Тираж 70~экз. Заказ \blank[\widthof{А-ххх}].
 
 ИПМ им.~М.В.~Келдыша РАН. 125047, Москва, Миусская пл., 4

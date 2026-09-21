@@ -2,8 +2,8 @@
 \graphicspath{{images/}{Synopsis/images/}}         % Пути к изображениям
 
 %%% Макет страницы %%%
-\geometry{a5paper, top=14mm, bottom=14mm, inner=18mm, outer=10mm, footskip=5mm, nomarginpar}%, showframe
-\setlength{\topskip}{0pt}   %размер дополнительного верхнего поля
+\geometry{a4paper, top=30mm, bottom=20mm, left=20mm, right=20mm, headheight=17pt, headsep=8mm, nomarginpar}%, showframe
+\setlength{\topskip}{14pt}   %размер дополнительного верхнего поля
 
 %%% Интервалы %%%
 %% Реализация средствами класса (на основе setspace) ближе к типографской классике.
@@ -27,10 +27,10 @@
 \widowpenalty=10000     % Запрещаем разрыв страницы после последней строки абзаца
 
 %%% Колонтитулы %%%
-\makeevenhead{plain}{}{}{}
-\makeoddhead{plain}{}{}{}
-\makeevenfoot{plain}{}{\thepage}{}
-\makeoddfoot{plain}{}{\thepage}{}
+\makeevenhead{plain}{}{\thepage}{}
+\makeoddhead{plain}{}{\thepage}{}
+\makeevenfoot{plain}{}{}{}
+\makeoddfoot{plain}{}{}{}
 \pagestyle{plain}
 
 %%% Размеры заголовков %%%
@@ -48,8 +48,27 @@
 \setlength\intextsep{1ex}
 
 %%% Компактная вёрстка списков и выключных формул %%%
-\setlist[enumerate]{nosep,labelindent=0pt,leftmargin=1.8em,labelsep=0.5em}
+\setlist[enumerate]{nosep,labelindent=0pt,leftmargin=1.8em,labelsep=0.5em,beginpenalty=10000}
 \setlength{\abovedisplayskip}{4pt plus 1pt minus 1pt}
 \setlength{\belowdisplayskip}{4pt plus 1pt minus 1pt}
 \setlength{\abovedisplayshortskip}{2pt plus 1pt minus 1pt}
 \setlength{\belowdisplayshortskip}{3pt plus 1pt minus 1pt}
+
+% Макет А4 для уменьшения при печати брошюры: основной текст 14 pt.
+\makeatletter
+\renewcommand{\normalsize}{\@setfontsize\normalsize{14pt}{16pt}%
+    \abovedisplayskip=6pt plus 1pt minus 1pt
+    \belowdisplayskip=6pt plus 1pt minus 1pt
+    \abovedisplayshortskip=3pt plus 1pt minus 1pt
+    \belowdisplayshortskip=4pt plus 1pt minus 1pt}
+\makeatother
+\AtBeginDocument{\normalsize\setlength{\parindent}{1cm}\setlength{\parskip}{0pt}}
+\setsecheadstyle{\centering\normalfont\bfseries\large}
+\setbeforesecskip{8pt}
+\setaftersecskip{8pt}
+\DeclareCaptionLabelSeparator{synopsisemdash}{~---~}
+\captionsetup[figure]{font=normalsize,labelsep=synopsisemdash,skip=4pt}
+\captionsetup[table]{font=normalsize,labelsep=synopsisemdash,skip=4pt}
+\setlength{\intextsep}{8pt}
+\setlength{\textfloatsep}{10pt}
+\urlstyle{same}
