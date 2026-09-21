@@ -46,6 +46,7 @@
 \input{Synopsis/title}        % Титульный лист
 %\mainmatter                   % В том числе начинает нумерацию страниц арабскими цифрами с единицы
 \mainmatter*                  % Нумерация страниц не изменится, но начнётся с новой страницы
+\raggedbottom                 % Не растягивать вертикальные отбивки на неполных страницах
 \input{Synopsis/content}      % Содержание автореферата
 
 %%% Выходные сведения типографии
@@ -53,11 +54,11 @@
 \begingroup
 \footnotesize
 \noindent\rule{\textwidth}{0.4pt}
-\begin{center}
+{\centering
 Подписано в~печать \blank[\widthof{00}].\blank[\widthof{00}].\blank[\widthof{0000}].
 Формат 60\(\times\)84/16. Усл. печ. л. 1,2. Тираж 70~экз. Заказ \blank[\widthof{А-ххх}].
 
 ИПМ им.~М.В.~Келдыша РАН. 125047, Москва, Миусская пл., 4
-\end{center}
+\par}
 \endgroup
 \end{document}
